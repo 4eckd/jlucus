@@ -19,10 +19,10 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
+  --background-color: #ffffff00; /* Background color for the entire website, including individual sections */
   --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #050d18; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #149ddd; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --heading-color: #17c7d0; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #68dd14; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -161,7 +161,7 @@ h6 {
   margin: 15px auto;
   display: block;
   width: 120px;
-  border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
+  border: 3px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
 .header .logo {
@@ -619,12 +619,17 @@ section,
 }
 
 
-.fa-twitter 
-fa-telegram-plane
-fa-linkedin-in
-fa-instagram
-fa-youtube
-
+.fa-twitter
+.fa-telegram-plane
+.fa-linkedin-in
+.fa-instagram
+.fa-youtube
+.fa-facebook
+.fa-spotify
+.fa-twitch
+.fa-github
+.fa-discord
+.fa-globe-americas
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
