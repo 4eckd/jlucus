@@ -12,29 +12,41 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Poppins",  sans-serif;
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Poppins", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff00; /* Background color for the entire website, including individual sections */
-  --default-color: #272829; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #17c7d0; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #68dd14; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --background-color: #ffffff00;
+  /* Background color for the entire website, including individual sections */
+  --default-color: #272829;
+  /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #17c7d0;
+  /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #68dd14;
+  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff;
+  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff;
+  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #a8a9b4;  /* The default color of the main navmenu links */
-  --nav-hover-color: #ffffff; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #040b14; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #040b14; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #a8a9b4; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ffffff; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #a8a9b4;
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #68dd14;
+  /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #040b14;
+  /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #040b14;
+  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #a8a9b4;
+  /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #68dd14;
+  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -457,7 +469,7 @@ h6 {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
   [data-aos-delay] {
-    transition-delay: 0 !important;
+    transition-delay: 0;
   }
 }
 
@@ -618,18 +630,21 @@ section,
   }
 }
 
-
-.fa-twitter
-.fa-telegram-plane
-.fa-linkedin-in
-.fa-instagram
-.fa-youtube
-.fa-facebook
-.fa-spotify
-.fa-twitch
-.fa-github
-.fa-discord
-.fa-globe-americas
+ /*--------------------------------------------------------------
+# Social Icons
+--------------------------------------------------------------*/
+.fa-twitter 
+.fa-telegram-plane 
+.fa-linkedin-in 
+.fa-instagram 
+.fa-youtube 
+.fa-facebook 
+.fa-spotify 
+.fa-twitch 
+.fa-github 
+.fa-discord 
+.fa-globe-americas 
+ 
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
@@ -905,6 +920,77 @@ section,
 /*--------------------------------------------------------------
 # Services Section
 --------------------------------------------------------------*/
+/* Uniform Service Content */
+.service-content {
+  padding: 30px;
+  background: var(--surface-color);
+  /* Use variable */
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Consistent Image Sizing */
+.services-img {
+  max-height: 350px;
+}
+
+/* Unified List Styling */
+.service-content ul {
+  padding-left: 20px;
+  margin-bottom: 25px;
+}
+
+.service-content ul li {
+  padding-left: 35px;
+}
+
+.service-content ul li i {
+  color: var(--accent-color);
+  /* Use theme variable */
+  left: -25px;
+  /* Better icon alignment */
+}
+
+/* Calendly Button Styling */
+.calendly-btn {
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  border: 2px solid var(--accent-color);
+}
+
+.calendly-btn:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 20%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 40%);
+}
+
+/* Achievement Card Consistency */
+.achievement-card {
+  background: color-mix(in srgb, var(--surface-color), transparent 20%);
+  padding: 25px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 15px 0;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.achievement-number {
+  color: var(--accent-color); /* Use theme color */
+  font-size: 1.5rem;
+}
+
+.achievement-text {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
 .services .service-item {
   position: relative;
 }
