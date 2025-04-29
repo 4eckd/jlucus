@@ -391,6 +391,54 @@ h6 {
 }
 
 
+/*---Testimonials--*/
+.testimonials-item {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.testimonials-item.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+.testimonials-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 15px auto;
+}
+
+.testimonials-pagination ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.testimonials-pagination a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  text-indent: -9999px;
+  transition: background 0.3s ease;
+}
+
+.testimonials-pagination a.active {
+  background: #106eea;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 
 /*--------------------------------------------------------------
 # Global Footer
