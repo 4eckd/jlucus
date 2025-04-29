@@ -328,10 +328,17 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <button class="download-button" id="resume-download">
-          <i class="fas fa-download"></i> Download Resume (PDF)
-        </button>
+      <h2>
+        <div class="d-flex flex-column flex-md-row gap-3 mt-4">
+          <a href="/assets/jlucusdev.pdf" class="btn btn-success btn-lg download-button" 
+             download="jlucusdev.pdf" 
+             aria-label="Download resume"
+             id="resume-download">
+            <i class="fas fa-download me-2"></i>Download Resume (PDF)
+          </a>
+        </div>  
+      </h2>
+
         
         <script>
         document.getElementById('resume-download').addEventListener('click', function() {
