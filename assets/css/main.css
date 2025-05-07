@@ -391,6 +391,36 @@ h6 {
 }
 
 
+/* AI Model Item Styling */
+.ai-model-item {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.ai-model-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ai-model-item img.ai-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  display: block;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.ai-model-item:hover img.ai-logo {
+  transform: scale(1.1);
+}
+
 /*---Testimonials--*/
 .testimonials-item {
   display: none;
@@ -700,18 +730,18 @@ section,
  /*--------------------------------------------------------------
 # Social Icons
 --------------------------------------------------------------*/
-.fa-twitter 
-.fa-telegram-plane 
-.fa-linkedin-in 
-.fa-instagram 
-.fa-youtube 
-.fa-facebook 
-.fa-spotify 
-.fa-twitch 
-.fa-github 
-.fa-discord 
-.fa-globe-americas 
- 
+.fa-twitter
+.fa-telegram-plane
+.fa-linkedin-in
+.fa-instagram
+.fa-youtube
+.fa-facebook
+.fa-spotify
+.fa-twitch
+.fa-github
+.fa-discord
+.fa-globe-americas
+
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/

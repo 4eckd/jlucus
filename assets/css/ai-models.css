@@ -42,15 +42,26 @@
   background: linear-gradient(to right, var(--accent-color), #31249a);
 }
 
-.ai-model-logo {
+.ai-model-logo, .ai-logo {
   width: 80px;
   height: 80px;
   object-fit: contain;
   margin: 0 auto 15px;
   transition: transform 0.3s ease;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-.ai-model-card:hover .ai-model-logo {
+/* Fix for SVG display in different browsers */
+.ai-model-item img, .service-icon img {
+  max-width: 100%;
+  display: block;
+}
+
+.ai-model-card:hover .ai-model-logo,
+.ai-model-item:hover img.ai-logo,
+.ai-model-item:hover .ai-logo {
   transform: scale(1.1);
 }
 
@@ -107,17 +118,17 @@
   .ai-models-container {
     gap: 20px;
   }
-  
+
   .ai-model-card {
     width: 180px;
     padding: 20px;
   }
-  
+
   .ai-model-logo {
     width: 60px;
     height: 60px;
   }
-  
+
   .ai-model-name {
     font-size: 16px;
   }
@@ -127,12 +138,12 @@
   .ai-models-container {
     gap: 15px;
   }
-  
+
   .ai-model-card {
     width: 150px;
     padding: 15px;
   }
-  
+
   .ai-model-description {
     display: none;
   }

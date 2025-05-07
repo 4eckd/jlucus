@@ -1,0 +1,107 @@
+/**
+ * SVG Fallback CSS
+ * Styles for SVG fallback elements
+ */
+
+/* Fallback for SVG images */
+.svg-fallback {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .svg-fallback {
+    transform: scale(1.1);
+}
+
+/* Inline SVG container */
+.inline-svg-container {
+    width: 80px;
+    height: 80px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .inline-svg-container {
+    transform: scale(1.1);
+}
+
+/* Specific colors for different AI models */
+.service-card:nth-child(1) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #10a37f; /* OpenAI color */
+}
+
+.service-card:nth-child(2) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #0668E1; /* Meta color */
+}
+
+.service-card:nth-child(3) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #4285F4; /* Google color */
+}
+
+.service-card:nth-child(4) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #000000; /* Anthropic color */
+}
+
+.service-card:nth-child(5) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #000000; /* Anthropic color */
+}
+
+.service-card:nth-child(6) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #8e44ad; /* Gemini color */
+}
+
+.service-card:nth-child(7) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #2563EB; /* Continue color */
+}
+
+.service-card:nth-child(8) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #5436DA; /* Cohere color */
+}
+
+.service-card:nth-child(9) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #3498db; /* DeepSeek color */
+}
+
+.service-card:nth-child(10) .svg-fallback {
+    background-color: #f0f7ff;
+    color: #27ae60; /* OpenWeb color */
+}
+
+/* AI model item fallbacks in service-details.html */
+.ai-model-item .svg-fallback {
+    width: 60px;
+    height: 60px;
+    font-size: 12px;
+}
+
+.ai-model-item .inline-svg-container {
+    width: 60px;
+    height: 60px;
+}

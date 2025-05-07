@@ -54,7 +54,7 @@
   align-items: center;
 }
 
-.service-icon img, .service-icon object {
+.service-icon img, .service-icon object, .service-icon svg {
   width: 80px;
   height: 80px;
   object-fit: contain;
@@ -76,9 +76,24 @@
   transition: transform 0.3s ease;
 }
 
+/* Fix for SVG display issues */
+.service-icon img.ai-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px;
+  transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
 .service-card:hover .service-icon img,
 .service-card:hover .service-icon object,
-.service-card:hover .ai-logo-svg {
+.service-card:hover .service-icon svg,
+.service-card:hover .ai-logo-svg,
+.service-card:hover .service-icon img.ai-logo {
   transform: scale(1.1);
 }
 

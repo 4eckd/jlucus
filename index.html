@@ -40,6 +40,8 @@
   <link href="assets/css/services-section.css" rel="stylesheet">
   <!-- Navigation Improvements CSS -->
   <link href="assets/css/nav-improvements.css" rel="stylesheet">
+  <!-- SVG Fallback CSS -->
+  <link href="assets/css/svg-fallback.css" rel="stylesheet">
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -725,7 +727,7 @@
             <!-- Hugging Face -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="100">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/huggingface.svg" class="ai-logo-svg">Hugging Face</object>
+                <img src="assets/img/ai-models/openai.svg" alt="Hugging Face Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Hugging Face</div>'">
               </div>
               <h3 class="service-name">Hugging Face</h3>
               <p class="service-company">Hugging Face Inc.</p>
@@ -736,7 +738,7 @@
             <!-- Llama -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="200">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/meta-color.svg" class="ai-logo-svg">Llama</object>
+                <img src="assets/img/ai-models/meta-color.svg" alt="Llama Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Llama</div>'">
               </div>
               <h3 class="service-name">Llama</h3>
               <p class="service-company">Meta AI</p>
@@ -747,7 +749,7 @@
             <!-- Gemma -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="300">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/gemma-color.svg" class="ai-logo-svg">Gemma</object>
+                <img src="assets/img/ai-models/gemma-color.svg" alt="Gemma Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Gemma</div>'">
               </div>
               <h3 class="service-name">Gemma</h3>
               <p class="service-company">Google</p>
@@ -758,7 +760,7 @@
             <!-- Claude -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="400">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/claude-color.svg" class="ai-logo-svg">Claude</object>
+                <img src="assets/img/ai-models/claude-color.svg" alt="Claude Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Claude</div>'">
               </div>
               <h3 class="service-name">Claude</h3>
               <p class="service-company">Anthropic</p>
@@ -769,7 +771,7 @@
             <!-- Sonnet -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="500">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/anthropic.svg" class="ai-logo-svg">Sonnet</object>
+                <img src="assets/img/ai-models/anthropic.svg" alt="Sonnet Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Sonnet</div>'">
               </div>
               <h3 class="service-name">Claude 3 Sonnet</h3>
               <p class="service-company">Anthropic</p>
@@ -780,7 +782,7 @@
             <!-- Gemini -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="600">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/gemini-color.svg" class="ai-logo-svg">Gemini</object>
+                <img src="assets/img/ai-models/gemini-color.svg" alt="Gemini Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Gemini</div>'">
               </div>
               <h3 class="service-name">Gemini</h3>
               <p class="service-company">Google</p>
@@ -791,7 +793,7 @@
             <!-- Continue -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="700">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/copilot-color.svg" class="ai-logo-svg">Continue</object>
+                <img src="assets/img/ai-models/copilot-color.svg" alt="Continue Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Continue</div>'">
               </div>
               <h3 class="service-name">Continue</h3>
               <p class="service-company">Continue Dev</p>
@@ -802,7 +804,7 @@
             <!-- Augment -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="800">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/cohere-color.svg" class="ai-logo-svg">Augment</object>
+                <img src="assets/img/ai-models/cohere-color.svg" alt="Augment Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Augment</div>'">
               </div>
               <h3 class="service-name">Augment</h3>
               <p class="service-company">Augment Code</p>
@@ -813,7 +815,7 @@
             <!-- DeepSeek -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="900">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/deepseek-color.svg" class="ai-logo-svg">DeepSeek</object>
+                <img src="assets/img/ai-models/deepseek-color.svg" alt="DeepSeek Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>DeepSeek</div>'">
               </div>
               <h3 class="service-name">DeepSeek</h3>
               <p class="service-company">DeepSeek AI</p>
@@ -824,7 +826,7 @@
             <!-- OpenWeb -->
             <div class="service-card" data-aos="fade-up" data-aos-delay="1000">
               <div class="service-icon">
-                <object type="image/svg+xml" data="assets/img/ai-models/openwebui.svg" class="ai-logo-svg">OpenWeb</object>
+                <img src="assets/img/ai-models/openwebui.svg" alt="OpenWeb Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>OpenWeb</div>'">
               </div>
               <h3 class="service-name">OpenWeb</h3>
               <p class="service-company">OpenWeb AI</p>
@@ -1132,6 +1134,9 @@
 
   <!-- Contact Form JS -->
   <script src="assets/js/contact-form.js"></script>
+
+  <!-- SVG Fallback JS -->
+  <script src="assets/js/svg-fallback.js"></script>
 
 </body>
 

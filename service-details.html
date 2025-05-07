@@ -30,6 +30,8 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <!-- SVG Fallback CSS -->
+  <link href="assets/css/svg-fallback.css" rel="stylesheet">
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -173,10 +175,10 @@
                 <h4>Core Technology Stack</h4>
                 <div class="tech-badges">
                   <ul>
-                    <li><span class="badge bg-primary"><i class="bi bi-robot"></i>Hugging Face</span></li>
+                    <li><span class="badge bg-primary"><i class="bi bi-robot"></i>OpenAI</span></li>
                     <li><span class="badge bg-success"><i class="bi bi-braces"></i>LangChain</span></li>
                     <li><span class="badge bg-danger"><i class="bi bi-cpu"></i>TensorFlow/PyTorch</span></li>
-                    <li><span class="badge bg-info"><i class="bi bi-chat-square-text"></i>OpenAI/GPT</span></li>
+                    <li><span class="badge bg-info"><i class="bi bi-chat-square-text"></i>Claude/Anthropic</span></li>
                     <li><span class="badge bg-warning"><i class="bi bi-diagram-3"></i>Vector Databases</span></li>
                     <li><span class="badge bg-dark"><i class="bi bi-cloud"></i>Cloud AI Services</span></li>
                   </ul>
@@ -188,28 +190,28 @@
                 <div class="row">
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/claude-color.svg" class="ai-logo-svg">Claude</object>
+                      <img src="assets/img/ai-models/claude-color.svg" alt="Claude Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Claude</div>'">
                       <h5>Claude</h5>
                       <span class="badge bg-danger">Proprietary</span>
                     </div>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/gemini-color.svg" class="ai-logo-svg">Gemini</object>
+                      <img src="assets/img/ai-models/gemini-color.svg" alt="Gemini Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Gemini</div>'">
                       <h5>Gemini</h5>
                       <span class="badge bg-danger">Proprietary</span>
                     </div>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/meta-color.svg" class="ai-logo-svg">Llama</object>
+                      <img src="assets/img/ai-models/meta-color.svg" alt="Llama Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Llama</div>'">
                       <h5>Llama</h5>
                       <span class="badge bg-success">Open Source</span>
                     </div>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/cohere-color.svg" class="ai-logo-svg">Augment</object>
+                      <img src="assets/img/ai-models/cohere-color.svg" alt="Augment Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Augment</div>'">
                       <h5>Augment</h5>
                       <span class="badge bg-danger">Proprietary</span>
                     </div>
@@ -218,28 +220,28 @@
                 <div class="row">
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/deepseek-color.svg" class="ai-logo-svg">DeepSeek</object>
+                      <img src="assets/img/ai-models/deepseek-color.svg" alt="DeepSeek Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>DeepSeek</div>'">
                       <h5>DeepSeek</h5>
                       <span class="badge bg-success">Open Source</span>
                     </div>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/openwebui.svg" class="ai-logo-svg">OpenWeb</object>
+                      <img src="assets/img/ai-models/openwebui.svg" alt="OpenWeb Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>OpenWeb</div>'">
                       <h5>OpenWeb</h5>
                       <span class="badge bg-success">Open Source</span>
                     </div>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/gemma-color.svg" class="ai-logo-svg">Gemma</object>
+                      <img src="assets/img/ai-models/gemma-color.svg" alt="Gemma Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Gemma</div>'">
                       <h5>Gemma</h5>
                       <span class="badge bg-success">Open Source</span>
                     </div>
                   </div>
                   <div class="col-md-3 col-sm-6 mb-4">
                     <div class="ai-model-item text-center">
-                      <object type="image/svg+xml" data="assets/img/ai-models/copilot-color.svg" class="ai-logo-svg">Continue</object>
+                      <img src="assets/img/ai-models/copilot-color.svg" alt="Continue Logo" class="ai-logo" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'svg-fallback\'>Continue</div>'">
                       <h5>Continue</h5>
                       <span class="badge bg-success">Open Source</span>
                     </div>
@@ -975,6 +977,9 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- SVG Fallback JS -->
+  <script src="assets/js/svg-fallback.js"></script>
 
 </body>
 
