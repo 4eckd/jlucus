@@ -155,7 +155,7 @@
           <div class="col-lg-8">
             <!-- AI Models Content -->
             <div id="ai-models" class="service-content" data-aos="fade-up" data-aos-delay="200">
-              <img src="assets/img/ai-models-banner.jpg" alt="AI Language Models" class="img-fluid services-img">
+              <img src="assets/img/services2.png" alt="AI Language Models" class="img-fluid services-img">
               <h3>AI Language Models Integration</h3>
               <p>Leveraging cutting-edge AI language models to deliver intelligent solutions for your business needs.</p>
               <ul>
@@ -180,6 +180,70 @@
                     <li><span class="badge bg-warning"><i class="bi bi-diagram-3"></i>Vector Databases</span></li>
                     <li><span class="badge bg-dark"><i class="bi bi-cloud"></i>Cloud AI Services</span></li>
                   </ul>
+                </div>
+              </div>
+
+              <div class="ai-models-showcase mt-5">
+                <h4>Featured AI Models</h4>
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/claude-color.svg" class="ai-logo-svg">Claude</object>
+                      <h5>Claude</h5>
+                      <span class="badge bg-danger">Proprietary</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/gemini-color.svg" class="ai-logo-svg">Gemini</object>
+                      <h5>Gemini</h5>
+                      <span class="badge bg-danger">Proprietary</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/meta-color.svg" class="ai-logo-svg">Llama</object>
+                      <h5>Llama</h5>
+                      <span class="badge bg-success">Open Source</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/cohere-color.svg" class="ai-logo-svg">Augment</object>
+                      <h5>Augment</h5>
+                      <span class="badge bg-danger">Proprietary</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/deepseek-color.svg" class="ai-logo-svg">DeepSeek</object>
+                      <h5>DeepSeek</h5>
+                      <span class="badge bg-success">Open Source</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/openwebui.svg" class="ai-logo-svg">OpenWeb</object>
+                      <h5>OpenWeb</h5>
+                      <span class="badge bg-success">Open Source</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/gemma-color.svg" class="ai-logo-svg">Gemma</object>
+                      <h5>Gemma</h5>
+                      <span class="badge bg-success">Open Source</span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="ai-model-item text-center">
+                      <object type="image/svg+xml" data="assets/img/ai-models/copilot-color.svg" class="ai-logo-svg">Continue</object>
+                      <h5>Continue</h5>
+                      <span class="badge bg-success">Open Source</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -773,6 +837,66 @@
         margin-top: 30px;
         padding-top: 20px;
         border-top: 1px solid #e9ecef;
+      }
+
+      /* AI Models Showcase */
+      .ai-models-showcase {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .ai-models-showcase h4 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        color: #333;
+        border-bottom: 2px solid #e9ecef;
+        padding-bottom: 10px;
+      }
+
+      .ai-model-item {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .ai-model-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .ai-model-item h5 {
+        font-size: 16px;
+        margin: 10px 0 5px;
+        color: #333;
+      }
+
+      .ai-model-image {
+        max-height: 60px;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 8px;
+        margin: 0 auto 10px;
+        display: block;
+      }
+
+      .ai-logo-svg {
+        width: 60px;
+        height: 60px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 8px;
+        margin: 0 auto 10px;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .ai-model-item:hover .ai-logo-svg {
+        transform: scale(1.1);
       }
     </style>
 

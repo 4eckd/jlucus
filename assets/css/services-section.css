@@ -26,11 +26,13 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 30px;
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
 }
 
 .service-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(145deg, #ffffff, #f0f7ff);
 }
 
 .service-card::before {
@@ -52,14 +54,31 @@
   align-items: center;
 }
 
-.service-icon img {
+.service-icon img, .service-icon object {
   width: 80px;
   height: 80px;
   object-fit: contain;
   transition: transform 0.3s ease;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
-.service-card:hover .service-icon img {
+.ai-logo-svg {
+  width: 80px;
+  height: 80px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon img,
+.service-card:hover .service-icon object,
+.service-card:hover .ai-logo-svg {
   transform: scale(1.1);
 }
 
