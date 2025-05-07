@@ -30,6 +30,16 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <!-- Contact Form Fix CSS -->
+  <link href="assets/css/contact-form-fix.css" rel="stylesheet">
+  <!-- Quotes Fix CSS -->
+  <link href="assets/css/quotes-fix.css" rel="stylesheet">
+  <!-- AI Models CSS -->
+  <link href="assets/css/ai-models.css" rel="stylesheet">
+  <!-- Services Section CSS -->
+  <link href="assets/css/services-section.css" rel="stylesheet">
+  <!-- Navigation Improvements CSS -->
+  <link href="assets/css/nav-improvements.css" rel="stylesheet">
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
@@ -80,8 +90,8 @@
         <li><a href="https://jlucus.dev/#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="https://jlucus.dev/#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
         <li><a href="https://jlucus.dev/#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
-      </ul>
-      <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span> Ventures+ </span> <i
+        <li><a href="https://jlucus.dev/#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+        <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span> Ventures+ </span> <i
             class="bi bi-chevron-down toggle-dropdown"></i></a>
         <ul>
           <li class="dropdown"><a href="https://fused.gg"><span>Fused Gaming </span> <i
@@ -110,7 +120,6 @@
           <li><a href="https://itsdifferentproductions.com">ItsDifferentProductions.com </a></li>
         </ul>
       </li>
-      <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact </a></li>
       </ul>
     </nav>
 
@@ -659,13 +668,14 @@
             <!--Tokens 2-->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-tokens">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/construction.jpg" class="img-fluid" alt="">
+                <img src="assets/img/TelegramLinkedIn.png" class="img-fluid" alt="Telegram Bot Disclosure">
                 <div class="portfolio-info">
-                  <h4>Placeholder Tokens 3</h4>
-                  <p>Lorem Ipsum</p>
-                  <a href="assets/img/portfolio/construction.jpg" title="Under Construction"
+                  <h4>Telegram Bot Vulnerability Disclosure</h4>
+                  <p>You might want to change your bot secrets.</p>
+                  <a href="assets/img/TelegramLinkedIn.png" title="Telegram Bot Disclosure"
+                    data-description="<h4>Telegram Bot for Automated Disclosure</h4><p>This project provides a Telegram bot solution for automated disclosure reporting and management. Key features include:</p><ul><li>Secure message handling for sensitive information</li><li>Automated report generation</li><li>Integration with existing compliance systems</li><li>Real-time notifications</li><li>Audit trail and logging</li></ul><p><a href='https://github.com/jlucus/tg-bot-disclosure' class='btn btn-primary' target='_blank'>View on GitHub</a></p>"
                     data-gallery="portfolio-tokens" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                  <a href="https://github.com/jlucus/tg-bot-disclosure" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
@@ -692,75 +702,179 @@
 
     </section><!-- /Portfolio Section -->
 
+
+
     <!-- Services Section -->
     <section id="services" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services - Click on a Sevice to find out more.</h2>
+        <h2>Services - Click on a Service to find out more</h2>
         <p>Interested in contracting me for your next project? Let's connect and discuss how I can bring real world
           experience to your team or company.
         </p>
       </div><!-- End Section Title -->
 
       <div class="container">
+        <!-- AI Language Models Category -->
+        <div class="service-category" data-aos="fade-up">
+          <h3 class="service-category-title">AI Language Models</h3>
+          <p class="service-category-description">Leveraging cutting-edge AI language models to deliver intelligent solutions for your business needs.</p>
 
-        <div class="row gy-4">
+          <div class="services-container">
+            <!-- Hugging Face -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/huggingface.png" alt="Hugging Face">
+              </div>
+              <h3 class="service-name">Hugging Face</h3>
+              <p class="service-company">Hugging Face Inc.</p>
+              <p class="service-description">Open-source platform for sharing and deploying state-of-the-art ML models.</p>
+              <span class="ai-model-tag open-source">Open Source</span>
+            </div>
 
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Web Design & UI/UX </a></h4>
-              <p class="description">Learn how studying your audience can lead to big changes. </p>
+            <!-- Llama -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/llama.png" alt="Llama">
+              </div>
+              <h3 class="service-name">Llama</h3>
+              <p class="service-company">Meta AI</p>
+              <p class="service-description">Open foundation model designed for research and commercial use cases.</p>
+              <span class="ai-model-tag open-source">Open Source</span>
+            </div>
+
+            <!-- Gemma -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/gemma.png" alt="Gemma">
+              </div>
+              <h3 class="service-name">Gemma</h3>
+              <p class="service-company">Google</p>
+              <p class="service-description">Lightweight, state-of-the-art open model built from the same research and technology used to create Gemini.</p>
+              <span class="ai-model-tag open-source">Open Source</span>
+            </div>
+
+            <!-- Claude -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/claude.png" alt="Claude">
+              </div>
+              <h3 class="service-name">Claude</h3>
+              <p class="service-company">Anthropic</p>
+              <p class="service-description">AI assistant designed to be helpful, harmless, and honest with advanced reasoning.</p>
+              <span class="ai-model-tag proprietary">Proprietary</span>
+            </div>
+
+            <!-- Sonnet -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/sonnet.png" alt="Sonnet">
+              </div>
+              <h3 class="service-name">Claude 3 Sonnet</h3>
+              <p class="service-company">Anthropic</p>
+              <p class="service-description">Balanced model in the Claude 3 family, offering strong performance with faster responses.</p>
+              <span class="ai-model-tag proprietary">Proprietary</span>
+            </div>
+
+            <!-- Gemini -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/gemini.png" alt="Gemini">
+              </div>
+              <h3 class="service-name">Gemini</h3>
+              <p class="service-company">Google</p>
+              <p class="service-description">Multimodal AI model with advanced reasoning and understanding capabilities.</p>
+              <span class="ai-model-tag proprietary">Proprietary</span>
+            </div>
+
+            <!-- Continue -->
+            <div class="service-card" data-aos="fade-up" data-aos-delay="700">
+              <div class="service-icon">
+                <img src="assets/img/ai-models/continue.png" alt="Continue">
+              </div>
+              <h3 class="service-name">Continue</h3>
+              <p class="service-company">Continue Dev</p>
+              <p class="service-description">Open-source coding assistant that helps developers write, understand, and improve code.</p>
+              <span class="ai-model-tag open-source">Open Source</span>
             </div>
           </div>
-          <!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Software Development</a></h4>
-              <p class="description">You need the right tools to get the jobs done. But there is no Home Depot for that!
-              </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Product Management </a></h4>
-              <p class="description">Bringing a product to scale at market is insanity when you actually consider
-                everything it takes to pull off. </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon flex-shrink-0"><i class="bi bi-binoculars"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Graphic Design </a></h4>
-              <p class="description">I failed art twice in highschool. Facts. </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon flex-shrink-0"><i class="bi bi-brightness-high"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Marketing </a></h4>
-              <p class="description">Selling your brand is the end goal for any business. </p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
-            <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Web 3.0 Champions</a></h4>
-              <p class="description">Thinking about breaking into web 3 with your existing business? You have found a
-                champion to take you there! </p>
-            </div>
-          </div><!-- End Service Item -->
-
         </div>
 
+        <!-- Professional Services Category -->
+        <div class="service-category" data-aos="fade-up">
+          <div class="row gy-4">
+            <!-- Web Design & UI/UX -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#webdesign" class="stretched-link">Web Design & UI/UX</a></h4>
+                <p class="description">Learn how studying your audience can lead to big changes.</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <!-- Software Development -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#development" class="stretched-link">Software Development</a></h4>
+                <p class="description">You need the right tools to get the jobs done. But there is no Home Depot for that!</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <!-- Product Management -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#product" class="stretched-link">Product Management</a></h4>
+                <p class="description">Bringing a product to scale at market is insanity when you actually consider everything it takes to pull off.</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <!-- Graphic Design -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon flex-shrink-0"><i class="bi bi-binoculars"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#graphic" class="stretched-link">Graphic Design</a></h4>
+                <p class="description">I failed art twice in highschool. Facts.</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <!-- Marketing -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <div class="icon flex-shrink-0"><i class="bi bi-brightness-high"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#marketing" class="stretched-link">Marketing</a></h4>
+                <p class="description">Selling your brand is the end goal for any business.</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <!-- Web 3.0 Champions -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
+              <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#web3" class="stretched-link">Web 3.0 Champions</a></h4>
+                <p class="description">Thinking about breaking into web 3 with your existing business? You have found a champion to take you there!</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <!-- Digital Integration -->
+            <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="700">
+              <div class="icon flex-shrink-0"><i class="bi bi-gear-wide-connected"></i></div>
+              <div>
+                <h4 class="title"><a href="service-details.html#digital" class="stretched-link">Digital Integration</a></h4>
+                <p class="description">Connect your business with payment systems, AI technology, and social media platforms for seamless digital experiences.</p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+          </div>
+        </div>
       </div>
 
     </section><!-- /Services Section -->
@@ -771,15 +885,15 @@
         <h2>Favorite Quotes</h2>
       </div>
 
-      <!-- Testimonials Carousel -->
-      <div class="testimonials-carousel">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <!-- Testimonials Carousel -->
+        <div class="testimonials-carousel">
         <!-- Testimonial Items -->
         <div class="testimonials-item active">
-          <p class="testimonials-text">Santosh Kalwar: "Coding like poetry should be short and concise."</p>
-          <p>Santosh Kalwar is a Doctor of Science in Technology (Human-computer Interaction), an entrepreneur, a
-            software/web developer, writer/author, poet, and above all, a simple human being.</p>
+          <p class="testimonials-text">"Coding like poetry should be short and concise."</p>
           <img src="assets/img/testimonials/santosh-kalwar.jpg" alt="Santosh Kalwar" class="testimonials-image">
           <div class="testimonials-name">Santosh Kalwar</div>
+          <p class="testimonials-bio">Doctor of Science in Technology (Human-computer Interaction), entrepreneur, software/web developer, writer/author, and poet.</p>
         </div>
 
         <div class="testimonials-item">
@@ -805,11 +919,12 @@
           <img src="assets/img/testimonials/linus-torvalds.jpeg" alt="Linus Torvalds" class="testimonials-image">
           <div class="testimonials-name">Linus Torvalds</div>
         </div>
-      </div> <!-- Closing testimonials-carousel -->
+        </div> <!-- Closing testimonials-carousel -->
 
-      <!-- Pagination -->
-      <div class="testimonials-pagination">
-        <ul></ul>
+        <!-- Pagination -->
+        <div class="testimonials-pagination">
+          <ul></ul>
+        </div>
       </div>
     </section>
 
@@ -844,11 +959,11 @@
           }
         });
 
-        // Auto-rotate every 5 seconds
+        // Auto-rotate every 8 seconds
         setInterval(() => {
           currentIndex = (currentIndex + 1) % items.length;
           pagination.querySelectorAll('a')[currentIndex].click();
-        }, 5000);
+        }, 8000);
       });
     </script>
 
@@ -895,40 +1010,40 @@
 
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7844.896793495336!2d-122.19861575070148!3d37.75750373135727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f85c2ac99fe35%3A0x386c0eb51f3c45f8!2sColiseum%20BART%20Station!5e1!3m2!1sen!2sca!4v1740494054705!5m2!1sen!2sca"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+            <form action="https://formspree.io/f/mnnddegl" method="POST" class="contact-form" data-aos="fade-up"
               data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
                   <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
+                  <input type="text" name="name" id="name-field" class="form-control" required>
                 </div>
 
                 <div class="col-md-6">
                   <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
+                  <input type="email" class="form-control" name="email" id="email-field" required>
                 </div>
 
                 <div class="col-md-12">
                   <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
+                  <input type="text" class="form-control" name="subject" id="subject-field" required>
                 </div>
 
                 <div class="col-md-12">
                   <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                  <textarea class="form-control" name="message" rows="10" id="message-field" required></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <div class="loading d-none">Loading</div>
+                  <div class="error-message d-none"></div>
+                  <div class="sent-message d-none">Your message has been sent. Thank you!</div>
 
                   <button type="submit">Send Message</button>
                 </div>
@@ -981,6 +1096,9 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Contact Form JS -->
+  <script src="assets/js/contact-form.js"></script>
 
 </body>
 

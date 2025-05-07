@@ -1,0 +1,212 @@
+/* Quotes Section Improvements */
+
+/* Main container */
+.testimonials-carousel {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* Section styling */
+.testimonials.section {
+  padding: 80px 0;
+  background: linear-gradient(to bottom, var(--background-color), var(--surface-color));
+}
+
+/* Quote items */
+.testimonials-item {
+  display: none;
+  text-align: center;
+  padding: 30px;
+  background-color: var(--surface-color);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 700px;
+  transition: all 0.5s ease;
+}
+
+.testimonials-item.active {
+  display: block;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Quote text */
+.testimonials-text {
+  font-size: 22px;
+  font-style: italic;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0 30px;
+}
+
+/* Remove author names from quotes */
+.testimonials-text:nth-child(1)::before {
+  content: "";
+}
+
+.testimonials-text:nth-of-type(1)::before {
+  content: attr(data-content);
+}
+
+/* Fix specific quotes */
+.testimonials-item:nth-child(2) .testimonials-text::before {
+  content: '"';
+}
+
+.testimonials-item:nth-child(3) .testimonials-text::before {
+  content: '"';
+}
+
+.testimonials-item:nth-child(4) .testimonials-text::before {
+  content: '"';
+}
+
+.testimonials-text::before,
+.testimonials-text::after {
+  content: '"';
+  font-size: 50px;
+  color: var(--accent-color);
+  opacity: 0.3;
+  position: absolute;
+  line-height: 0;
+}
+
+.testimonials-text::before {
+  left: 0;
+  top: 15px;
+}
+
+.testimonials-text::after {
+  right: 0;
+  bottom: 0;
+}
+
+/* Author image */
+.testimonials-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 15px auto;
+  border: 3px solid var(--accent-color);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Author name */
+.testimonials-name {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--heading-color);
+  margin-top: 10px;
+}
+
+/* Author bio */
+.testimonials-bio {
+  font-size: 14px;
+  color: var(--default-color);
+  margin-top: 10px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Add bio to existing quotes */
+.testimonials-item:nth-child(2):after {
+  content: "A timeless saying in the programming community.";
+  display: block;
+  font-size: 14px;
+  color: var(--default-color);
+  margin-top: 10px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonials-item:nth-child(3):after {
+  content: "Known as 'Uncle Bob', he is an American software engineer, instructor, and author. He is recognized for promoting software design principles and for being a signatory of the Agile Manifesto.";
+  display: block;
+  font-size: 14px;
+  color: var(--default-color);
+  margin-top: 10px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonials-item:nth-child(4):after {
+  content: "Finnish software engineer who is the creator and lead developer of the Linux kernel and the Git version control system.";
+  display: block;
+  font-size: 14px;
+  color: var(--default-color);
+  margin-top: 10px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Pagination dots */
+.testimonials-pagination {
+  margin-top: 30px;
+}
+
+.testimonials-pagination ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.testimonials-pagination a {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ddd;
+  text-indent: -9999px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.testimonials-pagination a:hover {
+  background: #ccc;
+}
+
+.testimonials-pagination a.active {
+  background: var(--accent-color);
+  transform: scale(1.2);
+  border-color: var(--accent-color);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .testimonials-text {
+    font-size: 18px;
+    padding: 0 20px;
+  }
+
+  .testimonials-item {
+    padding: 20px;
+  }
+
+  .testimonials-image {
+    width: 80px;
+    height: 80px;
+  }
+}

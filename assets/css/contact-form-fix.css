@@ -1,0 +1,117 @@
+/* Contact Form Fixes */
+
+/* Fix for Google Maps iframe */
+.contact .info-wrap iframe {
+  width: 100%;
+  height: 250px;
+  margin-top: 30px;
+  border-radius: 4px;
+}
+
+/* Apply the same styling as php-email-form to our contact-form */
+.contact .contact-form {
+  background-color: var(--surface-color);
+  height: 100%;
+  padding: 30px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 575px) {
+  .contact .contact-form {
+    padding: 20px;
+  }
+}
+
+.contact .contact-form input[type=text],
+.contact .contact-form input[type=email],
+.contact .contact-form textarea {
+  font-size: 14px;
+  padding: 10px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  color: var(--default-color);
+  background-color: var(--surface-color);
+  border-color: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.contact .contact-form input[type=text]:focus,
+.contact .contact-form input[type=email]:focus,
+.contact .contact-form textarea:focus {
+  border-color: var(--accent-color);
+}
+
+.contact .contact-form input[type=text]::placeholder,
+.contact .contact-form input[type=email]::placeholder,
+.contact .contact-form textarea::placeholder {
+  color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+.contact .contact-form button[type=submit] {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  border: 0;
+  padding: 10px 30px;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.contact .contact-form button[type=submit]:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+/* Form message styling */
+.contact .contact-form .loading,
+.contact .contact-form .error-message,
+.contact .contact-form .sent-message {
+  padding: 15px;
+  margin-bottom: 24px;
+}
+
+.contact .contact-form .loading {
+  background: var(--surface-color);
+  text-align: center;
+}
+
+.contact .contact-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid var(--accent-color);
+  border-top-color: var(--surface-color);
+  animation: contact-form-loading 1s linear infinite;
+}
+
+.contact .contact-form .error-message {
+  background: #df1529;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 600;
+}
+
+.contact .contact-form .sent-message {
+  color: #ffffff;
+  background: #059652;
+  text-align: center;
+  font-weight: 600;
+}
+
+@keyframes contact-form-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Helper classes */
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
