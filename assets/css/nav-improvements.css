@@ -100,7 +100,8 @@
 
 /* Desktop dropdown behavior */
 @media (min-width: 1280px) {
-  .navmenu .dropdown:hover > ul {
+  /* Only show dropdown on click, not hover */
+  .navmenu .dropdown.active > ul {
     display: block;
     opacity: 1;
     visibility: visible;
@@ -110,17 +111,24 @@
   .navmenu .dropdown .dropdown ul {
     visibility: hidden;
     opacity: 0;
-    display: block;
+    display: none;
+    position: absolute;
     top: 0;
     left: 100%;
-    padding: 0 0 0 15px;
-    transition: 0.3s;
+    padding: 10px;
+    margin-left: 0;
+    background-color: var(--nav-dropdown-background-color);
+    border-radius: 0 6px 6px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     max-height: 0;
+    min-width: 200px;
   }
 
-  .navmenu .dropdown .dropdown:hover > ul {
+  .navmenu .dropdown .dropdown.active > ul {
     opacity: 1;
     visibility: visible;
+    display: block;
     max-height: 1000px;
   }
 }

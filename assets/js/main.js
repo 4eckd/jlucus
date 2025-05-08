@@ -47,11 +47,35 @@
       // Toggle dropdown-active class on the dropdown menu
       const dropdownMenu = parentLi.querySelector('ul');
       if (dropdownMenu) {
+        // Close all other open dropdowns at the same level
+        const siblingItems = parentLi.parentElement.querySelectorAll('li.dropdown');
+        siblingItems.forEach(item => {
+          if (item !== parentLi) {
+            item.classList.remove('active');
+            const siblingMenu = item.querySelector('ul');
+            if (siblingMenu) {
+              siblingMenu.classList.remove('dropdown-active');
+              siblingMenu.style.maxHeight = '0';
+            }
+          }
+        });
+
+        // Toggle current dropdown
         dropdownMenu.classList.toggle('dropdown-active');
 
         // Animate height for smoother transition
         if (dropdownMenu.classList.contains('dropdown-active')) {
-          dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + 'px';
+          // Calculate total height including nested dropdowns
+          let totalHeight = 0;
+          const items = dropdownMenu.querySelectorAll('li');
+          items.forEach(item => {
+            totalHeight += item.offsetHeight;
+          });
+
+          // Add some extra padding
+          totalHeight += 20;
+
+          dropdownMenu.style.maxHeight = totalHeight + 'px';
         } else {
           dropdownMenu.style.maxHeight = '0';
         }
@@ -60,6 +84,72 @@
       e.stopPropagation();
     });
   });
+
+  // Handle all dropdown toggles (both old and new structure)
+  function setupDropdownHandlers() {
+    // Handle clicks on dropdown toggle links (new structure)
+    document.querySelectorAll('.dropdown-toggle, .navmenu .dropdown > a').forEach(link => {
+      // Remove any existing event listeners
+      link.removeEventListener('click', handleDropdownToggle);
+      // Add new event listener
+      link.addEventListener('click', handleDropdownToggle);
+    });
+  }
+
+  // Function to handle dropdown toggle clicks
+  function handleDropdownToggle(e) {
+    e.preventDefault();
+
+    // Find parent dropdown element
+    const parentLi = this.closest('.dropdown') || this.closest('.nav-item.dropdown') || this.closest('.dropdown-item.dropdown');
+    if (!parentLi) return;
+
+    // Find dropdown menu
+    const dropdownMenu = parentLi.querySelector('.dropdown-menu') || parentLi.querySelector('ul');
+    if (!dropdownMenu) return;
+
+    // Close other dropdowns at the same level
+    const siblings = parentLi.parentElement.querySelectorAll('.dropdown, .nav-item.dropdown, .dropdown-item.dropdown');
+    siblings.forEach(sibling => {
+      if (sibling !== parentLi) {
+        sibling.classList.remove('active');
+        const siblingMenu = sibling.querySelector('.dropdown-menu') || sibling.querySelector('ul');
+        if (siblingMenu) {
+          siblingMenu.classList.remove('dropdown-active');
+          siblingMenu.style.maxHeight = '0';
+        }
+      }
+    });
+
+    // Toggle current dropdown
+    parentLi.classList.toggle('active');
+
+    // Toggle dropdown menu
+    dropdownMenu.classList.toggle('dropdown-active');
+
+    if (dropdownMenu.classList.contains('dropdown-active')) {
+      // Calculate total height including nested dropdowns
+      let totalHeight = 0;
+      const items = dropdownMenu.querySelectorAll('li');
+      items.forEach(item => {
+        totalHeight += item.offsetHeight;
+      });
+
+      // Add extra padding for nested content
+      totalHeight += 50;
+
+      dropdownMenu.style.maxHeight = totalHeight + 'px';
+    } else {
+      dropdownMenu.style.maxHeight = '0';
+    }
+  }
+
+  // Initialize dropdown handlers
+  setupDropdownHandlers();
+
+  // Re-initialize handlers when DOM changes
+  const observer = new MutationObserver(setupDropdownHandlers);
+  observer.observe(document.body, { childList: true, subtree: true });
 
   /**
    * Preloader

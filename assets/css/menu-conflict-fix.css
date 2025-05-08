@@ -1,0 +1,155 @@
+/* Menu Conflict Fix CSS */
+
+/* Override Bootstrap dropdown classes to prevent conflicts */
+.navmenu .dropdown-menu {
+  position: static !important;
+  float: none !important;
+  display: none;
+  min-width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: inherit !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.navmenu .dropdown-item {
+  display: block !important;
+  width: 100% !important;
+  padding: 0 !important;
+  clear: both !important;
+  font-weight: 400 !important;
+  color: inherit !important;
+  text-align: inherit !important;
+  white-space: normal !important;
+  background-color: transparent !important;
+  border: 0 !important;
+}
+
+/* Fix for dropdown toggle behavior */
+.navmenu .dropdown > a:hover,
+.navmenu .dropdown-item.dropdown > a:hover {
+  cursor: pointer;
+}
+
+/* Ensure click-only behavior for dropdowns */
+.navmenu .dropdown:hover > ul {
+  display: none !important;
+}
+
+.navmenu .dropdown.active > ul,
+.navmenu .dropdown-item.dropdown.active > ul {
+  display: block !important;
+}
+
+/* Fix for nested dropdowns */
+.navmenu .dropdown .dropdown ul,
+.navmenu .dropdown-item.dropdown ul {
+  margin-left: 15px !important;
+  padding-left: 5px !important;
+}
+
+/* Fix for mobile menu */
+@media (max-width: 1279px) {
+  /* Ensure proper nesting */
+  .navmenu .nav-menu {
+    display: block !important;
+  }
+  
+  .navmenu .dropdown-menu {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    transition: max-height 0.4s ease-in-out !important;
+  }
+  
+  .navmenu .dropdown-menu.dropdown-active {
+    max-height: 1000px !important;
+  }
+  
+  /* Fix for nested items */
+  .navmenu .dropdown-item.dropdown > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+  
+  /* Fix for toggle icon */
+  .navmenu .dropdown-toggle .toggle-dropdown {
+    margin-left: auto !important;
+  }
+  
+  /* Fix for active state */
+  .navmenu .active > a .toggle-dropdown {
+    transform: rotate(180deg) !important;
+  }
+}
+
+/* Fix for desktop menu */
+@media (min-width: 1280px) {
+  .navmenu .dropdown-menu {
+    position: absolute !important;
+    left: 100% !important;
+    top: 0 !important;
+    display: none !important;
+    min-width: 200px !important;
+    padding: 10px !important;
+    background-color: var(--nav-dropdown-background-color) !important;
+    border-radius: 0 6px 6px 0 !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .navmenu .dropdown.active > .dropdown-menu,
+  .navmenu .dropdown-item.dropdown.active > .dropdown-menu {
+    display: block !important;
+  }
+  
+  /* First level dropdown */
+  .navmenu > .nav-menu > .nav-item.dropdown > .dropdown-menu {
+    left: 0 !important;
+    top: 100% !important;
+    border-radius: 0 0 6px 6px !important;
+  }
+}
+
+/* Fix z-index issues */
+.header {
+  z-index: 1000 !important;
+}
+
+.navmenu {
+  z-index: 999 !important;
+}
+
+.navmenu .dropdown {
+  z-index: 2 !important;
+}
+
+.navmenu .dropdown .dropdown {
+  z-index: 3 !important;
+}
+
+/* Fix for active indicator */
+.navmenu .active::before {
+  display: none !important;
+}
+
+/* Fix for dropdown toggle icon */
+.navmenu a .toggle-dropdown,
+.navmenu a:focus .toggle-dropdown {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: transform 0.3s ease !important;
+}
+
+/* Fix for dropdown item spacing */
+.navmenu .dropdown-item {
+  margin-bottom: 5px !important;
+}
+
+.navmenu .dropdown-item:last-child {
+  margin-bottom: 0 !important;
+}
