@@ -1,0 +1,73 @@
+/* Mobile Menu Fixes */
+
+/* Fix z-index issues */
+.header {
+  z-index: 1000;
+}
+
+.header .header-toggle {
+  z-index: 1001;
+}
+
+/* Improve mobile menu appearance */
+@media (max-width: 1279px) {
+  /* Better toggle button */
+  .header .header-toggle {
+    width: 45px;
+    height: 45px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .header .header-toggle:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Mobile menu container */
+  .header.header-show {
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Improve dropdown appearance */
+  .navmenu .dropdown ul {
+    border-radius: 8px;
+    background-color: rgba(104, 221, 20, 0.05);
+  }
+  
+  /* Improve dropdown toggle buttons */
+  .navmenu a .toggle-dropdown, 
+  .navmenu a:focus .toggle-dropdown {
+    width: 28px;
+    height: 28px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Fix nested dropdowns */
+  .navmenu .dropdown .dropdown ul {
+    padding-left: 10px;
+    margin-left: 10px;
+  }
+  
+  /* Improve spacing for menu items */
+  .navmenu a, 
+  .navmenu a:focus {
+    border-radius: 6px;
+    margin-bottom: 3px;
+  }
+  
+  /* Fix for sub-items */
+  .navmenu .dropdown ul a, 
+  .navmenu .dropdown ul a:focus {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+/* Fix for very small screens */
+@media (max-width: 400px) {
+  .header.header-show {
+    max-width: 85%;
+  }
+}

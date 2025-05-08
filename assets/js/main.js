@@ -1,6 +1,6 @@
 /**
 * Template Name: jlucus.dev
-* Template URL: 
+* Template URL:
 * Updated: Jun 29 2024 with Bootstrap v5.3.3
 * Author: jlucus.dev
 * License: https://jlucus.dev/license
@@ -36,12 +36,28 @@
   /**
    * Toggle mobile nav dropdowns
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(toggleBtn => {
+    toggleBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
+
+      // Toggle active class on parent
+      const parentLi = this.closest('li');
+      parentLi.classList.toggle('active');
+
+      // Toggle dropdown-active class on the dropdown menu
+      const dropdownMenu = parentLi.querySelector('ul');
+      if (dropdownMenu) {
+        dropdownMenu.classList.toggle('dropdown-active');
+
+        // Animate height for smoother transition
+        if (dropdownMenu.classList.contains('dropdown-active')) {
+          dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + 'px';
+        } else {
+          dropdownMenu.style.maxHeight = '0';
+        }
+      }
+
+      e.stopPropagation();
     });
   });
 

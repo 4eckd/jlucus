@@ -56,7 +56,7 @@
 
 /* Dropdown menus */
 .navmenu .dropdown ul {
-  display: block;
+  display: none;
   position: relative;
   left: 0;
   top: 0;
@@ -67,7 +67,14 @@
   visibility: visible;
   background: transparent;
   box-shadow: none;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.navmenu .dropdown ul.dropdown-active {
+  display: block;
+  max-height: 1000px; /* Large enough to contain content */
 }
 
 .navmenu .dropdown ul li {
@@ -91,23 +98,31 @@
   color: var(--accent-color);
 }
 
-.navmenu .dropdown:hover > ul {
-  opacity: 1;
-  visibility: visible;
-}
+/* Desktop dropdown behavior */
+@media (min-width: 1280px) {
+  .navmenu .dropdown:hover > ul {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    max-height: 1000px;
+  }
 
-.navmenu .dropdown .dropdown ul {
-  visibility: hidden;
-  opacity: 0;
-  top: 0;
-  left: 0;
-  padding: 0 0 0 15px;
-  transition: 0.3s;
-}
+  .navmenu .dropdown .dropdown ul {
+    visibility: hidden;
+    opacity: 0;
+    display: block;
+    top: 0;
+    left: 100%;
+    padding: 0 0 0 15px;
+    transition: 0.3s;
+    max-height: 0;
+  }
 
-.navmenu .dropdown .dropdown:hover > ul {
-  opacity: 1;
-  visibility: visible;
+  .navmenu .dropdown .dropdown:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    max-height: 1000px;
+  }
 }
 
 /* Active indicator */
@@ -131,24 +146,27 @@
   }
 
   .navmenu ul {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background-color: var(--background-color);
+    display: block;
+    position: relative;
+    background-color: var(--nav-mobile-background-color);
     overflow-y: auto;
     transition: 0.3s;
-    z-index: 9998;
-    padding: 80px 30px 30px;
+    padding: 10px 15px;
   }
 
-  .navmenu.mobile-nav-active ul {
+  .header:not(.header-show) .navmenu ul {
+    display: none;
+  }
+
+  .header.header-show .navmenu ul {
     display: block;
   }
 
   .navmenu a,
   .navmenu a:focus {
-    padding: 15px 20px;
+    padding: 12px 15px;
     font-size: 16px;
+    margin-bottom: 5px;
   }
 
   .navmenu a i,
@@ -156,18 +174,28 @@
     font-size: 18px;
   }
 
+  /* Dropdown styling for mobile */
   .navmenu .dropdown ul {
     position: static;
     display: none;
-    padding: 10px 0;
-    margin: 10px 20px;
-    transition: all 0.5s ease-in-out;
-    border-radius: 10px;
+    padding: 5px 0;
+    margin: 5px 0 5px 15px;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid var(--accent-color);
   }
 
   .navmenu .dropdown > .dropdown-active,
   .navmenu .dropdown .dropdown > .dropdown-active {
     display: block;
+  }
+
+  /* Fix for nested dropdowns */
+  .navmenu .dropdown .dropdown ul {
+    margin-left: 15px;
+    padding-left: 5px;
+    visibility: visible;
+    opacity: 1;
   }
 }
