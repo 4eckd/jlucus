@@ -1,5 +1,6 @@
 'use client'
 
+import { Navigation } from '@/components/layout'
 import { Button } from '@/components/ui/Button'
 import { useTheme } from 'next-themes'
 import { Moon, Sun } from 'lucide-react'
@@ -19,13 +20,17 @@ export default function Home() {
   }
 
   return (
-    <main id="main-content" className="min-h-screen flex flex-col items-center justify-center p-8">
-      <div className="max-w-4xl mx-auto text-center space-y-8">
-        {/* Hero Section */}
-        <div className="space-y-4">
-          <h1 className="text-gradient animate-fade-in">
-            Jesse Lucas
-          </h1>
+    <>
+      <Navigation />
+
+      {/* Home Section */}
+      <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 pt-20">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          {/* Hero Section */}
+          <div className="space-y-4">
+            <h1 className="text-gradient animate-fade-in">
+              Jesse Lucus
+            </h1>
           <h2 className="text-2xl md:text-3xl text-[var(--color-text-secondary)] animate-slide-up">
             Software Engineer & Product Manager
           </h2>
@@ -115,12 +120,63 @@ export default function Home() {
           </ul>
         </div>
 
-        {/* Footer */}
-        <div className="pt-8 text-sm text-[var(--color-text-muted)]">
-          <p>Built with Next.js 16, React 19, TypeScript, Tailwind CSS, and LobeUI</p>
-          <p className="mt-2">Legacy site preserved in <code className="px-2 py-1 bg-[var(--color-surface)] rounded">legacy/</code> folder</p>
+          {/* Footer */}
+          <div className="pt-8 text-sm text-[var(--color-text-muted)]">
+            <p>Built with Next.js 16, React 19, TypeScript, Tailwind CSS, and LobeUI</p>
+            <p className="mt-2">Legacy site preserved in <code className="px-2 py-1 bg-[var(--color-surface)] rounded">legacy/</code> folder</p>
+          </div>
         </div>
-      </div>
-    </main>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="min-h-screen flex items-center justify-center px-4 py-20 bg-[var(--color-background-secondary)]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-gradient">About</h2>
+          <p className="text-lg text-[var(--color-text-secondary)]">
+            About section coming soon. This will include profile image, bio, and personal details.
+          </p>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="min-h-screen flex items-center justify-center px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-gradient">Resume</h2>
+          <p className="text-lg text-[var(--color-text-secondary)]">
+            Resume section coming soon. This will include work history, education, and timeline.
+          </p>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section id="portfolio" className="min-h-screen flex items-center justify-center px-4 py-20 bg-[var(--color-background-secondary)]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-gradient">Portfolio</h2>
+          <p className="text-lg text-[var(--color-text-secondary)]">
+            Portfolio section coming soon. This will include project cards with filtering.
+          </p>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="min-h-screen flex items-center justify-center px-4 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-gradient">Services</h2>
+          <p className="text-lg text-[var(--color-text-secondary)]">
+            Services section coming soon. This will include service cards and AI models showcase.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="min-h-screen flex items-center justify-center px-4 py-20 bg-[var(--color-background-secondary)]">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-6 text-gradient">Contact</h2>
+          <p className="text-lg text-[var(--color-text-secondary)]">
+            Contact form coming soon. Get in touch via email or social media.
+          </p>
+        </div>
+      </section>
+    </>
   )
 }
