@@ -1,0 +1,151 @@
+{
+  "branches": {
+    "feat/auth-foundation/UPR-001": {
+      "session": "sess-feat-auth-foundation-UPR-001-1",
+      "window": 2,
+      "created_at": "2025-10-26T00:00:00Z",
+      "status": "ready-for-setup",
+      "ticket": "UPR-001",
+      "title": "NextAuth.js Foundation & Database Schema",
+      "artifacts": {
+        "diff": "artifacts/feat-auth-foundation-UPR-001/patch.diff",
+        "tests": "artifacts/feat-auth-foundation-UPR-001/test-report.xml",
+        "build_log": "artifacts/feat-auth-foundation-UPR-001/build.log",
+        "screenshot": "artifacts/feat-auth-foundation-UPR-001/no-screenshot.txt",
+        "setup_scripts": [
+          "artifacts/feat-auth-foundation-UPR-001/SETUP_SCRIPT.sh",
+          "artifacts/feat-auth-foundation-UPR-001/SETUP_SCRIPT.ps1",
+          "artifacts/feat-auth-foundation-UPR-001/QUICKSTART.md"
+        ]
+      },
+      "coverage": {
+        "before": 0.00,
+        "after": 0.00,
+        "note": "No tests written yet - auth foundation infrastructure only"
+      },
+      "files_modified": 1,
+      "files_created": 9,
+      "next_steps": "Run setup script (SETUP_SCRIPT.ps1 or SETUP_SCRIPT.sh) to install dependencies and configure auth. See QUICKSTART.md for manual steps.",
+      "pr_draft": "progress/pr-drafts/feat-auth-foundation-UPR-001.md"
+    },
+    "feat/hero-section/HSC-001": {
+      "session": "sess-feat-hero-section-HSC-001-1",
+      "window": 3,
+      "created_at": "2025-10-26T01:00:00Z",
+      "status": "needs-review",
+      "ticket": "HSC-001",
+      "title": "Hero Section Component with Typing Animation",
+      "artifacts": {
+        "diff": "See git diff output",
+        "tests": "artifacts/feat-hero-section-HSC-001/test-report.xml",
+        "build_log": "artifacts/feat-hero-section-HSC-001/build.log",
+        "screenshot": "artifacts/feat-hero-section-HSC-001/screenshot.png"
+      },
+      "coverage": {
+        "before": 0.00,
+        "after": 0.00,
+        "note": "Component tests to be added in follow-up"
+      },
+      "files_modified": 1,
+      "files_created": 3,
+      "pending_approvals": [
+        "git checkout -b feat/hero-section/HSC-001",
+        "pnpm build",
+        "pnpm lint"
+      ],
+      "next_steps": "Approve git checkout, run build and lint, test visually with pnpm dev, create PR",
+      "pr_draft": "progress/pr-drafts/feat-hero-section-HSC-001.md"
+    }
+  },
+  "last_updated": "2025-10-26T01:15:00Z",
+  "project_info": {
+    "name": "jlucus-dev",
+    "type": "Next.js 16 + TypeScript",
+    "base_branch": "main",
+    "package_manager": "pnpm"
+  },
+  "feat/payment-gateway-upgrade/PGU-001-002": {
+    "session": "sess-feat-payment-gateway-upgrade-PGU-002-1",
+    "window": 1,
+    "created_at": "2025-10-26T00:15:00Z",
+    "updated_at": "2025-10-26T03:00:00Z",
+    "status": "code-complete-ready-for-install",
+    "ticket": "PGU-001-002",
+    "title": "Payment Gateway - Stripe Integration (Phase 1 + 2 Complete)",
+    "phase": "Phase 2: Stripe Integration (Code Complete)",
+    "completion": "40%",
+    "artifacts": {
+      "feature_plan": "docs/feature-plans/payment-gateway-upgrade.md",
+      "changelog": "docs/changelogs/payment-gateway-upgrade.md",
+      "diff": "All files in src/features/payment/ and src/app/checkout/",
+      "tests": "Manual testing with Stripe test cards (automated tests in Phase 5)",
+      "build_log": "Pending installation",
+      "screenshot": "To be captured after testing",
+      "setup_scripts": [
+        "SETUP_PAYMENT_GATEWAY.ps1",
+        "INSTALL_NOW.md",
+        "PAYMENT_GATEWAY_READY.md",
+        "artifacts/feat-payment-gateway-upgrade-PGU-001/SETUP_SCRIPT.sh",
+        "artifacts/feat-payment-gateway-upgrade-PGU-001/SETUP_SCRIPT.ps1",
+        "artifacts/feat-payment-gateway-upgrade-PGU-001/QUICKSTART.md",
+        "artifacts/feat-payment-gateway-upgrade-PGU-001/PHASE2_COMPLETE.md"
+      ],
+      "env_configured": ".env created with Stripe test API keys"
+    },
+    "coverage": {
+      "before": 0.00,
+      "after": 0.00,
+      "note": "Manual testing phase - automated tests in Phase 5"
+    },
+    "files_modified": 3,
+    "files_created": 24,
+    "phases_complete": {
+      "phase_1_foundation": "100%",
+      "phase_2_stripe": "100%",
+      "phase_3_paypal": "0%",
+      "phase_4_invoices": "0%",
+      "phase_5_testing": "0%"
+    },
+    "dependencies_to_install": [
+      "@stripe/stripe-js",
+      "@stripe/react-stripe-js",
+      "stripe",
+      "currency.js",
+      "react-hook-form",
+      "zod",
+      "@types/nodemailer"
+    ],
+    "installation_commands": [
+      "pnpm add @stripe/stripe-js @stripe/react-stripe-js stripe currency.js react-hook-form zod",
+      "pnpm add -D @types/nodemailer",
+      "pnpm prisma generate",
+      "pnpm prisma migrate dev --name add_payment_tables",
+      "pnpm build"
+    ],
+    "next_steps": "1. Run INSTALL_NOW.md commands to install dependencies\n2. Test checkout flow at /checkout?amount=5000\n3. Configure Stripe webhook\n4. Verify payments in database and Stripe dashboard\n5. Optional: Add PayPal (Phase 3) or Invoices (Phase 4)",
+    "stripe_credentials": "Configured in .env (test mode)",
+    "pr_draft": "To be created after testing complete"
+  }
+},
+  "last_updated": "2025-10-26T01:30:00Z",
+  "project_info": {
+    "name": "jlucus-dev",
+    "type": "Next.js 16 + TypeScript",
+    "base_branch": "main",
+    "integration_branch": "claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM",
+    "package_manager": "pnpm"
+  },
+  "active_sessions": {
+    "window_1": "feat/payment-gateway-upgrade/PGU-001",
+    "window_2": "feat/auth-foundation/UPR-001",
+    "window_3": "feat/hero-section/HSC-001"
+  },
+  "coordination": {
+    "conflicts": [],
+    "notes": "Window 1 (PGU-001): Payment foundation complete - added Payment model to Prisma schema. Window 2 (UPR-001): Auth foundation complete. Window 3 (HSC-001): Hero section complete. All schemas coordinated - no conflicts.",
+    "shared_files_resolved": {
+      "prisma/schema.prisma": "Window 1 added Payment models (lines 113-162), Window 2 added Auth models (lines 1-111). Clean separation, no conflicts.",
+      ".env.example": "Window 1 added payment variables (lines 24-44), Window 2 added auth variables (lines 8-17). No overlap."
+    }
+  }
+}

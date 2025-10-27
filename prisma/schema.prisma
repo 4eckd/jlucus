@@ -1,0 +1,162 @@
+// Prisma schema for NextAuth.js + User Profile
+// Database: PostgreSQL (or SQLite for development)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Change to "sqlite" for local dev if needed
+  url      = env("DATABASE_URL")
+}
+
+// NextAuth.js required models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String? // Bcrypt hashed password (nullable for OAuth-only users)
+
+  // User profile fields (for future profile feature)
+  bio           String?   @db.Text
+  location      String?
+  website       String?
+  phone         String?
+
+  // Preferences
+  emailNotifications Boolean @default(true)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  accounts Account[]
+  sessions Session[]
+  savedTours SavedTour[]
+  bookings   Booking[]
+
+  @@index([email])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// User Profile Feature Models (scaffold for future)
+model SavedTour {
+  id        String   @id @default(cuid())
+  userId    String
+  tourId    String // Reference to tour (when tours feature is built)
+  savedAt   DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tourId])
+  @@index([userId])
+}
+
+model Booking {
+  id          String   @id @default(cuid())
+  userId      String
+  tourId      String
+  status      String   @default("pending") // pending, confirmed, completed, cancelled
+  bookingDate DateTime
+  numGuests   Int      @default(1)
+  totalPrice  Float?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}
+
+// Payment Gateway Models (Window 1: PGU-001)
+model Payment {
+  id String @id @default(cuid())
+
+  // Payment details
+  amount   Decimal @db.Decimal(10, 2) // Store in decimal for precision
+  currency String  @default("USD")
+  status   PaymentStatus
+  provider PaymentProvider
+
+  // Provider-specific IDs
+  stripePaymentId String? @unique
+  paypalOrderId   String? @unique
+
+  // Customer information
+  customerEmail   String
+  customerName    String?
+  billingAddress  Json? // Store address as JSON
+
+  // Invoice
+  invoiceNumber String  @unique
+  invoiceUrl    String?
+
+  // Additional info
+  description String? @db.Text
+  metadata    Json?
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+
+  @@index([customerEmail])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  CANCELED
+  REFUNDED
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYPAL
+}
