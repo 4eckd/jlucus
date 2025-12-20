@@ -1,0 +1,4 @@
+No screenshot available - backend/API infrastructure only (no UI changes in this phase)
+
+Auth foundation adds API routes and database schema.
+UI will be added in UPR-002 (OAuth login pages) and UPR-003 (Profile UI).
