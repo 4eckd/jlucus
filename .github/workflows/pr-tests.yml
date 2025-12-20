@@ -1,0 +1,190 @@
+name: PR Tests & Build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - 'claude/**'
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  test:
+    name: Run Tests & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        id: lint
+        run: |
+          npm run lint 2>&1 | tee lint-output.txt
+          echo "lint_exit_code=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Run build
+        id: build
+        run: |
+          npm run build 2>&1 | tee build-output.txt
+          echo "build_exit_code=${PIPESTATUS[0]}" >> $GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Check test results
+        id: test_results
+        run: |
+          LINT_EXIT=${{ steps.lint.outputs.lint_exit_code }}
+          BUILD_EXIT=${{ steps.build.outputs.build_exit_code }}
+
+          if [ "$LINT_EXIT" != "0" ] || [ "$BUILD_EXIT" != "0" ]; then
+            echo "tests_passed=false" >> $GITHUB_OUTPUT
+            echo "❌ Tests failed"
+            exit 1
+          else
+            echo "tests_passed=true" >> $GITHUB_OUTPUT
+            echo "✅ All tests passed"
+          fi
+
+      - name: Comment on PR (Failure)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const lint_exit = '${{ steps.lint.outputs.lint_exit_code }}';
+            const build_exit = '${{ steps.build.outputs.build_exit_code }}';
+
+            let lintOutput = '';
+            let buildOutput = '';
+
+            try {
+              lintOutput = fs.readFileSync('lint-output.txt', 'utf8');
+            } catch (e) {
+              lintOutput = 'No lint output available';
+            }
+
+            try {
+              buildOutput = fs.readFileSync('build-output.txt', 'utf8');
+            } catch (e) {
+              buildOutput = 'No build output available';
+            }
+
+            // Truncate outputs if too long
+            const maxLength = 3000;
+            if (lintOutput.length > maxLength) {
+              lintOutput = lintOutput.substring(lintOutput.length - maxLength) + '\n\n... (truncated)';
+            }
+            if (buildOutput.length > maxLength) {
+              buildOutput = buildOutput.substring(buildOutput.length - maxLength) + '\n\n... (truncated)';
+            }
+
+            let commentBody = `## ❌ Tests Failed\n\n`;
+            commentBody += `**Commit:** ${context.sha.substring(0, 7)}\n`;
+            commentBody += `**Workflow:** [${context.workflow}](${context.payload.repository.html_url}/actions/runs/${context.runId})\n\n`;
+
+            if (lint_exit !== '0') {
+              commentBody += `### 🔴 Linting Failed\n\n`;
+              commentBody += `<details><summary>Show lint output</summary>\n\n\`\`\`\n${lintOutput}\n\`\`\`\n\n</details>\n\n`;
+            } else {
+              commentBody += `### ✅ Linting Passed\n\n`;
+            }
+
+            if (build_exit !== '0') {
+              commentBody += `### 🔴 Build Failed\n\n`;
+              commentBody += `<details><summary>Show build output</summary>\n\n\`\`\`\n${buildOutput}\n\`\`\`\n\n</details>\n\n`;
+            } else {
+              commentBody += `### ✅ Build Passed\n\n`;
+            }
+
+            commentBody += `---\n\n`;
+            commentBody += `💡 **Tip:** Click on the workflow link above to see the full logs.\n`;
+            commentBody += `🔄 Push new commits to re-run the tests automatically.`;
+
+            // Find existing comment from this workflow
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              comment.body.includes('Tests Failed') &&
+              comment.body.includes(context.workflow)
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
+
+      - name: Comment on PR (Success)
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commentBody = `## ✅ All Tests Passed\n\n` +
+              `**Commit:** ${context.sha.substring(0, 7)}\n` +
+              `**Workflow:** [${context.workflow}](${context.payload.repository.html_url}/actions/runs/${context.runId})\n\n` +
+              `### ✅ Linting Passed\n` +
+              `### ✅ Build Passed\n\n` +
+              `---\n\n` +
+              `🎉 Great work! All checks are passing.`;
+
+            // Find existing comment from this workflow
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+
+            const botComment = comments.find(comment =>
+              comment.user.type === 'Bot' &&
+              (comment.body.includes('Tests Failed') || comment.body.includes('All Tests Passed')) &&
+              comment.body.includes(context.workflow)
+            );
+
+            if (botComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: commentBody
+              });
+            }
