@@ -1,7 +1,7 @@
 'use client'
 
 import { useTypingAnimation } from '@/hooks/useTypingAnimation'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
 import { ArrowDown, Mail, Github, Linkedin } from 'lucide-react'
 
