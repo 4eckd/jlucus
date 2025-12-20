@@ -4,17 +4,18 @@
 
 ## Overview
 
-This is a Next.js 15 portfolio website built with TypeScript, Tailwind CSS 4, and Framer Motion. It features a unique Terminal Neon design system with Electric Cyan primary color, Neon Magenta accents, and immersive terminal-style UI elements.
+This is a Next.js 16 portfolio website built with TypeScript, Tailwind CSS 4, and Framer Motion. It features a unique Terminal Neon design system with Electric Cyan primary color, Neon Magenta accents, and immersive terminal-style UI elements.
 
 ## Tech Stack
 
-- **Framework**: Next.js 15.3.2 (App Router)
-- **Language**: TypeScript 5.8.3
+- **Framework**: Next.js 16.1.0 (App Router)
+- **Language**: TypeScript 5.9.3
 - **Styling**: Tailwind CSS 4.1.5 with CSS Variables
-- **Animations**: Framer Motion
+- **Animations**: Framer Motion 12.23.26
 - **Icons**: Lucide React, Heroicons
 - **UI Components**: Headless UI, Radix UI Slot
 - **Fonts**: JetBrains Mono (monospace), Inter (sans-serif)
+- **Environment**: dotenv 17.2.3
 
 ## Design System
 
@@ -307,17 +308,56 @@ npm run build
 
 ## Environment Variables
 
-Create `.env.local` for local development:
+This project uses **dotenv** for environment variable management.
+
+### Setup
+
+1. Copy `.env.example` to `.env`:
+```bash
+cp .env.example .env
+```
+
+2. Configure your environment variables in `.env`:
 
 ```bash
-# Add any API keys or secrets here
-NEXT_PUBLIC_SITE_URL=https://jlucus.dev
+# GitHub API Configuration
+NEXT_PUBLIC_GITHUB_USERNAME=your-username
+GITHUB_PERSONAL_ACCESS_TOKEN=your_token_here
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_DOCS_URL=https://docs.jlucus.dev
+
+# Feature Flags
+NEXT_PUBLIC_ENABLE_COMMAND_PALETTE=true
+NEXT_PUBLIC_ENABLE_CUSTOM_CURSOR=true
+NEXT_PUBLIC_ENABLE_MATRIX_MODE=true
+NEXT_PUBLIC_ENABLE_GITHUB_STATS=false
+
+# Development
+NODE_ENV=development
+NEXT_TURBOPACK_EXPERIMENTAL_USE_SYSTEM_TLS_CERTS=1
 ```
+
+### Important Notes
+
+- **Never commit `.env`** - it's excluded via `.gitignore`
+- `.env.example` is tracked in git and serves as a template
+- Variables prefixed with `NEXT_PUBLIC_` are exposed to the browser
+- Non-prefixed variables are server-side only
+- See `.env.example` for complete list of available variables
 
 ## Known Issues
 
 - **PostCSS**: Tailwind CSS 4 requires `@tailwindcss/postcss` plugin instead of `tailwindcss` directly
 - **Slot Component**: When using `asChild` with Button, loading state is ignored (Slot accepts single child only)
+
+## Recent Fixes (2025-12-20)
+
+- ✅ **Removed incomplete auth/payment features** - Deleted work-in-progress authentication and payment code that was causing build failures
+- ✅ **Added dotenv support** - Configured environment variable management with `.env` files
+- ✅ **Improved CI/CD workflow** - Updated GitHub Actions to use Node.js 20 and handle network issues gracefully
+- ✅ **Fixed build configuration** - Added TLS certificate handling for Google Fonts fetching in Turbopack
 
 ## Future Enhancements
 
