@@ -98,11 +98,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Disable body size limit for payment processing
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '1mb',
-    },
-  },
-}

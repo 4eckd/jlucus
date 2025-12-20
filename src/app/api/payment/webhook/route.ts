@@ -178,12 +178,6 @@ async function handlePaymentIntentEvent(
   }
 }
 
-// Disable body parsing to get raw body for signature verification
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-}
 
 // Set runtime to Edge for faster webhook processing
 export const runtime = 'edge'
