@@ -1,0 +1,7 @@
+No screenshot available - documentation/planning phase only.
+
+Session: sess-feat-payment-gateway-upgrade-PGU-001-1
+Status: Planning
+Reason: Feature plan and changelog created, no UI components implemented yet.
+
+Screenshots will be captured in Phase 2+ when checkout components are built.
