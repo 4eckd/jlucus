@@ -46,6 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Removed `pnpm-lock.yaml` (project uses npm, not pnpm)
+- Removed legacy HTML/CSS portfolio folder (30MB of old assets, Bootstrap, vendor libraries)
+- Deleted stale remote branch `claude/feat-command-palette-kFNoG` (2 commits behind main)
 
 ### Fixed
 - Fixed package manager lock files (keeping only package-lock.json for npm)

@@ -29,7 +29,10 @@
       "Bash(git merge:*)",
       "Bash(git branch:*)",
       "Bash(npm audit)",
-      "Bash(npm audit fix:*)"
+      "Bash(npm audit fix:*)",
+      "Bash(git merge-base:*)",
+      "Bash(git rm:*)",
+      "Bash(git check-ignore:*)"
     ],
     "deny": [],
     "ask": []
