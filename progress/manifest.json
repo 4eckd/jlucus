@@ -127,13 +127,28 @@
     "pr_draft": "To be created after testing complete"
   }
 },
-  "last_updated": "2025-10-26T01:30:00Z",
+  "last_updated": "2025-12-25T00:00:00Z",
   "project_info": {
     "name": "jlucus-dev",
-    "type": "Next.js 16 + TypeScript",
+    "type": "Next.js 16.1.0 + TypeScript 5.9.3",
+    "version": "1.1.1",
     "base_branch": "main",
-    "integration_branch": "claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM",
-    "package_manager": "pnpm"
+    "integration_branch": "main",
+    "package_manager": "npm"
+  },
+  "recent_updates": {
+    "v1.1.1": {
+      "date": "2025-12-25",
+      "type": "patch",
+      "focus": "Project Configuration & Documentation Enhancement",
+      "changes": [
+        "Added comprehensive ignore files (.npmignore, .dockerignore, .eslintignore)",
+        "Enhanced README with deployment, tech stack, and performance sections",
+        "Fixed package manager configuration (npm only)",
+        "Updated all dependencies to latest versions",
+        "Improved gitignore with better organization"
+      ]
+    }
   },
   "active_sessions": {
     "window_1": "feat/payment-gateway-upgrade/PGU-001",

@@ -1,38 +1,173 @@
-# dependencies
-/node_modules
+# ============================================
+# Dependencies
+# ============================================
+node_modules/
 /.pnp
 .pnp.js
+.pnp.*
+/bower_components
 
-# testing
+# Package manager lock files (keep package-lock.json for npm)
+yarn.lock
+pnpm-lock.yaml
+.yarn/
+.pnpm-store/
+
+# ============================================
+# Testing
+# ============================================
 /coverage
+/.nyc_output
+/test-results
+/playwright-report
+*.lcov
 
-# next.js
+# ============================================
+# Next.js
+# ============================================
 /.next/
 /out/
+.next/
 
-# production
+# Build output
 /build
+/dist
 
-# misc
+# ============================================
+# Production & Cache
+# ============================================
+.cache
+*.log
+.turbo
+
+# ============================================
+# OS & Editor
+# ============================================
+# macOS
 .DS_Store
-*.pem
+.AppleDouble
+.LSOverride
+._*
 
-# debug
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# IDEs & Editors
+# ============================================
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# ============================================
+# Environment & Secrets
+# ============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+*.pem
+*.key
+*.cert
+.envrc
+
+# ============================================
+# Logs
+# ============================================
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
 
-# local env files
-.env*.local
-
-# vercel
-.vercel
-
-# typescript
+# ============================================
+# TypeScript
+# ============================================
 *.tsbuildinfo
 next-env.d.ts
+*.d.ts.map
 
-# prisma
+# ============================================
+# Deployment
+# ============================================
+.vercel
+.netlify
+.firebase
+
+# ============================================
+# Database
+# ============================================
+# Prisma
 /prisma/migrations/
 *.db
 *.db-journal
+*.db-shm
+*.db-wal
+
+# ============================================
+# Misc
+# ============================================
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Generated files (robots.txt is tracked as a static file)
+/public/sitemap.xml
+/public/sw.js
+/public/workbox-*.js
+
+# Debug
+.vscode-test
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Storybook
+storybook-static
+
+# Sentry
+.sentryclirc

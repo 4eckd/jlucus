@@ -1,0 +1,94 @@
+{
+  "name": "jlucus.dev - Terminal Neon Portfolio",
+  "short_name": "jlucus.dev",
+  "description": "A cyberpunk-inspired developer portfolio with Terminal Neon aesthetics built with Next.js, TypeScript, and Tailwind CSS",
+  "version": "1.1.1",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0E27",
+  "theme_color": "#00D9FF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": [
+    "portfolio",
+    "developer",
+    "technology"
+  ],
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop view of jlucus.dev portfolio"
+    },
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile view of jlucus.dev portfolio"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ventures",
+      "short_name": "Ventures",
+      "description": "View my current ventures and projects",
+      "url": "/#ventures",
+      "icons": [{ "src": "/icon-ventures.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Portfolio",
+      "short_name": "Portfolio",
+      "description": "Browse my portfolio of work",
+      "url": "/#portfolio",
+      "icons": [{ "src": "/icon-portfolio.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Skills",
+      "short_name": "Skills",
+      "description": "Explore my technical skills",
+      "url": "/#skills",
+      "icons": [{ "src": "/icon-skills.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "description": "Get in touch",
+      "url": "/#contact",
+      "icons": [{ "src": "/icon-contact.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "iarc_rating_id": ""
+}

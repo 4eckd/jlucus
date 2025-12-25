@@ -1,0 +1,120 @@
+# ============================================
+# Development Files
+# ============================================
+*.md
+!README.md
+!LICENSE
+.github/
+.vscode/
+.idea/
+.claude/
+
+# Build scripts
+BUILD_AND_MERGE.sh
+scripts/
+
+# Documentation (keep LICENSE and README)
+CHANGELOG.md
+CONTRIBUTING.md
+QUICKSTART.md
+SECURITY.md
+PROJECT_ROADMAP.md
+FEATURE_STATUS.md
+FEATURES_READY_FOR_MERGE.md
+CLAUDE.md
+VERSION.md
+docs.json
+docs/
+
+# ============================================
+# Source Files (if distributing built version)
+# ============================================
+src/
+tsconfig.json
+tailwind.config.ts
+postcss.config.js
+postcss.config.mjs
+next.config.ts
+eslint.config.mjs
+.eslintrc.json
+
+# ============================================
+# Test Files
+# ============================================
+**/__tests__/**
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+test/
+tests/
+coverage/
+
+# ============================================
+# Development Dependencies
+# ============================================
+node_modules/
+.pnp
+.pnp.js
+
+# ============================================
+# Build Artifacts
+# ============================================
+.next/
+out/
+build/
+dist/
+.cache/
+.turbo/
+
+# ============================================
+# Environment Files
+# ============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
+.envrc
+
+# ============================================
+# Logs
+# ============================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================
+# OS Files
+# ============================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ============================================
+# Git Files
+# ============================================
+.git/
+.gitignore
+.gitattributes
+
+# ============================================
+# CI/CD
+# ============================================
+.github/
+deploy.yml
+Dockerfile
+.dockerignore
+
+# ============================================
+# Misc
+# ============================================
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+artifacts/
+legacy/
+prisma/
+progress/

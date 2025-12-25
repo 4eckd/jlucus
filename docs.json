@@ -1,7 +1,7 @@
 {
   "title": "jlucus.dev Documentation Index",
-  "version": "1.1.0",
-  "lastUpdated": "2025-12-18",
+  "version": "1.1.1",
+  "lastUpdated": "2025-12-25",
   "structure": {
     "root": {
       "README.md": {
@@ -11,15 +11,20 @@
           "Project Progress",
           "Features",
           "Quick Start",
+          "First Time Setup",
           "Project Structure",
           "Design System",
           "Available Scripts",
           "Documentation",
+          "Deployment",
+          "Technology Stack",
           "Contributing",
           "Security",
-          "License"
+          "License",
+          "Performance",
+          "Acknowledgments"
         ],
-        "updated": "2025-12-18"
+        "updated": "2025-12-25"
       },
       "QUICKSTART.md": {
         "title": "Quickstart Guide",
@@ -72,13 +77,15 @@
         "title": "Changelog",
         "description": "Version history following Keep a Changelog format",
         "sections": [
+          "v1.1.1 - Project Configuration & Documentation",
           "v1.1.0 - CSS Variables Migration",
           "v1.0.0 - Initial Release",
           "Release Notes",
           "Migration Guide",
           "Roadmap"
         ],
-        "created": "2025-12-18"
+        "created": "2025-12-18",
+        "updated": "2025-12-25"
       },
       "CONTRIBUTING.md": {
         "title": "Contributing Guide",

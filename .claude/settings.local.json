@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(cat:*)",
+      "Bash(git remote add:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run clean:*)",
+      "Bash(taskkill:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: v1.1.0 - CSS Variables Migration & Documentation Overhaul\n\n## Added\n\n### Build & Tooling\n- Add rimraf package for cross-platform cleanup\n- New npm scripts: clean, clean:all, build:clean\n- Enhanced package.json metadata\n\n### Documentation (7 new files)\n- CHANGELOG.md: Version history following Keep a Changelog\n- LICENSE: MIT License\n- SECURITY.md: Security policy and reporting\n- CONTRIBUTING.md: Contribution guidelines\n- QUICKSTART.md: 5-minute getting started guide\n- docs/ascii-art-samples.md: Terminal-themed ASCII art library\n- docs/hard-coded-css-audit.md: CSS audit report\n- docs.json: Documentation index and tracking\n\n### Code Quality\n- New src/lib/css-variables.ts utility\n- CSS variable helpers: getCSSColor, getCSSVariable, getCSSNumber\n\n## Changed\n\n### Refactoring - CSS Variables Migration\n- Refactor animated-grid.tsx to use CSS variables\n- Remove 5 hard-coded RGBA colors\n- Extract 10+ magic numbers to ANIMATION_CONFIG\n- Use --grid-size CSS variable\n- Replace inline styles with Tailwind classes\n\n### Documentation\n- Update README.md with badges and progress bars\n- Bump version to 1.1.0\n- Update license from ISC to MIT\n\n## Fixed\n- Fix typo in contact-section.tsx: text-smtext-success → text-sm text-success\n- Remove prebuild hook to prevent Windows permission errors\n- Delete conflicting root package.json\n\n## Security\n- All colors use single source of truth\n- Improved maintainability and consistency\n- Future-proofed for theme system\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr create:*)",
+      "Bash(git reset:*)",
+      "Bash(git fetch:*)",
+      "Bash(git rebase:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(npm outdated:*)",
+      "Bash(git rev-list:*)",
+      "Bash(git log:*)",
+      "Bash(git show-ref:*)",
+      "Bash(git merge origin/release/v1.1.0 --no-ff -m \"$(cat <<''EOF''\nchore: merge release/v1.1.0 into main\n\nMerging completed v1.1.0 release which includes:\n- CSS Variables Migration & Documentation Overhaul\n- Dependency updates\n- Documentation improvements (CHANGELOG, SECURITY, CONTRIBUTING, etc.)\n- CSS audit and refactoring\n\nThis brings main branch up to date with the latest stable release.\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git merge:*)",
+      "Bash(git branch:*)",
+      "Bash(npm audit)",
+      "Bash(npm audit fix:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

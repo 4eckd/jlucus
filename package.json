@@ -1,15 +1,16 @@
 {
   "name": "jlucus2",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:clean": "npm run clean && next build",
+    "build:clean": "npm run clean && npm run build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rimraf .next out node_modules/.cache",
-    "clean:all": "rimraf .next out node_modules"
+    "clean": "npx rimraf .next out node_modules/.cache",
+    "clean:all": "npx rimraf .next out node_modules",
+    "postinstall": "echo 'Dependencies installed successfully! Run npm run dev to start development.'"
   },
   "keywords": [
     "portfolio",

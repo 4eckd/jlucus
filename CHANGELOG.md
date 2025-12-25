@@ -5,6 +5,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2025-12-25
+
+### Added
+
+#### Project Configuration
+- Created comprehensive `.npmignore` for npm publishing
+- Created `.dockerignore` for optimized Docker builds
+- Created `.eslintignore` for ESLint configuration
+- Added `postinstall` script with friendly success message
+
+#### Documentation
+- Enhanced README.md with deployment section and technology stack details
+- Added environment variables configuration guide
+- Added performance metrics section
+- Expanded acknowledgments with design inspiration and tools
+- Added color palette visual table
+- Added detailed CSS Variables Philosophy section with usage examples
+- Added First Time Setup checklist
+
+### Changed
+
+#### Build System
+- Updated clean scripts to use `npx rimraf` for cross-platform compatibility
+- Fixed `build:clean` script to use `npm run build` instead of `next build`
+- Updated package manager configuration to use npm (removed pnpm-lock.yaml)
+
+#### Git Configuration
+- Improved `.gitignore` with better organization and comprehensive coverage
+- Fixed node_modules ignore pattern (now `node_modules/`)
+- Removed package-lock.json from gitignore (npm best practice - keep it tracked)
+- Added support for multiple IDEs (VSCode, IntelliJ, Sublime, Vim)
+- Added OS-specific ignores (macOS, Windows, Linux)
+
+#### Dependencies
+- Updated to Next.js 16.1.0 (from 15.3.2)
+- Updated to TypeScript 5.9.3 (from 5.8.3)
+- Updated to React 19.2.3 (from 19.1.0)
+- All version badges in README now reflect actual package versions
+
+### Removed
+- Removed `pnpm-lock.yaml` (project uses npm, not pnpm)
+
+### Fixed
+- Fixed package manager lock files (keeping only package-lock.json for npm)
+- Fixed gitignore to properly track package-lock.json
+- Ensured node_modules is properly ignored across all platforms
+
+---
+
 ## [1.1.0] - 2025-12-18
 
 ### Added
