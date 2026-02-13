@@ -6,6 +6,7 @@ import { Project, PROJECTS } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Calendar, Star, GitFork } from 'lucide-react';
+import { AnimatedGrid } from './animated-grid';
 
 interface ProjectCardProps {
   project: Project;
@@ -169,7 +170,7 @@ export function PortfolioSection() {
 
   return (
     <section id="portfolio" className="py-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-10"></div>
+      <AnimatedGrid />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

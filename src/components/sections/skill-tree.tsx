@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { SkillCategory, SKILL_CATEGORIES } from '@/data/skills';
 import { cn } from '@/lib/utils';
 import { ChevronUp, ChevronDown, Award, Zap, Code } from 'lucide-react';
+import { AnimatedGrid } from './animated-grid';
 
 interface SkillNodeProps {
   skill: SkillCategory['skills'][0];
@@ -136,7 +137,7 @@ export function SkillTree() {
 
   return (
     <section id="skills" className="py-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-10"></div>
+      <AnimatedGrid />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

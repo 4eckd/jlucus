@@ -5,6 +5,8 @@ import { SITE } from '@/lib/constants';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { CommandPalette } from '@/components/ui/command-palette';
+import { ScanlineOverlay } from '@/components/effects/scanline-overlay';
+import { CustomCursor } from '@/components/effects/custom-cursor';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -48,6 +50,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="font-sans bg-background text-primary">
+        <CustomCursor />
+        <ScanlineOverlay />
         <Header />
         <main>{children}</main>
         <Footer />
