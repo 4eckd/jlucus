@@ -32,20 +32,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  // Add checkout pages if they exist
-  const additionalPages = [
-    { path: '/checkout', priority: 0.5 },
-    { path: '/checkout/success', priority: 0.3 },
-  ];
-
-  additionalPages.forEach((page) => {
-    routes.push({
-      url: `${baseUrl}${page.path}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: page.priority,
-    });
-  });
-
   return routes;
 }
