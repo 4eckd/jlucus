@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+/* Google Fonts - loaded at runtime to avoid build-time fetch issues */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
+
 :root {
   /* Terminal Neon Color Palette - RGB values for alpha support */
   --color-primary: 0 217 255;           /* Electric Cyan #00D9FF */

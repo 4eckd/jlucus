@@ -1,7 +1,7 @@
 'use client'
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { type ThemeProviderProps } from 'next-themes/dist/types'
+import { type ComponentProps } from 'react'
 
 /**
  * Theme Provider Component
@@ -9,7 +9,7 @@ import { type ThemeProviderProps } from 'next-themes/dist/types'
  *
  * Default theme: dark (as per project requirements)
  */
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+export function ThemeProvider({ children, ...props }: ComponentProps<typeof NextThemesProvider>) {
   return (
     <NextThemesProvider
       attribute="data-theme"

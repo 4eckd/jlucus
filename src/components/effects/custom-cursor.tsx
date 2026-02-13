@@ -21,7 +21,7 @@ export function CustomCursor() {
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([]);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
   const trailIdRef = useRef(0);
 
   // Track mouse position

@@ -200,7 +200,7 @@ export function PortfolioSection() {
           {categories.map((category) => (
             <Button
               key={category}
-              variant={filter === category ? "default" : "ghost"}
+              variant={filter === category ? "primary" : "ghost"}
               size="sm"
               onClick={() => setFilter(category)}
               className="text-xs font-mono"
