@@ -85,23 +85,32 @@ npm install stripe @stripe/stripe-js @stripe/react-stripe-js \
 npm install --save-dev @types/bcryptjs prisma
 ```
 
-### Step 2: Restore Files
+### Step 2: Restore Files from Git History
 
-**From this directory to src:**
+**All code files were removed to prevent build errors. Restore from git:**
+
 ```bash
 # From project root
-mv _disabled_features/auth src/app/api/
-mv _disabled_features/payment src/app/api/
-mv _disabled_features/checkout src/app/
-```
 
-**Restore from git history:**
-```bash
-# These were deleted, restore from git
+# Restore API routes
+git checkout cb28a94 -- src/app/api/auth
+git checkout cb28a94 -- src/app/api/payment
+
+# Restore checkout pages
+git checkout cb28a94 -- src/app/checkout
+
+# Restore payment feature module
 git checkout 9f4a15d -- src/features/payment
+
+# Restore library files
 git checkout 9f4a15d -- src/lib/auth.ts
 git checkout 9f4a15d -- src/lib/prisma.ts
 ```
+
+**Git Commits with Code:**
+- `9f4a15d` - Original implementation with features/payment
+- `cb28a94` - Before moving to _disabled_features
+- `d19c936` - Code removed, documentation created (current)
 
 ### Step 3: Set Up Prisma
 
@@ -241,23 +250,31 @@ npm run build
 
 ## File Structure
 
+**⚠️ Note**: Code files are NOT stored in this directory to prevent build errors.
+All files must be restored from git history (see Step 2 above).
+
 ```
 _disabled_features/
-├── README.md (this file)
+└── README.md               # This file - complete documentation
+
+Files in git history (commit cb28a94):
+src/app/api/
 ├── auth/
 │   └── [...nextauth]/
 │       └── route.ts        # NextAuth API route
-├── checkout/
-│   ├── page.tsx            # Checkout page
-│   └── success/
-│       └── page.tsx        # Payment success page
 └── payment/
     ├── create-intent/
     │   └── route.ts        # Create payment intent API
     └── webhook/
         └── route.ts        # Stripe webhook handler
 
-Previously in src/ (deleted, restore from git):
+src/app/
+└── checkout/
+    ├── page.tsx            # Checkout page
+    └── success/
+        └── page.tsx        # Payment success page
+
+Files in git history (commit 9f4a15d):
 src/features/payment/
 ├── components/
 │   └── StripeCheckout.tsx
