@@ -16,6 +16,7 @@ import { getCSSColor } from '@/lib/css-variables';
  * Enhances the Terminal Neon theme with an immersive interactive experience.
  */
 export function CustomCursor() {
+  const [isMounted, setIsMounted] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -23,6 +24,11 @@ export function CustomCursor() {
   const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([]);
   const rafRef = useRef<number | undefined>(undefined);
   const trailIdRef = useRef(0);
+
+  // Only render on client to avoid SSR issues
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Track mouse position
   useEffect(() => {
@@ -102,8 +108,8 @@ export function CustomCursor() {
     return () => clearInterval(interval);
   }, []);
 
-  // Don't render on touch devices or if window is undefined
-  if (typeof window === 'undefined' || 'ontouchstart' in window) {
+  // Don't render during SSR or on touch devices
+  if (!isMounted || typeof window === 'undefined' || 'ontouchstart' in window) {
     return null;
   }
 

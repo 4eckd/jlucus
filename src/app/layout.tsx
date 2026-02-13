@@ -3,9 +3,7 @@ import type { Metadata } from 'next';
 import { SITE } from '@/lib/constants';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { CommandPalette } from '@/components/ui/command-palette';
-import { ScanlineOverlay } from '@/components/effects/scanline-overlay';
-import { CustomCursor } from '@/components/effects/custom-cursor';
+import { ClientLayout } from '@/components/layout/client-layout';
 
 export const metadata: Metadata = {
   title: SITE.title,
@@ -37,12 +35,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans bg-background text-primary">
-        <CustomCursor />
-        <ScanlineOverlay />
+        <ClientLayout />
         <Header />
         <main>{children}</main>
         <Footer />
-        <CommandPalette />
       </body>
     </html>
   );

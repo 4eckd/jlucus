@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cn } from '@/lib/utils'
@@ -106,8 +108,27 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const Comp = asChild ? Slot : 'button'
 
+    // When using asChild, render children directly (Slot expects single child)
+    if (asChild) {
+      return (
+        <Slot
+          ref={ref}
+          className={cn(
+            baseStyles,
+            variantStyles[variant],
+            sizeStyles[size],
+            widthStyles,
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
+
     return (
-      <Comp
+      <button
         ref={ref}
         className={cn(
           baseStyles,
@@ -142,8 +163,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             />
           </svg>
         )}
-        {asChild ? children : <span>{children}</span>}
-      </Comp>
+        <span>{children}</span>
+      </button>
     )
   }
 )
