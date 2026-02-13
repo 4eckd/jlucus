@@ -1,22 +1,9 @@
 import '@/styles/globals.css';
-import { Inter, JetBrains_Mono } from 'next/font/google';
 import type { Metadata } from 'next';
 import { SITE } from '@/lib/constants';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { CommandPalette } from '@/components/ui/command-palette';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-});
+import { ClientLayout } from '@/components/layout/client-layout';
 
 export const metadata: Metadata = {
   title: SITE.title,
@@ -46,12 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en">
       <body className="font-sans bg-background text-primary">
+        <ClientLayout />
         <Header />
         <main>{children}</main>
         <Footer />
-        <CommandPalette />
       </body>
     </html>
   );

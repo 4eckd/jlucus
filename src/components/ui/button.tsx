@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react'
+import { Slot } from '@radix-ui/react-slot'
 import { cn } from '@/lib/utils'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,7 +17,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   /**
    * Button size
    */
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'icon'
 
   /**
    * Loading state
@@ -25,6 +28,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    * Full width button
    */
   fullWidth?: boolean
+
+  /**
+   * Render as child element (using Radix UI Slot)
+   */
+  asChild?: boolean
 }
 
 /**
@@ -46,6 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isLoading = false,
       fullWidth = false,
       disabled,
+      asChild = false,
       children,
       ...props
     },
@@ -92,9 +101,31 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       sm: 'px-3 py-1.5 text-sm',
       md: 'px-4 py-2 text-base',
       lg: 'px-6 py-3 text-lg',
+      icon: 'p-2',
     }
 
     const widthStyles = fullWidth ? 'w-full' : ''
+
+    const Comp = asChild ? Slot : 'button'
+
+    // When using asChild, render children directly (Slot expects single child)
+    if (asChild) {
+      return (
+        <Slot
+          ref={ref}
+          className={cn(
+            baseStyles,
+            variantStyles[variant],
+            sizeStyles[size],
+            widthStyles,
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </Slot>
+      )
+    }
 
     return (
       <button

@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { SITE } from '@/lib/constants';
 import { SOCIAL_LINKS } from '@/lib/constants';
 import { Mail, Send, Github, Linkedin, MapPin, Terminal, Zap } from 'lucide-react';
+import { AnimatedGrid } from './animated-grid';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-10"></div>
+      <AnimatedGrid />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

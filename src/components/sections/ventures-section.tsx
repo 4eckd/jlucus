@@ -5,6 +5,7 @@ import { Venture, VENTURES } from '@/data/ventures';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, TrendingUp, Users, DollarSign } from 'lucide-react';
+import { AnimatedGrid } from './animated-grid';
 
 interface HexCardProps {
   venture: Venture;
@@ -136,7 +137,7 @@ function HexCard({ venture, index }: HexCardProps) {
 export function VenturesSection() {
   return (
     <section id="ventures" className="py-20 relative">
-      <div className="absolute inset-0 bg-grid opacity-10"></div>
+      <AnimatedGrid />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
