@@ -1,0 +1,324 @@
+name: GitButler-Style Branch Tracker
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    types: [opened, closed, synchronized, reopened]
+  issues:
+    types: [opened, closed, labeled, assigned]
+  milestone:
+    types: [created, closed, opened, edited, deleted]
+
+jobs:
+  track-development:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Track Branch and Issue Association
+        id: track
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref_name }}"
+
+          # Extract issue number from branch name (e.g., feat-123-description)
+          BRANCH_NAME="${{ github.ref_name }}"
+          ISSUE_NUM=$(echo "$BRANCH_NAME" | grep -oP '(?<=-)\d+(?=-)' || echo "")
+
+          echo "issue_number=$ISSUE_NUM" >> $GITHUB_OUTPUT
+          echo "branch_name=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+      - name: Generate Branch Map
+        run: |
+          mkdir -p .github/tracking
+
+          # Create branch tracking JSON
+          cat > .github/tracking/branch-map.json <<'EOF'
+          {
+            "lastUpdated": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "branches": {},
+            "milestones": {},
+            "pullRequests": {}
+          }
+          EOF
+
+          # Get all branches
+          git branch -r | grep -v HEAD | while read branch; do
+            branch_name=$(echo $branch | sed 's/origin\///')
+            echo "Processing branch: $branch_name"
+          done
+
+      - name: Update Development Manifest
+        run: |
+          cat > .github/tracking/DEVELOPMENT_MANIFEST.md <<'EOF'
+          # Development Manifest
+
+          **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
+          **Event:** ${{ github.event_name }}
+          **Branch:** ${{ github.ref_name }}
+
+          ## Active Development
+
+          ### Branches
+          $(git branch -r | grep -v HEAD | wc -l) remote branches
+
+          ### Recent Activity
+          - **Latest Commit:** $(git log -1 --pretty=format:"%h - %s (%an)")
+          - **Commit Count:** $(git rev-list --count HEAD)
+
+          ### Branch Associations
+
+          | Branch | Issue | Milestone | PR | Status |
+          |--------|-------|-----------|-----|--------|
+          EOF
+
+          # Add branch info
+          git for-each-ref --format='%(refname:short) %(upstream:track)' refs/remotes/origin/ | \
+            grep -v HEAD | \
+            while read branch tracking; do
+              # Extract issue number from branch name
+              issue_num=$(echo "$branch" | grep -oP '(?<=feat-)\d+|(?<=fix-)\d+|(?<=issue-)\d+' || echo "-")
+              echo "| $branch | #$issue_num | - | - | Active |" >> .github/tracking/DEVELOPMENT_MANIFEST.md
+            done
+
+      - name: Link Branch to Issue
+        if: steps.track.outputs.issue_number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = ${{ steps.track.outputs.issue_number }};
+            const branchName = '${{ steps.track.outputs.branch_name }}';
+
+            try {
+              // Add comment to issue linking branch
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `🌿 Branch created: \`${branchName}\`\n\nDevelopment in progress on this branch.`
+              });
+
+              // Add label to issue
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                labels: ['in-development']
+              });
+            } catch (error) {
+              console.log('Could not link to issue:', error.message);
+            }
+
+      - name: Update Branch Progress
+        run: |
+          # Create progress tracking directory
+          mkdir -p progress/branches
+
+          BRANCH_FILE="progress/branches/${{ github.ref_name }}.md"
+
+          cat > "$BRANCH_FILE" <<EOF
+          # Branch: ${{ github.ref_name }}
+
+          **Created:** $(git log --reverse --format="%ai" ${{ github.ref_name }} | head -1)
+          **Last Updated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
+          **Commits:** $(git rev-list --count ${{ github.ref_name }})
+          **Author:** $(git log -1 --format="%an")
+
+          ## Recent Commits
+
+          $(git log --format="- %h %s (%an, %ar)" -n 5 ${{ github.ref_name }})
+
+          ## Files Changed
+
+          $(git diff --name-status origin/main...${{ github.ref_name }} 2>/dev/null || echo "No changes from main")
+
+          ## Associated Issues
+
+          $(echo "${{ github.ref_name }}" | grep -oP '\d+' | head -1 | xargs -I {} echo "- Issue #"{} || echo "No associated issue")
+
+          EOF
+
+      - name: Generate ASCII Art Progress
+        run: |
+          # Create visual progress tracker with ASCII art
+          cat > .github/tracking/ASCII_PROGRESS.md <<'EOF'
+          # Portfolio Development Progress
+
+          ```
+            ___  ___   __   __  _  _  ___  _  _     ___  ___  ___   ___  ___  ___  ___  ___
+           | _ )| _ \ /  \ |  \| || || __|| || |   | _ \| _ \/ _ \ / __|| _ \| __/ __/' __|
+           | _ \|   /| /\ || |\  || || _| | __ |   |  _/|   / (_) | (_ ||   /| _|\__ \`__ \
+           |___/|_|_\|_||_||_| \_||_||___||_||_|   |_|  |_|_\\___/ \___||_|_\|___||___/|___/
+
+          ```
+
+          ## Parallel Development Status
+
+          $(git branch -r | grep -v HEAD | wc -l) active branches working in parallel
+
+          ### Phase Progress
+
+          ```
+          Phase 1: Foundation       ████████████████████ 100% ✓
+          Phase 2: Polish          ████████░░░░░░░░░░░░  40% ⚡
+          Phase 3: Content         ░░░░░░░░░░░░░░░░░░░░   0% ⏳
+          Phase 4: Documentation   ░░░░░░░░░░░░░░░░░░░░   0% ⏳
+          Phase 5: Testing         ██████░░░░░░░░░░░░░░  30% 🔬
+          Phase 6: Deployment      ░░░░░░░░░░░░░░░░░░░░   0% ⏳
+          ```
+
+          ### Branch Tree
+
+          ```
+          main
+          ├── claude/setup-gitbutler-branching-LScIj (current)
+          ├── development
+          $(git branch -r | grep -v HEAD | sed 's/origin\///' | sed 's/^/├── /')
+          ```
+
+          **Last Updated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
+
+          EOF
+
+      - name: Commit tracking files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add -f .github/tracking/ progress/branches/ 2>/dev/null || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update branch tracking manifest [skip ci]
+
+          Auto-generated tracking update
+
+          - Event: ${{ github.event_name }}
+          - Branch: ${{ github.ref_name }}
+          - Timestamp: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+            # Only push if not in a PR
+            if [ "${{ github.event_name }}" != "pull_request" ]; then
+              git push origin HEAD:${{ github.ref_name }} || echo "Could not push tracking updates"
+            fi
+          fi
+
+  auto-link-milestone:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Link PR to Milestone
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const title = pr.title.toLowerCase();
+
+            // Map keywords to milestone numbers
+            const milestoneMap = {
+              'foundation': 3,
+              'polish': 4,
+              'content': 5,
+              'documentation': 6,
+              'testing': 7,
+              'deployment': 8,
+              'phase-1': 3,
+              'phase-2': 4,
+              'phase-3': 5,
+              'phase-4': 6,
+              'phase-5': 7,
+              'phase-6': 8
+            };
+
+            let milestoneNumber = null;
+
+            for (const [keyword, number] of Object.entries(milestoneMap)) {
+              if (title.includes(keyword)) {
+                milestoneNumber = number;
+                break;
+              }
+            }
+
+            if (milestoneNumber) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr.number,
+                milestone: milestoneNumber
+              });
+
+              console.log(`Linked PR #${pr.number} to milestone ${milestoneNumber}`);
+            }
+
+  create-branch-from-issue:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'issues' && github.event.action == 'labeled' && github.event.label.name == 'ready-for-dev'
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create feature branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const issueNumber = issue.number;
+            const issueTitle = issue.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .substring(0, 50);
+
+            const branchName = `feat-${issueNumber}-${issueTitle}`;
+
+            // Create branch reference
+            const mainBranch = await github.rest.git.getRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'heads/main'
+            });
+
+            try {
+              await github.rest.git.createRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: `refs/heads/${branchName}`,
+                sha: mainBranch.data.object.sha
+              });
+
+              // Comment on issue
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `🚀 Branch created: \`${branchName}\`\n\nYou can start working on this issue!`
+              });
+
+              console.log(`Created branch: ${branchName}`);
+            } catch (error) {
+              console.log('Branch may already exist:', error.message);
+            }
