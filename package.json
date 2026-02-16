@@ -7,7 +7,7 @@
     "build": "next build",
     "build:clean": "npm run clean && npm run build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "clean": "npx rimraf .next out node_modules/.cache",
     "clean:all": "npx rimraf .next out node_modules",
     "postinstall": "echo 'Dependencies installed successfully! Run npm run dev to start development.'"
