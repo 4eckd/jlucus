@@ -108,14 +108,41 @@ const config: Config = {
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
         xl: 'var(--shadow-xl)',
-        // Neon glow shadows
+        // Neon glow shadows - Primary (Electric Cyan)
         'neon-primary': 'var(--shadow-neon-primary)',
         'neon-primary-sm': 'var(--shadow-neon-primary-sm)',
         'neon-primary-lg': 'var(--shadow-neon-primary-lg)',
         'neon-primary-xl': 'var(--shadow-neon-primary-xl)',
+        // Neon glow shadows - Accent (Neon Magenta)
         'neon-accent': 'var(--shadow-neon-accent)',
+        'neon-accent-sm': 'var(--shadow-neon-accent-sm)',
         'neon-accent-lg': 'var(--shadow-neon-accent-lg)',
+        'neon-accent-xl': 'var(--shadow-neon-accent-xl)',
+        // Neon glow shadows - Secondary (Electric Lime)
         'neon-secondary': 'var(--shadow-neon-secondary)',
+        'neon-secondary-sm': 'var(--shadow-neon-secondary-sm)',
+        'neon-secondary-lg': 'var(--shadow-neon-secondary-lg)',
+        'neon-secondary-xl': 'var(--shadow-neon-secondary-xl)',
+        // Neon glow shadows - Success
+        'neon-success': 'var(--shadow-neon-success)',
+        'neon-success-sm': 'var(--shadow-neon-success-sm)',
+        'neon-success-lg': 'var(--shadow-neon-success-lg)',
+        'neon-success-xl': 'var(--shadow-neon-success-xl)',
+        // Neon glow shadows - Warning
+        'neon-warning': 'var(--shadow-neon-warning)',
+        'neon-warning-sm': 'var(--shadow-neon-warning-sm)',
+        'neon-warning-lg': 'var(--shadow-neon-warning-lg)',
+        'neon-warning-xl': 'var(--shadow-neon-warning-xl)',
+        // Neon glow shadows - Error
+        'neon-error': 'var(--shadow-neon-error)',
+        'neon-error-sm': 'var(--shadow-neon-error-sm)',
+        'neon-error-lg': 'var(--shadow-neon-error-lg)',
+        'neon-error-xl': 'var(--shadow-neon-error-xl)',
+        // Neon glow shadows - Info
+        'neon-info': 'var(--shadow-neon-info)',
+        'neon-info-sm': 'var(--shadow-neon-info-sm)',
+        'neon-info-lg': 'var(--shadow-neon-info-lg)',
+        'neon-info-xl': 'var(--shadow-neon-info-xl)',
       },
       transitionDuration: {
         fast: 'var(--transition-fast)',
@@ -134,6 +161,10 @@ const config: Config = {
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'pulse-neon': 'pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'flicker-neon': 'flicker-neon 3s linear infinite',
+        'breathe-neon': 'breathe-neon 4s ease-in-out infinite',
+        'glow-surge': 'glow-surge 2s ease-in-out infinite',
+        'border-pulse-neon': 'border-pulse-neon 2s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'float': 'float 3s ease-in-out infinite',
         'scanline': 'scanline 6s linear infinite',
@@ -149,6 +180,43 @@ const config: Config = {
           '50%': {
             opacity: '0.5',
             filter: 'drop-shadow(0 0 4px rgb(var(--color-primary)))'
+          },
+        },
+        'flicker-neon': {
+          '0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%': {
+            opacity: '1',
+          },
+          '20%, 24%, 55%': {
+            opacity: '0.4',
+          },
+        },
+        'breathe-neon': {
+          '0%, 100%': {
+            boxShadow: 'var(--shadow-neon-primary)',
+          },
+          '50%': {
+            boxShadow: 'var(--shadow-neon-primary-xl)',
+          },
+        },
+        'glow-surge': {
+          '0%': {
+            boxShadow: 'var(--shadow-neon-primary-sm)',
+          },
+          '50%': {
+            boxShadow: 'var(--shadow-neon-primary-lg)',
+          },
+          '100%': {
+            boxShadow: 'var(--shadow-neon-primary-sm)',
+          },
+        },
+        'border-pulse-neon': {
+          '0%, 100%': {
+            borderColor: 'rgb(var(--color-primary) / 0.3)',
+            boxShadow: 'inset 0 0 10px rgb(var(--color-primary) / 0.2), 0 0 5px rgb(var(--color-primary) / 0.3)',
+          },
+          '50%': {
+            borderColor: 'rgb(var(--color-primary))',
+            boxShadow: 'inset 0 0 20px rgb(var(--color-primary) / 0.4), 0 0 20px rgb(var(--color-primary) / 0.8)',
           },
         },
         glow: {

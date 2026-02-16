@@ -62,11 +62,23 @@ All spacing uses CSS variables:
 
 ### Neon Effects
 
-Custom neon glow shadows for that cyberpunk aesthetic:
+**Comprehensive neon glow system** for cyberpunk aesthetic with full color palette support:
+
 ```css
+/* Available for all colors: primary, accent, secondary, success, warning, error, info */
 --shadow-neon-primary: 0 0 5px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary));
+--shadow-neon-primary-sm: 0 0 3px rgb(var(--color-primary)), 0 0 10px rgb(var(--color-primary));
 --shadow-neon-primary-lg: 0 0 10px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary));
+--shadow-neon-primary-xl: 0 0 20px rgb(var(--color-primary)), 0 0 60px rgb(var(--color-primary)), 0 0 100px rgb(var(--color-primary));
 ```
+
+**Utility classes available:**
+- Text effects: `.text-neon`, `.text-neon-accent`, `.text-neon-secondary`, etc.
+- Border effects: `.border-neon-primary`, `.border-neon-accent`, `.border-neon-secondary`
+- Background glows: `.bg-neon-glow-primary`, `.bg-neon-glow-accent`, `.bg-neon-glow-secondary`
+- Animations: `.animate-pulse-neon`, `.animate-flicker-neon`, `.animate-breathe-neon`, `.animate-glow-surge`, `.animate-border-pulse-neon`
+
+**See `docs/NEON_EFFECTS.md` for complete documentation and usage examples.**
 
 ## Project Structure
 
@@ -100,6 +112,8 @@ jlucus2/
 │   │   └── constants.ts        # Site constants & config
 │   └── styles/
 │       └── globals.css         # Global styles & CSS variables
+├── docs/
+│   └── NEON_EFFECTS.md         # Comprehensive neon effects documentation
 ├── public/                     # Static assets
 ├── package.json                # Dependencies
 ├── tsconfig.json               # TypeScript config

@@ -85,15 +85,47 @@
   --radius-full: 9999px;
 
   /* Shadows - Neon Glow Effects */
+  /* Primary (Electric Cyan) */
   --shadow-neon-primary: 0 0 5px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary));
   --shadow-neon-primary-sm: 0 0 3px rgb(var(--color-primary)), 0 0 10px rgb(var(--color-primary));
   --shadow-neon-primary-lg: 0 0 10px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary));
   --shadow-neon-primary-xl: 0 0 20px rgb(var(--color-primary)), 0 0 60px rgb(var(--color-primary)), 0 0 100px rgb(var(--color-primary));
 
+  /* Accent (Neon Magenta) */
   --shadow-neon-accent: 0 0 5px rgb(var(--color-accent)), 0 0 20px rgb(var(--color-accent));
+  --shadow-neon-accent-sm: 0 0 3px rgb(var(--color-accent)), 0 0 10px rgb(var(--color-accent));
   --shadow-neon-accent-lg: 0 0 10px rgb(var(--color-accent)), 0 0 40px rgb(var(--color-accent));
+  --shadow-neon-accent-xl: 0 0 20px rgb(var(--color-accent)), 0 0 60px rgb(var(--color-accent)), 0 0 100px rgb(var(--color-accent));
 
+  /* Secondary (Electric Lime) */
   --shadow-neon-secondary: 0 0 5px rgb(var(--color-secondary)), 0 0 20px rgb(var(--color-secondary));
+  --shadow-neon-secondary-sm: 0 0 3px rgb(var(--color-secondary)), 0 0 10px rgb(var(--color-secondary));
+  --shadow-neon-secondary-lg: 0 0 10px rgb(var(--color-secondary)), 0 0 40px rgb(var(--color-secondary));
+  --shadow-neon-secondary-xl: 0 0 20px rgb(var(--color-secondary)), 0 0 60px rgb(var(--color-secondary)), 0 0 100px rgb(var(--color-secondary));
+
+  /* Success (Green) */
+  --shadow-neon-success: 0 0 5px rgb(var(--color-success)), 0 0 20px rgb(var(--color-success));
+  --shadow-neon-success-sm: 0 0 3px rgb(var(--color-success)), 0 0 10px rgb(var(--color-success));
+  --shadow-neon-success-lg: 0 0 10px rgb(var(--color-success)), 0 0 40px rgb(var(--color-success));
+  --shadow-neon-success-xl: 0 0 20px rgb(var(--color-success)), 0 0 60px rgb(var(--color-success)), 0 0 100px rgb(var(--color-success));
+
+  /* Warning (Orange) */
+  --shadow-neon-warning: 0 0 5px rgb(var(--color-warning)), 0 0 20px rgb(var(--color-warning));
+  --shadow-neon-warning-sm: 0 0 3px rgb(var(--color-warning)), 0 0 10px rgb(var(--color-warning));
+  --shadow-neon-warning-lg: 0 0 10px rgb(var(--color-warning)), 0 0 40px rgb(var(--color-warning));
+  --shadow-neon-warning-xl: 0 0 20px rgb(var(--color-warning)), 0 0 60px rgb(var(--color-warning)), 0 0 100px rgb(var(--color-warning));
+
+  /* Error (Red) */
+  --shadow-neon-error: 0 0 5px rgb(var(--color-error)), 0 0 20px rgb(var(--color-error));
+  --shadow-neon-error-sm: 0 0 3px rgb(var(--color-error)), 0 0 10px rgb(var(--color-error));
+  --shadow-neon-error-lg: 0 0 10px rgb(var(--color-error)), 0 0 40px rgb(var(--color-error));
+  --shadow-neon-error-xl: 0 0 20px rgb(var(--color-error)), 0 0 60px rgb(var(--color-error)), 0 0 100px rgb(var(--color-error));
+
+  /* Info (Blue) */
+  --shadow-neon-info: 0 0 5px rgb(var(--color-info)), 0 0 20px rgb(var(--color-info));
+  --shadow-neon-info-sm: 0 0 3px rgb(var(--color-info)), 0 0 10px rgb(var(--color-info));
+  --shadow-neon-info-lg: 0 0 10px rgb(var(--color-info)), 0 0 40px rgb(var(--color-info));
+  --shadow-neon-info-xl: 0 0 20px rgb(var(--color-info)), 0 0 60px rgb(var(--color-info)), 0 0 100px rgb(var(--color-info));
 
   /* Standard Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -293,7 +325,7 @@ a {
           backdrop-filter: blur(10px);
 }
 
-/* Neon Text */
+/* Neon Text Effects */
 .text-neon {
   text-shadow: var(--shadow-neon-primary);
   color: rgb(var(--color-primary));
@@ -302,6 +334,71 @@ a {
 .text-neon-accent {
   text-shadow: var(--shadow-neon-accent);
   color: rgb(var(--color-accent));
+}
+
+.text-neon-secondary {
+  text-shadow: var(--shadow-neon-secondary);
+  color: rgb(var(--color-secondary));
+}
+
+.text-neon-success {
+  text-shadow: var(--shadow-neon-success);
+  color: rgb(var(--color-success));
+}
+
+.text-neon-warning {
+  text-shadow: var(--shadow-neon-warning);
+  color: rgb(var(--color-warning));
+}
+
+.text-neon-error {
+  text-shadow: var(--shadow-neon-error);
+  color: rgb(var(--color-error));
+}
+
+.text-neon-info {
+  text-shadow: var(--shadow-neon-info);
+  color: rgb(var(--color-info));
+}
+
+/* Neon Border Effects */
+.border-neon-primary {
+  border-color: rgb(var(--color-primary));
+  box-shadow: inset 0 0 10px rgb(var(--color-primary) / 0.3), 0 0 10px rgb(var(--color-primary) / 0.5);
+}
+
+.border-neon-accent {
+  border-color: rgb(var(--color-accent));
+  box-shadow: inset 0 0 10px rgb(var(--color-accent) / 0.3), 0 0 10px rgb(var(--color-accent) / 0.5);
+}
+
+.border-neon-secondary {
+  border-color: rgb(var(--color-secondary));
+  box-shadow: inset 0 0 10px rgb(var(--color-secondary) / 0.3), 0 0 10px rgb(var(--color-secondary) / 0.5);
+}
+
+/* Neon Box Shadow (Glow) Effects */
+.shadow-neon-primary-hover:hover {
+  box-shadow: var(--shadow-neon-primary);
+  transition: box-shadow var(--transition-base);
+}
+
+.shadow-neon-accent-hover:hover {
+  box-shadow: var(--shadow-neon-accent);
+  transition: box-shadow var(--transition-base);
+}
+
+/* Neon Background Glow */
+.bg-neon-glow-primary {
+  background: radial-gradient(circle at center, rgb(var(--color-primary) / 0.15) 0%, transparent 70%);
+}
+
+.bg-neon-glow-accent {
+  background: radial-gradient(circle at center, rgb(var(--color-accent) / 0.15) 0%, transparent 70%);
+}
+
+.bg-neon-glow-secondary {
+  background: radial-gradient(circle at center, rgb(var(--color-secondary) / 0.15) 0%, transparent 70%);
 }
 
 /* Utility Classes */
@@ -346,7 +443,9 @@ a {
   }
 }
 
-/* Loading Animation */
+/* Neon Animations */
+
+/* Pulse Neon - Smooth pulsing glow */
 @-webkit-keyframes pulse-neon {
   0%, 100% {
     opacity: 1;
@@ -372,9 +471,116 @@ a {
   }
 }
 
+/* Flicker Neon - Realistic neon flicker effect */
+@-webkit-keyframes flicker-neon {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: var(--shadow-neon-primary);
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+@keyframes flicker-neon {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: var(--shadow-neon-primary);
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+/* Breathing Neon - Slow intensity breathing */
+@-webkit-keyframes breathe-neon {
+  0%, 100% {
+    box-shadow: var(--shadow-neon-primary);
+  }
+  50% {
+    box-shadow: var(--shadow-neon-primary-xl);
+  }
+}
+@keyframes breathe-neon {
+  0%, 100% {
+    box-shadow: var(--shadow-neon-primary);
+  }
+  50% {
+    box-shadow: var(--shadow-neon-primary-xl);
+  }
+}
+
+/* Glow Surge - Quick intensity surge */
+@-webkit-keyframes glow-surge {
+  0% {
+    box-shadow: var(--shadow-neon-primary-sm);
+  }
+  50% {
+    box-shadow: var(--shadow-neon-primary-lg);
+  }
+  100% {
+    box-shadow: var(--shadow-neon-primary-sm);
+  }
+}
+@keyframes glow-surge {
+  0% {
+    box-shadow: var(--shadow-neon-primary-sm);
+  }
+  50% {
+    box-shadow: var(--shadow-neon-primary-lg);
+  }
+  100% {
+    box-shadow: var(--shadow-neon-primary-sm);
+  }
+}
+
+/* Neon Border Pulse */
+@-webkit-keyframes border-pulse-neon {
+  0%, 100% {
+    border-color: rgb(var(--color-primary) / 0.3);
+    box-shadow: inset 0 0 10px rgb(var(--color-primary) / 0.2), 0 0 5px rgb(var(--color-primary) / 0.3);
+  }
+  50% {
+    border-color: rgb(var(--color-primary));
+    box-shadow: inset 0 0 20px rgb(var(--color-primary) / 0.4), 0 0 20px rgb(var(--color-primary) / 0.8);
+  }
+}
+@keyframes border-pulse-neon {
+  0%, 100% {
+    border-color: rgb(var(--color-primary) / 0.3);
+    box-shadow: inset 0 0 10px rgb(var(--color-primary) / 0.2), 0 0 5px rgb(var(--color-primary) / 0.3);
+  }
+  50% {
+    border-color: rgb(var(--color-primary));
+    box-shadow: inset 0 0 20px rgb(var(--color-primary) / 0.4), 0 0 20px rgb(var(--color-primary) / 0.8);
+  }
+}
+
+/* Animation Classes */
 .animate-pulse-neon {
   -webkit-animation: pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
           animation: pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-flicker-neon {
+  -webkit-animation: flicker-neon 3s linear infinite;
+          animation: flicker-neon 3s linear infinite;
+}
+
+.animate-breathe-neon {
+  -webkit-animation: breathe-neon 4s ease-in-out infinite;
+          animation: breathe-neon 4s ease-in-out infinite;
+}
+
+.animate-glow-surge {
+  -webkit-animation: glow-surge 2s ease-in-out infinite;
+          animation: glow-surge 2s ease-in-out infinite;
+}
+
+.animate-border-pulse-neon {
+  -webkit-animation: border-pulse-neon 2s ease-in-out infinite;
+          animation: border-pulse-neon 2s ease-in-out infinite;
 }
 
 /* Scanline Effect */
