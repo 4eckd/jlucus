@@ -125,8 +125,8 @@
     "next_steps": "1. Run INSTALL_NOW.md commands to install dependencies\n2. Test checkout flow at /checkout?amount=5000\n3. Configure Stripe webhook\n4. Verify payments in database and Stripe dashboard\n5. Optional: Add PayPal (Phase 3) or Invoices (Phase 4)",
     "stripe_credentials": "Configured in .env (test mode)",
     "pr_draft": "To be created after testing complete"
-  }
-},
+    }
+  },
   "last_updated": "2025-12-25T00:00:00Z",
   "project_info": {
     "name": "jlucus-dev",

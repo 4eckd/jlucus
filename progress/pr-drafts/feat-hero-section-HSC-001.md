@@ -1,18 +1,18 @@
 # Pull Request: Hero Section Component with Typing Animation
 
-**Branch:** `feat/hero-section/HSC-001`
-**Ticket:** HSC-001
-**Target:** main
-**Window:** 3
+**Branch:** `feat/hero-section/HSC-001` **Ticket:** HSC-001 **Target:** main **Window:** 3
 **Status:** 🟡 Pending Approval (git checkout, pnpm build/lint require approval)
 
 ---
 
 ## Summary
 
-Migrates the legacy hero section to a modern React component with custom typing animation. This is the first migrated section from the legacy portfolio site, establishing patterns for future section migrations.
+Migrates the legacy hero section to a modern React component with custom typing animation. This is
+the first migrated section from the legacy portfolio site, establishing patterns for future section
+migrations.
 
 **Key additions:**
+
 - HeroSection component with Framer Motion animations
 - Custom useTypingAnimation hook (replaces Typed.js)
 - Responsive design with mobile-first approach
@@ -21,6 +21,7 @@ Migrates the legacy hero section to a modern React component with custom typing 
 - Social media links integration
 
 **Visual Impact:**
+
 - Professional typing animation showing multiple roles
 - Smooth fade-in and slide-up animations
 - Animated scroll indicator
@@ -68,6 +69,7 @@ Migrates the legacy hero section to a modern React component with custom typing 
 ### Component Features
 
 **HeroSection Component:**
+
 - Props-based configuration (name, roles, background image)
 - Optional callbacks for CTA button actions
 - Defaults match content from legacy site
@@ -77,17 +79,19 @@ Migrates the legacy hero section to a modern React component with custom typing 
 - Semantic HTML (section, h1, aria-labels)
 
 **useTypingAnimation Hook:**
+
 ```typescript
 interface UseTypingAnimationOptions {
-  words: string[]           // Array of words to type
-  typingSpeed?: number      // Default: 100ms per character
-  deletingSpeed?: number    // Default: 50ms per character
-  pauseDuration?: number    // Default: 2000ms between words
-  loop?: boolean           // Default: true
+  words: string[]; // Array of words to type
+  typingSpeed?: number; // Default: 100ms per character
+  deletingSpeed?: number; // Default: 50ms per character
+  pauseDuration?: number; // Default: 2000ms between words
+  loop?: boolean; // Default: true
 }
 ```
 
 **Animation Timeline:**
+
 1. Background image fades in (opacity transition)
 2. Name heading scales up and fades in (0.6s delay)
 3. Typing animation starts (0.4s delay)
@@ -108,11 +112,13 @@ interface UseTypingAnimationOptions {
 ### Responsive Design
 
 **Breakpoints:**
+
 - Mobile (< 640px): Single column, smaller text sizes
 - Tablet (640px - 1024px): Medium text sizes, flex-col buttons
 - Desktop (1024px+): Large text sizes, flex-row buttons
 
 **Font Sizes:**
+
 - Heading: 5xl (mobile) → 6xl (sm) → 7xl (md) → 8xl (lg)
 - Typing text: 2xl (mobile) → 3xl (sm) → 4xl (md)
 - Fully responsive spacing and padding
@@ -156,6 +162,7 @@ interface UseTypingAnimationOptions {
 ### Browser Compatibility
 
 Expected to work on:
+
 - ✅ Chrome/Edge (latest 2 versions)
 - ✅ Firefox (latest 2 versions)
 - ✅ Safari (latest 2 versions)
@@ -170,17 +177,26 @@ Expected to work on:
 ### From Legacy HTML
 
 **Original:** `legacy/index.html` lines 112-125
+
 ```html
 <section id="hero" class="hero section dark-background">
-  <img src="assets/img/hero-bg.png" alt="" data-aos="fade-in">
+  <img src="assets/img/hero-bg.png" alt="" data-aos="fade-in" />
   <div class="container" data-aos="fade-up" data-aos-delay="100">
     <h2>Jesse Lucus</h2>
-    <p>I'm <span class="typed" data-typed-items="a Developer,a Freelancer,an Entreprenuer,a Hacker,a Felon,a Veteran">a Designer</span></p>
+    <p>
+      I'm
+      <span
+        class="typed"
+        data-typed-items="a Developer,a Freelancer,an Entreprenuer,a Hacker,a Felon,a Veteran"
+        >a Designer</span
+      >
+    </p>
   </div>
 </section>
 ```
 
 **Migrated to:**
+
 - React component with TypeScript
 - Framer Motion instead of AOS (Animate On Scroll)
 - Custom hook instead of Typed.js
@@ -204,11 +220,13 @@ Expected to work on:
 ## Dependencies
 
 **No New Dependencies Added**
+
 - Uses existing `framer-motion` (already in package.json)
 - Uses existing `lucide-react` for icons
 - No additional npm packages required
 
 **Replaced Legacy Libraries:**
+
 - ❌ Typed.js → ✅ Custom useTypingAnimation hook
 - ❌ AOS (Animate On Scroll) → ✅ Framer Motion
 
@@ -249,16 +267,16 @@ Expected to work on:
 ### Risks
 
 1. **Animation Performance** - Framer Motion animations may impact performance on low-end devices
-   - *Mitigation:* Animations are lightweight (opacity, scale, y-position only)
-   - *Mitigation:* Respects prefers-reduced-motion for accessibility
+   - _Mitigation:_ Animations are lightweight (opacity, scale, y-position only)
+   - _Mitigation:_ Respects prefers-reduced-motion for accessibility
 
 2. **Typing Hook State Management** - Complex useState/useEffect logic could have bugs
-   - *Mitigation:* Hook is self-contained and well-tested logic
-   - *Mitigation:* Cleanup functions prevent memory leaks
+   - _Mitigation:_ Hook is self-contained and well-tested logic
+   - _Mitigation:_ Cleanup functions prevent memory leaks
 
 3. **Background Image Loading** - Large background image may slow initial load
-   - *Mitigation:* Image has opacity: 20% so visual impact minimal during load
-   - *Future:* Migrate to Next.js Image component for optimization
+   - _Mitigation:_ Image has opacity: 20% so visual impact minimal during load
+   - _Future:_ Migrate to Next.js Image component for optimization
 
 ### Dependencies
 
@@ -271,11 +289,13 @@ Expected to work on:
 ## Performance Considerations
 
 **Current:**
+
 - Background image loaded via CSS `background-image` (not optimized)
 - Framer Motion animations are GPU-accelerated
 - Typing hook uses setTimeout (efficient for this use case)
 
 **Future Improvements:**
+
 - Migrate background image to Next.js `<Image>` component
 - Add lazy loading for background image
 - Consider Intersection Observer for scroll-triggered animations
@@ -286,12 +306,14 @@ Expected to work on:
 ## Rollback Plan
 
 If issues arise:
+
 1. Revert `src/app/page.tsx` to use placeholder hero content
 2. Delete `src/components/sections/` directory
 3. Delete `src/hooks/useTypingAnimation.ts`
 4. Run `pnpm build` to verify site still works
 
 **Rollback Commands:**
+
 ```bash
 git checkout main -- src/app/page.tsx
 rm -rf src/components/sections src/hooks/useTypingAnimation.ts
@@ -314,6 +336,7 @@ pnpm build
 ## Screenshots
 
 **Note:** Screenshot will be captured after `pnpm dev` approval
+
 - Desktop (1920x1080): Dark theme, typing animation in progress
 - Mobile (375x667): Responsive layout, stacked buttons
 - Light theme: Hero section in light mode
@@ -323,6 +346,7 @@ pnpm build
 ## Approvals Needed
 
 Before this PR can be merged, please approve:
+
 1. ✅ `git checkout -b feat/hero-section/HSC-001` (branch creation)
 2. ⏳ `pnpm build` (production build test)
 3. ⏳ `pnpm lint` (code quality check)
@@ -330,9 +354,8 @@ Before this PR can be merged, please approve:
 
 ---
 
-**Estimated Review Time:** 15-20 minutes
-**Merge Strategy:** Squash and merge (atomic hero section commit)
-**Lines Changed:** +328 -102 (net +226 lines)
+**Estimated Review Time:** 15-20 minutes **Merge Strategy:** Squash and merge (atomic hero section
+commit) **Lines Changed:** +328 -102 (net +226 lines)
 
 ---
 

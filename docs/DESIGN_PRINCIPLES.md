@@ -1,8 +1,7 @@
 # Design Principles - jlucus.dev Portfolio
 
-**Last Updated:** 2026-02-15
-**Design System:** Terminal Neon
-**Status:** Active Guidelines for All Development
+**Last Updated:** 2026-02-15 **Design System:** Terminal Neon **Status:** Active Guidelines for All
+Development
 
 ---
 
@@ -21,36 +20,37 @@ The jlucus.dev portfolio follows a **Terminal Neon** aesthetic that combines:
 
 ### CRITICAL: CSS Variables Only
 
-**NEVER use hardcoded color values.** All colors must use CSS variables defined in `src/styles/globals.css`.
+**NEVER use hardcoded color values.** All colors must use CSS variables defined in
+`src/styles/globals.css`.
 
 ### Primary Colors
 
 ```css
 /* Electric Cyan - Primary brand color */
---color-primary: 0 217 255;        /* rgb(0, 217, 255) #00D9FF */
+--color-primary: 0 217 255; /* rgb(0, 217, 255) #00D9FF */
 
 /* Neon Magenta - Accent color */
---color-accent: 255 0 110;         /* rgb(255, 0, 110) #FF006E */
+--color-accent: 255 0 110; /* rgb(255, 0, 110) #FF006E */
 
 /* Electric Lime - Secondary accent */
---color-secondary: 204 255 0;      /* rgb(204, 255, 0) #CCFF00 */
+--color-secondary: 204 255 0; /* rgb(204, 255, 0) #CCFF00 */
 ```
 
 ### Status Colors
 
 ```css
---color-success: 0 255 159;        /* #00FF9F */
---color-warning: 255 184 0;        /* #FFB800 */
---color-error: 255 71 87;          /* #FF4757 */
---color-info: 0 184 217;           /* #00B8D9 */
+--color-success: 0 255 159; /* #00FF9F */
+--color-warning: 255 184 0; /* #FFB800 */
+--color-error: 255 71 87; /* #FF4757 */
+--color-info: 0 184 217; /* #00B8D9 */
 ```
 
 ### Grayscale
 
 ```css
---color-background: 10 10 15;      /* #0A0A0F - Almost black */
---color-foreground: 240 242 245;   /* #F0F2F5 - Off white */
---color-muted: 100 105 115;        /* #64697 - Gray */
+--color-background: 10 10 15; /* #0A0A0F - Almost black */
+--color-foreground: 240 242 245; /* #F0F2F5 - Off white */
+--color-muted: 100 105 115; /* #64697 - Gray */
 ```
 
 ### Usage Examples
@@ -78,15 +78,13 @@ The jlucus.dev portfolio follows a **Terminal Neon** aesthetic that combines:
 All neon effects use predefined CSS variable shadows:
 
 ```css
---shadow-neon-primary: 0 0 5px rgb(var(--color-primary)),
-                       0 0 20px rgb(var(--color-primary));
+--shadow-neon-primary: 0 0 5px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary));
 
---shadow-neon-primary-lg: 0 0 10px rgb(var(--color-primary)),
-                          0 0 40px rgb(var(--color-primary)),
-                          0 0 80px rgb(var(--color-primary));
+--shadow-neon-primary-lg:
+  0 0 10px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary)),
+  0 0 80px rgb(var(--color-primary));
 
---shadow-neon-accent: 0 0 5px rgb(var(--color-accent)),
-                      0 0 20px rgb(var(--color-accent));
+--shadow-neon-accent: 0 0 5px rgb(var(--color-accent)), 0 0 20px rgb(var(--color-accent));
 ```
 
 ### Usage
@@ -122,15 +120,15 @@ All neon effects use predefined CSS variable shadows:
 ### Scale
 
 ```css
---text-xs: 0.75rem;    /* 12px */
---text-sm: 0.875rem;   /* 14px */
---text-base: 1rem;     /* 16px */
---text-lg: 1.125rem;   /* 18px */
---text-xl: 1.25rem;    /* 20px */
---text-2xl: 1.5rem;    /* 24px */
---text-3xl: 1.875rem;  /* 30px */
---text-4xl: 2.25rem;   /* 36px */
---text-5xl: 3rem;      /* 48px */
+--text-xs: 0.75rem; /* 12px */
+--text-sm: 0.875rem; /* 14px */
+--text-base: 1rem; /* 16px */
+--text-lg: 1.125rem; /* 18px */
+--text-xl: 1.25rem; /* 20px */
+--text-2xl: 1.5rem; /* 24px */
+--text-3xl: 1.875rem; /* 30px */
+--text-4xl: 2.25rem; /* 36px */
+--text-5xl: 3rem; /* 48px */
 ```
 
 ### Usage
@@ -153,14 +151,14 @@ All neon effects use predefined CSS variable shadows:
 ### Scale
 
 ```css
---spacing-xs: 0.25rem;   /* 4px */
---spacing-sm: 0.5rem;    /* 8px */
---spacing-md: 1rem;      /* 16px */
---spacing-lg: 1.5rem;    /* 24px */
---spacing-xl: 2rem;      /* 32px */
---spacing-2xl: 3rem;     /* 48px */
---spacing-3xl: 4rem;     /* 64px */
---spacing-4xl: 6rem;     /* 96px */
+--spacing-xs: 0.25rem; /* 4px */
+--spacing-sm: 0.5rem; /* 8px */
+--spacing-md: 1rem; /* 16px */
+--spacing-lg: 1.5rem; /* 24px */
+--spacing-xl: 2rem; /* 32px */
+--spacing-2xl: 3rem; /* 48px */
+--spacing-3xl: 4rem; /* 64px */
+--spacing-4xl: 6rem; /* 96px */
 ```
 
 ### Usage
@@ -266,16 +264,11 @@ interface NeonBoxProps {
   className?: string;
 }
 
-export function NeonBox({
-  children,
-  variant = 'primary',
-  glow = 'sm',
-  className
-}: NeonBoxProps) {
+export function NeonBox({ children, variant = 'primary', glow = 'sm', className }: NeonBoxProps) {
   return (
     <div
       className={cn(
-        'border rounded-md p-md',
+        'p-md rounded-md border',
         variant === 'primary' ? 'border-primary' : 'border-accent',
         glow === 'sm' ? 'shadow-neon-primary' : 'shadow-neon-primary-lg',
         className
@@ -426,11 +419,11 @@ import Image from 'next/image';
   height={1080}
   priority={isAboveFold}
   loading={isAboveFold ? 'eager' : 'lazy'}
-/>
+/>;
 
 // ✅ Code splitting
 const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
-  loading: () => <Skeleton />
+  loading: () => <Skeleton />,
 });
 
 // ✅ Font optimization
@@ -445,7 +438,7 @@ const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 ### Best Practices
 
 1. **No sensitive data in client code**
-2. **Env variables** - Use NEXT_PUBLIC_ prefix for client
+2. **Env variables** - Use NEXT*PUBLIC* prefix for client
 3. **Input validation** - Always validate user input
 4. **XSS prevention** - Use dangerouslySetInnerHTML sparingly
 5. **CSRF protection** - Use CSRF tokens for forms
@@ -506,9 +499,8 @@ constants.ts           // Config - kebab-case
 
 ---
 
-**Maintained By:** jlucus development team
-**Review Frequency:** Every major feature
-**Status:** Active Design Guidelines ✅
+**Maintained By:** jlucus development team **Review Frequency:** Every major feature **Status:**
+Active Design Guidelines ✅
 
 ```
 ╔════════════════════════════════════════════════════════════╗

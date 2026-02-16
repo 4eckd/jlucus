@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -53,12 +53,14 @@ const config: Config = {
         'background-tertiary': 'rgb(var(--color-background-tertiary))',
         //  Aliases for components
         'primary-foreground': 'rgb(var(--color-dark-950) / <alpha-value>)',
-        'destructive': 'rgb(var(--color-error) / <alpha-value>)',
-        'destructive-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
+        destructive: 'rgb(var(--color-error) / <alpha-value>)',
+        'destructive-foreground':
+          'rgb(var(--color-text-primary) / <alpha-value>)',
         input: 'rgb(var(--color-primary) / 0.2)',
         ring: 'rgb(var(--color-primary) / <alpha-value>)',
         muted: 'rgb(var(--color-dark-700) / <alpha-value>)',
-        'secondary-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
+        'secondary-foreground':
+          'rgb(var(--color-text-primary) / <alpha-value>)',
         'accent-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
         border: 'rgb(var(--color-primary) / 0.1)',
       },
@@ -130,29 +132,31 @@ const config: Config = {
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'pulse-neon': 'pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'float': 'float 3s ease-in-out infinite',
-        'scanline': 'scanline 6s linear infinite',
-        'typing': 'typing 3.5s steps(40, end)',
-        'blink': 'blink 1s step-end infinite',
+        glow: 'glow 2s ease-in-out infinite alternate',
+        float: 'float 3s ease-in-out infinite',
+        scanline: 'scanline 6s linear infinite',
+        typing: 'typing 3.5s steps(40, end)',
+        blink: 'blink 1s step-end infinite',
       },
       keyframes: {
         'pulse-neon': {
           '0%, 100%': {
             opacity: '1',
-            filter: 'drop-shadow(0 0 8px rgb(var(--color-primary)))'
+            filter: 'drop-shadow(0 0 8px rgb(var(--color-primary)))',
           },
           '50%': {
             opacity: '0.5',
-            filter: 'drop-shadow(0 0 4px rgb(var(--color-primary)))'
+            filter: 'drop-shadow(0 0 4px rgb(var(--color-primary)))',
           },
         },
         glow: {
           '0%, 100%': {
-            boxShadow: '0 0 5px rgb(var(--color-primary)), 0 0 10px rgb(var(--color-primary))'
+            boxShadow:
+              '0 0 5px rgb(var(--color-primary)), 0 0 10px rgb(var(--color-primary))',
           },
           '50%': {
-            boxShadow: '0 0 10px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary)), 0 0 30px rgb(var(--color-primary))'
+            boxShadow:
+              '0 0 10px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary)), 0 0 30px rgb(var(--color-primary))',
           },
         },
         float: {
@@ -164,8 +168,8 @@ const config: Config = {
           '100%': { transform: 'translateY(100vh)' },
         },
         typing: {
-          'from': { width: '0' },
-          'to': { width: '100%' },
+          from: { width: '0' },
+          to: { width: '100%' },
         },
         blink: {
           '0%, 100%': { opacity: '1' },
@@ -174,12 +178,14 @@ const config: Config = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D9FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'grid-pattern':
+          "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D9FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       },
     },
   },
   plugins: [],
-}
+};
 
-export default config
+export default config;

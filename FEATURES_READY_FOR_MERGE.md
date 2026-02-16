@@ -6,11 +6,11 @@ Your repository now has multiple features implemented and ready for validation:
 
 ### ✅ Features Completed
 
-| Feature | Branch | Status | Files Created |
-|---------|--------|--------|---------------|
-| **Authentication Foundation** | `feat/auth-foundation/UPR-001` | ✅ Ready | 9 core files + setup scripts |
-| **Hero Section Component** | (in current branch) | ✅ Ready | HeroSection.tsx + hook |
-| **Payment Gateway** | (partial - in current branch) | ⚠️ Partial | Types & utilities only |
+| Feature                       | Branch                         | Status     | Files Created                |
+| ----------------------------- | ------------------------------ | ---------- | ---------------------------- |
+| **Authentication Foundation** | `feat/auth-foundation/UPR-001` | ✅ Ready   | 9 core files + setup scripts |
+| **Hero Section Component**    | (in current branch)            | ✅ Ready   | HeroSection.tsx + hook       |
+| **Payment Gateway**           | (partial - in current branch)  | ⚠️ Partial | Types & utilities only       |
 
 ---
 
@@ -32,6 +32,7 @@ chmod +x BUILD_AND_MERGE.sh
 ```
 
 **What it does:**
+
 1. Generates Prisma client (if schema exists)
 2. Runs `pnpm build` to test compilation
 3. Runs `pnpm lint` to check code quality
@@ -45,28 +46,35 @@ chmod +x BUILD_AND_MERGE.sh
 ### Option 2: Manual Steps
 
 #### Step 1: Generate Prisma Client
+
 ```bash
 pnpm prisma generate
 ```
 
 #### Step 2: Test Build
+
 ```bash
 pnpm build
 ```
+
 ✅ **Expected:** Build completes without TypeScript errors
 
 #### Step 3: Run Linter
+
 ```bash
 pnpm lint
 ```
+
 ✅ **Expected:** No critical ESLint errors
 
 #### Step 4: Stage Changes
+
 ```bash
 git add .
 ```
 
 #### Step 5: Create Commit
+
 ```bash
 git commit -m "$(cat <<'EOF'
 feat: Complete auth foundation and hero section
@@ -92,6 +100,7 @@ EOF
 ```
 
 #### Step 6: Create Pull Request
+
 ```bash
 # Using GitHub CLI
 gh pr create --title "feat: Authentication Foundation & Hero Section" \
@@ -103,6 +112,7 @@ gh pr create --title "feat: Authentication Foundation & Hero Section" \
 https://github.com/YOUR_USERNAME/YOUR_REPO/pull/new/feat/auth-foundation/UPR-001
 
 #### Step 7: Merge to Main
+
 ```bash
 git checkout main
 git merge --no-ff feat/auth-foundation/UPR-001
@@ -116,12 +126,14 @@ git push origin main
 **Branch:** `feat/auth-foundation/UPR-001`
 
 **Modified Files:**
+
 - `.gitignore` (added Prisma exclusions)
 - `package.json` (updated name, dependencies installed)
 - `pnpm-lock.yaml` (dependencies locked)
 - `src/app/page.tsx` (possibly modified)
 
 **New Files:**
+
 - `prisma/schema.prisma` ✅
 - `src/lib/auth.ts` ✅ (TypeScript error FIXED)
 - `src/lib/prisma.ts` ✅
@@ -140,15 +152,18 @@ git push origin main
 ## TypeScript Errors Fixed
 
 ### ✅ Fixed: NextAuth v5 Import
+
 **File:** `src/lib/auth.ts:1-5`
 
 **Before:**
+
 ```typescript
 import type { NextAuthOptions } from "next-auth";
 export const authOptions: NextAuthOptions = {
 ```
 
 **After:**
+
 ```typescript
 import type { AuthOptions } from "next-auth";
 export const authOptions: AuthOptions = {
@@ -175,12 +190,14 @@ Before merging, ensure:
 ## Dependencies Installed
 
 ### Production Dependencies ✅
+
 - `next-auth@5.0.0-beta.29` - Authentication
 - `@auth/prisma-adapter@^2.11.1` - Prisma adapter for NextAuth
 - `@prisma/client@^6.18.0` - Prisma ORM client
 - `bcryptjs@^3.0.2` - Password hashing
 
 ### Dev Dependencies ✅
+
 - `prisma@^6.18.0` - Prisma CLI
 - `@types/bcryptjs@^3.0.0` - TypeScript types
 
@@ -191,6 +208,7 @@ Before merging, ensure:
 After merging to main:
 
 ### 1. Configure Environment
+
 ```bash
 cp .env.example .env
 
@@ -203,17 +221,20 @@ openssl rand -base64 32
 ```
 
 ### 2. Run Database Migration
+
 ```bash
 pnpm prisma migrate dev --name init_auth
 ```
 
 ### 3. Test Authentication
+
 ```bash
 pnpm dev
 # Visit: http://localhost:3000/api/auth/signin
 ```
 
 ### 4. Verify Hero Section
+
 ```bash
 # Visit: http://localhost:3000
 # Check hero section with typing animation
@@ -259,20 +280,25 @@ After merging the current features, continue with:
 ## Troubleshooting
 
 ### Build Error: "Module not found: @prisma/client"
+
 ```bash
 pnpm prisma generate
 ```
 
 ### Build Error: "Cannot find module 'bcryptjs'"
+
 ```bash
 pnpm install
 ```
 
 ### TypeScript Error: Module has no exported member
+
 Check that all imports use NextAuth v5 syntax (`AuthOptions` not `NextAuthOptions`)
 
 ### Prisma Error: "Invalid invocation"
+
 Run database migration:
+
 ```bash
 pnpm prisma migrate dev --name init_auth
 ```

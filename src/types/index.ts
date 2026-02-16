@@ -30,10 +30,26 @@ export interface GitHubStats {
   following: number;
 }
 
-export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert' | 'master';
-export type ProjectCategory = 'web' | 'mobile' | 'ai' | 'blockchain' | 'infrastructure' | 'tools';
+export type SkillLevel =
+  | 'beginner'
+  | 'intermediate'
+  | 'advanced'
+  | 'expert'
+  | 'master';
+export type ProjectCategory =
+  | 'web'
+  | 'mobile'
+  | 'ai'
+  | 'blockchain'
+  | 'infrastructure'
+  | 'tools';
 export type VentureStatus = 'building' | 'launching' | 'growing' | 'scaling';
-export type AnimationType = 'fadeIn' | 'slideUp' | 'slideIn' | 'scaleIn' | 'typewriter';
+export type AnimationType =
+  | 'fadeIn'
+  | 'slideUp'
+  | 'slideIn'
+  | 'scaleIn'
+  | 'typewriter';
 
 export interface ThemeConfig {
   primary: string;

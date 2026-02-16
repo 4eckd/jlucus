@@ -1,14 +1,15 @@
 # GitButler-Inspired Parallel Development Workflow
 
-**Last Updated:** 2026-02-15
-**Status:** Active
-**Strategy:** Virtual Branch Simulation for Parallel Development
+**Last Updated:** 2026-02-15 **Status:** Active **Strategy:** Virtual Branch Simulation for Parallel
+Development
 
 ---
 
 ## 🎯 Overview
 
-This workflow simulates GitButler's virtual branching capabilities using standard Git and GitHub Actions, enabling seamless parallel development across multiple features with minimal context switching.
+This workflow simulates GitButler's virtual branching capabilities using standard Git and GitHub
+Actions, enabling seamless parallel development across multiple features with minimal context
+switching.
 
 ### Key Concepts from GitButler
 
@@ -40,6 +41,7 @@ main (production)
 **Format:** `{type}-{issue#}-{short-description}`
 
 **Types:**
+
 - `feat` - New features (maps to Phase 1-3 milestones)
 - `fix` - Bug fixes
 - `docs` - Documentation updates (maps to Phase 4)
@@ -49,6 +51,7 @@ main (production)
 - `deploy` - Deployment configs (maps to Phase 6)
 
 **Examples:**
+
 ```bash
 feat-123-hero-section-animations
 fix-45-mobile-menu-overflow
@@ -66,12 +69,14 @@ polish-124-scanline-effect
 **Trigger:** Label issue with `ready-for-dev`
 
 **What Happens:**
+
 1. GitHub Action creates branch: `feat-{#}-{title}`
 2. Links branch to issue in comment
 3. Adds `in-development` label
 4. Assigns to milestone based on keywords
 
 **Example:**
+
 ```
 Issue #123: "Add Hero Section Animations"
 Label: ready-for-dev
@@ -86,12 +91,14 @@ Label: ready-for-dev
 **Trigger:** Push to any branch
 
 **What Happens:**
+
 1. Updates `.github/tracking/DEVELOPMENT_MANIFEST.md`
 2. Creates `progress/branches/{branch-name}.md`
 3. Generates ASCII progress visualization
 4. Links commits to issues
 
 **Tracked Data:**
+
 - Branch creation date
 - Commit count
 - Files changed
@@ -103,12 +110,14 @@ Label: ready-for-dev
 **Trigger:** PR opened
 
 **What Happens:**
+
 1. Scans PR title for keywords
 2. Auto-assigns to correct milestone
 3. Links related issues
 4. Adds phase label
 
 **Keyword Mapping:**
+
 ```yaml
 foundation → Milestone #3 (Phase 1)
 polish → Milestone #4 (Phase 2)
@@ -134,6 +143,7 @@ GitButler allows multiple "virtual branches" in one workspace. We simulate this 
 ### Working on Multiple Features Simultaneously
 
 **Option 1: Git Worktrees (Recommended)**
+
 ```bash
 # Create worktrees for parallel development
 git worktree add ../jlucus-hero feat-123-hero-section
@@ -147,6 +157,7 @@ code ../jlucus-contact # VSCode window 3
 ```
 
 **Option 2: Quick Branch Switching**
+
 ```bash
 # Use our helper script
 ./scripts/switch-branch.sh feat-123-hero-section
@@ -301,6 +312,7 @@ fi
 ### Daily Development Flow
 
 **Morning:**
+
 ```bash
 # 1. Sync with remote
 git fetch --all
@@ -318,6 +330,7 @@ git worktree add ../jlucus-feat-123 feat-123-hero-section
 ```
 
 **During Development:**
+
 ```bash
 # Frequent commits with conventional format
 git add .
@@ -333,6 +346,7 @@ git push
 ```
 
 **End of Day:**
+
 ```bash
 # 1. Push all work
 git push
@@ -477,6 +491,7 @@ All branches must follow these design principles:
 ### Automatic Detection
 
 The workflow detects conflicts and notifies via:
+
 - PR comments
 - Issue labels (`merge-conflict`)
 - Slack/Discord webhook (optional)
@@ -567,6 +582,7 @@ Track these metrics weekly:
 **Problem:** Branch not auto-created from issue
 
 **Solution:**
+
 ```bash
 # Manually create with script
 ./scripts/create-feature-branch.sh <issue-number>
@@ -575,6 +591,7 @@ Track these metrics weekly:
 **Problem:** Worktree conflicts
 
 **Solution:**
+
 ```bash
 # List worktrees
 git worktree list
@@ -589,6 +606,7 @@ git worktree prune
 **Problem:** Milestone not auto-assigned
 
 **Solution:**
+
 ```bash
 # Manually assign
 gh pr edit <pr-number> --milestone "Phase 2: Polish & Enhancement"
@@ -606,9 +624,8 @@ gh pr edit <pr-number> --milestone "Phase 2: Polish & Enhancement"
 
 ---
 
-**Last Updated:** 2026-02-15
-**Maintained By:** jlucus development team
-**Automation Status:** ✅ Active
+**Last Updated:** 2026-02-15 **Maintained By:** jlucus development team **Automation Status:** ✅
+Active
 
 ```
 ╔════════════════════════════════════════════════════════════╗

@@ -1,25 +1,26 @@
 # Development Manifest
 
-**Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
-**Event:** push
-**Branch:** claude/feature-branch-from-issue-lJKlJ
+**Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC) **Event:** push **Branch:**
+claude/feature-branch-from-issue-lJKlJ
 
 ## Active Development
 
 ### Branches
+
 $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 ### Recent Activity
+
 - **Latest Commit:** $(git log -1 --pretty=format:"%h - %s (%an)")
 - **Commit Count:** $(git rev-list --count HEAD)
 
 ### Branch Associations
 
-| Branch | Issue | Milestone | PR | Status |
-|--------|-------|-----------|-----|--------|
-| origin/claude/feature-branch-from-issue-Mme5N | #- | - | - | Active |
-| origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
-| origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
-| origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
-| origin/development | #- | - | - | Active |
-| origin/main | #- | - | - | Active |
+| Branch                                         | Issue | Milestone | PR  | Status |
+| ---------------------------------------------- | ----- | --------- | --- | ------ |
+| origin/claude/feature-branch-from-issue-Mme5N  | #-    | -         | -   | Active |
+| origin/claude/feature-branch-from-issue-lJKlJ  | #-    | -         | -   | Active |
+| origin/claude/inventory-project-planning-LL7Q3 | #-    | -         | -   | Active |
+| origin/claude/setup-git-workflow-bmgZ4         | #-    | -         | -   | Active |
+| origin/development                             | #-    | -         | -   | Active |
+| origin/main                                    | #-    | -         | -   | Active |

@@ -3,8 +3,8 @@
  * Green theme with dark mode by default
  */
 
-@import "tailwindcss";
-@import "../styles/colors.css";
+@import 'tailwindcss';
+@import '../styles/colors.css';
 
 /* ============================================
    BASE STYLES
@@ -29,7 +29,20 @@ html {
 body {
   background: var(--color-background);
   color: var(--color-text-primary);
-  font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif);
+  font-family: var(
+    --font-sans,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif
+  );
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -41,7 +54,12 @@ body {
    TYPOGRAPHY
    ============================================ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--color-text-primary);
   font-weight: 700;
   line-height: 1.2;
@@ -93,11 +111,13 @@ a:focus-visible {
   border-radius: 2px;
 }
 
-strong, b {
+strong,
+b {
   font-weight: 700;
 }
 
-em, i {
+em,
+i {
   font-style: italic;
 }
 
@@ -250,11 +270,16 @@ em, i {
 }
 
 @keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 5px var(--color-primary), 0 0 10px var(--color-primary);
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px var(--color-primary),
+      0 0 10px var(--color-primary);
   }
   50% {
-    box-shadow: 0 0 10px var(--color-primary), 0 0 20px var(--color-primary);
+    box-shadow:
+      0 0 10px var(--color-primary),
+      0 0 20px var(--color-primary);
   }
 }
 

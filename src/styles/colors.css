@@ -142,15 +142,18 @@
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
   --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
-  --focus-ring-offset-shadow: 0 0 0 var(--focus-ring-offset) var(--color-background);
+  --focus-ring-offset-shadow: 0 0 0 var(--focus-ring-offset)
+    var(--color-background);
 
   /* ============================================
      SHADOWS & EFFECTS
      ============================================ */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.5);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
   --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.4);
   --shadow-glow: 0 0 20px var(--color-green-500);
@@ -159,10 +162,26 @@
   /* ============================================
      GRADIENTS
      ============================================ */
-  --gradient-primary: linear-gradient(135deg, var(--color-green-600) 0%, var(--color-emerald-600) 100%);
-  --gradient-accent: linear-gradient(135deg, var(--color-emerald-600) 0%, var(--color-cyan-600) 100%);
-  --gradient-surface: linear-gradient(180deg, var(--color-neutral-900) 0%, var(--color-neutral-950) 100%);
-  --gradient-radial: radial-gradient(circle at center, var(--color-green-500) 0%, transparent 70%);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-green-600) 0%,
+    var(--color-emerald-600) 100%
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--color-emerald-600) 0%,
+    var(--color-cyan-600) 100%
+  );
+  --gradient-surface: linear-gradient(
+    180deg,
+    var(--color-neutral-900) 0%,
+    var(--color-neutral-950) 100%
+  );
+  --gradient-radial: radial-gradient(
+    circle at center,
+    var(--color-green-500) 0%,
+    transparent 70%
+  );
 
   /* ============================================
      OPACITY LEVELS
@@ -183,7 +202,7 @@
 /* ============================================
    LIGHT THEME (Optional Override)
    ============================================ */
-[data-theme="light"] {
+[data-theme='light'] {
   /* Background colors */
   --color-background: var(--color-neutral-50);
   --color-background-secondary: var(--color-neutral-100);
@@ -233,8 +252,10 @@
   /* Shadows - lighter for light theme */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.15), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.15), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 }
 

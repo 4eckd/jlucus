@@ -58,46 +58,49 @@ export function HeroTerminal() {
   return (
     <motion.section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
     >
       {/* Animated Grid Background */}
       <AnimatedGrid />
-      
+
       {/* Main Content */}
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="relative z-10 container mx-auto px-4">
         <motion.div
-          className="max-w-4xl mx-auto text-center space-y-8"
+          className="mx-auto max-w-4xl space-y-8 text-center"
           variants={itemVariants}
         >
           {/* Terminal Window */}
           <motion.div
-            className="terminal-box bg-background-secondary/80 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden shadow-neon-primary-lg"
+            className="terminal-box bg-background-secondary/80 border-primary/10 shadow-neon-primary-lg overflow-hidden rounded-lg border backdrop-blur-sm"
             variants={itemVariants}
           >
             {/* Terminal Header */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-dark-400 border-b border-primary/10">
+            <div className="bg-dark-400 border-primary/10 flex items-center gap-2 border-b px-4 py-2">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-error"></div>
-                <div className="w-3 h-3 rounded-full bg-warning"></div>
-                <div className="w-3 h-3 rounded-full bg-success"></div>
+                <div className="bg-error h-3 w-3 rounded-full"></div>
+                <div className="bg-warning h-3 w-3 rounded-full"></div>
+                <div className="bg-success h-3 w-3 rounded-full"></div>
               </div>
               <div className="flex-1 text-center">
-                <span className="text-xs text-secondary font-mono">terminal@jlucus.dev</span>
+                <span className="text-secondary font-mono text-xs">
+                  terminal@jlucus.dev
+                </span>
               </div>
             </div>
 
             {/* Terminal Content */}
-            <div className="p-6 font-mono text-left space-y-4">
+            <div className="space-y-4 p-6 text-left font-mono">
               {/* Welcome Message */}
               <div className="space-y-2">
                 <div className="text-primary">
                   <span className="text-secondary">$</span> whoami
                 </div>
                 <div className="text-secondary ml-4">
-                  <span className="text-primary">jlucus</span> - Engineer, Builder, Architect
+                  <span className="text-primary">jlucus</span> - Engineer,
+                  Builder, Architect
                 </div>
               </div>
 
@@ -108,13 +111,27 @@ export function HeroTerminal() {
               </div>
 
               {/* System Info */}
-              <div className="space-y-2 text-sm text-secondary">
+              <div className="text-secondary space-y-2 text-sm">
                 <div className="text-primary">$ system --info</div>
                 <div className="ml-4 space-y-1">
-                  <div>├── Location: <span className="text-primary">Cloud, Remote</span></div>
-                  <div>├── Focus: <span className="text-primary">Blockchain • AI • Web3</span></div>
-                  <div>├── Status: <span className="text-success">● Available for hire</span></div>
-                  <div>└── Skills: <span className="text-primary">Full-Stack • DevOps • Architecture</span></div>
+                  <div>
+                    ├── Location:{' '}
+                    <span className="text-primary">Cloud, Remote</span>
+                  </div>
+                  <div>
+                    ├── Focus:{' '}
+                    <span className="text-primary">Blockchain • AI • Web3</span>
+                  </div>
+                  <div>
+                    ├── Status:{' '}
+                    <span className="text-success">● Available for hire</span>
+                  </div>
+                  <div>
+                    └── Skills:{' '}
+                    <span className="text-primary">
+                      Full-Stack • DevOps • Architecture
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,12 +139,13 @@ export function HeroTerminal() {
 
           {/* Main Title */}
           <motion.div variants={itemVariants} className="space-y-4">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+            <h1 className="text-4xl font-bold md:text-6xl lg:text-7xl">
               <span className="text-primary">{'> jlucus'}</span>
               <span className="text-primary animate-pulse">_</span>
             </h1>
-            <p className="text-xl md:text-2xl text-secondary max-w-2xl mx-auto">
-              Building the future of <span className="text-primary">decentralized</span> and{' '}
+            <p className="text-secondary mx-auto max-w-2xl text-xl md:text-2xl">
+              Building the future of{' '}
+              <span className="text-primary">decentralized</span> and{' '}
               <span className="text-accent">intelligent</span> systems
             </p>
           </motion.div>
@@ -135,23 +153,23 @@ export function HeroTerminal() {
           {/* Call to Action */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <Button size="lg" className="group">
               Explore My Work
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            
+
             <div className="flex gap-3">
               <Button variant="outline" size="icon" asChild>
                 <a href={SITE.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="w-5 h-5" />
+                  <Github className="h-5 w-5" />
                 </a>
               </Button>
-              
+
               <Button variant="outline" size="icon" asChild>
                 <a href={`mailto:${SITE.email}`}>
-                  <Mail className="w-5 h-5" />
+                  <Mail className="h-5 w-5" />
                 </a>
               </Button>
             </div>
@@ -160,7 +178,7 @@ export function HeroTerminal() {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+            className="grid grid-cols-2 gap-6 pt-8 md:grid-cols-4"
           >
             {[
               { label: 'Projects', value: '50+' },
@@ -169,8 +187,10 @@ export function HeroTerminal() {
               { label: 'Years', value: '5+' },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-2xl font-bold text-primary">{stat.value}</div>
-                <div className="text-sm text-secondary">{stat.label}</div>
+                <div className="text-primary text-2xl font-bold">
+                  {stat.value}
+                </div>
+                <div className="text-secondary text-sm">{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -179,12 +199,12 @@ export function HeroTerminal() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2"></div>
+        <div className="border-primary flex h-10 w-6 justify-center rounded-full border-2">
+          <div className="bg-primary mt-2 h-3 w-1 rounded-full"></div>
         </div>
       </motion.div>
     </motion.section>
