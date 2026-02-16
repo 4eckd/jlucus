@@ -1,8 +1,8 @@
 # Development Manifest
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
-**Event:** issues
-**Branch:** main
+**Event:** push
+**Branch:** claude/feature-branch-automation-fuaGE
 
 ## Active Development
 
@@ -17,6 +17,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/feature-branch-automation-fuaGE | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-Mme5N | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
