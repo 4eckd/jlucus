@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** claude/setup-gitbutler-branching-LScIj
+**Branch:** development
 
 ## Active Development
 
