@@ -17,6 +17,12 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/feature-branch-from-issue-Mme5N | #- | - | - | Active |
+| origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
+| origin/claude/setup-git-workflow-5GkS5 | #- | - | - | Active |
+| origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
+| origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
+| origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
