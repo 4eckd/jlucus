@@ -1,0 +1,9 @@
+# Branch Progress Tracking
+
+This directory contains auto-generated progress logs for each feature branch.
+
+Files are named using sanitized branch names (slashes replaced with underscores).
+
+Example:
+- Branch: `feat-123-hero-section` → `feat-123-hero-section.md`
+- Branch: `claude/setup-gitbutler` → `claude_setup-gitbutler.md`
