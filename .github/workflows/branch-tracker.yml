@@ -130,19 +130,21 @@ jobs:
           # Create progress tracking directory
           mkdir -p progress/branches
 
-          BRANCH_FILE="progress/branches/${{ github.ref_name }}.md"
+          # Replace forward slashes in branch name with underscores
+          SAFE_BRANCH_NAME=$(echo "${{ github.ref_name }}" | sed 's/\//_/g')
+          BRANCH_FILE="progress/branches/${SAFE_BRANCH_NAME}.md"
 
           cat > "$BRANCH_FILE" <<EOF
           # Branch: ${{ github.ref_name }}
 
-          **Created:** $(git log --reverse --format="%ai" ${{ github.ref_name }} | head -1)
+          **Created:** $(git log --reverse --format="%ai" ${{ github.ref_name }} 2>/dev/null | head -1 || echo "N/A")
           **Last Updated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
-          **Commits:** $(git rev-list --count ${{ github.ref_name }})
-          **Author:** $(git log -1 --format="%an")
+          **Commits:** $(git rev-list --count ${{ github.ref_name }} 2>/dev/null || echo "0")
+          **Author:** $(git log -1 --format="%an" 2>/dev/null || echo "N/A")
 
           ## Recent Commits
 
-          $(git log --format="- %h %s (%an, %ar)" -n 5 ${{ github.ref_name }})
+          $(git log --format="- %h %s (%an, %ar)" -n 5 ${{ github.ref_name }} 2>/dev/null || echo "No commits yet")
 
           ## Files Changed
 
@@ -150,7 +152,7 @@ jobs:
 
           ## Associated Issues
 
-          $(echo "${{ github.ref_name }}" | grep -oP '\d+' | head -1 | xargs -I {} echo "- Issue #"{} || echo "No associated issue")
+          $(echo "${{ github.ref_name }}" | grep -oP '\d+' | head -1 | xargs -I {} echo "- Issue #"{} 2>/dev/null || echo "No associated issue")
 
           EOF
 
