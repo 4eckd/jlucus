@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** development
+**Branch:** claude/feature-branch-from-issue-lJKlJ
 
 ## Active Development
 
@@ -17,7 +17,9 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/feature-branch-from-issue-Mme5N | #- | - | - | Active |
+| origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
-| origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
+| origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
