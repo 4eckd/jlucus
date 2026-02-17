@@ -1,8 +1,8 @@
 # Development Manifest
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
-**Event:** push
-**Branch:** development
+**Event:** issues
+**Branch:** main
 
 ## Active Development
 
