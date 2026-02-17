@@ -135,10 +135,25 @@ export function SkillTree() {
     setExpandedCategories(newExpanded);
   };
 
+  const aboutCode = `{
+  "name": "jlucus",
+  "role": "Engineer & Architect",
+  "focus": [
+    "Blockchain",
+    "AI / ML",
+    "Web3",
+    "Full-Stack"
+  ],
+  "location": "Cloud, Remote",
+  "available": true,
+  "experience": "5+ years",
+  "contact": "contact@jlucus.dev"
+}`;
+
   return (
     <section id="skills" className="py-20 relative">
       <AnimatedGrid />
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -157,7 +172,69 @@ export function SkillTree() {
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
-          {/* Category Headers */}
+          {/* Skills + About side-by-side */}
+          <div className="flex flex-col xl:flex-row gap-8 mb-12">
+            {/* About Code Block */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="xl:w-72 flex-shrink-0"
+            >
+              <div className="bg-background-secondary/60 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden h-full">
+                {/* Code block header */}
+                <div className="flex items-center gap-2 px-4 py-2 bg-dark-400 border-b border-primary/10">
+                  <div className="flex gap-2">
+                    <div className="w-2.5 h-2.5 rounded-full bg-error"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-warning"></div>
+                    <div className="w-2.5 h-2.5 rounded-full bg-success"></div>
+                  </div>
+                  <span className="text-xs text-secondary font-mono ml-2">about.json</span>
+                </div>
+                {/* Code content */}
+                <pre className="p-5 font-mono text-sm text-secondary leading-relaxed overflow-auto">
+                  {aboutCode.split('\n').map((line, i) => {
+                    const keyMatch = line.match(/^(\s*)"([^"]+)":/);
+                    const stringValueMatch = line.match(/:\s*"([^"]+)"/);
+                    const boolMatch = line.match(/:\s*(true|false)/);
+                    if (keyMatch) {
+                      const indent = keyMatch[1];
+                      const key = keyMatch[2];
+                      const rest = line.slice(keyMatch[0].length);
+                      return (
+                        <div key={i}>
+                          {indent}
+                          <span className="text-accent">&quot;{key}&quot;</span>
+                          <span className="text-secondary">:</span>
+                          {stringValueMatch ? (
+                            <span className="text-success"> &quot;{stringValueMatch[1]}&quot;{rest.endsWith(',') ? ',' : ''}</span>
+                          ) : boolMatch ? (
+                            <span className="text-primary"> {boolMatch[1]}{rest.endsWith(',') ? ',' : ''}</span>
+                          ) : (
+                            <span className="text-secondary">{rest}</span>
+                          )}
+                        </div>
+                      );
+                    }
+                    if (line.match(/^\s*"[^"]+",?$/)) {
+                      const strMatch = line.match(/"([^"]+)"/);
+                      const trailing = line.trim().endsWith(',') ? ',' : '';
+                      const indent = line.match(/^(\s*)/)?.[1] ?? '';
+                      return (
+                        <div key={i}>
+                          {indent}<span className="text-success">&quot;{strMatch?.[1]}&quot;</span>{trailing}
+                        </div>
+                      );
+                    }
+                    return <div key={i}><span className="text-secondary">{line}</span></div>;
+                  })}
+                </pre>
+              </div>
+            </motion.div>
+
+            {/* Category Headers */}
+            <div className="flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SKILL_CATEGORIES.map((category, categoryIndex) => (
               <motion.div
@@ -237,6 +314,8 @@ export function SkillTree() {
                 </motion.div>
               </motion.div>
             ))}
+          </div>
+            </div>
           </div>
 
           {/* Overall Stats */}
