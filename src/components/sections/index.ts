@@ -6,3 +6,6 @@ export { PortfolioSection } from './portfolio-section'
 export { ProjectDashboard } from './project-dashboard'
 export { SkillTree } from './skill-tree'
 export { VenturesSection } from './ventures-section'
+
+// Legacy/deprecated components
+export { HeroSection } from './HeroSection'
