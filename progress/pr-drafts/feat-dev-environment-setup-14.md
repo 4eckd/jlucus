@@ -1,7 +1,7 @@
 # PR Draft: Development Environment Setup (Issue #14)
 
 **Title**: feat: Complete development environment setup (Issue #14)
-**Branch**: `claude/feature-branch-from-issue-lJKlJ`
+**Branch**: `claude/phase1-issue14-devenv-lJKlJ`
 **Base**: `development`
 **Status**: Ready for Review
 
