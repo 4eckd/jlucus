@@ -1,0 +1,250 @@
+name: Auto-Sync Child Branches with Parent
+
+# Triggers when parent branches receive new commits or merged PRs.
+# Automatically merges parent changes into all child/feature branches,
+# excluding 'development' and 'main' as sync targets.
+on:
+  push:
+    branches:
+      - main
+      - master
+      - development
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+      - master
+      - development
+  workflow_dispatch:
+    inputs:
+      parent_branch:
+        description: 'Parent branch to sync from'
+        required: true
+        default: 'main'
+        type: string
+      dry_run:
+        description: 'Dry run (report only, no actual merges)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  sync-child-branches:
+    name: Sync child branches with ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+
+    # Only run on direct pushes, or when a PR was actually merged
+    if: |
+      github.event_name == 'push' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Determine parent branch
+        id: parent
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            PARENT_BRANCH="${{ github.event.inputs.parent_branch }}"
+            DRY_RUN="${{ github.event.inputs.dry_run }}"
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            PARENT_BRANCH="${{ github.base_ref }}"
+            DRY_RUN="false"
+          else
+            PARENT_BRANCH="${{ github.ref_name }}"
+            DRY_RUN="false"
+          fi
+
+          echo "parent_branch=$PARENT_BRANCH" >> $GITHUB_OUTPUT
+          echo "dry_run=$DRY_RUN" >> $GITHUB_OUTPUT
+          echo "Parent branch: $PARENT_BRANCH | Dry run: $DRY_RUN"
+
+      - name: Fetch all remote branches
+        run: |
+          git fetch --all --prune
+          echo "All remote branches:"
+          git branch -r | grep -v HEAD | sed 's/  origin\///'
+
+      - name: Sync child branches
+        id: sync
+        run: |
+          PARENT_BRANCH="${{ steps.parent.outputs.parent_branch }}"
+          DRY_RUN="${{ steps.parent.outputs.dry_run }}"
+
+          # Branches explicitly excluded as sync targets
+          EXCLUDED_BRANCHES="main master development"
+
+          echo "Syncing branches from parent: $PARENT_BRANCH"
+          echo "Dry run: $DRY_RUN"
+          echo "---"
+
+          # Collect all remote branch names, stripping 'origin/' prefix
+          BRANCHES=$(git branch -r \
+            | grep -v HEAD \
+            | sed 's|  origin/||' \
+            | xargs)
+
+          SYNCED=()
+          FAILED=()
+          SKIPPED=()
+
+          for branch in $BRANCHES; do
+            branch=$(echo "$branch" | xargs)
+            [ -z "$branch" ] && continue
+
+            # Skip the parent branch itself
+            if [ "$branch" = "$PARENT_BRANCH" ]; then
+              echo "Skipping $branch: this is the parent branch"
+              SKIPPED+=("$branch [is parent]")
+              continue
+            fi
+
+            # Skip explicitly excluded branches (development, main, master)
+            SKIP=false
+            for excluded in $EXCLUDED_BRANCHES; do
+              if [ "$branch" = "$excluded" ]; then
+                SKIP=true
+                break
+              fi
+            done
+            if [ "$SKIP" = "true" ]; then
+              echo "Skipping $branch: excluded branch"
+              SKIPPED+=("$branch [excluded]")
+              continue
+            fi
+
+            echo ""
+            echo "Processing branch: $branch"
+
+            # Verify the branch has a common ancestor with the parent
+            MERGE_BASE=$(git merge-base "origin/$PARENT_BRANCH" "origin/$branch" 2>/dev/null || echo "")
+            if [ -z "$MERGE_BASE" ]; then
+              echo "  Skipping: no common ancestor with $PARENT_BRANCH"
+              SKIPPED+=("$branch [no common ancestor]")
+              continue
+            fi
+
+            # Skip if branch is already up-to-date with parent
+            if git merge-base --is-ancestor "origin/$PARENT_BRANCH" "origin/$branch" 2>/dev/null; then
+              echo "  Already up-to-date with $PARENT_BRANCH"
+              SKIPPED+=("$branch [up-to-date]")
+              continue
+            fi
+
+            # Count how many commits the parent is ahead
+            AHEAD=$(git rev-list --count "origin/$branch..origin/$PARENT_BRANCH" 2>/dev/null || echo "?")
+            echo "  Parent is $AHEAD commit(s) ahead of this branch"
+
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "  [DRY RUN] Would sync $branch with $PARENT_BRANCH"
+              SYNCED+=("$branch [dry-run, $AHEAD commits behind]")
+              continue
+            fi
+
+            # Check out the branch locally
+            git checkout -B "$branch" "origin/$branch"
+
+            # Attempt the merge
+            MERGE_MSG="chore: sync with $PARENT_BRANCH [skip ci]"$'\n\n'"Auto-merged $AHEAD commit(s) from $PARENT_BRANCH into $branch"
+            if git merge "origin/$PARENT_BRANCH" --no-edit -m "$MERGE_MSG" 2>&1; then
+              git push origin "$branch"
+              SYNCED+=("$branch [$AHEAD commits synced]")
+              echo "  Successfully synced $branch"
+            else
+              # Conflict — abort and report for manual resolution
+              git merge --abort 2>/dev/null || true
+              FAILED+=("$branch [merge conflict]")
+              echo "  Merge conflict detected — manual resolution required"
+            fi
+          done
+
+          # Print summary
+          echo ""
+          echo "==========================================="
+          echo " Auto-Sync Summary"
+          echo "==========================================="
+          echo "Parent branch : $PARENT_BRANCH"
+          echo "Dry run       : $DRY_RUN"
+          echo ""
+          echo "Synced  (${#SYNCED[@]})"
+          for b in "${SYNCED[@]}"; do echo "  + $b"; done
+          echo ""
+          echo "Failed  (${#FAILED[@]})"
+          for b in "${FAILED[@]}"; do echo "  x $b"; done
+          echo ""
+          echo "Skipped (${#SKIPPED[@]})"
+          for b in "${SKIPPED[@]}"; do echo "  - $b"; done
+
+          # Persist counts for the step summary
+          echo "synced_count=${#SYNCED[@]}" >> $GITHUB_OUTPUT
+          echo "failed_count=${#FAILED[@]}" >> $GITHUB_OUTPUT
+          echo "skipped_count=${#SKIPPED[@]}" >> $GITHUB_OUTPUT
+
+          # Build delimited lists for the summary step
+          printf -v SYNCED_LIST "%s\n" "${SYNCED[@]}"
+          printf -v FAILED_LIST "%s\n" "${FAILED[@]}"
+          printf -v SKIPPED_LIST "%s\n" "${SKIPPED[@]}"
+
+          {
+            echo "synced_list<<EOF"
+            echo "$SYNCED_LIST"
+            echo "EOF"
+            echo "failed_list<<EOF"
+            echo "$FAILED_LIST"
+            echo "EOF"
+            echo "skipped_list<<EOF"
+            echo "$SKIPPED_LIST"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+          # Fail the job if any merges produced conflicts
+          if [ "${#FAILED[@]}" -gt 0 ]; then
+            exit 1
+          fi
+
+      - name: Write job summary
+        if: always()
+        run: |
+          PARENT_BRANCH="${{ steps.parent.outputs.parent_branch }}"
+          DRY_RUN="${{ steps.parent.outputs.dry_run }}"
+
+          {
+            echo "## Auto-Sync: \`$PARENT_BRANCH\` → child branches"
+            echo ""
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "> **Dry run** — no changes were pushed."
+              echo ""
+            fi
+            echo "| Status | Branch |"
+            echo "|--------|--------|"
+
+            while IFS= read -r b; do
+              [ -n "$b" ] && echo "| ✅ Synced | \`$b\` |"
+            done <<< "${{ steps.sync.outputs.synced_list }}"
+
+            while IFS= read -r b; do
+              [ -n "$b" ] && echo "| ❌ Conflict | \`$b\` |"
+            done <<< "${{ steps.sync.outputs.failed_list }}"
+
+            while IFS= read -r b; do
+              [ -n "$b" ] && echo "| ⏭ Skipped | \`$b\` |"
+            done <<< "${{ steps.sync.outputs.skipped_list }}"
+
+            echo ""
+            echo "---"
+            echo "_Triggered by \`${{ github.event_name }}\` on \`$PARENT_BRANCH\` at ${{ github.event.head_commit.timestamp || github.run_id }}_"
+          } >> $GITHUB_STEP_SUMMARY

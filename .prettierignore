@@ -1,0 +1,55 @@
+# Dependencies
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+.next
+out
+build
+dist
+
+# Cache
+.cache
+.turbo
+.parcel-cache
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/css-variables.json
+.idea
+
+# Git
+.git
+
+# Prisma
+prisma/migrations
+
+# Public assets (may have specific formatting)
+public/**/*.svg
+public/**/*.json
+
+# Generated files
+*.min.js
+*.min.css
+
+# Documentation artifacts
+docs/ascii-art-samples.md

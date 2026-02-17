@@ -102,6 +102,7 @@ export function CommandPalette() {
 
   // Reset selected index when search changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedIndex(0);
   }, [searchTerm]);
 

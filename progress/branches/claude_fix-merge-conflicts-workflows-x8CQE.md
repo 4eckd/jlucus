@@ -1,17 +1,17 @@
-# Branch: development
+# Branch: claude/fix-merge-conflicts-workflows-x8CQE
 
 **Created:** 2025-02-25 08:39:34 -0800
 **Last Updated:** 
-**Commits:** 220
-**Author:** SupItsJ
+**Commits:** 218
+**Author:** Claude
 
 ## Recent Commits
 
-- 2c6b25f Merge pull request #163 from 4eckd/claude/fix-merge-conflicts-workflows-x8CQE (SupItsJ, 9 seconds ago)
-- 2e6c933 chore: update branch tracking manifest [skip ci] (github-actions[bot], 2 minutes ago)
-- d56426a fix: resolve merge conflicts and fix failing CI workflows (Claude, 2 minutes ago)
-- 9834d7a chore: update branch tracking manifest [skip ci] (github-actions[bot], 11 minutes ago)
-- 93f38b5 Merge pull request #161 from 4eckd/claude/auto-sync-parent-branch-00GbC (SupItsJ, 12 minutes ago)
+- d56426a fix: resolve merge conflicts and fix failing CI workflows (Claude, 21 seconds ago)
+- 9834d7a chore: update branch tracking manifest [skip ci] (github-actions[bot], 9 minutes ago)
+- 93f38b5 Merge pull request #161 from 4eckd/claude/auto-sync-parent-branch-00GbC (SupItsJ, 10 minutes ago)
+- 9368c83 chore: update branch tracking manifest [skip ci] (github-actions[bot], 43 minutes ago)
+- 8da65e7 fix: resolve TypeScript and lint errors failing CI (github-actions[bot], 43 minutes ago)
 
 ## Files Changed
 
@@ -43,7 +43,6 @@ M	package.json
 A	progress/branches/claude_auto-sync-parent-branch-00GbC.md
 A	progress/branches/claude_feature-branch-from-issue-Mme5N.md
 A	progress/branches/claude_feature-branch-from-issue-lJKlJ.md
-A	progress/branches/claude_fix-merge-conflicts-workflows-x8CQE.md
 A	progress/branches/claude_fix-pr-143-build-X56nB.md
 A	progress/branches/claude_phase3-issue16-hero-terminal-neon-Mme5N.md
 A	progress/branches/claude_setup-git-workflow-5GkS5.md
@@ -68,5 +67,5 @@ M	src/types/next-auth.d.ts
 
 ## Associated Issues
 
-
+- Issue #8
 
