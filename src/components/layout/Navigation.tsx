@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Menu, X, Home, User, FileText, Briefcase, Layers, Mail } from 'lucide-react'
 import { cn } from '@/lib/utils'
 

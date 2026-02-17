@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 export interface Tech {
   name: string;
   icon?: string;
@@ -52,7 +54,7 @@ export interface AnimationConfig {
 
 export interface ComponentProps {
   className?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 export interface SectionProps extends ComponentProps {
