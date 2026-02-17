@@ -37,6 +37,14 @@
   --color-background-secondary: var(--color-dark-900);
   --color-background-tertiary: var(--color-dark-800);
 
+  /* Surface Colors (for cards, panels, overlays) */
+  --color-surface: var(--color-dark-800);
+  --color-surface-hover: var(--color-dark-700);
+
+  /* Border Colors */
+  --color-border: 0 217 255;           /* Primary with opacity applied */
+  --color-border-muted: 45 50 65;      /* Dark-600 for subtle borders */
+
   /* Spacing Scale */
   --spacing-xs: 0.25rem;    /* 4px */
   --spacing-sm: 0.5rem;     /* 8px */
