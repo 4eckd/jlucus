@@ -78,7 +78,7 @@ export function HeroTerminal() {
             variants={itemVariants}
           >
             {/* Terminal Header */}
-            <div className="flex items-center gap-2 px-4 py-2 bg-dark-400 border-b border-primary/10">
+            <div className="flex items-center gap-2 px-4 py-2 bg-background-tertiary border-b border-primary/10">
               <div className="flex gap-2">
                 <div className="w-3 h-3 rounded-full bg-error"></div>
                 <div className="w-3 h-3 rounded-full bg-warning"></div>
