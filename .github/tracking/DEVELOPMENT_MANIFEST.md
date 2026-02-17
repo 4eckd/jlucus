@@ -30,3 +30,4 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
+| origin/revert-144-claude/git-workflow-automation-2I1aw | #- | - | - | Active |
