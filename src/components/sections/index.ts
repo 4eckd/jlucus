@@ -6,5 +6,3 @@ export { SkillTree } from './skill-tree'
 export { ContactSection } from './contact-section'
 export { AnimatedGrid } from './animated-grid'
 
-// Legacy/deprecated components
-export { HeroSection } from './HeroSection'

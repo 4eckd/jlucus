@@ -17,10 +17,18 @@ function SkillNode({ skill, index }: SkillNodeProps) {
 
   const levelColors = {
     beginner: 'text-secondary',
-    intermediate: 'text-warning', 
+    intermediate: 'text-warning',
     advanced: 'text-accent',
     expert: 'text-primary',
     master: 'text-success',
+  };
+
+  const levelBgColors = {
+    beginner: 'bg-text-secondary',
+    intermediate: 'bg-warning',
+    advanced: 'bg-accent',
+    expert: 'bg-primary',
+    master: 'bg-success',
   };
 
   const levelProgress = (skill.xp / skill.maxXP) * 100;
@@ -41,7 +49,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
         <motion.div
           className={cn(
             "absolute inset-0 rounded-full blur-xl transition-all duration-300",
-            levelColors[skill.level]
+            levelBgColors[skill.level]
           )}
           animate={{
             scale: isHovered ? 1.5 : 1,
@@ -94,8 +102,8 @@ function SkillNode({ skill, index }: SkillNodeProps) {
                 <span className="text-primary">{skill.xp}/{skill.maxXP} XP</span>
               </div>
               <div className="h-1 bg-dark-700 rounded-full overflow-hidden">
-                <div 
-                  className={cn("h-full", levelColors[skill.level])}
+                <div
+                  className={cn("h-full", levelBgColors[skill.level])}
                   style={{ width: `${levelProgress}%` }}
                 />
               </div>
