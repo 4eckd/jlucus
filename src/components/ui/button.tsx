@@ -70,30 +70,30 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary: cn(
-        'bg-[var(--color-primary)] text-[var(--color-primary-text)]',
-        'hover:bg-[var(--color-primary-hover)]',
-        'active:bg-[var(--color-primary-active)]',
-        'focus-visible:ring-[var(--color-primary)]',
+        'bg-primary text-primary-text',
+        'hover:bg-primary-hover',
+        'active:bg-primary-active',
+        'focus-visible:ring-primary',
         'shadow-sm hover:shadow-md',
-        'hover:shadow-[var(--shadow-glow-sm)]'
+        'hover:shadow-neon-primary-sm'
       ),
       secondary: cn(
-        'bg-[var(--color-secondary)] text-white',
-        'hover:bg-[var(--color-secondary-hover)]',
-        'active:bg-[var(--color-secondary-active)]',
-        'focus-visible:ring-[var(--color-secondary)]',
+        'bg-secondary text-white',
+        'hover:bg-secondary-hover',
+        'active:bg-secondary-active',
+        'focus-visible:ring-secondary',
         'shadow-sm hover:shadow-md'
       ),
       outline: cn(
-        'bg-transparent border-2 border-[var(--color-primary)]',
-        'text-[var(--color-primary)]',
-        'hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]',
-        'focus-visible:ring-[var(--color-primary)]'
+        'bg-transparent border-2 border-primary',
+        'text-primary',
+        'hover:bg-primary hover:text-primary-text',
+        'focus-visible:ring-primary'
       ),
       ghost: cn(
-        'bg-transparent text-[var(--color-text-primary)]',
-        'hover:bg-[var(--color-surface-hover)]',
-        'focus-visible:ring-[var(--color-border-focus)]'
+        'bg-transparent text-text-primary',
+        'hover:bg-surface-hover',
+        'focus-visible:ring-border'
       ),
     }
 

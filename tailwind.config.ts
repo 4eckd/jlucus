@@ -13,12 +13,17 @@ const config: Config = {
         primary: {
           DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
           glow: 'rgb(var(--color-primary-glow) / <alpha-value>)',
+          hover: 'rgb(var(--color-primary-hover) / <alpha-value>)',
+          active: 'rgb(var(--color-primary-active) / <alpha-value>)',
+          text: 'rgb(var(--color-primary-text) / <alpha-value>)',
         },
         accent: {
           DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
         },
         secondary: {
           DEFAULT: 'rgb(var(--color-secondary) / <alpha-value>)',
+          hover: 'rgb(var(--color-secondary-hover) / <alpha-value>)',
+          active: 'rgb(var(--color-secondary-active) / <alpha-value>)',
         },
         success: {
           DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
