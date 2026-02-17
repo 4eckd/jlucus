@@ -5,17 +5,62 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  /* Terminal Neon Color Palette - RGB values for alpha support */
-  --color-primary: 0 217 255;           /* Electric Cyan #00D9FF */
-  --color-primary-glow: 0 240 255;      /* Brighter cyan for glows */
-  --color-accent: 255 0 110;            /* Neon Magenta #FF006E */
-  --color-secondary: 204 255 0;         /* Electric Lime #CCFF00 */
+  /* Terminal Neon - Green Theme - RGB values for alpha support */
+
+  /* Green Color Scale (Primary) - #10B981 base */
+  --color-green-50: 240 253 250;
+  --color-green-100: 209 250 229;
+  --color-green-200: 167 243 208;
+  --color-green-300: 110 231 183;
+  --color-green-400: 52 211 153;
+  --color-green-500: 16 185 129;        /* Base green #10B981 */
+  --color-green-600: 5 150 105;
+  --color-green-700: 4 120 87;
+  --color-green-800: 6 78 59;
+  --color-green-900: 6 54 47;
+  --color-green-950: 2 30 25;
+
+  /* Emerald Color Scale (Secondary) - #059669 base */
+  --color-emerald-50: 240 253 250;
+  --color-emerald-100: 209 250 229;
+  --color-emerald-200: 167 243 208;
+  --color-emerald-300: 110 231 183;
+  --color-emerald-400: 52 211 153;
+  --color-emerald-500: 5 150 105;       /* Base emerald #059669 */
+  --color-emerald-600: 4 120 87;
+  --color-emerald-700: 3 102 71;
+  --color-emerald-800: 5 80 50;
+  --color-emerald-900: 2 44 34;
+  --color-emerald-950: 1 28 20;
+
+  /* Cyan Color Scale (Accent) - #06B6D4 base */
+  --color-cyan-50: 240 253 250;
+  --color-cyan-100: 207 250 254;
+  --color-cyan-200: 165 243 252;
+  --color-cyan-300: 103 232 249;
+  --color-cyan-400: 34 211 238;
+  --color-cyan-500: 6 182 212;          /* Base cyan #06B6D4 */
+  --color-cyan-600: 8 145 178;
+  --color-cyan-700: 14 116 144;
+  --color-cyan-800: 21 94 116;
+  --color-cyan-900: 22 78 99;
+  --color-cyan-950: 8 51 68;
+
+  /* Primary (Green) - Main brand color */
+  --color-primary: 16 185 129;          /* Green 500 #10B981 */
+  --color-primary-glow: 52 211 153;     /* Green 400 for glows */
+
+  /* Secondary (Emerald) - Secondary brand color */
+  --color-secondary: 5 150 105;         /* Emerald 600 #059669 */
+
+  /* Accent (Cyan) - Tech/interactive elements */
+  --color-accent: 6 182 212;            /* Cyan 500 #06B6D4 */
 
   /* Status Colors */
-  --color-success: 0 255 159;           /* #00FF9F */
-  --color-warning: 255 184 0;           /* #FFB800 */
-  --color-error: 255 71 87;             /* #FF4757 */
-  --color-info: 0 191 255;              /* #00BFFF */
+  --color-success: 16 185 129;          /* Green (matches primary) */
+  --color-warning: 251 191 36;          /* Amber #FBB900 */
+  --color-error: 239 68 68;             /* Red #EF4444 */
+  --color-info: 6 182 212;              /* Cyan (matches accent) */
 
   /* Dark Theme Base */
   --color-dark-950: 0 0 0;              /* Pure black */
@@ -42,7 +87,7 @@
   --color-surface-hover: var(--color-dark-700);
 
   /* Border Colors */
-  --color-border: 0 217 255;           /* Primary with opacity applied */
+  --color-border: 16 185 129;          /* Primary green with opacity applied */
   --color-border-muted: 45 50 65;      /* Dark-600 for subtle borders */
 
   /* Spacing Scale */
@@ -117,30 +162,30 @@
   --z-index-tooltip: 1600;
 
   /* Terminal Specific */
-  --terminal-border: 2px solid rgb(var(--color-primary) / 0.3);
+  --terminal-border: 2px solid rgb(16 185 129 / 0.3);   /* Green with opacity */
   --terminal-bg: rgb(var(--color-dark-800) / 0.8);
-  --terminal-glow: 0 0 20px rgb(var(--color-primary) / 0.2);
+  --terminal-glow: 0 0 20px rgb(16 185 129 / 0.2);      /* Green glow */
 
   /* Grid Background */
   --grid-size: 40px;
-  --grid-color: rgb(var(--color-primary) / 0.1);
+  --grid-color: rgb(16 185 129 / 0.1);                  /* Green grid */
 
   /* Surface & Interactive Colors (for buttons and navigation) */
   --color-surface: 20 20 30;                      /* Dark surface */
   --color-surface-hover: 30 35 45;                /* Hover state */
 
   /* Primary Color States */
-  --color-primary-text: 0 0 0;                    /* Black text on cyan background */
-  --color-primary-hover: 0 240 255;               /* Brighter cyan (same as --color-primary-glow) */
-  --color-primary-active: 0 180 220;              /* Darker cyan for active state */
+  --color-primary-text: 255 255 255;              /* White text on green background */
+  --color-primary-hover: 52 211 153;              /* Green 400 - Brighter green */
+  --color-primary-active: 4 120 87;               /* Green 700 - Darker green for active state */
 
   /* Secondary Color States */
-  --color-secondary-hover: 220 255 40;            /* Brighter electric lime */
-  --color-secondary-active: 180 220 0;            /* Darker lime for active */
+  --color-secondary-hover: 34 197 94;             /* Green 500 - Brighter */
+  --color-secondary-active: 6 78 59;              /* Green 800 - Darker for active */
 
   /* Border & Focus */
-  --color-border: rgb(var(--color-primary) / 0.2); /* Subtle border using primary cyan */
-  --color-border-focus: var(--color-primary);     /* Focus ring = primary cyan */
+  --color-border: 16 185 129;                     /* Primary green */
+  --color-border-focus: 16 185 129;               /* Focus ring = primary green */
 
   /* Shadow Aliases (button component compatibility) */
   --shadow-glow-sm: var(--shadow-neon-primary-sm);
