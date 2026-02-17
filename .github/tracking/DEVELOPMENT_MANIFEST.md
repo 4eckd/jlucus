@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** development
+**Branch:** claude/phase1-issue25-feature-branch-automation-VEKOF
 
 ## Active Development
 
@@ -17,7 +17,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
-| origin/claude/phase1-issue25-feature-branch-automation-VEKOF | #25 | Design System Standardization | TBD | In Progress |
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
 | origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
@@ -27,7 +26,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/feature-branch-automation-uoLGx | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
 | origin/claude/fix-grid-layout-css-7clVF | #- | - | - | Active |
-| origin/claude/fix-merge-conflicts-workflows-x8CQE | #- | - | - | Active |
 | origin/claude/fix-smoke-test-kDwAi | #- | - | - | Active |
 | origin/claude/git-workflow-automation-2I1aw | #- | - | - | Active |
 | origin/claude/git-workflow-automation-pzwMH | #- | - | - | Active |
@@ -35,8 +33,11 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
 | origin/claude/phase1-issue14-devenv-lJKlJ | #- | - | - | Active |
 | origin/claude/phase1-issue15-neon-effects-RvicC | #- | - | - | Active |
+| origin/claude/phase1-issue25-feature-branch-automation-VEKOF | #- | - | - | Active |
+| origin/claude/phase2-issue30-feature-branch-automation-uoLGx | #- | - | - | Active |
 | origin/claude/phase3-issue16-hero-terminal-neon-Mme5N | #- | - | - | Active |
 | origin/claude/phase3-issue20-design-audit-IKQWn | #- | - | - | Active |
+| origin/claude/phase3-issue27-design-standards-compliance-0lzXz | #- | - | - | Active |
 | origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
