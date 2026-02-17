@@ -30,8 +30,8 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/git-workflow-automation-pzwMH | #- | - | - | Active |
 | origin/claude/git-worktree-setup-5E397 | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
-| origin/claude/phase1-issue14-devenv-lJKlJ | #- | - | - | Active |
-| origin/claude/phase1-issue15-neon-effects-RvicC | #- | - | - | Active |
+| origin/claude/phase1-issue14-devenv-lJKlJ | #14 | Phase 1 - Foundation | #153 | Merged |
+| origin/claude/phase1-issue15-neon-effects-RvicC | #15 | Phase 1 - Foundation | TBD | In Development |
 | origin/claude/phase1-issue17-design-compliance-audit-ad12u | #- | - | - | Active |
 | origin/claude/phase1-issue25-feature-branch-automation-VEKOF | #- | - | - | Active |
 | origin/claude/phase2-issue26-design-compliance-ljfRu | #- | - | - | Active |
@@ -39,8 +39,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/phase3-issue16-hero-terminal-neon-Mme5N | #- | - | - | Active |
 | origin/claude/phase3-issue20-design-audit-IKQWn | #- | - | - | Active |
 | origin/claude/phase3-issue27-design-standards-compliance-0lzXz | #- | - | - | Active |
-| origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
-| origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
+| origin/claude/setup-git-workflow-5GkS5 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-cVkNK | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
