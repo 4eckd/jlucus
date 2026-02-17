@@ -2,38 +2,36 @@
 
 **Created:** 2025-02-25 08:39:34 -0800
 **Last Updated:** 
-**Commits:** 104
-**Author:** J's Play
+**Commits:** 133
+**Author:** SupItsJ
 
 ## Recent Commits
 
-- 6711d79 Merge pull request #138 from 4eckd/claude/setup-gitbutler-branching-LScIj (J's Play, 10 seconds ago)
-- 79f8001 chore: update branch tracking manifest [skip ci] (github-actions[bot], 9 minutes ago)
-- 6f37760 docs: add workflow fix documentation (Claude, 10 minutes ago)
-- f45150a chore: update branch tracking manifest [skip ci] (github-actions[bot], 10 minutes ago)
-- 1a3b012 fix: handle branch names with slashes in workflow (Claude, 11 minutes ago)
+- 2fc338d Merge pull request #141 from 4eckd/claude/feature-branch-from-issue-lJKlJ (SupItsJ, 14 seconds ago)
+- fc98a12 chore: update branch tracking manifest [skip ci] (github-actions[bot], 72 minutes ago)
+- b6bd1e2 docs(pr): Add comprehensive PR notes for Issue #14 development environment setup (Claude, 72 minutes ago)
+- 43b8009 chore: update branch tracking manifest [skip ci] (github-actions[bot], 76 minutes ago)
+- 7d660eb merge(dev): integrate development branch with design system fixes (Claude, 77 minutes ago)
 
 ## Files Changed
 
-A	.github/WORKFLOW_FIX.md
-A	.github/tracking/.gitkeep
-A	.github/tracking/ASCII_PROGRESS.md
-A	.github/tracking/DEVELOPMENT_MANIFEST.md
-A	.github/tracking/PROGRESS_REPORT.md
-A	.github/tracking/branch-map.json
-A	.github/workflows/branch-tracker.yml
-A	MILESTONE_INDEX.md
-A	NEXT_STEPS.md
-A	docs/DESIGN_PRINCIPLES.md
-A	docs/GITBUTLER_WORKFLOW.md
-A	docs/PARALLEL_DEVELOPMENT_GUIDE.md
-A	progress/branches/.gitkeep
-A	progress/branches/claude_setup-gitbutler-branching-LScIj.md
-A	scripts/create-feature-branch.sh
-A	scripts/demo-workflow.sh
-A	scripts/merge-coordinator.sh
-A	scripts/switch-branch.sh
-A	scripts/track-progress.sh
+A	.editorconfig
+M	.github/tracking/DEVELOPMENT_MANIFEST.md
+A	.github/workflows/ci.yml
+A	.husky/commit-msg
+A	.husky/pre-commit
+A	.husky/pre-push
+A	.prettierignore
+A	.prettierrc
+A	.vscode/extensions.json
+A	.vscode/settings.json
+A	DEVELOPMENT.md
+M	package.json
+A	progress/branches/claude_feature-branch-from-issue-lJKlJ.md
+A	progress/pr-drafts/feat-dev-environment-setup-14.md
+A	scripts/dev-setup.sh
+D	src/app/globals.css
+D	src/styles/colors.css
 
 ## Associated Issues
 
