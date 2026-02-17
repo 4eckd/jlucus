@@ -263,6 +263,14 @@ a {
   color: rgb(var(--color-accent));
 }
 
+/* Gradient Text Effect */
+.text-gradient {
+  background: linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Utility Classes */
 .container {
   width: 100%;
