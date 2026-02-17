@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans bg-background text-primary">
+      <body className="bg-background text-primary font-sans">
         <ClientLayout />
         <Header />
         <main>{children}</main>

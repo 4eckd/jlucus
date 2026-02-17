@@ -1,8 +1,7 @@
 # GitButler System - Next Steps & Quick Start
 
-**Date:** 2026-02-15
-**Status:** ✅ System Installed
-**Branch:** claude/setup-gitbutler-branching-LScIj
+**Date:** 2026-02-15 **Status:** ✅ System Installed **Branch:**
+claude/setup-gitbutler-branching-LScIj
 
 ---
 
@@ -52,15 +51,16 @@ Choose 3-5 issues from Phase 2 to work on in parallel:
 
 **Recommended Phase 2 Issues (High Priority):**
 
-| Issue | Title | Type | Estimated |
-|-------|-------|------|-----------|
-| #123 | Add scanline effect overlay | polish | 2-3h |
-| #124 | Implement animated grid background | polish | 2-3h |
-| #126 | Create loading screen with terminal boot | feat | 3-4h |
-| #130 | Command Palette - Keyboard shortcuts | feat | 4-5h |
-| #131 | Custom Cursor - Neon trail effect | polish | 2-3h |
+| Issue | Title                                    | Type   | Estimated |
+| ----- | ---------------------------------------- | ------ | --------- |
+| #123  | Add scanline effect overlay              | polish | 2-3h      |
+| #124  | Implement animated grid background       | polish | 2-3h      |
+| #126  | Create loading screen with terminal boot | feat   | 3-4h      |
+| #130  | Command Palette - Keyboard shortcuts     | feat   | 4-5h      |
+| #131  | Custom Cursor - Neon trail effect        | polish | 2-3h      |
 
 **With GitHub CLI:**
+
 ```bash
 # Label issues for auto-branch creation
 gh issue edit 123 --add-label "ready-for-dev"
@@ -74,6 +74,7 @@ gh issue edit 126 --add-label "ready-for-dev"
 ```
 
 **Without GitHub CLI (Manual):**
+
 ```bash
 # Create branches manually
 git checkout -b polish-123-scanline-effect
@@ -193,15 +194,18 @@ git worktree list
 ### Week 1: Visual Enhancements (Phase 2)
 
 **Day 1-2:** Parallel development setup
+
 - [ ] Issue #123: Scanline effect overlay
 - [ ] Issue #124: Animated grid background
 - [ ] Issue #131: Custom cursor with neon trail
 
 **Day 3-4:** Interactive features
+
 - [ ] Issue #130: Command Palette (Cmd+K)
 - [ ] Issue #126: Loading screen with boot sequence
 
 **Day 5:** Review and merge
+
 - [ ] Code review all PRs
 - [ ] Merge to development branch
 - [ ] Update progress tracking
@@ -216,21 +220,21 @@ Based on completed Phase 2 work.
 
 ### Phase 2 Issues (Current Focus)
 
-| Issue | Title | Branch Name | Milestone |
-|-------|-------|-------------|-----------|
-| #123 | Scanline effect | `polish-123-scanline-effect` | Phase 2 |
-| #124 | Animated grid | `polish-124-animated-grid` | Phase 2 |
-| #125 | Particle effects | `polish-125-particle-effects` | Phase 2 |
-| #126 | Loading screen | `feat-126-loading-screen` | Phase 2 |
-| #127 | Page transitions | `polish-127-page-transitions` | Phase 2 |
-| #128 | Parallax scrolling | `polish-128-parallax-scroll` | Phase 2 |
-| #129 | Smooth scroll | `feat-129-smooth-scroll` | Phase 2 |
-| #130 | Command palette | `feat-130-command-palette` | Phase 2 |
-| #131 | Custom cursor | `polish-131-custom-cursor` | Phase 2 |
-| #132 | Easter eggs | `feat-132-easter-eggs` | Phase 2 |
-| #133 | Bundle optimization | `chore-133-bundle-size` | Phase 2 |
-| #134 | Performance | `chore-134-performance` | Phase 2 |
-| #135 | SEO | `feat-135-seo-enhancements` | Phase 2 |
+| Issue | Title               | Branch Name                   | Milestone |
+| ----- | ------------------- | ----------------------------- | --------- |
+| #123  | Scanline effect     | `polish-123-scanline-effect`  | Phase 2   |
+| #124  | Animated grid       | `polish-124-animated-grid`    | Phase 2   |
+| #125  | Particle effects    | `polish-125-particle-effects` | Phase 2   |
+| #126  | Loading screen      | `feat-126-loading-screen`     | Phase 2   |
+| #127  | Page transitions    | `polish-127-page-transitions` | Phase 2   |
+| #128  | Parallax scrolling  | `polish-128-parallax-scroll`  | Phase 2   |
+| #129  | Smooth scroll       | `feat-129-smooth-scroll`      | Phase 2   |
+| #130  | Command palette     | `feat-130-command-palette`    | Phase 2   |
+| #131  | Custom cursor       | `polish-131-custom-cursor`    | Phase 2   |
+| #132  | Easter eggs         | `feat-132-easter-eggs`        | Phase 2   |
+| #133  | Bundle optimization | `chore-133-bundle-size`       | Phase 2   |
+| #134  | Performance         | `chore-134-performance`       | Phase 2   |
+| #135  | SEO                 | `feat-135-seo-enhancements`   | Phase 2   |
 
 ---
 
@@ -249,6 +253,7 @@ When recreating pages/sections with design principles:
 ### 2. During Development
 
 **Component Structure:**
+
 ```tsx
 // src/components/sections/hero-terminal.tsx
 
@@ -267,9 +272,7 @@ export function HeroTerminal({ ...props }: HeroTerminalProps) {
       {/* Use CSS variables only */}
       <div className="bg-background text-foreground">
         {/* ASCII art from docs/ascii-art-samples.md */}
-        <pre className="font-mono text-primary neon-glow">
-          {ASCII_BANNER}
-        </pre>
+        <pre className="text-primary neon-glow font-mono">{ASCII_BANNER}</pre>
 
         {/* Framer Motion animations */}
         <motion.div
@@ -286,6 +289,7 @@ export function HeroTerminal({ ...props }: HeroTerminalProps) {
 ```
 
 **Styling Rules:**
+
 ```tsx
 // ✅ CORRECT - CSS variables
 <div className="bg-primary text-background shadow-neon-primary">
@@ -348,6 +352,7 @@ Merge multiple completed features at once:
 ### Real-Time Tracking
 
 GitHub Actions automatically updates:
+
 - `.github/tracking/DEVELOPMENT_MANIFEST.md`
 - `.github/tracking/ASCII_PROGRESS.md`
 - `progress/branches/{branch-name}.md`
@@ -485,6 +490,7 @@ After completing next steps, you should have:
 ```
 
 **Start with:**
+
 ```bash
 # Option 1: With GitHub CLI
 gh issue edit 123 --add-label "ready-for-dev"

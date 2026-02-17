@@ -1,16 +1,14 @@
 # Changelog: Payment Gateway Upgrade
 
-**Feature:** Payment Gateway Upgrade
-**Branch:** `feature/payment-gateway-upgrade`
-**Ticket:** PGU-001
-**Status:** 🟡 In Progress
-**Started:** 2025-10-26
+**Feature:** Payment Gateway Upgrade **Branch:** `feature/payment-gateway-upgrade` **Ticket:**
+PGU-001 **Status:** 🟡 In Progress **Started:** 2025-10-26
 
 ---
 
 ## Overview
 
-This changelog tracks all changes made during the implementation of the payment gateway upgrade feature. All changes are categorized using conventional commit types.
+This changelog tracks all changes made during the implementation of the payment gateway upgrade
+feature. All changes are categorized using conventional commit types.
 
 ---
 
@@ -19,12 +17,14 @@ This changelog tracks all changes made during the implementation of the payment 
 ### Phase 1: Foundation - In Progress
 
 #### Added
+
 - ✅ Created feature plan documentation (`docs/feature-plans/payment-gateway-upgrade.md`)
 - ✅ Created changelog documentation (`docs/changelogs/payment-gateway-upgrade.md`)
 - ✅ Created progress tracking manifest (`progress/manifest.json`)
 - ✅ Created artifact directories (`artifacts/feat-payment-gateway-upgrade-PGU-001/`)
 
 #### Planned - Phase 1
+
 - [ ] Directory structure: `src/features/payment/` with subdirectories
 - [ ] Dependencies:
   - [ ] `@stripe/stripe-js` (frontend Stripe SDK)
@@ -48,6 +48,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ### Phase 2: Stripe Integration - Pending
 
 #### Planned
+
 - [ ] Components:
   - [ ] `src/features/payment/components/CheckoutForm.tsx`
   - [ ] `src/features/payment/components/StripeCheckout.tsx`
@@ -67,6 +68,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ### Phase 3: PayPal Integration - Pending
 
 #### Planned
+
 - [ ] Components:
   - [ ] `src/features/payment/components/PayPalCheckout.tsx`
 - [ ] API Routes:
@@ -81,6 +83,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ### Phase 4: Invoice & Receipts - Pending
 
 #### Planned
+
 - [ ] Components:
   - [ ] `src/features/payment/components/InvoiceSummary.tsx`
   - [ ] `src/features/payment/components/PaymentSuccess.tsx`
@@ -100,6 +103,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ### Phase 5: Testing & Polish - Pending
 
 #### Planned
+
 - [ ] Unit tests:
   - [ ] `src/features/payment/__tests__/currency.test.ts`
   - [ ] `src/features/payment/__tests__/validation.test.ts`
@@ -127,6 +131,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ## Dependencies Added
 
 ### Production Dependencies
+
 ```json
 {
   "@stripe/stripe-js": "^2.0.0",
@@ -143,6 +148,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ```
 
 ### Development Dependencies
+
 ```json
 {
   "@types/nodemailer": "^6.4.14",
@@ -157,6 +163,7 @@ This changelog tracks all changes made during the implementation of the payment 
 ### New Tables
 
 **Payment Table:**
+
 ```sql
 CREATE TABLE "Payment" (
     "id" TEXT NOT NULL PRIMARY KEY,
@@ -184,6 +191,7 @@ CREATE INDEX "Payment_createdAt_idx" ON "Payment"("createdAt");
 ```
 
 ### Enums
+
 - `PaymentStatus`: PENDING, PROCESSING, SUCCEEDED, FAILED, CANCELED, REFUNDED
 - `PaymentProvider`: STRIPE, PAYPAL
 
@@ -217,14 +225,17 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 ## API Routes Added
 
 ### Stripe Routes
+
 - `POST /api/payment/create-intent` - Create Stripe PaymentIntent
 - `POST /api/payment/confirm` - Confirm payment
 - `POST /api/payment/webhook` - Stripe webhook handler (signature verification)
 
 ### PayPal Routes
+
 - `POST /api/payment/paypal-order` - Create PayPal order
 
 ### Invoice Routes
+
 - `GET /api/payment/invoice/[id]` - Download PDF invoice
 
 ---
@@ -232,6 +243,7 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 ## Components Added
 
 ### Payment Components
+
 - `CheckoutForm` - Main checkout container
 - `StripeCheckout` - Stripe Elements wrapper
 - `PayPalCheckout` - PayPal buttons component
@@ -256,17 +268,20 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 ## Testing Coverage
 
 ### Unit Tests
+
 - Currency formatting and calculations
 - Payment validation logic
 - Invoice PDF generation
 
 ### Integration Tests (Playwright)
+
 - Stripe checkout end-to-end
 - PayPal checkout end-to-end
 - Webhook processing
 - Invoice generation and download
 
 ### Manual Testing
+
 - Stripe test cards (success, 3D Secure, declined)
 - PayPal sandbox accounts
 - Email delivery (Mailtrap)
@@ -285,11 +300,13 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 ### For Developers
 
 1. **Install dependencies:**
+
    ```bash
    pnpm install
    ```
 
 2. **Run database migrations:**
+
    ```bash
    pnpm prisma migrate dev
    pnpm prisma generate
@@ -312,6 +329,7 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 ## Known Issues
 
 **Current Limitations:**
+
 - No subscription/recurring billing (planned for future)
 - No refund UI (must use Stripe/PayPal dashboard)
 - Single-item checkout only (no multi-item cart)
@@ -319,6 +337,7 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 - No sales tax calculation (flat pricing)
 
 **Future Enhancements:**
+
 - Apple Pay / Google Pay integration
 - Cryptocurrency payments (Stripe Crypto)
 - Payment analytics dashboard
@@ -330,6 +349,7 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 ## Performance Impact
 
 **Expected:**
+
 - Bundle size increase: ~150KB (Stripe.js, PayPal SDK)
 - Database queries: +1-3 per payment transaction
 - API response time: <500ms for payment creation
@@ -337,6 +357,7 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev  # Public site URL
 - Email delivery: <10s
 
 **Optimizations:**
+
 - Lazy load payment SDKs (only on /checkout page)
 - Cache invoice PDFs after generation
 - Background job for email sending (non-blocking)
@@ -353,6 +374,7 @@ If issues arise after deployment:
    - Redirect `/checkout` to a "Coming Soon" page
 
 2. **Revert database:**
+
    ```bash
    pnpm prisma migrate reset
    # Or rollback to specific migration

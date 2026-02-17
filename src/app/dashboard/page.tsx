@@ -2,7 +2,8 @@ import { ProjectDashboard } from '@/components/sections/project-dashboard';
 
 export const metadata = {
   title: 'Project Dashboard | jlucus.dev',
-  description: 'Real-time visualization of development progress, user journeys, and performance goals for jlucus.dev portfolio',
+  description:
+    'Real-time visualization of development progress, user journeys, and performance goals for jlucus.dev portfolio',
 };
 
 /**

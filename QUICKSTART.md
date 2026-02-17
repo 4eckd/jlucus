@@ -81,22 +81,24 @@ jlucus2/
 ### 1. Update Site Info
 
 Edit `src/lib/constants.ts`:
+
 ```typescript
 export const SITE = {
   title: 'Your Name',
   description: 'Your description',
-  url: 'https://yoursite.com'
+  url: 'https://yoursite.com',
 };
 ```
 
 ### 2. Modify Colors
 
 Edit `src/app/globals.css`:
+
 ```css
 :root {
-  --color-primary: 0 217 255;    /* Electric Cyan */
-  --color-accent: 255 0 110;     /* Neon Magenta */
-  --color-secondary: 204 255 0;  /* Electric Lime */
+  --color-primary: 0 217 255; /* Electric Cyan */
+  --color-accent: 255 0 110; /* Neon Magenta */
+  --color-secondary: 204 255 0; /* Electric Lime */
 }
 ```
 
@@ -115,6 +117,7 @@ Check `docs/ascii-art-samples.md` for terminal-themed banners.
 ### Adding a New Section
 
 1. Create component in `src/components/sections/`:
+
    ```tsx
    export function MySection() {
      return <section>Content</section>;
@@ -122,6 +125,7 @@ Check `docs/ascii-art-samples.md` for terminal-themed banners.
    ```
 
 2. Import in `src/app/page.tsx`:
+
    ```tsx
    import { MySection } from '@/components/sections/my-section';
    ```
@@ -144,6 +148,7 @@ Always use CSS variables, never hard-code:
 ```
 
 For JavaScript/Canvas:
+
 ```typescript
 import { getCSSColor } from '@/lib/css-variables';
 const color = getCSSColor('primary'); // "0 217 255"
@@ -191,6 +196,7 @@ npm run dev -- -p 3001
 ### Permission Errors (Windows)
 
 If `rimraf` fails, close any running processes and try:
+
 ```bash
 npm run clean:all
 ```

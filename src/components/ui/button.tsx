@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { cn } from '@/lib/utils'
+import React from 'react';
+import { Slot } from '@radix-ui/react-slot';
+import { cn } from '@/lib/utils';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -12,27 +12,27 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
    * - outline: Transparent with green border
    * - ghost: Transparent with hover effect
    */
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
 
   /**
    * Button size
    */
-  size?: 'sm' | 'md' | 'lg' | 'icon'
+  size?: 'sm' | 'md' | 'lg' | 'icon';
 
   /**
    * Loading state
    */
-  isLoading?: boolean
+  isLoading?: boolean;
 
   /**
    * Full width button
    */
-  fullWidth?: boolean
+  fullWidth?: boolean;
 
   /**
    * Render as child element (using Radix UI Slot)
    */
-  asChild?: boolean
+  asChild?: boolean;
 }
 
 /**
@@ -63,10 +63,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = cn(
       'inline-flex items-center justify-center gap-2',
       'font-medium transition-all duration-200',
-      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-      'disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none',
+      'focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+      'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-40',
       'rounded-md'
-    )
+    );
 
     const variantStyles = {
       primary: cn(
@@ -85,7 +85,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'shadow-sm hover:shadow-md'
       ),
       outline: cn(
-        'bg-transparent border-2 border-[var(--color-primary)]',
+        'border-2 border-[var(--color-primary)] bg-transparent',
         'text-[var(--color-primary)]',
         'hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-text)]',
         'focus-visible:ring-[var(--color-primary)]'
@@ -95,18 +95,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'hover:bg-[var(--color-surface-hover)]',
         'focus-visible:ring-[var(--color-border-focus)]'
       ),
-    }
+    };
 
     const sizeStyles = {
       sm: 'px-3 py-1.5 text-sm',
       md: 'px-4 py-2 text-base',
       lg: 'px-6 py-3 text-lg',
       icon: 'p-2',
-    }
+    };
 
-    const widthStyles = fullWidth ? 'w-full' : ''
-
-    const Comp = asChild ? Slot : 'button'
+    const widthStyles = fullWidth ? 'w-full' : '';
 
     // When using asChild, render children directly (Slot expects single child)
     if (asChild) {
@@ -124,7 +122,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         >
           {children}
         </Slot>
-      )
+      );
     }
 
     return (
@@ -142,7 +140,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading && (
           <svg
-            className="animate-spin h-4 w-4"
+            className="h-4 w-4 animate-spin"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -165,8 +163,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         <span>{children}</span>
       </button>
-    )
+    );
   }
-)
+);
 
-Button.displayName = 'Button'
+Button.displayName = 'Button';

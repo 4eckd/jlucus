@@ -22,37 +22,42 @@ export function CommandPalette() {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   // Navigation and action items - memoized to prevent recreation
-  const items: CommandItem[] = useMemo(() => [
-    // Navigation
-    ...NAVIGATION_SECTIONS.map(section => ({
-      id: section.id,
-      title: section.label,
-      description: `Navigate to ${section.label.toLowerCase()} section`,
-      icon: Terminal,
-      action: () => {
-        const element = document.getElementById(section.id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          setIsOpen(false);
-        }
-      },
-    })),
+  const items: CommandItem[] = useMemo(
+    () => [
+      // Navigation
+      ...NAVIGATION_SECTIONS.map((section) => ({
+        id: section.id,
+        title: section.label,
+        description: `Navigate to ${section.label.toLowerCase()} section`,
+        icon: Terminal,
+        action: () => {
+          const element = document.getElementById(section.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+            setIsOpen(false);
+          }
+        },
+      })),
 
-    // Social Links
-    ...SOCIAL_LINKS.map(link => ({
-      id: link.name,
-      title: link.name,
-      description: `Open ${link.name}`,
-      href: link.href,
-      icon: link.name === 'GitHub' ? Github : Mail,
-    })),
-  ], []);
+      // Social Links
+      ...SOCIAL_LINKS.map((link) => ({
+        id: link.name,
+        title: link.name,
+        description: `Open ${link.name}`,
+        href: link.href,
+        icon: link.name === 'GitHub' ? Github : Mail,
+      })),
+    ],
+    []
+  );
 
-  const filteredItems = useMemo(() =>
-    items.filter(item =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase())
-    ),
+  const filteredItems = useMemo(
+    () =>
+      items.filter(
+        (item) =>
+          item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchTerm.toLowerCase())
+      ),
     [items, searchTerm]
   );
 
@@ -62,7 +67,7 @@ export function CommandPalette() {
       // Cmd/Ctrl + K to open
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        setIsOpen(prev => !prev);
+        setIsOpen((prev) => !prev);
       }
 
       // Escape to close
@@ -74,11 +79,13 @@ export function CommandPalette() {
       if (isOpen && filteredItems.length > 0) {
         if (e.key === 'ArrowDown') {
           e.preventDefault();
-          setSelectedIndex(prev => (prev + 1) % filteredItems.length);
+          setSelectedIndex((prev) => (prev + 1) % filteredItems.length);
         }
         if (e.key === 'ArrowUp') {
           e.preventDefault();
-          setSelectedIndex(prev => prev === 0 ? filteredItems.length - 1 : prev - 1);
+          setSelectedIndex((prev) =>
+            prev === 0 ? filteredItems.length - 1 : prev - 1
+          );
         }
         if (e.key === 'Enter') {
           e.preventDefault();
@@ -102,6 +109,7 @@ export function CommandPalette() {
 
   // Reset selected index when search changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSelectedIndex(0);
   }, [searchTerm]);
 
@@ -115,36 +123,42 @@ export function CommandPalette() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-background/80 backdrop-blur-sm"
+          className="bg-background/80 absolute inset-0 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         />
 
         {/* Command Palette */}
-        <div className="flex items-start justify-center pt-20 px-4">
+        <div className="flex items-start justify-center px-4 pt-20">
           <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="w-full max-w-2xl bg-background-secondary border border-primary/20 rounded-lg shadow-neon-primary-lg overflow-hidden"
+            className="bg-background-secondary border-primary/20 shadow-neon-primary-lg w-full max-w-2xl overflow-hidden rounded-lg border"
           >
             {/* Search Input */}
-            <div className="flex items-center gap-3 p-4 border-b border-primary/10">
-              <Search className="w-5 h-5 text-secondary" />
+            <div className="border-primary/10 flex items-center gap-3 border-b p-4">
+              <Search className="text-secondary h-5 w-5" />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Type a command or search..."
-                className="flex-1 bg-transparent text-primary placeholder-secondary outline-none font-mono"
+                className="text-primary placeholder-secondary flex-1 bg-transparent font-mono outline-none"
                 autoFocus
               />
-              <div className="hidden md:flex items-center gap-1 text-xs text-secondary">
-                <kbd className="px-2 py-1 bg-background border border-primary/20 rounded">↑↓</kbd>
+              <div className="text-secondary hidden items-center gap-1 text-xs md:flex">
+                <kbd className="bg-background border-primary/20 rounded border px-2 py-1">
+                  ↑↓
+                </kbd>
                 <span>navigate</span>
-                <kbd className="px-2 py-1 bg-background border border-primary/20 rounded ml-2">Enter</kbd>
+                <kbd className="bg-background border-primary/20 ml-2 rounded border px-2 py-1">
+                  Enter
+                </kbd>
                 <span>select</span>
-                <kbd className="px-2 py-1 bg-background border border-primary/20 rounded ml-2">Esc</kbd>
+                <kbd className="bg-background border-primary/20 ml-2 rounded border px-2 py-1">
+                  Esc
+                </kbd>
                 <span>close</span>
               </div>
             </div>
@@ -152,8 +166,8 @@ export function CommandPalette() {
             {/* Results */}
             <div className="max-h-96 overflow-y-auto">
               {filteredItems.length === 0 ? (
-                <div className="p-8 text-center text-secondary">
-                  <Search className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                <div className="text-secondary p-8 text-center">
+                  <Search className="mx-auto mb-4 h-12 w-12 opacity-50" />
                   <p>No results found for &ldquo;{searchTerm}&rdquo;</p>
                 </div>
               ) : (
@@ -165,9 +179,9 @@ export function CommandPalette() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                       className={cn(
-                        "w-full flex items-center gap-3 p-3 text-left transition-colors",
-                        "hover:bg-primary/10 focus:bg-primary/10 focus:outline-none",
-                        index === selectedIndex && "bg-primary/10 text-primary"
+                        'flex w-full items-center gap-3 p-3 text-left transition-colors',
+                        'hover:bg-primary/10 focus:bg-primary/10 focus:outline-none',
+                        index === selectedIndex && 'bg-primary/10 text-primary'
                       )}
                       onClick={() => {
                         if (item.action) {
@@ -180,13 +194,17 @@ export function CommandPalette() {
                       }}
                       onMouseEnter={() => setSelectedIndex(index)}
                     >
-                      <div className="flex items-center justify-center w-10 h-10 bg-primary/10 rounded-lg">
-                        <item.icon className="w-5 h-5 text-primary" />
+                      <div className="bg-primary/10 flex h-10 w-10 items-center justify-center rounded-lg">
+                        <item.icon className="text-primary h-5 w-5" />
                       </div>
 
-                      <div className="flex-1 min-w-0">
-                        <div className="font-medium text-primary">{item.title}</div>
-                        <div className="text-sm text-secondary truncate">{item.description}</div>
+                      <div className="min-w-0 flex-1">
+                        <div className="text-primary font-medium">
+                          {item.title}
+                        </div>
+                        <div className="text-secondary truncate text-sm">
+                          {item.description}
+                        </div>
                       </div>
                     </motion.button>
                   ))}
@@ -195,14 +213,18 @@ export function CommandPalette() {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between p-3 border-t border-primary/10 text-xs text-secondary">
+            <div className="border-primary/10 text-secondary flex items-center justify-between border-t p-3 text-xs">
               <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4" />
+                <Terminal className="h-4 w-4" />
                 <span>Command Palette</span>
               </div>
               <div className="flex items-center gap-1">
-                <kbd className="px-2 py-1 bg-background border border-primary/20 rounded">⌘</kbd>
-                <kbd className="px-2 py-1 bg-background border border-primary/20 rounded">K</kbd>
+                <kbd className="bg-background border-primary/20 rounded border px-2 py-1">
+                  ⌘
+                </kbd>
+                <kbd className="bg-background border-primary/20 rounded border px-2 py-1">
+                  K
+                </kbd>
                 <span>to toggle</span>
               </div>
             </div>
