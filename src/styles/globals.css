@@ -37,6 +37,14 @@
   --color-background-secondary: var(--color-dark-900);
   --color-background-tertiary: var(--color-dark-800);
 
+  /* Surface Colors (for cards, panels, overlays) */
+  --color-surface: var(--color-dark-800);
+  --color-surface-hover: var(--color-dark-700);
+
+  /* Border Colors */
+  --color-border: 0 217 255;           /* Primary with opacity applied */
+  --color-border-muted: 45 50 65;      /* Dark-600 for subtle borders */
+
   /* Spacing Scale */
   --spacing-xs: 0.25rem;    /* 4px */
   --spacing-sm: 0.5rem;     /* 8px */
@@ -116,6 +124,26 @@
   /* Grid Background */
   --grid-size: 40px;
   --grid-color: rgb(var(--color-primary) / 0.1);
+
+  /* Surface & Interactive Colors (for buttons and navigation) */
+  --color-surface: 20 20 30;                      /* Dark surface */
+  --color-surface-hover: 30 35 45;                /* Hover state */
+
+  /* Primary Color States */
+  --color-primary-text: 0 0 0;                    /* Black text on cyan background */
+  --color-primary-hover: 0 240 255;               /* Brighter cyan (same as --color-primary-glow) */
+  --color-primary-active: 0 180 220;              /* Darker cyan for active state */
+
+  /* Secondary Color States */
+  --color-secondary-hover: 220 255 40;            /* Brighter electric lime */
+  --color-secondary-active: 180 220 0;            /* Darker lime for active */
+
+  /* Border & Focus */
+  --color-border: rgb(var(--color-primary) / 0.2); /* Subtle border using primary cyan */
+  --color-border-focus: var(--color-primary);     /* Focus ring = primary cyan */
+
+  /* Shadow Aliases (button component compatibility) */
+  --shadow-glow-sm: var(--shadow-neon-primary-sm);
 }
 
 /* Base Styles */
