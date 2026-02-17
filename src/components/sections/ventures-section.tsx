@@ -64,7 +64,7 @@ function HexCard({ venture, index }: HexCardProps) {
           {venture.title}
         </h3>
         
-        <p className="text-sm text-secondary mb-4 line-clamp-3">
+        <p className="text-sm text-text-secondary mb-4 line-clamp-3">
           {venture.description}
         </p>
 
@@ -90,23 +90,23 @@ function HexCard({ venture, index }: HexCardProps) {
           <div className="grid grid-cols-3 gap-3 text-center">
             {venture.metrics.users && (
               <div>
-                <Users className="w-4 h-4 mx-auto mb-1 text-secondary" />
+                <Users className="w-4 h-4 mx-auto mb-1 text-text-tertiary" />
                 <div className="text-sm font-bold text-primary">{venture.metrics.users}</div>
-                <div className="text-xs text-secondary">Users</div>
+                <div className="text-xs text-text-tertiary">Users</div>
               </div>
             )}
             {venture.metrics.growth && (
               <div>
-                <TrendingUp className="w-4 h-4 mx-auto mb-1 text-secondary" />
+                <TrendingUp className="w-4 h-4 mx-auto mb-1 text-text-tertiary" />
                 <div className="text-sm font-bold text-success">{venture.metrics.growth}</div>
-                <div className="text-xs text-secondary">Growth</div>
+                <div className="text-xs text-text-tertiary">Growth</div>
               </div>
             )}
             {venture.metrics.revenue && (
               <div>
-                <DollarSign className="w-4 h-4 mx-auto mb-1 text-secondary" />
+                <DollarSign className="w-4 h-4 mx-auto mb-1 text-text-tertiary" />
                 <div className="text-sm font-bold text-accent">{venture.metrics.revenue}</div>
-                <div className="text-xs text-secondary">Revenue</div>
+                <div className="text-xs text-text-tertiary">Revenue</div>
               </div>
             )}
           </div>
@@ -151,7 +151,7 @@ export function VenturesSection() {
             {'> ventures'}
             <span className="animate-pulse">_</span>
           </h2>
-          <p className="text-xl text-secondary max-w-3xl mx-auto">
+          <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Building innovative solutions at the intersection of blockchain, AI, and decentralized systems
           </p>
         </motion.div>
