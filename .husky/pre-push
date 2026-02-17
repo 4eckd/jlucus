@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run build to ensure everything compiles
+echo "🔨 Building project before push..."
+npm run build
+
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed. Please fix errors before pushing."
+  exit 1
+fi
+
+echo "✅ Build successful! Proceeding with push..."
