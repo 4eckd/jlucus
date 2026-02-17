@@ -116,6 +116,11 @@ const config: Config = {
         'neon-accent': 'var(--shadow-neon-accent)',
         'neon-accent-lg': 'var(--shadow-neon-accent-lg)',
         'neon-secondary': 'var(--shadow-neon-secondary)',
+        // Glow shadows (for interactive states)
+        'glow-sm': 'var(--shadow-glow-sm)',
+        'glow': 'var(--shadow-glow)',
+        'glow-lg': 'var(--shadow-glow-lg)',
+        'glow-accent': 'var(--shadow-glow-accent)',
       },
       transitionDuration: {
         fast: 'var(--transition-fast)',
