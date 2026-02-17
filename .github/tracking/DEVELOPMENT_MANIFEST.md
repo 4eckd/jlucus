@@ -17,6 +17,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/phase2-issue30-feature-branch-automation-uoLGx | #30 | #4 | - | Active |
 | origin/claude/feature-branch-automation-fuaGE | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-Mme5N | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
