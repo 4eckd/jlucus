@@ -33,7 +33,11 @@ const ANIMATION_CONFIG = {
   frameTime: 16, // ~60fps
 };
 
-export function AnimatedGrid() {
+interface AnimatedGridProps {
+  contained?: boolean;
+}
+
+export function AnimatedGrid({ contained = false }: AnimatedGridProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -51,12 +55,24 @@ export function AnimatedGrid() {
 
     // Set canvas size
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      if (contained && canvas.parentElement) {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = canvas.parentElement.clientHeight;
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
     };
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+
+    let resizeObserver: ResizeObserver | null = null;
+    if (contained && canvas.parentElement) {
+      resizeObserver = new ResizeObserver(resizeCanvas);
+      resizeObserver.observe(canvas.parentElement);
+    } else {
+      window.addEventListener('resize', resizeCanvas);
+    }
 
     // Animation state
     let animationFrame: number;
@@ -134,12 +150,16 @@ export function AnimatedGrid() {
     animate();
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      } else {
+        window.removeEventListener('resize', resizeCanvas);
+      }
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
       }
     };
-  }, []);
+  }, [contained]);
 
   return (
     <canvas

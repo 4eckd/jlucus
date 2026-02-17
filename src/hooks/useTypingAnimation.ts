@@ -51,6 +51,7 @@ export function useTypingAnimation({
     // Typing animation
     if (isTyping) {
       if (currentText === currentWord) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsPaused(true)
         return
       }

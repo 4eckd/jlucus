@@ -8,6 +8,9 @@
     "build:clean": "npm run clean && npm run build",
     "start": "next start",
     "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "clean": "npx rimraf .next out node_modules/.cache",
     "clean:all": "npx rimraf .next out node_modules",
     "postinstall": "echo 'Dependencies installed successfully! Run npm run dev to start development.'"
@@ -57,6 +60,8 @@
   "devDependencies": {
     "eslint": "^9.13.0",
     "eslint-config-next": "^16.1.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "rimraf": "^6.1.2"
   }
 }
