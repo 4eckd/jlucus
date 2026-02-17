@@ -138,6 +138,28 @@
   /* Grid Background */
   --grid-size: 40px;
   --grid-color: rgb(var(--color-primary) / 0.1);
+
+  /* Surface & Interactive Colors (for buttons and navigation) */
+  --color-surface: 20 20 30; /* Dark surface */
+  --color-surface-hover: 30 35 45; /* Hover state */
+
+  /* Primary Color States */
+  --color-primary-text: 0 0 0; /* Black text on cyan background */
+  --color-primary-hover: 0 240 255; /* Brighter cyan (same as --color-primary-glow) */
+  --color-primary-active: 0 180 220; /* Darker cyan for active state */
+
+  /* Secondary Color States */
+  --color-secondary-hover: 220 255 40; /* Brighter electric lime */
+  --color-secondary-active: 180 220 0; /* Darker lime for active */
+
+  /* Border & Focus */
+  --color-border: rgb(
+    var(--color-primary) / 0.2
+  ); /* Subtle border using primary cyan */
+  --color-border-focus: var(--color-primary); /* Focus ring = primary cyan */
+
+  /* Shadow Aliases (button component compatibility) */
+  --shadow-glow-sm: var(--shadow-neon-primary-sm);
 }
 
 /* Base Styles */
@@ -198,11 +220,6 @@ a {
   color: rgb(var(--color-text-primary));
 }
 ::selection {
-  background-color: rgb(var(--color-primary) / 0.3);
-  color: rgb(var(--color-text-primary));
-}
-
-::-moz-selection {
   background-color: rgb(var(--color-primary) / 0.3);
   color: rgb(var(--color-text-primary));
 }
