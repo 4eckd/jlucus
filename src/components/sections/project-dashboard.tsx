@@ -206,7 +206,7 @@ export function ProjectDashboard() {
                 whileInView={{ width: `${overallProgress}%` }}
                 transition={{ duration: 1, delay: 0.3 }}
                 viewport={{ once: true }}
-                style={{ boxShadow: '0 0 20px rgba(var(--color-primary), 0.5)' }}
+                style={{ boxShadow: '0 0 20px rgb(var(--color-primary) / 0.5)' }}
               />
             </div>
           </div>
@@ -231,7 +231,7 @@ export function ProjectDashboard() {
               className={cn(
                 'flex items-center gap-2 px-6 py-3 rounded-lg font-mono text-sm transition-all',
                 activeTab === tab.id
-                  ? 'bg-primary text-black shadow-neon-primary'
+                  ? 'bg-primary text-dark-950 shadow-neon-primary'
                   : 'bg-background-secondary text-muted hover:text-primary border border-primary/10 hover:border-primary/30'
               )}
             >
