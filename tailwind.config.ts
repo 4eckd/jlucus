@@ -51,6 +51,9 @@ const config: Config = {
         background: 'rgb(var(--color-background))',
         'background-secondary': 'rgb(var(--color-background-secondary))',
         'background-tertiary': 'rgb(var(--color-background-tertiary))',
+        // Surface colors (for cards, panels, overlays)
+        surface: 'rgb(var(--color-surface))',
+        'surface-hover': 'rgb(var(--color-surface-hover))',
         //  Aliases for components
         'primary-foreground': 'rgb(var(--color-dark-950) / <alpha-value>)',
         'destructive': 'rgb(var(--color-error) / <alpha-value>)',
@@ -60,7 +63,8 @@ const config: Config = {
         muted: 'rgb(var(--color-dark-700) / <alpha-value>)',
         'secondary-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
         'accent-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        border: 'rgb(var(--color-primary) / 0.1)',
+        border: 'rgb(var(--color-border) / 0.1)',
+        'border-muted': 'rgb(var(--color-border-muted) / <alpha-value>)',
       },
       fontFamily: {
         mono: 'var(--font-mono)',
