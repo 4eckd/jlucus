@@ -1,8 +1,8 @@
 # Development Manifest
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
-**Event:** issues
-**Branch:** main
+**Event:** push
+**Branch:** development
 
 ## Active Development
 
@@ -17,6 +17,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
 | origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
@@ -25,6 +26,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/feature-branch-automation-uoLGx | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |
 | origin/claude/fix-grid-layout-css-7clVF | #- | - | - | Active |
+| origin/claude/fix-merge-conflicts-workflows-x8CQE | #- | - | - | Active |
 | origin/claude/fix-smoke-test-kDwAi | #- | - | - | Active |
 | origin/claude/git-workflow-automation-2I1aw | #- | - | - | Active |
 | origin/claude/git-workflow-automation-pzwMH | #- | - | - | Active |

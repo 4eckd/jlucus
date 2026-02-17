@@ -106,8 +106,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const widthStyles = fullWidth ? 'w-full' : ''
 
-    const Comp = asChild ? Slot : 'button'
-
     // When using asChild, render children directly (Slot expects single child)
     if (asChild) {
       return (

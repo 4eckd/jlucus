@@ -8,8 +8,6 @@ import {
   Clock,
   Target,
   Rocket,
-  Code,
-  Sparkles,
   TrendingUp,
   Layers,
   Zap

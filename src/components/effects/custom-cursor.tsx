@@ -27,6 +27,7 @@ export function CustomCursor() {
 
   // Only render on client to avoid SSR issues
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
 
@@ -117,7 +118,7 @@ export function CustomCursor() {
     <div className="pointer-events-none fixed inset-0 z-[9999]">
       {/* Trail effect */}
       <AnimatePresence>
-        {trail.map((point, index) => (
+        {trail.map((point) => (
           <motion.div
             key={point.id}
             initial={{ opacity: 0.6, scale: 1 }}
