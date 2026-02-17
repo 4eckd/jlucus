@@ -17,6 +17,8 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
+| origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
 | origin/claude/feature-branch-automation-fuaGE | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ljfRu | #- | - | - | Active |
@@ -32,6 +34,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
+| origin/claude/setup-git-workflow-cVkNK | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
