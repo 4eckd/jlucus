@@ -1,5 +1,13 @@
 'use client';
 
+/**
+ * @deprecated This component is deprecated and should not be used in new code.
+ * Use `hero-terminal.tsx` instead, which implements the Terminal Neon design system.
+ *
+ * This file is kept for reference and backward compatibility with previous feature implementations.
+ * See: artifacts/feat-hero-section-HSC-001/
+ */
+
 import { useTypingAnimation } from '@/hooks/useTypingAnimation';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';

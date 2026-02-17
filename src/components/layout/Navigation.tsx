@@ -132,7 +132,7 @@ export function Navigation() {
       className={cn(
         'fixed top-0 right-0 left-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-[var(--color-background)]/95 py-3 shadow-lg backdrop-blur-md'
+          ? 'bg-background/95 py-3 shadow-lg backdrop-blur-md'
           : 'bg-transparent py-4'
       )}
     >
@@ -161,10 +161,10 @@ export function Navigation() {
                 className={cn(
                   'flex items-center gap-2 rounded-md px-4 py-2',
                   'text-sm font-medium transition-all duration-200',
-                  'hover:bg-[var(--color-surface-hover)]',
+                  'hover:bg-surface-hover',
                   activeSection === item.href.substring(1)
-                    ? 'bg-[var(--color-surface)] text-[var(--color-primary)]'
-                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+                    ? 'text-primary bg-surface'
+                    : 'text-text-secondary hover:text-text-primary'
                 )}
                 aria-current={
                   activeSection === item.href.substring(1) ? 'page' : undefined
@@ -178,15 +178,15 @@ export function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="mobile-menu-button rounded-md p-2 transition-colors hover:bg-[var(--color-surface-hover)] md:hidden"
+            className="mobile-menu-button hover:bg-surface-hover rounded-md p-2 transition-colors md:hidden"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? (
-              <X className="h-6 w-6 text-[var(--color-primary)]" />
+              <X className="text-primary h-6 w-6" />
             ) : (
-              <Menu className="h-6 w-6 text-[var(--color-text-primary)]" />
+              <Menu className="text-text-primary h-6 w-6" />
             )}
           </button>
         </div>
@@ -195,7 +195,7 @@ export function Navigation() {
         <div
           className={cn(
             'mobile-menu absolute top-full right-0 left-0 md:hidden',
-            'border-t border-[var(--color-border)] bg-[var(--color-background)]',
+            'bg-background border-border border-t',
             'overflow-hidden transition-all duration-300 ease-in-out',
             isMobileMenuOpen
               ? 'max-h-screen opacity-100'
@@ -212,10 +212,10 @@ export function Navigation() {
                     className={cn(
                       'flex items-center gap-3 rounded-md px-4 py-3',
                       'text-base font-medium transition-all duration-200',
-                      'hover:bg-[var(--color-surface-hover)]',
+                      'hover:bg-surface-hover',
                       activeSection === item.href.substring(1)
-                        ? 'bg-[var(--color-surface)] text-[var(--color-primary)]'
-                        : 'text-[var(--color-text-secondary)]'
+                        ? 'text-primary bg-surface'
+                        : 'text-text-secondary'
                     )}
                     aria-current={
                       activeSection === item.href.substring(1)
