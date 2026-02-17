@@ -6,5 +6,5 @@ export { SkillTree } from './skill-tree'
 export { ContactSection } from './contact-section'
 export { AnimatedGrid } from './animated-grid'
 
-// Legacy/deprecated components
-export { HeroSection } from './HeroSection'
+// Note: HeroSection.tsx is deprecated - do not import. Use hero-terminal.tsx instead.
+// File is retained in artifacts/feat-hero-section-HSC-001/ for historical reference.
