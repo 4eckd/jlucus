@@ -2,16 +2,16 @@
 
 **Created:** 2025-02-25 08:39:34 -0800
 **Last Updated:** 
-**Commits:** 133
+**Commits:** 135
 **Author:** Claude
 
 ## Recent Commits
 
-- 6934d0d chore: update manifests and docs for branch rename to claude/phase1-issue14-devenv-lJKlJ (Claude, 64 seconds ago)
-- 74cb9c9 chore: update branch tracking manifest [skip ci] (github-actions[bot], 2 minutes ago)
-- b6bd1e2 docs(pr): Add comprehensive PR notes for Issue #14 development environment setup (Claude, 57 minutes ago)
-- 43b8009 chore: update branch tracking manifest [skip ci] (github-actions[bot], 60 minutes ago)
-- 7d660eb merge(dev): integrate development branch with design system fixes (Claude, 62 minutes ago)
+- d20d153 refactor: fix design compliance - use Tailwind classes instead of arbitrary var() (Claude, 25 seconds ago)
+- e9af7fd chore: update branch tracking manifest [skip ci] (github-actions[bot], 4 minutes ago)
+- 6934d0d chore: update manifests and docs for branch rename to claude/phase1-issue14-devenv-lJKlJ (Claude, 5 minutes ago)
+- 74cb9c9 chore: update branch tracking manifest [skip ci] (github-actions[bot], 5 minutes ago)
+- b6bd1e2 docs(pr): Add comprehensive PR notes for Issue #14 development environment setup (Claude, 60 minutes ago)
 
 ## Files Changed
 
@@ -32,6 +32,8 @@ A	progress/branches/claude_phase1-issue14-devenv-lJKlJ.md
 A	progress/pr-drafts/feat-dev-environment-setup-14.md
 A	scripts/dev-setup.sh
 D	src/app/globals.css
+M	src/components/sections/project-dashboard.tsx
+M	src/components/ui/button.tsx
 D	src/styles/colors.css
 
 ## Associated Issues
