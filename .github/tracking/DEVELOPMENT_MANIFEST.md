@@ -25,6 +25,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/git-worktree-setup-5E397 | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-5GkS5 | #- | - | - | Active |
+| origin/claude/setup-git-workflow-Kh0iS | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
