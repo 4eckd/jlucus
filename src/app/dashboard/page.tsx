@@ -1,4 +1,4 @@
-import { ProjectDashboard } from '@/components/sections/project-dashboard';
+import { ProjectDashboard } from '@/components/sections';
 
 export const metadata = {
   title: 'Project Dashboard | jlucus.dev',
