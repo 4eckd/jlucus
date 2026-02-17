@@ -32,8 +32,8 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
 | origin/claude/phase1-issue14-devenv-lJKlJ | #- | - | - | Active |
 | origin/claude/phase1-issue15-neon-effects-RvicC | #- | - | - | Active |
-| origin/claude/phase2-issue20-design-audit-bmgZ4 | #- | - | - | Active |
 | origin/claude/phase3-issue16-hero-terminal-neon-Mme5N | #- | - | - | Active |
+| origin/claude/phase3-issue20-design-audit-IKQWn | #- | - | - | Active |
 | origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
