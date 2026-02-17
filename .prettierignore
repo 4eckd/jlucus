@@ -56,3 +56,6 @@ docs/ascii-art-samples.md
 
 # Progress tracking files (may contain non-standard JSON)
 progress/
+
+# Auto-generated GitHub tracking files
+.github/tracking/
