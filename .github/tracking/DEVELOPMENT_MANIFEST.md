@@ -20,7 +20,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
 | origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
-| origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
 | origin/claude/feature-branch-automation-fuaGE | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ljfRu | #- | - | - | Active |
 | origin/claude/feature-branch-automation-uoLGx | #- | - | - | Active |
@@ -33,7 +32,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
 | origin/claude/phase1-issue14-devenv-lJKlJ | #- | - | - | Active |
 | origin/claude/phase1-issue15-neon-effects-RvicC | #- | - | - | Active |
-| origin/claude/phase1-issue17-design-compliance-audit-ad12u | #- | - | - | Active |
+| origin/claude/phase1-issue17-design-compliance-audit-ad12u | #17 | Phase 1 Foundation | Pending | In Review |
 | origin/claude/phase1-issue25-feature-branch-automation-VEKOF | #- | - | - | Active |
 | origin/claude/phase2-issue30-feature-branch-automation-uoLGx | #- | - | - | Active |
 | origin/claude/phase3-issue16-hero-terminal-neon-Mme5N | #- | - | - | Active |
