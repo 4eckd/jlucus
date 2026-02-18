@@ -7,9 +7,9 @@ import { cn } from '@/lib/utils'
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Button variant
-   * - primary: Green background (main CTA)
-   * - secondary: Emerald background
-   * - outline: Transparent with green border
+   * - primary: Electric Cyan background (main CTA) - Terminal Neon primary
+   * - secondary: Electric Lime background - Terminal Neon secondary
+   * - outline: Transparent with cyan border
    * - ghost: Transparent with hover effect
    */
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
