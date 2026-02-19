@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** development
+**Branch:** claude/add-pdf-download-button-GeSgS
 
 ## Active Development
 
@@ -17,8 +17,8 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/add-pdf-download-button-GeSgS | #- | - | - | Active |
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
-| origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ljfRu | #- | - | - | Active |
@@ -39,6 +39,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/phase3-issue16-hero-terminal-neon-Mme5N | #- | - | - | Active |
 | origin/claude/phase3-issue20-design-audit-IKQWn | #- | - | - | Active |
 | origin/claude/phase3-issue27-design-standards-compliance-0lzXz | #- | - | - | Active |
+| origin/claude/redirect-jlucus-domain-OvKsr | #- | - | - | Active |
 | origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
