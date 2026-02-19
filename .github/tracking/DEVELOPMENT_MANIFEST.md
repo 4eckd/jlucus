@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** development
+**Branch:** claude/phase1-issue15-neon-effects-RvicC
 
 ## Active Development
 
@@ -18,7 +18,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
-| origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ljfRu | #- | - | - | Active |
