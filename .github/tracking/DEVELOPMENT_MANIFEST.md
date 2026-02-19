@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** claude/redirect-to-formerly-incarcerated-KbXVE
+**Branch:** main
 
 ## Active Development
 
