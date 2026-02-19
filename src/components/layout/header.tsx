@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Download, Menu, X } from 'lucide-react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,7 +68,7 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Social Links */}
+        {/* Social Links + CV Download */}
         <div className="hidden md:flex items-center space-x-3">
           {SOCIAL_LINKS.map((link) => (
             <a
@@ -81,6 +81,12 @@ export function Header() {
               {link.name}
             </a>
           ))}
+          <Button variant="outline" size="sm" asChild>
+            <a href="/resume.pdf" download="jlucus-resume.pdf" className="flex items-center gap-1.5">
+              <Download className="w-3.5 h-3.5" />
+              CV
+            </a>
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -123,6 +129,14 @@ export function Header() {
                     {link.name}
                   </a>
                 ))}
+                <a
+                  href="/resume.pdf"
+                  download="jlucus-resume.pdf"
+                  className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
+                >
+                  <Download className="w-4 h-4" />
+                  Download CV
+                </a>
               </div>
             </nav>
           </div>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { TERMINAL_COMMANDS, SITE } from '@/lib/constants';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Github, Mail } from 'lucide-react';
+import { ArrowRight, Download, Github, Mail } from 'lucide-react';
 import { AnimatedGrid } from './animated-grid';
 
 export function HeroTerminal() {
@@ -86,6 +86,13 @@ export function HeroTerminal() {
             <Button size="lg" className="group">
               Explore My Work
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+
+            <Button variant="outline" size="lg" className="group" asChild>
+              <a href="/resume.pdf" download="jlucus-resume.pdf">
+                <Download className="mr-2 w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
+                Download CV
+              </a>
             </Button>
 
             <div className="flex gap-3">
