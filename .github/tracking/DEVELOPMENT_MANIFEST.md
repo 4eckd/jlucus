@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** main
+**Branch:** claude/vln-countdown-page-HT9dd
 
 ## Active Development
 
@@ -17,8 +17,10 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/add-about-redirect-ApenY | #- | - | - | Active |
 | origin/claude/add-pdf-download-button-GeSgS | #- | - | - | Active |
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
+| origin/claude/countdown-ui-mockups-0S2Tt | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ljfRu | #- | - | - | Active |
@@ -45,6 +47,8 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-cVkNK | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
+| origin/claude/vln-countdown-page-HT9dd | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
+| origin/feature/redirect-vlngg | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
 | origin/revert-144-claude/git-workflow-automation-2I1aw | #- | - | - | Active |
