@@ -211,13 +211,15 @@ export default function CountdownPage() {
 
               {/* Big glitching countdown number */}
               <div className="countdown-display">
-                <span
-                  key={numKey}
-                  className="countdown-number"
-                  aria-label={`${seconds} seconds remaining`}
-                >
-                  {displaySecs}
-                </span>
+                <div className="clock-screen">
+                  <span
+                    key={numKey}
+                    className="countdown-number"
+                    aria-label={`${seconds} seconds remaining`}
+                  >
+                    {displaySecs}
+                  </span>
+                </div>
                 <span className="countdown-unit" aria-hidden="true">
                   S&nbsp;E&nbsp;C&nbsp;O&nbsp;N&nbsp;D&nbsp;S
                 </span>
