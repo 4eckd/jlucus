@@ -1,37 +1,59 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Eye, EyeOff } from 'lucide-react';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  // Sync reduce-motion class on <body> and persist preference
+  useEffect(() => {
+    const stored = localStorage.getItem('reduceMotion');
+    if (stored === 'true') setReduceMotion(true);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = NAVIGATION_SECTIONS.map(section => ({
-        id: section.id,
-        element: document.getElementById(section.id),
-      }));
+    if (reduceMotion) {
+      document.body.classList.add('reduce-motion');
+      localStorage.setItem('reduceMotion', 'true');
+    } else {
+      document.body.classList.remove('reduce-motion');
+      localStorage.setItem('reduceMotion', 'false');
+    }
+  }, [reduceMotion]);
 
-      const current = sections.find(section => {
-        if (!section.element) return false;
-        const rect = section.element.getBoundingClientRect();
-        return rect.top <= 100 && rect.bottom >= 100;
-      });
+  const handleScroll = useCallback(() => {
+    // Active section tracking
+    const sections = NAVIGATION_SECTIONS.map(section => ({
+      id: section.id,
+      element: document.getElementById(section.id),
+    }));
 
-      if (current) {
-        setActiveSection(current.id);
-      }
-    };
+    const current = sections.find(section => {
+      if (!section.element) return false;
+      const rect = section.element.getBoundingClientRect();
+      return rect.top <= 100 && rect.bottom >= 100;
+    });
 
-    window.addEventListener('scroll', handleScroll);
+    if (current) setActiveSection(current.id);
+
+    // Scroll progress (0–100)
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    setScrollProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -43,6 +65,16 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm bg-background-secondary/80 border-b border-primary/10">
+      {/* Scroll progress bar */}
+      <div
+        className="absolute top-0 left-0 h-[2px] bg-primary transition-all duration-100"
+        style={{
+          width: `${scrollProgress}%`,
+          boxShadow: 'var(--shadow-neon-primary-sm)',
+        }}
+        aria-hidden="true"
+      />
+
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
@@ -74,7 +106,7 @@ export function Header() {
           ))}
         </nav>
 
-        {/* Social Links */}
+        {/* Right side: social links + accessibility toggle */}
         <div className="hidden md:flex items-center space-x-3">
           {SOCIAL_LINKS.map((link) => (
             <a
@@ -87,6 +119,16 @@ export function Header() {
               {link.name}
             </a>
           ))}
+
+          {/* Reduce motion toggle */}
+          <button
+            onClick={() => setReduceMotion(v => !v)}
+            className="text-muted hover:text-primary transition-colors p-1 rounded"
+            aria-label={reduceMotion ? 'Enable animations' : 'Reduce motion'}
+            title={reduceMotion ? 'Enable animations' : 'Reduce motion'}
+          >
+            {reduceMotion ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -129,6 +171,15 @@ export function Header() {
                     {link.name}
                   </a>
                 ))}
+                {/* Reduce motion in mobile menu too */}
+                <button
+                  onClick={() => setReduceMotion(v => !v)}
+                  className="flex items-center gap-2 text-muted hover:text-primary transition-colors text-sm"
+                  aria-label={reduceMotion ? 'Enable animations' : 'Reduce motion'}
+                >
+                  {reduceMotion ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                  <span>{reduceMotion ? 'Enable animations' : 'Reduce motion'}</span>
+                </button>
               </div>
             </nav>
           </div>
