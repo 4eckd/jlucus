@@ -103,6 +103,10 @@ export default function CountdownPage() {
   const [seconds,    setSeconds]    = useState(TOTAL_SECONDS)
   const [redirected, setRedirected] = useState(false)
   const [numKey,     setNumKey]     = useState(0)
+  // Wall-clock start time — set once, never changes
+  const startRef = useRef<number>(Date.now())
+  // Track last displayed second to avoid redundant numKey bumps
+  const lastSecRef = useRef<number>(TOTAL_SECONDS)
 
   // How many status lines to reveal progressively
   const visibleLines = Math.min(
@@ -125,17 +129,30 @@ export default function CountdownPage() {
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  // Countdown tick — each tick changes numKey to re-mount countdown-number,
-  // which resets the glitch-tick CSS animation automatically
+  // Countdown — anchored to wall-clock so drift never accumulates.
+  // Polls every 100ms for accuracy; only updates visible state when the
+  // displayed second actually changes.
   useEffect(() => {
     if (redirected) return
-    if (seconds <= 0) { doRedirect(); return }
-    const t = setTimeout(() => {
-      setSeconds(s => s - 1)
-      setNumKey(k => k + 1)
-    }, 1000)
-    return () => clearTimeout(t)
-  }, [seconds, redirected, doRedirect])
+
+    const id = setInterval(() => {
+      const elapsed  = (Date.now() - startRef.current) / 1000
+      const remaining = Math.max(0, Math.ceil(TOTAL_SECONDS - elapsed))
+
+      if (remaining !== lastSecRef.current) {
+        lastSecRef.current = remaining
+        setSeconds(remaining)
+        setNumKey(k => k + 1)
+      }
+
+      if (remaining <= 0) {
+        clearInterval(id)
+        doRedirect()
+      }
+    }, 100)
+
+    return () => clearInterval(id)
+  }, [redirected, doRedirect])
 
   const displaySecs = redirected ? '00' : String(seconds).padStart(2, '0')
 
