@@ -17,7 +17,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
-| origin/claude/add-about-redirect-ApenY | #- | - | - | Active |
 | origin/claude/add-pdf-download-button-GeSgS | #- | - | - | Active |
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
@@ -41,7 +40,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/phase3-issue20-design-audit-IKQWn | #- | - | - | Active |
 | origin/claude/phase3-issue27-design-standards-compliance-0lzXz | #- | - | - | Active |
 | origin/claude/redirect-jlucus-domain-OvKsr | #- | - | - | Active |
-| origin/claude/redirect-to-formerly-incarcerated-KbXVE | #- | - | - | Active |
 | origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
