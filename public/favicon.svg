@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- Dark terminal background -->
+  <rect width="32" height="32" rx="5" fill="#0a0a0f"/>
+  <!-- Subtle grid hint -->
+  <line x1="0" y1="16" x2="32" y2="16" stroke="#00d9ff" stroke-width="0.3" opacity="0.12"/>
+  <line x1="16" y1="0" x2="16" y2="32" stroke="#00d9ff" stroke-width="0.3" opacity="0.12"/>
+  <!-- > chevron — terminal prompt -->
+  <path d="M6 10 L15 16 L6 22" stroke="#00d9ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <!-- _ cursor block -->
+  <rect x="18" y="20.5" width="8" height="2.5" rx="1" fill="#00d9ff" opacity="0.82" filter="url(#glow)"/>
+</svg>

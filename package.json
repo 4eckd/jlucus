@@ -54,14 +54,14 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.5",
-    "typescript": "^5.9.3"
+    "tailwindcss": "^4.1.5"
   },
   "devDependencies": {
     "eslint": "^9.13.0",
     "eslint-config-next": "^16.1.0",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "rimraf": "^6.1.2"
+    "rimraf": "^6.1.2",
+    "typescript": "5.9.3"
   }
 }
