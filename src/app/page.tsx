@@ -30,6 +30,11 @@ function MatrixRain() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
+    // Skip animation entirely when user prefers reduced motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const jsReduced = document.body.classList.contains('reduce-motion')
+    if (prefersReduced || jsReduced) return
+
     // Read design token colors at runtime — no hardcoded values
     const style   = getComputedStyle(document.documentElement)
     const primary = style.getPropertyValue('--color-primary').trim()
