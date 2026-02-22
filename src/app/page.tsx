@@ -7,6 +7,7 @@ import { SITE } from '@/lib/constants'
 // ─── Config ────────────────────────────────────────────────────
 const REDIRECT_URL  = 'https://vln.gg/about'
 const TOTAL_SECONDS = 15
+const TOTAL_MS      = TOTAL_SECONDS * 1000
 
 const STATUS_LINES = [
   { prefix: '$', text: './launch_portfolio.sh --env=prod' },
@@ -18,6 +19,22 @@ const RECENT_ITEMS = [
   { label: 'VLN.GG',     href: REDIRECT_URL,  tag: 'LIVE',     tagClass: 'recent-tag--live'     },
   { label: 'jlucus.dev', href: SITE.url,       tag: 'BUILDING', tagClass: 'recent-tag--building' },
   { label: '@4eckd',     href: SITE.github,    tag: 'OPEN',     tagClass: 'recent-tag--open'     },
+] as const
+
+// ─── Knowledge facts — rotate every 3 s ───────────────────────
+const KNOWLEDGE_FACTS = [
+  { tag: 'GIT',   text: 'rebase -i HEAD~N  →  squash last N commits interactively' },
+  { tag: 'PERF',  text: 'performance.now() gives sub-millisecond precision timing' },
+  { tag: 'CSS',   text: 'contain: paint clips all rendering to the element bounds' },
+  { tag: 'TCP',   text: 'handshake order: SYN → SYN-ACK → ACK (3-way)' },
+  { tag: 'JS',    text: 'structuredClone() deep-copies without a JSON round-trip' },
+  { tag: 'UNIX',  text: 'diff <(cmd1) <(cmd2)  →  process substitution trick' },
+  { tag: 'HTTP',  text: '304 Not Modified  →  browser serves directly from cache' },
+  { tag: 'REGEX', text: '(?:...) is a non-capturing group — no back-reference cost' },
+  { tag: 'NODE',  text: 'process.nextTick() fires before any I/O event callbacks' },
+  { tag: 'DNS',   text: 'TTL value controls how long resolvers cache a record' },
+  { tag: 'WEB',   text: 'preconnect hint reduces TCP + TLS handshake latency' },
+  { tag: 'TS',    text: 'satisfies operator validates shape without widening type' },
 ] as const
 
 // ─── Matrix Rain ───────────────────────────────────────────────
@@ -103,18 +120,37 @@ function AvatarHex() {
 
 // ─── Main page ─────────────────────────────────────────────────
 export default function CountdownPage() {
-  const [seconds,    setSeconds]    = useState(TOTAL_SECONDS)
+  const [elapsed,    setElapsed]    = useState(0)       // ms since start
   const [redirected, setRedirected] = useState(false)
-  const [numKey,     setNumKey]     = useState(0)
+  const [numKey,     setNumKey]     = useState(0)       // remount on each second tick
 
-  // How many status lines to reveal progressively
+  const prevSecRef   = useRef(TOTAL_SECONDS)
+  const startTimeRef = useRef(0)
+
+  // Derived values
+  const remaining    = Math.max(0, TOTAL_MS - elapsed)
+  const mins         = Math.floor(remaining / 60000)
+  const secs         = Math.floor((remaining % 60000) / 1000)
+  const cs           = Math.floor((remaining % 1000) / 10)   // centiseconds 0–99
+  const isExpired    = elapsed >= TOTAL_MS
+  const secsRemaining = Math.ceil(remaining / 1000)
+
+  const displayTime = isExpired || redirected
+    ? '00:00:00'
+    : `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}:${String(cs).padStart(2, '0')}`
+
+  // Progress 0 → 100 as time elapses
+  const progress = Math.min(100, (elapsed / TOTAL_MS) * 100)
+
+  // Reveal status lines progressively
   const visibleLines = Math.min(
-    Math.floor(((TOTAL_SECONDS - seconds) / TOTAL_SECONDS) * STATUS_LINES.length) + 1,
+    Math.floor((elapsed / TOTAL_MS) * STATUS_LINES.length) + 1,
     STATUS_LINES.length,
   )
 
-  // Progress 0 → 100 as time elapses
-  const progress = ((TOTAL_SECONDS - seconds) / TOTAL_SECONDS) * 100
+  // Rotate knowledge fact every 3 s
+  const factIdx = Math.floor(elapsed / 3000) % KNOWLEDGE_FACTS.length
+  const fact    = KNOWLEDGE_FACTS[factIdx]
 
   const doRedirect = useCallback(() => {
     if (redirected) return
@@ -128,19 +164,35 @@ export default function CountdownPage() {
     return () => { document.body.style.overflow = '' }
   }, [])
 
-  // Countdown tick — each tick changes numKey to re-mount countdown-number,
-  // which resets the glitch-tick CSS animation automatically
+  // Centisecond timer — updates every 10 ms, triggers numKey on second boundary
   useEffect(() => {
     if (redirected) return
-    if (seconds <= 0) { doRedirect(); return }
-    const t = setTimeout(() => {
-      setSeconds(s => s - 1)
-      setNumKey(k => k + 1)
-    }, 1000)
-    return () => clearTimeout(t)
-  }, [seconds, redirected, doRedirect])
+    startTimeRef.current = Date.now()
+    prevSecRef.current   = TOTAL_SECONDS
 
-  const displaySecs = redirected ? '00' : String(seconds).padStart(2, '0')
+    const id = setInterval(() => {
+      const newElapsed = Date.now() - startTimeRef.current
+
+      if (newElapsed >= TOTAL_MS) {
+        setElapsed(TOTAL_MS)
+        clearInterval(id)
+        // Brief pause so 00:00:00 renders in red before navigating
+        setTimeout(doRedirect, 320)
+        return
+      }
+
+      setElapsed(newElapsed)
+
+      // Trigger glitch-tick animation on each whole-second crossing
+      const currentSec = Math.floor((TOTAL_MS - newElapsed) / 1000)
+      if (currentSec !== prevSecRef.current) {
+        setNumKey(k => k + 1)
+        prevSecRef.current = currentSec
+      }
+    }, 10)
+
+    return () => clearInterval(id)
+  }, [redirected, doRedirect])
 
   return (
     <div className="countdown-overlay" role="main" aria-label="Portfolio launching soon">
@@ -169,7 +221,7 @@ export default function CountdownPage() {
 
           <div className="hud-badge">
             <span className="hud-dot hud-dot--accent" />
-            <span>REDIRECT&nbsp;{redirected ? 'NOW' : `${seconds}s`}</span>
+            <span>REDIRECT&nbsp;{redirected ? 'NOW' : `${secsRemaining}s`}</span>
           </div>
         </div>
 
@@ -207,17 +259,25 @@ export default function CountdownPage() {
             {/* Terminal body */}
             <div className="terminal-body terminal-body--compact">
 
-              {/* Big glitching countdown number */}
+              {/* Knowledge ticker — rotates above clock */}
+              <div className="knowledge-ticker" aria-live="polite" aria-atomic="true">
+                <span className="knowledge-tag">{fact.tag}</span>
+                <span className="knowledge-text">{fact.text}</span>
+              </div>
+
+              {/* Clock screen — glitch effects isolated inside */}
               <div className="countdown-display">
-                <span
-                  key={numKey}
-                  className="countdown-number"
-                  aria-label={`${seconds} seconds remaining`}
-                >
-                  {displaySecs}
-                </span>
+                <div className="clock-screen">
+                  <span
+                    key={numKey}
+                    className={`countdown-number${isExpired ? ' countdown-number--expired' : ''}`}
+                    aria-label={`${secsRemaining} seconds remaining`}
+                  >
+                    {displayTime}
+                  </span>
+                </div>
                 <span className="countdown-unit" aria-hidden="true">
-                  S&nbsp;E&nbsp;C&nbsp;O&nbsp;N&nbsp;D&nbsp;S
+                  MM&nbsp;·&nbsp;SS&nbsp;·&nbsp;CS
                 </span>
               </div>
 

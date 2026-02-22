@@ -12,12 +12,12 @@ const ANIMATION_CONFIG = {
   },
   grid: {
     lineWidth: 1,
-    opacity: 0.05,
+    opacity: 0.08, // increased from 0.05 for better visibility
   },
   dots: {
     modulo: 2, // Multiplier for gridSize to determine dot spacing
-    opacityBase: 0.3,
-    opacityAmplitude: 0.2,
+    opacityBase: 0.45, // increased from 0.3 for better blending visibility
+    opacityAmplitude: 0.18,
     opacitySpeed: 0.002,
   },
   stream: {
@@ -25,7 +25,7 @@ const ANIMATION_CONFIG = {
     speed: 0.05,
     spacing: 100,
     radius: 3,
-    opacity: 0.2,
+    opacity: 0.28, // increased from 0.2 for better visibility
     amplitude: 200,
     timeOffset: 1000,
     animationSpeed: 0.001,
@@ -164,7 +164,7 @@ export function AnimatedGrid({ contained = false }: AnimatedGridProps) {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-0 opacity-60 pointer-events-none"
+      className="absolute inset-0 z-0 opacity-75 pointer-events-none"
     />
   );
 }
