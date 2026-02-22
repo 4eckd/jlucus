@@ -17,6 +17,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/add-about-redirect-ApenY | #- | - | - | Active |
 | origin/claude/add-pdf-download-button-GeSgS | #- | - | - | Active |
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
