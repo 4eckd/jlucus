@@ -76,25 +76,17 @@ function MatrixRain() {
   return <canvas ref={canvasRef} className="matrix-canvas" aria-hidden="true" />
 }
 
-// ─── Avatar hex component ──────────────────────────────────────
+// ─── Avatar component ──────────────────────────────────────────
 function AvatarHex() {
   return (
     <div className="avatar-zone">
       <div className="avatar-frame">
-        {/* Animated gradient border — scaled slightly outside image */}
-        <div className="avatar-hex-bg" aria-hidden="true" />
-
-        {/* Image — clipped to hex */}
-        <div className="avatar-hex-img">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/avatar.png"
-            alt="jlucus — developer avatar"
-            className="avatar-img"
-          />
-        </div>
-
-        {/* Periodic scan-line sweep overlay */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/avatar.png"
+          alt="jlucus — developer avatar"
+          className="avatar-img"
+        />
         <div className="avatar-scan" aria-hidden="true" />
       </div>
     </div>
