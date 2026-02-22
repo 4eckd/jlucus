@@ -46,7 +46,13 @@ export function Header() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-primary">{'> jlucus'}</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo.png"
+            alt="jlucus"
+            className="h-8 w-auto object-contain"
+            style={{ filter: 'drop-shadow(0 0 6px rgb(0 217 255 / 0.5))' }}
+          />
           <span className="text-primary cursor-pointer animate-pulse">_</span>
         </div>
 

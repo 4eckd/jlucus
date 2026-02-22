@@ -17,11 +17,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   icons: {
     icon: [
+      { url: '/images/logo.png', type: 'image/png' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
       { url: '/favicon.ico' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.ico',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
   },
   openGraph: {
     type: 'website',
@@ -30,12 +31,21 @@ export const metadata: Metadata = {
     title: SITE.title,
     description: SITE.description,
     siteName: SITE.name,
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'jlucus.dev — launching soon',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SITE.title,
     description: SITE.description,
     creator: '@jlucus',
+    images: ['/og-image.png'],
   },
 };
 

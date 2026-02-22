@@ -148,6 +148,16 @@ export default function CountdownPage() {
       {/* ── Background layers ──────────────────────── */}
       <MatrixRain />
       <div className="bg-grid countdown-grid-overlay" aria-hidden="true" />
+
+      {/* OG hero image — blended opaque into background */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/og-image.png"
+        alt=""
+        aria-hidden="true"
+        className="og-bg-image"
+      />
+
       <div className="countdown-vignette"              aria-hidden="true" />
       <div className="scanline"                        aria-hidden="true" />
 
