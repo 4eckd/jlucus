@@ -1,768 +1,308 @@
-'use client';
+'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react'
+import { SITE } from '@/lib/constants'
 
-// ─── Config ────────────────────────────────────────────────────────────────
-const REDIRECT_URL = 'https://vln.gg/about';
-// Update AVATAR_URL to the actual vln.gg/about avatar if different
-const AVATAR_URL = 'https://github.com/4eckd.png';
-// Launch target date (UTC)
-const LAUNCH_DATE = new Date('2026-04-01T00:00:00Z');
+// ─── Config ────────────────────────────────────────────────────
+const REDIRECT_URL  = 'https://vln.gg/about'
+const TOTAL_SECONDS = 15
 
-// ─── Random content pools ──────────────────────────────────────────────────
-const STATUS_MESSAGES = [
-  '> ESTABLISHING ENCRYPTED TUNNEL TO VLN.GG...',
-  '> SYNCHRONIZING NEURAL NETWORKS... [OK]',
-  '> CALIBRATING QUANTUM PROCESSORS...',
-  '> LOADING CREATIVE ALGORITHMS v2.6.1...',
-  '> INITIALIZING VLN PROTOCOL SUITE...',
-  '> COMPILING EXPERIENCE STACK... [87%]',
-  '> SCANNING FOR SIGNAL LOCK...',
-  '> AUTHENTICATING AGENT CREDENTIALS...',
-  '> DEPLOYING INNOVATION PAYLOAD...',
-  '> MAPPING VENTURE COORDINATES...',
-  '> BYPASSING LEGACY INFRASTRUCTURE...',
-  '> DISTRIBUTING ACROSS 2,847 NODES...',
-  '> PARSING CREATIVE DIRECTIVES...',
-  '> INJECTING DESIGN TOKENS...',
-  '> VECTORIZING IDENTITY ASSETS...',
-  '> COMPRESSING REALITY MATRIX...',
-  '> HANDSHAKE COMPLETE... STANDING BY',
-  '> ROUTING THROUGH SECURED PROXY [AES-256]...',
-  '> LOADING PROFILE: J.LUCUS // FOUNDER...',
-  '> DECRYPTING VENTURE FILES... ACCESS GRANTED',
-  '> WARMING UP CREATIVE SUITE...',
-  '> SYNCING BLOCKCHAIN LEDGER... [DONE]',
-  '> UPLINK STABLE — LATENCY: <1ms',
-  '> VLN_CORE_v2.launch() — PENDING EXECUTION',
-];
+const STATUS_LINES = [
+  { prefix: '$', text: './launch_portfolio.sh --env=prod' },
+  { prefix: '✓', text: 'build artifacts verified' },
+  { prefix: '✓', text: 'CDN endpoints connected (3 regions)' },
+  { prefix: '✓', text: 'authentication tokens initialized' },
+  { prefix: '~', text: `redirect → ${REDIRECT_URL}` },
+] as const
 
-const TAGLINES = [
-  'SOMETHING EPIC IS LOADING',
-  'THE FUTURE IS COMPILING',
-  'VENTURE UNLOCKED — STANDBY',
-  'REALITY UPGRADE IN PROGRESS',
-  'INNOVATION SEQUENCE INITIATED',
-  'NEXT LEVEL IS BEING RENDERED',
-];
+const RECENT_ITEMS = [
+  { label: 'VLN.GG — venture network',    href: REDIRECT_URL,  tag: 'LIVE',     tagClass: 'recent-tag--live'     },
+  { label: 'jlucus.dev — portfolio v2',   href: SITE.url,      tag: 'BUILDING', tagClass: 'recent-tag--building' },
+  { label: '@4eckd — open source',        href: SITE.github,   tag: 'OPEN',     tagClass: 'recent-tag--open'     },
+] as const
 
-const FLOATING_FRAGMENTS = [
-  '0xVLN_CORE_v2',
-  '01001010 01001100',
-  'VLN_GENESIS.exe',
-  'NAV_LOCK: ARMED',
-  'FPS: 144 | PING: <1ms',
-  'KERNEL v4.2.0-stable',
-  'STREAM [AES-256] ACTIVE',
-  '> sudo vln --launch',
-  'NODE_COUNT: 2,847',
-  'ENTROPY: HIGH',
-  'PKT: 0x4E5A00FF',
-  'SIGNAL_STRENGTH: MAX',
-  'ETH_ADDR: 0x4eckd...',
-  'UPLINK: SECURED',
-  'VLN.BOOT.SEQUENCE[7]',
-];
-
-const CORNER_COORDS = [
-  'SYS: 0x00A9FF | PROC: 99.7%',
-  'LAT: 0.47ms | NODES: 2,847',
-  'VLN/CORE/v2.6.1/STABLE',
-  'AGENT_ID: 4ECKD_JL',
-];
-
-// ─── Countdown helpers ─────────────────────────────────────────────────────
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  total: number;
-}
-
-function calcTimeLeft(): TimeLeft {
-  const diff = Math.max(0, LAUNCH_DATE.getTime() - Date.now());
-  return {
-    total: diff,
-    days: Math.floor(diff / 864e5),
-    hours: Math.floor((diff / 36e5) % 24),
-    minutes: Math.floor((diff / 6e4) % 60),
-    seconds: Math.floor((diff / 1e3) % 60),
-  };
-}
-
-// ─── Matrix Rain Canvas ───────────────────────────────────────────────────
+// ─── Matrix Rain ───────────────────────────────────────────────
 function MatrixRain() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Read design token colors at runtime — no hardcoded values
+    const style    = getComputedStyle(document.documentElement)
+    const primary  = style.getPropertyValue('--color-primary').trim()   // "0 217 255"
+    const bg       = style.getPropertyValue('--color-dark-950').trim()  // "0 0 0"
+    const [pr, pg, pb] = primary.split(' ')
+    const [br, bg2, bb] = bg.split(' ')
+
+    const CHAR_W  = 16
+    const CHARS   = '01アイウエオカキクケコ<>{}[]|;:!/'
+    let drops: number[] = []
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
+      canvas.width  = window.innerWidth
+      canvas.height = window.innerHeight
+      const cols = Math.floor(canvas.width / CHAR_W)
+      drops = Array.from({ length: cols }, () => Math.random() * -60)
+    }
+    resize()
+    window.addEventListener('resize', resize)
 
-    const CHARS = '01アイウエオカキ∂∑∫∞ABCDEF0123456789█▒░';
-    const SIZE = 13;
-    let cols = Math.floor(canvas.width / SIZE);
-    const drops: number[] = Array.from({ length: cols }, () => Math.random() * -80);
-
-    const COLORS = [
-      'rgba(0,217,255,0.9)',
-      'rgba(0,217,255,0.45)',
-      'rgba(0,217,255,0.2)',
-      'rgba(255,184,0,0.5)',
-      'rgba(204,255,0,0.35)',
-      'rgba(255,0,110,0.3)',
-    ];
-
-    let raf: number;
     const draw = () => {
-      ctx.fillStyle = 'rgba(0,0,0,0.045)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = `rgba(${br},${bg2},${bb},0.05)`
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.font = `13px "JetBrains Mono", monospace`
 
-      cols = Math.floor(canvas.width / SIZE);
-      while (drops.length < cols) drops.push(Math.random() * -80);
+      drops.forEach((y, i) => {
+        const char = CHARS[Math.floor(Math.random() * CHARS.length)]
+        // Head of column is brighter
+        ctx.fillStyle = y < 1
+          ? `rgba(${pr},${pg},${pb},0.92)`
+          : `rgba(${pr},${pg},${pb},0.11)`
+        ctx.fillText(char, i * CHAR_W, y * CHAR_W)
+        if (y * CHAR_W > canvas.height && Math.random() > 0.975) drops[i] = 0
+        drops[i] += 0.5
+      })
+    }
 
-      for (let i = 0; i < cols; i++) {
-        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
-        const color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        ctx.fillStyle = color;
-        ctx.font = `${SIZE}px 'JetBrains Mono', monospace`;
-        ctx.fillText(char, i * SIZE, drops[i] * SIZE);
-        if (drops[i] * SIZE > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-
+    const id = setInterval(draw, 50)
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
+      clearInterval(id)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
 
-  return <canvas ref={canvasRef} className="absolute inset-0" style={{ opacity: 0.18, zIndex: 1 }} />;
+  return <canvas ref={canvasRef} className="matrix-canvas" aria-hidden="true" />
 }
 
-// ─── Glitch text ──────────────────────────────────────────────────────────
-function GlitchText({ text, className }: { text: string; className?: string }) {
-  const [display, setDisplay] = useState(text);
-  const [shifted, setShifted] = useState(false);
-  const GLITCH = 'X@#$!%&ABCDEF0123456789▒█░';
+// ─── Main page ─────────────────────────────────────────────────
+export default function CountdownPage() {
+  const [seconds,    setSeconds]    = useState(TOTAL_SECONDS)
+  const [redirected, setRedirected] = useState(false)
+  const [numKey,     setNumKey]     = useState(0)
 
+  // How many status lines to reveal
+  const visibleLines = Math.min(
+    Math.floor(((TOTAL_SECONDS - seconds) / TOTAL_SECONDS) * STATUS_LINES.length) + 1,
+    STATUS_LINES.length,
+  )
+
+  // Progress 0 → 100 as time elapses
+  const progress = ((TOTAL_SECONDS - seconds) / TOTAL_SECONDS) * 100
+
+  const doRedirect = useCallback(() => {
+    if (redirected) return
+    setRedirected(true)
+    window.location.href = REDIRECT_URL
+  }, [redirected])
+
+  // Lock body scroll while overlay is active
   useEffect(() => {
-    let timer: ReturnType<typeof setTimeout>;
-    const trigger = () => {
-      setShifted(true);
-      let count = 0;
-      const iv = setInterval(() => {
-        setDisplay(
-          text
-            .split('')
-            .map((c) =>
-              c === ' ' || c === '.'
-                ? c
-                : Math.random() > 0.65
-                ? GLITCH[Math.floor(Math.random() * GLITCH.length)]
-                : c
-            )
-            .join('')
-        );
-        count++;
-        if (count > 7) {
-          clearInterval(iv);
-          setDisplay(text);
-          setShifted(false);
-        }
-      }, 55);
-    };
-    const schedule = () => {
-      timer = setTimeout(() => {
-        trigger();
-        schedule();
-      }, 2200 + Math.random() * 3500);
-    };
-    schedule();
-    return () => clearTimeout(timer);
-  }, [text]);
-
-  return (
-    <span
-      className={className}
-      style={{
-        display: 'inline-block',
-        transform: shifted ? `translateX(${(Math.random() - 0.5) * 3}px) skewX(${(Math.random() - 0.5) * 1.5}deg)` : 'none',
-        transition: 'transform 0.05s',
-        filter: shifted ? 'blur(0.4px)' : 'none',
-      }}
-    >
-      {display}
-    </span>
-  );
-}
-
-// ─── Random tagline cycler ────────────────────────────────────────────────
-function RandomTagline() {
-  const [idx, setIdx] = useState(() => Math.floor(Math.random() * TAGLINES.length));
-  useEffect(() => {
-    const iv = setInterval(
-      () => setIdx((p) => (p + 1) % TAGLINES.length),
-      3800
-    );
-    return () => clearInterval(iv);
-  }, []);
-  return (
-    <AnimatePresence mode="wait">
-      <motion.span
-        key={idx}
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -6 }}
-        transition={{ duration: 0.4 }}
-        className="block font-mono text-xs tracking-[0.25em] uppercase"
-        style={{ color: 'rgb(var(--color-text-secondary))' }}
-      >
-        {TAGLINES[idx]}
-      </motion.span>
-    </AnimatePresence>
-  );
-}
-
-// ─── Countdown digit tile ─────────────────────────────────────────────────
-function DigitTile({ value, label }: { value: number; label: string }) {
-  const padded = String(value).padStart(2, '0');
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="relative">
-        {/* Digit box */}
-        <div
-          className="relative font-mono font-black text-4xl sm:text-5xl md:text-6xl w-[4.5rem] sm:w-[5.5rem] md:w-[6.5rem] h-[4.5rem] sm:h-[5.5rem] md:h-[6.5rem] flex items-center justify-center rounded-lg overflow-hidden"
-          style={{
-            background: 'rgba(0,10,18,0.95)',
-            border: '1px solid rgba(0,217,255,0.25)',
-            boxShadow: '0 0 12px rgba(0,217,255,0.12), inset 0 0 20px rgba(0,217,255,0.04)',
-          }}
-        >
-          {/* Scanline inside tile */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(0deg, rgba(0,217,255,0.03) 0px, rgba(0,217,255,0.03) 1px, transparent 1px, transparent 4px)',
-            }}
-          />
-          {/* Horizontal separator */}
-          <div
-            className="absolute left-0 right-0 h-px"
-            style={{ top: '50%', background: 'rgba(0,217,255,0.12)' }}
-          />
-          <AnimatePresence mode="popLayout">
-            <motion.span
-              key={padded}
-              initial={{ opacity: 0, y: -16, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.9 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              style={{ color: 'rgb(var(--color-primary))', position: 'relative', zIndex: 2 }}
-            >
-              {padded}
-            </motion.span>
-          </AnimatePresence>
-          {/* Corner accents */}
-          <div className="absolute top-1 left-1 w-2 h-2 border-t border-l" style={{ borderColor: 'rgba(0,217,255,0.4)' }} />
-          <div className="absolute top-1 right-1 w-2 h-2 border-t border-r" style={{ borderColor: 'rgba(0,217,255,0.4)' }} />
-          <div className="absolute bottom-1 left-1 w-2 h-2 border-b border-l" style={{ borderColor: 'rgba(0,217,255,0.4)' }} />
-          <div className="absolute bottom-1 right-1 w-2 h-2 border-b border-r" style={{ borderColor: 'rgba(0,217,255,0.4)' }} />
-        </div>
-      </div>
-      <span
-        className="font-mono text-[0.6rem] uppercase tracking-[0.2em]"
-        style={{ color: 'rgb(var(--color-text-tertiary))' }}
-      >
-        {label}
-      </span>
-    </div>
-  );
-}
-
-// ─── Floating fragment ─────────────────────────────────────────────────────
-function FloatingFragment({ text, index }: { text: string; index: number }) {
-  const colors = [
-    'rgb(var(--color-primary))',
-    'rgb(var(--color-warning))',
-    'rgb(var(--color-secondary))',
-    'rgb(var(--color-accent))',
-  ];
-  const color = colors[index % colors.length];
-  const left = `${4 + ((index * 19 + 7) % 82)}%`;
-  const top = `${6 + ((index * 29 + 3) % 84)}%`;
-  const duration = 4 + (index % 5) * 0.8;
-  const delay = index * 0.35;
-
-  return (
-    <motion.div
-      className="absolute font-mono text-[0.6rem] pointer-events-none select-none whitespace-nowrap"
-      style={{ left, top, color, opacity: 0.18, zIndex: 4 }}
-      animate={{ y: [0, -10, 0], opacity: [0.12, 0.28, 0.12] }}
-      transition={{ duration, repeat: Infinity, ease: 'easeInOut', delay }}
-    >
-      {text}
-    </motion.div>
-  );
-}
-
-// ─── Network packet notification ──────────────────────────────────────────
-function PacketNotification() {
-  const [visible, setVisible] = useState(false);
-  const [msg, setMsg] = useState('');
-
-  const PACKETS = [
-    'PKT_RECV: 0x4E5A00FF — VLN_CORE',
-    'SYN: 192.168.vln.0 — HANDSHAKE OK',
-    'UPLINK BURST: 2.4 Gbps — SUSTAINED',
-    'AGENT_PING: J.LUCUS — ONLINE',
-    'STREAM_ID: 0xAF2B — SECURED',
-    'NODE_SYNC: 2847/2847 — COMPLETE',
-  ];
-
-  useEffect(() => {
-    const show = () => {
-      setMsg(PACKETS[Math.floor(Math.random() * PACKETS.length)]);
-      setVisible(true);
-      setTimeout(() => setVisible(false), 2600);
-    };
-    show();
-    const iv = setInterval(show, 4500 + Math.random() * 3000);
-    return () => clearInterval(iv);
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 40 }}
-          transition={{ duration: 0.3 }}
-          className="absolute bottom-16 right-6 font-mono text-[0.6rem] px-3 py-1.5 rounded"
-          style={{
-            background: 'rgba(0,217,255,0.06)',
-            border: '1px solid rgba(0,217,255,0.2)',
-            color: 'rgb(var(--color-primary))',
-            zIndex: 20,
-          }}
-        >
-          {msg}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
-// ─── Main page ─────────────────────────────────────────────────────────────
-export default function VLNCountdownPage() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calcTimeLeft);
-  const [statusIdx, setStatusIdx] = useState(0);
-  const [avatarErr, setAvatarErr] = useState(false);
-  const [redirected, setRedirected] = useState(false);
-  const [pingMs] = useState(() => (Math.random() * 0.9 + 0.1).toFixed(2));
-  const [randomSeed] = useState(() => Math.floor(Math.random() * 1000));
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [])
 
   // Countdown tick
   useEffect(() => {
-    const iv = setInterval(() => {
-      const t = calcTimeLeft();
-      setTimeLeft(t);
-      if (t.total === 0 && !redirected) {
-        setRedirected(true);
-        window.location.href = REDIRECT_URL;
-      }
-    }, 1000);
-    return () => clearInterval(iv);
-  }, [redirected]);
+    if (redirected) return
+    if (seconds <= 0) { doRedirect(); return }
+    const t = setTimeout(() => {
+      setSeconds(s => s - 1)
+      setNumKey(k => k + 1)
+    }, 1000)
+    return () => clearTimeout(t)
+  }, [seconds, redirected, doRedirect])
 
-  // Status message rotation
-  useEffect(() => {
-    const iv = setInterval(
-      () => setStatusIdx(Math.floor(Math.random() * STATUS_MESSAGES.length)),
-      2800
-    );
-    return () => clearInterval(iv);
-  }, []);
-
-  // Progress from Feb 22 (start) to LAUNCH_DATE
-  const START_TS = new Date('2026-02-22T00:00:00Z').getTime();
-  const totalMs = LAUNCH_DATE.getTime() - START_TS;
-  const elapsed = Date.now() - START_TS;
-  const progress = Math.min(100, Math.max(0, (elapsed / totalMs) * 100));
-
-  const handleEnter = useCallback(() => {
-    window.location.href = REDIRECT_URL;
-  }, []);
+  const displaySecs = redirected ? '00' : String(seconds).padStart(2, '0')
 
   return (
-    <div
-      className="fixed inset-0 overflow-hidden"
-      style={{ background: 'rgb(0,0,0)', zIndex: 9999 }}
-    >
-      {/* ── Layers ── */}
+    <div className="countdown-overlay" role="main" aria-label="Portfolio launching soon">
+
+      {/* ── Background layers ──────────────────── */}
       <MatrixRain />
+      <div className="bg-grid countdown-grid-overlay" aria-hidden="true" />
+      <div className="countdown-vignette"              aria-hidden="true" />
+      <div className="scanline"                        aria-hidden="true" />
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 2,
-          backgroundImage: `
-            linear-gradient(rgba(0,217,255,0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,217,255,0.06) 1px, transparent 1px)
-          `,
-          backgroundSize: '44px 44px',
-        }}
-      />
+      {/* ── Shell ─────────────────────────────── */}
+      <div className="countdown-shell">
 
-      {/* Vignette */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          zIndex: 3,
-          background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, rgba(0,0,0,0.85) 100%)',
-        }}
-      />
-
-      {/* Floating fragments */}
-      {FLOATING_FRAGMENTS.map((f, i) => (
-        <FloatingFragment key={f} text={f} index={i} />
-      ))}
-
-      {/* Scanline sweep */}
-      <div className="scanline" style={{ zIndex: 5 }} />
-
-      {/* Packet notifications */}
-      <PacketNotification />
-
-      {/* ── Content ── */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 py-8" style={{ zIndex: 10 }}>
-        {/* Top HUD bar */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 py-3"
-          style={{
-            borderBottom: '1px solid rgba(0,217,255,0.08)',
-            background: 'rgba(0,0,0,0.6)',
-          }}
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-            <span className="font-mono text-[0.6rem] uppercase tracking-widest" style={{ color: 'rgba(0,217,255,0.5)' }}>
-              SYSTEM://VLN.GG
-            </span>
-          </div>
-          <div className="hidden sm:flex items-center gap-6 font-mono text-[0.6rem]" style={{ color: 'rgba(0,217,255,0.35)' }}>
-            <span>PING: {pingMs}ms</span>
-            <span>SEED: 0x{randomSeed.toString(16).toUpperCase().padStart(3, '0')}</span>
-            <span>ENC: AES-256-GCM</span>
-          </div>
-          <div className="font-mono text-[0.6rem]" style={{ color: 'rgba(0,217,255,0.4)' }}>
-            {CORNER_COORDS[Math.floor(Date.now() / 10000) % CORNER_COORDS.length]}
-          </div>
-        </motion.div>
-
-        {/* Main card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-xl"
-        >
-          {/* Terminal titlebar */}
-          <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-t-xl"
-            style={{
-              background: 'rgba(0,217,255,0.04)',
-              border: '1px solid rgba(0,217,255,0.2)',
-              borderBottom: 'none',
-            }}
-          >
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--color-error))', opacity: 0.7 }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--color-warning))', opacity: 0.7 }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: 'rgb(var(--color-success))', opacity: 0.7 }} />
-            <span
-              className="font-mono text-[0.6rem] ml-2 opacity-50"
-              style={{ color: 'rgb(var(--color-primary))' }}
-            >
-              vln_launcher — bash — 80×24
-            </span>
+        {/* HUD bar */}
+        <div className="hud-bar" role="banner">
+          <div className="hud-badge">
+            <span className="hud-dot hud-dot--pulse" />
+            <span>SYS&nbsp;LIVE</span>
           </div>
 
-          {/* Card body */}
-          <div
-            className="flex flex-col items-center gap-5 px-6 py-8 md:px-10 md:py-10 rounded-b-xl"
-            style={{
-              background: 'rgba(4,8,16,0.94)',
-              border: '1px solid rgba(0,217,255,0.2)',
-              backdropFilter: 'blur(24px)',
-              boxShadow:
-                '0 0 60px rgba(0,217,255,0.08), 0 0 120px rgba(0,0,0,0.6), inset 0 0 40px rgba(0,217,255,0.02)',
-            }}
-          >
-            {/* Avatar + identity */}
-            <div className="flex flex-col items-center gap-3">
-              {/* Rotating rings + avatar */}
-              <div className="relative flex items-center justify-center w-28 h-28">
-                {/* Outer slow ring */}
-                <motion.div
-                  className="absolute rounded-full"
-                  style={{
-                    width: '110%',
-                    height: '110%',
-                    border: '1px solid rgba(0,217,255,0.25)',
-                  }}
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+          <div className="hud-badge hud-badge--dim">
+            <span>jlucus.dev</span>
+            <span className="hud-sep">·</span>
+            <span>v2.0.0</span>
+          </div>
+
+          <div className="hud-badge">
+            <span className="hud-dot hud-dot--accent" />
+            <span>REDIRECT&nbsp;{redirected ? 'NOW' : `${seconds}s`}</span>
+          </div>
+        </div>
+
+        {/* Split portal */}
+        <div className="split-portal">
+
+          {/* ── Left: Brand panel ─────────────── */}
+          <aside className="brand-panel">
+
+            {/* Identity row */}
+            <div className="panel-row">
+              <p className="identity-handle">@4eckd</p>
+              <h1 className="identity-name">jlucus</h1>
+              <p className="identity-title">Engineer · Builder · Architect</p>
+              <p className="identity-tagline">
+                professional design meets<br />technical excellence
+              </p>
+            </div>
+
+            <div className="panel-divider" />
+
+            {/* Social links row */}
+            <div className="panel-row">
+              <p className="section-label">Connect</p>
+              <div className="social-links">
+                <a
+                  href={SITE.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-link"
+                  aria-label="GitHub profile"
                 >
-                  <div
-                    className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full"
-                    style={{ background: 'rgb(var(--color-primary))', boxShadow: 'var(--shadow-neon-primary)' }}
-                  />
-                </motion.div>
-
-                {/* Inner counter-ring */}
-                <motion.div
-                  className="absolute rounded-full"
-                  style={{
-                    width: '120%',
-                    height: '120%',
-                    border: '1px dashed rgba(255,184,0,0.3)',
-                  }}
-                  animate={{ rotate: -360 }}
-                  transition={{ duration: 7, repeat: Infinity, ease: 'linear' }}
+                  <Github size={11} aria-hidden="true" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href={SITE.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-link"
+                  aria-label="LinkedIn profile"
                 >
-                  <div
-                    className="absolute bottom-0 right-0 w-1.5 h-1.5 rounded-full"
-                    style={{ background: 'rgb(var(--color-warning))', boxShadow: '0 0 6px rgb(var(--color-warning))' }}
-                  />
-                </motion.div>
-
-                {/* Avatar */}
-                <div
-                  className="relative w-full h-full rounded-full overflow-hidden"
-                  style={{
-                    border: '2px solid rgba(0,217,255,0.5)',
-                    boxShadow: '0 0 20px rgba(0,217,255,0.25)',
-                  }}
+                  <Linkedin size={11} aria-hidden="true" />
+                  <span>LinkedIn</span>
+                </a>
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="social-link"
+                  aria-label="Send email"
                 >
-                  {!avatarErr ? (
-                    // Replace src with actual vln.gg/about avatar URL if known
-                    <img
-                      src={AVATAR_URL}
-                      alt="J. Lucus"
-                      className="w-full h-full object-cover"
-                      onError={() => setAvatarErr(true)}
-                    />
-                  ) : (
-                    <div
-                      className="w-full h-full flex items-center justify-center font-mono font-black text-2xl"
-                      style={{ background: 'rgba(0,217,255,0.08)', color: 'rgb(var(--color-primary))' }}
-                    >
-                      JL
-                    </div>
-                  )}
+                  <Mail size={11} aria-hidden="true" />
+                  <span>Email</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Recent activity — hidden on mobile, see CSS */}
+            <div className="recent-section panel-row">
+              <div className="panel-divider" />
+              <p className="section-label">Recent</p>
+              <nav className="recent-list" aria-label="Recent projects">
+                {RECENT_ITEMS.map(item => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="recent-item"
+                  >
+                    <span className="recent-arrow" aria-hidden="true">▸</span>
+                    <span className="recent-text">{item.label}</span>
+                    <span className={`recent-tag ${item.tagClass}`}>{item.tag}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+          </aside>
+
+          {/* ── Right: Countdown panel ──────────── */}
+          <section className="countdown-panel" aria-label="Countdown timer">
+            <div className="countdown-terminal" role="log" aria-live="polite" aria-atomic="false">
+
+              {/* Terminal titlebar */}
+              <div className="terminal-titlebar" aria-hidden="true">
+                <span className="terminal-dot terminal-dot--close" />
+                <span className="terminal-dot terminal-dot--min"   />
+                <span className="terminal-dot terminal-dot--max"   />
+                <span className="terminal-title">$ countdown.sh --redirect</span>
+              </div>
+
+              {/* Terminal body */}
+              <div className="terminal-body">
+
+                {/* Big countdown number */}
+                <div className="countdown-display">
+                  <span
+                    key={numKey}
+                    className="countdown-number"
+                    aria-label={`${seconds} seconds remaining`}
+                  >
+                    {displaySecs}
+                  </span>
+                  <span className="countdown-unit" aria-hidden="true">
+                    S&nbsp;E&nbsp;C&nbsp;O&nbsp;N&nbsp;D&nbsp;S
+                  </span>
                 </div>
 
-                {/* Glow halo */}
-                <motion.div
-                  className="absolute inset-0 rounded-full pointer-events-none"
-                  animate={{ opacity: [0.3, 0.7, 0.3] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-                  style={{ boxShadow: '0 0 30px rgba(0,217,255,0.35)' }}
-                />
-              </div>
+                {/* Progress bar */}
+                <div className="progress-section">
+                  <div className="progress-track" role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100}>
+                    {/* width is a runtime computed value — CSS var handles color/shadow */}
+                    <div className="progress-fill" style={{ width: `${progress}%` }} />
+                  </div>
+                  <div className="progress-ticks" aria-hidden="true">
+                    <span className="progress-tick">0</span>
+                    <span className="progress-tick">5s</span>
+                    <span className="progress-tick">10s</span>
+                    <span className="progress-tick">15s</span>
+                  </div>
+                </div>
 
-              <div className="text-center space-y-0.5">
-                <p
-                  className="font-mono text-[0.6rem] uppercase tracking-[0.25em]"
-                  style={{ color: 'rgb(var(--color-text-tertiary))' }}
-                >
-                  AGENT PROFILE
-                </p>
-                <h2
-                  className="font-mono text-lg font-bold"
-                  style={{ color: 'rgb(var(--color-text-primary))' }}
-                >
-                  J. LUCUS
-                </h2>
-                <p
-                  className="font-mono text-[0.65rem]"
-                  style={{ color: 'rgba(0,217,255,0.55)' }}
-                >
-                  @4eckd — VLN.GG FOUNDER
-                </p>
-              </div>
-            </div>
+                {/* Status log */}
+                <div className="status-log" aria-label="Boot status">
+                  {STATUS_LINES.slice(0, visibleLines).map((line, i) => {
+                    const isActive = i === visibleLines - 1 && !redirected
+                    return (
+                      <div key={i} className={`status-line${isActive ? ' status-line--active' : ''}`}>
+                        <span className="status-prefix">{line.prefix}</span>
+                        <span>{line.text}</span>
+                        {isActive && <span className="cursor-blink" aria-hidden="true">_</span>}
+                      </div>
+                    )
+                  })}
+                </div>
 
-            {/* VLN logo + tagline */}
-            <div className="text-center space-y-2">
-              <h1
-                className="font-mono font-black text-6xl sm:text-7xl md:text-8xl tracking-tighter leading-none text-neon select-none"
-              >
-                <GlitchText text="VLN.GG" />
-              </h1>
-              <RandomTagline />
-            </div>
+                {/* CTA */}
+                <a href={REDIRECT_URL} className="cta-btn" onClick={doRedirect} aria-label="Enter portfolio now">
+                  <span>{redirected ? 'REDIRECTING…' : 'ENTER PORTFOLIO'}</span>
+                  <ArrowRight size={14} aria-hidden="true" />
+                </a>
 
-            {/* Countdown tiles */}
-            <div className="flex items-start gap-2 sm:gap-4">
-              <DigitTile value={timeLeft.days} label="DAYS" />
-              <span
-                className="font-mono font-black text-4xl sm:text-5xl md:text-6xl mt-1 animate-blink"
-                style={{ color: 'rgba(0,217,255,0.5)' }}
-              >
-                :
-              </span>
-              <DigitTile value={timeLeft.hours} label="HRS" />
-              <span
-                className="font-mono font-black text-4xl sm:text-5xl md:text-6xl mt-1 animate-blink"
-                style={{ color: 'rgba(0,217,255,0.5)', animationDelay: '0.5s' }}
-              >
-                :
-              </span>
-              <DigitTile value={timeLeft.minutes} label="MIN" />
-              <span
-                className="font-mono font-black text-4xl sm:text-5xl md:text-6xl mt-1 animate-blink"
-                style={{ color: 'rgba(0,217,255,0.5)', animationDelay: '0.25s' }}
-              >
-                :
-              </span>
-              <DigitTile value={timeLeft.seconds} label="SEC" />
-            </div>
-
-            {/* Progress bar */}
-            <div className="w-full space-y-1.5">
-              <div
-                className="flex justify-between font-mono text-[0.6rem] uppercase"
-                style={{ color: 'rgb(var(--color-text-tertiary))' }}
-              >
-                <span>MISSION PROGRESS</span>
-                <span>{progress.toFixed(1)}%</span>
-              </div>
-              <div
-                className="w-full h-1.5 rounded-full overflow-hidden"
-                style={{ background: 'rgba(0,217,255,0.08)' }}
-              >
-                <motion.div
-                  className="h-full rounded-full"
-                  style={{
-                    background: 'linear-gradient(90deg, rgb(var(--color-primary)), rgb(var(--color-warning)), rgb(var(--color-secondary)))',
-                    boxShadow: '0 0 8px rgba(0,217,255,0.6)',
-                  }}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 1.2, ease: 'easeOut' }}
-                />
-              </div>
-              {/* Segmented tick marks */}
-              <div className="flex justify-between">
-                {Array.from({ length: 11 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="w-px h-1"
-                    style={{ background: 'rgba(0,217,255,0.2)' }}
-                  />
-                ))}
               </div>
             </div>
+          </section>
 
-            {/* Status terminal */}
-            <div
-              className="w-full rounded px-3 py-2.5 min-h-[2.5rem] flex items-center gap-2"
-              style={{
-                background: 'rgba(0,217,255,0.03)',
-                border: '1px solid rgba(0,217,255,0.1)',
-              }}
-            >
-              <span
-                className="text-[0.6rem] font-mono shrink-0"
-                style={{ color: 'rgba(0,217,255,0.4)' }}
-              >
-                SYS
-              </span>
-              <div className="w-px h-3" style={{ background: 'rgba(0,217,255,0.2)' }} />
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={statusIdx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35 }}
-                  className="font-mono text-[0.65rem] flex-1"
-                  style={{ color: 'rgba(0,217,255,0.65)' }}
-                >
-                  {STATUS_MESSAGES[statusIdx]}
-                  <motion.span
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    █
-                  </motion.span>
-                </motion.p>
-              </AnimatePresence>
-            </div>
+        </div>
 
-            {/* CTA button */}
-            <motion.button
-              onClick={handleEnter}
-              className="w-full font-mono font-bold text-sm uppercase tracking-[0.2em] py-3.5 px-6 rounded-lg relative overflow-hidden"
-              style={{
-                background: 'rgba(0,217,255,0.08)',
-                border: '1px solid rgba(0,217,255,0.35)',
-                color: 'rgb(var(--color-primary))',
-              }}
-              whileHover={{
-                background: 'rgba(0,217,255,0.16)',
-                boxShadow: 'var(--shadow-neon-primary)',
-                scale: 1.01,
-              }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.15 }}
-            >
-              {/* Sweep shine on hover */}
-              <motion.div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: 'linear-gradient(105deg, transparent 30%, rgba(0,217,255,0.12) 50%, transparent 70%)',
-                }}
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.5 }}
-              />
-              ENTER VLN.GG →
-            </motion.button>
-          </div>
-        </motion.div>
+        {/* Footer signature */}
+        <footer className="footer-sig">
+          <span>built by jlucus · 2026</span>
+          <span>jlucus.dev</span>
+          <span>{SITE.email}</span>
+        </footer>
 
-        {/* Footer sig */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-3 font-mono text-[0.55rem] uppercase tracking-widest text-center"
-          style={{ color: 'rgb(var(--color-text-muted))' }}
-        >
-          JLUCUS.DEV · BUILT WITH PURPOSE · EST. 2026
-        </motion.p>
       </div>
     </div>
-  );
+  )
 }

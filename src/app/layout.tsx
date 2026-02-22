@@ -7,11 +7,22 @@ import { Footer } from '@/components/layout/footer';
 import { ClientLayout } from '@/components/layout/client-layout';
 
 export const metadata: Metadata = {
-  title: SITE.title,
+  title: {
+    default: 'jlucus.dev — launching soon',
+    template: '%s · jlucus.dev',
+  },
   description: SITE.description,
   authors: [{ name: SITE.author }],
   creator: SITE.author,
   metadataBase: new URL(SITE.url),
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
