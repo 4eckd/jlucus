@@ -76,25 +76,17 @@ function MatrixRain() {
   return <canvas ref={canvasRef} className="matrix-canvas" aria-hidden="true" />
 }
 
-// ─── Avatar hex component ──────────────────────────────────────
+// ─── Avatar component ──────────────────────────────────────────
 function AvatarHex() {
   return (
     <div className="avatar-zone">
       <div className="avatar-frame">
-        {/* Animated gradient border — scaled slightly outside image */}
-        <div className="avatar-hex-bg" aria-hidden="true" />
-
-        {/* Image — clipped to hex */}
-        <div className="avatar-hex-img">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/avatar.png"
-            alt="jlucus — developer avatar"
-            className="avatar-img"
-          />
-        </div>
-
-        {/* Periodic scan-line sweep overlay */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/avatar.png"
+          alt="jlucus — developer avatar"
+          className="avatar-img"
+        />
         <div className="avatar-scan" aria-hidden="true" />
       </div>
     </div>
@@ -148,6 +140,16 @@ export default function CountdownPage() {
       {/* ── Background layers ──────────────────────── */}
       <MatrixRain />
       <div className="bg-grid countdown-grid-overlay" aria-hidden="true" />
+
+      {/* OG hero image — blended opaque into background */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/og-image.png"
+        alt=""
+        aria-hidden="true"
+        className="og-bg-image"
+      />
+
       <div className="countdown-vignette"              aria-hidden="true" />
       <div className="scanline"                        aria-hidden="true" />
 
@@ -209,13 +211,15 @@ export default function CountdownPage() {
 
               {/* Big glitching countdown number */}
               <div className="countdown-display">
-                <span
-                  key={numKey}
-                  className="countdown-number"
-                  aria-label={`${seconds} seconds remaining`}
-                >
-                  {displaySecs}
-                </span>
+                <div className="clock-screen">
+                  <span
+                    key={numKey}
+                    className="countdown-number"
+                    aria-label={`${seconds} seconds remaining`}
+                  >
+                    {displaySecs}
+                  </span>
+                </div>
                 <span className="countdown-unit" aria-hidden="true">
                   S&nbsp;E&nbsp;C&nbsp;O&nbsp;N&nbsp;D&nbsp;S
                 </span>
