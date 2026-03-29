@@ -21,7 +21,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/add-pdf-download-button-GeSgS | #- | - | - | Active |
 | origin/claude/animated-avatar-countdown-lxKZ3 | #- | - | - | Active |
 | origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
-| origin/claude/continue-previous-session-ygtFO | #- | - | - | Active |
 | origin/claude/daily-learning-blog-L1q2S | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
@@ -34,7 +33,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/friendly-clarke-HwGEv | #- | - | - | Active |
 | origin/claude/git-workflow-automation-2I1aw | #- | - | - | Active |
 | origin/claude/git-workflow-automation-pzwMH | #- | - | - | Active |
-| origin/claude/git-worktree-setup-5E397 | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
 | origin/claude/phase1-issue14-devenv-lJKlJ | #- | - | - | Active |
 | origin/claude/phase1-issue15-neon-effects-RvicC | #- | - | - | Active |
@@ -55,4 +53,5 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/development | #- | - | - | Active |
 | origin/feature/redirect-vlngg | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
+| origin/main2 | #- | - | - | Active |
 | origin/revert-144-claude/git-workflow-automation-2I1aw | #- | - | - | Active |
