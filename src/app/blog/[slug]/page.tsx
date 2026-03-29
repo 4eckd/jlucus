@@ -4,7 +4,6 @@ import { getBlogPostBySlug, getSortedBlogPosts } from '@/data/blog-posts'
 import { SITE } from '@/lib/constants'
 import { Calendar, Clock, User, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 
 interface BlogPostPageProps {
@@ -67,12 +66,7 @@ export default async function BlogPostPage({
       </Link>
 
       {/* Header */}
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="space-y-6"
-      >
+      <header className="space-y-6">
         <div className="space-y-4">
           <h1 className="font-mono text-4xl font-bold text-cyan-300 md:text-5xl">
             {post.title}
@@ -114,15 +108,10 @@ export default async function BlogPostPage({
             </span>
           ))}
         </div>
-      </motion.header>
+      </header>
 
       {/* Content */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="prose prose-invert max-w-none space-y-6"
-      >
+      <div className="prose prose-invert max-w-none space-y-6">
         <div className="space-y-6 text-text-primary">
           {post.content.split('\n\n').map((paragraph, i) => (
             <div key={i} className="leading-relaxed">
@@ -173,16 +162,10 @@ export default async function BlogPostPage({
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       {/* Footer with navigation */}
-      <motion.footer
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="space-y-6 border-t border-cyan-500/10 pt-8"
-      >
+      <footer className="space-y-6 border-t border-cyan-500/10 pt-8">
         <Link
           href="/blog"
           className="inline-flex items-center gap-2 rounded border border-cyan-500/20 px-4 py-2 font-mono text-sm text-cyan-400 transition-all hover:border-cyan-500/50 hover:bg-dark-800"
@@ -190,7 +173,7 @@ export default async function BlogPostPage({
           <ArrowLeft className="h-4 w-4" />
           Back to all articles
         </Link>
-      </motion.footer>
+      </footer>
     </article>
   )
 }

@@ -1,5 +1,5 @@
-/* Google Fonts - loaded at runtime to avoid build-time fetch issues */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
+/* Google Fonts with display=swap for non-blocking font loading */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
@@ -69,9 +69,9 @@
   --spacing-3xl: 4rem;      /* 64px */
   --spacing-4xl: 6rem;      /* 96px */
 
-  /* Typography */
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Typography - Fonts loaded via next/font/google (variables set in layout.tsx) */
+  --font-sans-fallback: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono-fallback: 'Courier New', monospace;
 
   --font-size-xs: 0.75rem;     /* 12px */
   --font-size-sm: 0.875rem;    /* 14px */
@@ -182,13 +182,14 @@ html {
 body {
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text-primary));
-  font-family: var(--font-sans);
+  font-family: var(--font-sans, var(--font-sans-fallback));
   line-height: var(--line-height-normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   width: 100%;
   position: relative;
+  contain: layout style paint;
 }
 
 /* Hide default cursor on non-touch devices (custom cursor will replace it) */
