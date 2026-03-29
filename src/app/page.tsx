@@ -27,10 +27,10 @@ function MatrixRain() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
 
-    // Read design token colors at runtime — no hardcoded values
+    // Pre-cache CSS values instead of reading every frame
     const style   = getComputedStyle(document.documentElement)
     const primary = style.getPropertyValue('--color-primary').trim()
     const bg      = style.getPropertyValue('--color-dark-950').trim()
@@ -40,6 +40,7 @@ function MatrixRain() {
     const CHAR_W = 16
     const CHARS  = '01アイウエオカキクケコ<>{}[]|;:!/'
     let drops: number[] = []
+    let rafId: number | null = null
 
     const resize = () => {
       canvas.width  = window.innerWidth
@@ -48,12 +49,15 @@ function MatrixRain() {
       drops = Array.from({ length: cols }, () => Math.random() * -60)
     }
     resize()
-    window.addEventListener('resize', resize)
+
+    // Pre-create font string
+    const font = '13px "JetBrains Mono", monospace'
+    ctx.font = font
 
     const draw = () => {
       ctx.fillStyle = `rgba(${br},${bg2},${bb},0.05)`
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.font = `13px "JetBrains Mono", monospace`
+      ctx.font = font
 
       drops.forEach((y, i) => {
         const char = CHARS[Math.floor(Math.random() * CHARS.length)]
@@ -64,12 +68,17 @@ function MatrixRain() {
         if (y * CHAR_W > canvas.height && Math.random() > 0.975) drops[i] = 0
         drops[i] += 0.5
       })
+
+      rafId = requestAnimationFrame(draw)
     }
 
-    const id = setInterval(draw, 50)
+    const handleResize = () => resize()
+    window.addEventListener('resize', handleResize)
+    rafId = requestAnimationFrame(draw)
+
     return () => {
-      clearInterval(id)
-      window.removeEventListener('resize', resize)
+      if (rafId) cancelAnimationFrame(rafId)
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
 

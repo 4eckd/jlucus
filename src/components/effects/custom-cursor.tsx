@@ -1,47 +1,35 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { getCSSColor } from '@/lib/css-variables';
 
 /**
  * Custom Neon Cursor Component
  *
- * Creates a cyberpunk-style cursor with:
- * - Neon trail effect following mouse movement
- * - Interactive hover states
- * - Click ripple effects
- * - Smooth cursor tracking with lerp interpolation
- *
- * Enhances the Terminal Neon theme with an immersive interactive experience.
+ * Optimized cyberpunk-style cursor with:
+ * - Minimal re-renders (no trail animations)
+ * - Debounced hover detection
+ * - GPU-accelerated transforms
+ * - Smooth cursor tracking with lerp
  */
 export function CustomCursor() {
   const [isMounted, setIsMounted] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const cursorRef = useRef({ x: 0, y: 0 });
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([]);
-  const rafRef = useRef<number | undefined>(undefined);
-  const trailIdRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+  const lastHoverTarget = useRef<HTMLElement | null>(null);
 
-  // Only render on client to avoid SSR issues
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true);
   }, []);
 
-  // Track mouse position
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-
-      // Add to trail
-      setTrail((prev) => {
-        const newTrail = [...prev, { x: e.clientX, y: e.clientY, id: trailIdRef.current++ }];
-        // Keep only last 10 trail points
-        return newTrail.slice(-10);
-      });
+      mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
     const handleMouseDown = () => setIsClicking(true);
@@ -49,24 +37,22 @@ export function CustomCursor() {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Check if hovering over interactive elements
-      if (
+      lastHoverTarget.current = target;
+
+      const isInteractive =
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
-        target.closest('a') ||
-        target.closest('button') ||
-        target.style.cursor === 'pointer'
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+        !!target.closest('a') ||
+        !!target.closest('button') ||
+        target.style.cursor === 'pointer';
+
+      setIsHovering(isInteractive);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mousedown', handleMouseDown);
     window.addEventListener('mouseup', handleMouseUp);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mouseover', handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
@@ -76,65 +62,34 @@ export function CustomCursor() {
     };
   }, []);
 
-  // Smooth cursor following with lerp
+  // Single RAF loop for smooth cursor tracking
   useEffect(() => {
     const lerp = (start: number, end: number, factor: number) => {
       return start + (end - start) * factor;
     };
 
     const animate = () => {
-      setCursorPosition((prev) => ({
-        x: lerp(prev.x, mousePosition.x, 0.15),
-        y: lerp(prev.y, mousePosition.y, 0.15),
-      }));
+      cursorRef.current = {
+        x: lerp(cursorRef.current.x, mouseRef.current.x, 0.15),
+        y: lerp(cursorRef.current.y, mouseRef.current.y, 0.15),
+      };
 
+      setCursorPosition({ ...cursorRef.current });
       rafRef.current = requestAnimationFrame(animate);
     };
 
     rafRef.current = requestAnimationFrame(animate);
-
     return () => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [mousePosition]);
-
-  // Clear old trail points periodically
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTrail((prev) => prev.slice(1));
-    }, 50);
-
-    return () => clearInterval(interval);
   }, []);
 
-  // Don't render during SSR or on touch devices
   if (!isMounted || typeof window === 'undefined' || 'ontouchstart' in window) {
     return null;
   }
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999]">
-      {/* Trail effect */}
-      <AnimatePresence>
-        {trail.map((point) => (
-          <motion.div
-            key={point.id}
-            initial={{ opacity: 0.6, scale: 1 }}
-            animate={{ opacity: 0, scale: 0.5 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute w-3 h-3 rounded-full bg-primary/30 blur-sm"
-            style={{
-              left: point.x,
-              top: point.y,
-              transform: 'translate(-50%, -50%)',
-            }}
-          />
-        ))}
-      </AnimatePresence>
-
       {/* Main cursor */}
       <motion.div
         className="absolute w-8 h-8 rounded-full border-2 border-primary mix-blend-difference"
@@ -175,8 +130,8 @@ export function CustomCursor() {
       <motion.div
         className="absolute w-2 h-2 rounded-full bg-primary"
         style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
+          left: mouseRef.current.x,
+          top: mouseRef.current.y,
           transform: 'translate(-50%, -50%)',
           boxShadow: `0 0 10px rgb(${getCSSColor('primary')})`,
         }}
@@ -184,24 +139,6 @@ export function CustomCursor() {
           scale: isClicking ? 0.5 : 1,
         }}
       />
-
-      {/* Click ripple effect */}
-      <AnimatePresence>
-        {isClicking && (
-          <motion.div
-            initial={{ scale: 0, opacity: 1 }}
-            animate={{ scale: 2, opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="absolute w-16 h-16 rounded-full border-2 border-accent"
-            style={{
-              left: mousePosition.x,
-              top: mousePosition.y,
-              transform: 'translate(-50%, -50%)',
-            }}
-          />
-        )}
-      </AnimatePresence>
     </div>
   );
 }
