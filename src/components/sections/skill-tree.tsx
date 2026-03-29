@@ -93,7 +93,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
                 <span className="text-secondary">Level {skill.level}</span>
                 <span className="text-primary">{skill.xp}/{skill.maxXP} XP</span>
               </div>
-              <div className="h-1 bg-dark-700 rounded-full overflow-hidden">
+              <div className="h-1 bg-tertiary rounded-full overflow-hidden">
                 <div 
                   className={cn("h-full", levelColors[skill.level])}
                   style={{ width: `${levelProgress}%` }}
@@ -184,7 +184,7 @@ export function SkillTree() {
             >
               <div className="bg-background-secondary/60 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden h-full">
                 {/* Code block header */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-dark-400 border-b border-primary/10">
+                <div className="flex items-center gap-2 px-4 py-2 bg-tertiary border-b border-primary/10">
                   <div className="flex gap-2">
                     <div className="w-2.5 h-2.5 rounded-full bg-error"></div>
                     <div className="w-2.5 h-2.5 rounded-full bg-warning"></div>

@@ -21,10 +21,10 @@ function HexCard({ venture, index }: HexCardProps) {
   };
 
   const statusBg = {
-    building: 'bg-dark-800 border-warning/20',
-    launching: 'bg-dark-800 border-accent/20',
-    growing: 'bg-dark-800 border-success/20', 
-    scaling: 'bg-dark-800 border-primary/20',
+    building: 'bg-secondary border-warning/20',
+    launching: 'bg-secondary border-accent/20',
+    growing: 'bg-secondary border-success/20',
+    scaling: 'bg-secondary border-primary/20',
   };
 
   return (
