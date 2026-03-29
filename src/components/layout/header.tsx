@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -9,6 +11,7 @@ import { Menu, X } from 'lucide-react';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,6 +69,18 @@ export function Header() {
               {section.label}
             </button>
           ))}
+          <span className="text-primary/20">|</span>
+          <Link
+            href="/blog"
+            className={cn(
+              "transition-colors hover:text-primary",
+              pathname.startsWith('/blog')
+                ? "text-primary font-medium"
+                : "text-muted"
+            )}
+          >
+            Blog
+          </Link>
         </nav>
 
         {/* Social Links */}
@@ -111,6 +126,18 @@ export function Header() {
                   {section.label}
                 </button>
               ))}
+              <Link
+                href="/blog"
+                onClick={() => setIsMenuOpen(false)}
+                className={cn(
+                  "block transition-colors hover:text-primary",
+                  pathname.startsWith('/blog')
+                    ? "text-primary font-medium"
+                    : "text-muted"
+                )}
+              >
+                Blog
+              </Link>
               <div className="pt-4 border-t border-primary/10 space-y-3">
                 {SOCIAL_LINKS.map((link) => (
                   <a

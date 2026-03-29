@@ -36,6 +36,20 @@ export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert' | '
 export type ProjectCategory = 'web' | 'mobile' | 'ai' | 'blockchain' | 'infrastructure' | 'tools';
 export type VentureStatus = 'building' | 'launching' | 'growing' | 'scaling';
 export type AnimationType = 'fadeIn' | 'slideUp' | 'slideIn' | 'scaleIn' | 'typewriter';
+export type BlogCategory = 'learning' | 'development' | 'insights' | 'tutorial' | 'experiment';
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  category: BlogCategory;
+  tags: string[];
+  readingTime: number;
+  author: string;
+}
 
 export interface ThemeConfig {
   primary: string;
