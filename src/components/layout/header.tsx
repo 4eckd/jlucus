@@ -74,12 +74,23 @@ export function Header() {
             href="/blog"
             className={cn(
               "transition-colors hover:text-primary",
-              pathname.startsWith('/blog')
+              pathname.startsWith('/blog') && !pathname.startsWith('/daily-learning')
                 ? "text-primary font-medium"
                 : "text-muted"
             )}
           >
             Blog
+          </Link>
+          <Link
+            href="/daily-learning"
+            className={cn(
+              "transition-colors hover:text-primary",
+              pathname.startsWith('/daily-learning')
+                ? "text-primary font-medium"
+                : "text-muted"
+            )}
+          >
+            Daily Learning
           </Link>
         </nav>
 
@@ -131,12 +142,24 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 className={cn(
                   "block transition-colors hover:text-primary",
-                  pathname.startsWith('/blog')
+                  pathname.startsWith('/blog') && !pathname.startsWith('/daily-learning')
                     ? "text-primary font-medium"
                     : "text-muted"
                 )}
               >
                 Blog
+              </Link>
+              <Link
+                href="/daily-learning"
+                onClick={() => setIsMenuOpen(false)}
+                className={cn(
+                  "block transition-colors hover:text-primary",
+                  pathname.startsWith('/daily-learning')
+                    ? "text-primary font-medium"
+                    : "text-muted"
+                )}
+              >
+                Daily Learning
               </Link>
               <div className="pt-4 border-t border-primary/10 space-y-3">
                 {SOCIAL_LINKS.map((link) => (
