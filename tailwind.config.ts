@@ -9,62 +9,45 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Terminal Neon Color Palette - matches globals.css
-        primary: {
-          DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
-          glow: 'rgb(var(--color-primary-glow) / <alpha-value>)',
-        },
-        accent: {
-          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
-        },
-        secondary: {
-          DEFAULT: 'rgb(var(--color-secondary) / <alpha-value>)',
-        },
-        success: {
-          DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
-        },
-        warning: {
-          DEFAULT: 'rgb(var(--color-warning) / <alpha-value>)',
-        },
-        error: {
-          DEFAULT: 'rgb(var(--color-error) / <alpha-value>)',
-        },
-        info: {
-          DEFAULT: 'rgb(var(--color-info) / <alpha-value>)',
-        },
-        // Dark theme shades
-        dark: {
-          400: 'rgb(var(--color-dark-400) / <alpha-value>)',
-          500: 'rgb(var(--color-dark-500) / <alpha-value>)',
-          600: 'rgb(var(--color-dark-600) / <alpha-value>)',
-          700: 'rgb(var(--color-dark-700) / <alpha-value>)',
-          800: 'rgb(var(--color-dark-800) / <alpha-value>)',
-          900: 'rgb(var(--color-dark-900) / <alpha-value>)',
-          950: 'rgb(var(--color-dark-950) / <alpha-value>)',
-        },
+        // Terminal Neon Color Palette
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        warning: 'rgb(var(--color-warning) / <alpha-value>)',
+        error: 'rgb(var(--color-error) / <alpha-value>)',
+        info: 'rgb(var(--color-info) / <alpha-value>)',
+        // Background layers
+        'bg-base': 'rgb(var(--color-bg-base) / <alpha-value>)',
+        'bg-primary': 'rgb(var(--color-bg-primary) / <alpha-value>)',
+        'bg-secondary': 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+        'bg-tertiary': 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
         // Text colors
         'text-primary': 'rgb(var(--color-text-primary) / <alpha-value>)',
         'text-secondary': 'rgb(var(--color-text-secondary) / <alpha-value>)',
         'text-tertiary': 'rgb(var(--color-text-tertiary) / <alpha-value>)',
         'text-muted': 'rgb(var(--color-text-muted) / <alpha-value>)',
-        // Background colors
-        background: 'rgb(var(--color-background))',
-        'background-secondary': 'rgb(var(--color-background-secondary))',
-        'background-tertiary': 'rgb(var(--color-background-tertiary))',
-        // Surface colors (for cards, panels, overlays)
-        surface: 'rgb(var(--color-surface))',
-        'surface-hover': 'rgb(var(--color-surface-hover))',
-        //  Aliases for components
-        'primary-foreground': 'rgb(var(--color-dark-950) / <alpha-value>)',
+        // Border colors
+        'border-primary': 'rgb(var(--color-border-primary) / <alpha-value>)',
+        'border-secondary': 'rgb(var(--color-border-secondary) / <alpha-value>)',
+        // Legacy dark shades (for compatibility)
+        dark: {
+          700: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
+          800: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          900: 'rgb(var(--color-bg-primary) / <alpha-value>)',
+          950: 'rgb(var(--color-bg-base) / <alpha-value>)',
+        },
+        // Component aliases
+        background: 'rgb(var(--color-bg-base))',
+        'background-secondary': 'rgb(var(--color-bg-primary))',
+        'background-tertiary': 'rgb(var(--color-bg-secondary))',
+        'primary-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
         'destructive': 'rgb(var(--color-error) / <alpha-value>)',
         'destructive-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
         input: 'rgb(var(--color-primary) / 0.2)',
         ring: 'rgb(var(--color-primary) / <alpha-value>)',
-        muted: 'rgb(var(--color-dark-700) / <alpha-value>)',
-        'secondary-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        'accent-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        border: 'rgb(var(--color-border) / 0.1)',
-        'border-muted': 'rgb(var(--color-border-muted) / <alpha-value>)',
+        muted: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
+        border: 'rgb(var(--color-border-primary) / 0.1)',
       },
       fontFamily: {
         mono: 'var(--font-mono)',
@@ -84,14 +67,13 @@ const config: Config = {
         '7xl': 'var(--font-size-7xl)',
       },
       spacing: {
-        xs: 'var(--spacing-xs)',
-        sm: 'var(--spacing-sm)',
-        md: 'var(--spacing-md)',
-        lg: 'var(--spacing-lg)',
-        xl: 'var(--spacing-xl)',
-        '2xl': 'var(--spacing-2xl)',
-        '3xl': 'var(--spacing-3xl)',
-        '4xl': 'var(--spacing-4xl)',
+        xs: 'var(--space-xs)',
+        sm: 'var(--space-sm)',
+        md: 'var(--space-md)',
+        lg: 'var(--space-lg)',
+        xl: 'var(--space-xl)',
+        '2xl': 'var(--space-2xl)',
+        '3xl': 'var(--space-3xl)',
       },
       borderRadius: {
         sm: 'var(--radius-sm)',
@@ -107,29 +89,25 @@ const config: Config = {
         DEFAULT: 'var(--shadow-md)',
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
-        xl: 'var(--shadow-xl)',
         // Neon glow shadows
-        'neon-primary': 'var(--shadow-neon-primary)',
-        'neon-primary-sm': 'var(--shadow-neon-primary-sm)',
-        'neon-primary-lg': 'var(--shadow-neon-primary-lg)',
-        'neon-primary-xl': 'var(--shadow-neon-primary-xl)',
-        'neon-accent': 'var(--shadow-neon-accent)',
-        'neon-accent-lg': 'var(--shadow-neon-accent-lg)',
-        'neon-secondary': 'var(--shadow-neon-secondary)',
+        'glow-sm': 'var(--shadow-glow-sm)',
+        'glow': 'var(--shadow-glow)',
+        'glow-lg': 'var(--shadow-glow-lg)',
+        'glow-accent': 'var(--shadow-glow-accent)',
       },
       transitionDuration: {
         fast: 'var(--transition-fast)',
         DEFAULT: 'var(--transition-base)',
         slow: 'var(--transition-slow)',
       },
+      transitionTimingFunction: {
+        'neon': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      },
       zIndex: {
-        dropdown: 'var(--z-index-dropdown)',
-        sticky: 'var(--z-index-sticky)',
-        fixed: 'var(--z-index-fixed)',
-        'modal-backdrop': 'var(--z-index-modal-backdrop)',
-        modal: 'var(--z-index-modal)',
-        popover: 'var(--z-index-popover)',
-        tooltip: 'var(--z-index-tooltip)',
+        dropdown: 'var(--z-dropdown)',
+        sticky: 'var(--z-sticky)',
+        fixed: 'var(--z-fixed)',
+        modal: 'var(--z-modal)',
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',

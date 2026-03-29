@@ -60,7 +60,14 @@ export default async function BlogPostPage({
       {/* Navigation */}
       <Link
         href="/blog"
-        className="inline-flex items-center gap-2 font-mono text-sm text-cyan-400 transition-all hover:gap-3 hover:text-magenta-400"
+        className="inline-flex items-center gap-2 font-mono text-sm transition-all hover:gap-3"
+        style={{ color: `rgb(var(--color-primary))` }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = `rgb(var(--color-accent))`;
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = `rgb(var(--color-primary))`;
+        }}
       >
         <ArrowLeft className="h-4 w-4" />
         Back to articles
@@ -74,30 +81,41 @@ export default async function BlogPostPage({
         className="space-y-6"
       >
         <div className="space-y-4">
-          <h1 className="font-mono text-4xl font-bold text-cyan-300 md:text-5xl">
+          <h1 className="font-mono text-4xl font-bold md:text-5xl" style={{ color: `rgb(var(--color-primary))` }}>
             {post.title}
           </h1>
-          <p className="text-lg text-text-secondary leading-relaxed">
+          <p className="text-lg leading-relaxed" style={{ color: `rgb(var(--color-text-secondary))` }}>
             {post.excerpt}
           </p>
         </div>
 
         {/* Meta Information */}
-        <div className="flex flex-wrap items-center gap-6 border-y border-cyan-500/10 py-6">
-          <div className="flex items-center gap-2 text-sm text-text-secondary">
-            <User className="h-4 w-4 text-cyan-400" />
+        <div
+          className="flex flex-wrap items-center gap-6 border-y py-6"
+          style={{
+            borderColor: `rgb(var(--color-primary) / 0.1)`,
+          }}
+        >
+          <div className="flex items-center gap-2 text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
+            <User className="h-4 w-4" style={{ color: `rgb(var(--color-primary))` }} />
             <span>{post.author}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm text-text-secondary">
-            <Calendar className="h-4 w-4 text-cyan-400" />
+          <div className="flex items-center gap-2 text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
+            <Calendar className="h-4 w-4" style={{ color: `rgb(var(--color-primary))` }} />
             <time>{new Date(post.date).toLocaleDateString()}</time>
           </div>
-          <div className="flex items-center gap-2 text-sm text-text-secondary">
-            <Clock className="h-4 w-4 text-cyan-400" />
+          <div className="flex items-center gap-2 text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
+            <Clock className="h-4 w-4" style={{ color: `rgb(var(--color-primary))` }} />
             <span>{post.readingTime} min read</span>
           </div>
           <div className="ml-auto">
-            <span className="rounded bg-cyan-500/10 px-3 py-1 font-mono text-sm text-cyan-400">
+            <span
+              className="rounded px-3 py-1 font-mono text-sm"
+              style={{
+                color: `rgb(var(--color-primary))`,
+                backgroundColor: `rgb(var(--color-primary) / 0.1)`,
+              }}
+            >
               {post.category}
             </span>
           </div>
@@ -108,7 +126,17 @@ export default async function BlogPostPage({
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-dark-700 px-3 py-1 font-mono text-sm text-cyan-400/70 hover:text-magenta-400"
+              className="rounded-full px-3 py-1 font-mono text-sm transition-colors"
+              style={{
+                color: `rgb(var(--color-primary) / 0.7)`,
+                backgroundColor: `rgb(var(--color-bg-tertiary))`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = `rgb(var(--color-accent))`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = `rgb(var(--color-primary) / 0.7)`;
+              }}
             >
               #{tag}
             </span>
@@ -123,7 +151,7 @@ export default async function BlogPostPage({
         transition={{ duration: 0.5, delay: 0.2 }}
         className="prose prose-invert max-w-none space-y-6"
       >
-        <div className="space-y-6 text-text-primary">
+        <div className="space-y-6" style={{ color: `rgb(var(--color-text-primary))` }}>
           {post.content.split('\n\n').map((paragraph, i) => (
             <div key={i} className="leading-relaxed">
               {paragraph.startsWith('#') ? (
@@ -133,17 +161,22 @@ export default async function BlogPostPage({
                     const content = line.replace(/^#+\s/, '')
 
                     if (line.startsWith('#')) {
-                      const baseSize = {
-                        1: 'text-3xl',
-                        2: 'text-2xl',
-                        3: 'text-xl',
-                        4: 'text-lg',
-                      }[headingLevel] || 'text-base'
+                      const baseSizeMap = {
+                        1: '1.875rem',
+                        2: '1.5rem',
+                        3: '1.25rem',
+                        4: '1.125rem',
+                      }
+                      const fontSize = baseSizeMap[headingLevel as keyof typeof baseSizeMap] || '1rem'
 
                       return (
                         <h2
                           key={j}
-                          className={`${baseSize} font-mono font-bold text-cyan-300`}
+                          className="font-mono font-bold"
+                          style={{
+                            fontSize,
+                            color: `rgb(var(--color-primary))`,
+                          }}
                         >
                           {content}
                         </h2>
@@ -153,22 +186,25 @@ export default async function BlogPostPage({
                   })}
                 </div>
               ) : paragraph.startsWith('```') ? (
-                <pre className="overflow-x-auto rounded-lg bg-dark-700 p-4 font-mono text-sm text-cyan-200">
+                <pre
+                  className="overflow-x-auto rounded-lg p-4 font-mono text-sm"
+                  style={{
+                    backgroundColor: `rgb(var(--color-bg-tertiary))`,
+                    color: `rgb(var(--color-primary))`,
+                  }}
+                >
                   <code>{paragraph.replace(/```/g, '')}</code>
                 </pre>
               ) : paragraph.startsWith('-') ? (
-                <ul className="space-y-2 pl-6">
+                <ul className="space-y-2 pl-6" style={{ color: `rgb(var(--color-text-secondary))` }}>
                   {paragraph.split('\n').map((item, j) => (
-                    <li
-                      key={j}
-                      className="list-disc text-text-secondary"
-                    >
+                    <li key={j} className="list-disc">
                       {item.replace(/^-\s/, '')}
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="text-text-secondary">{paragraph}</p>
+                <p style={{ color: `rgb(var(--color-text-secondary))` }}>{paragraph}</p>
               )}
             </div>
           ))}
@@ -181,11 +217,27 @@ export default async function BlogPostPage({
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="space-y-6 border-t border-cyan-500/10 pt-8"
+        className="space-y-6 pt-8"
+        style={{
+          borderTop: `1px solid rgb(var(--color-primary) / 0.1)`,
+        }}
       >
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 rounded border border-cyan-500/20 px-4 py-2 font-mono text-sm text-cyan-400 transition-all hover:border-cyan-500/50 hover:bg-dark-800"
+          className="inline-flex items-center gap-2 rounded px-4 py-2 font-mono text-sm transition-all"
+          style={{
+            color: `rgb(var(--color-primary))`,
+            borderColor: `rgb(var(--color-primary) / 0.2)`,
+            border: `1px solid rgb(var(--color-primary) / 0.2)`,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = `rgb(var(--color-primary) / 0.5)`;
+            e.currentTarget.style.backgroundColor = `rgb(var(--color-bg-secondary))`;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = `rgb(var(--color-primary) / 0.2)`;
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }}
         >
           <ArrowLeft className="h-4 w-4" />
           Back to all articles
