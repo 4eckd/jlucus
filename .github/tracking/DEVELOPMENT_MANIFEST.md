@@ -17,10 +17,10 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 
 | Branch | Issue | Milestone | PR | Status |
 |--------|-------|-----------|-----|--------|
+| origin/claude/auto-sync-parent-branch-00GbC | #- | - | - | Active |
 | origin/claude/feature-branch-automation-0lzXz | #- | - | - | Active |
 | origin/claude/feature-branch-automation-Eb1lY | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ad12u | #- | - | - | Active |
-| origin/claude/feature-branch-automation-fuaGE | #- | - | - | Active |
 | origin/claude/feature-branch-automation-ljfRu | #- | - | - | Active |
 | origin/claude/feature-branch-automation-uoLGx | #- | - | - | Active |
 | origin/claude/feature-branch-from-issue-lJKlJ | #- | - | - | Active |

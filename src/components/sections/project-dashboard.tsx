@@ -8,8 +8,6 @@ import {
   Clock,
   Target,
   Rocket,
-  Code,
-  Sparkles,
   TrendingUp,
   Layers,
   Zap
@@ -201,12 +199,11 @@ export function ProjectDashboard() {
             </div>
             <div className="h-3 bg-background-secondary rounded-full overflow-hidden border border-primary/20">
               <motion.div
-                className="h-full bg-gradient-to-r from-primary via-accent to-secondary"
+                className="h-full bg-gradient-to-r from-primary via-accent to-secondary shadow-neon-primary"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${overallProgress}%` }}
                 transition={{ duration: 1, delay: 0.3 }}
                 viewport={{ once: true }}
-                style={{ boxShadow: '0 0 20px rgba(var(--color-primary), 0.5)' }}
               />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { DefaultSession, DefaultUser } from "next-auth";
-import { JWT, DefaultJWT } from "next-auth/jwt";
+import { DefaultJWT } from "next-auth/jwt";
 
 // Extend NextAuth types to include user ID
 declare module "next-auth" {
