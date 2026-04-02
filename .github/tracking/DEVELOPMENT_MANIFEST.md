@@ -50,7 +50,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-cVkNK | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
-| origin/dependabot/npm_and_yarn/npm_and_yarn-97b395be1e | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/feature/redirect-vlngg | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
