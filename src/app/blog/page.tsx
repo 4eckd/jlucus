@@ -26,7 +26,7 @@ export default function BlogPage() {
 
       return matchesSearch && matchesTags
     })
-  }, [searchQuery, selectedTags])
+  }, [posts, searchQuery, selectedTags])
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>

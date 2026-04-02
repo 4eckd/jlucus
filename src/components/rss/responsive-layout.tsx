@@ -20,7 +20,6 @@ export function ResponsiveRSSLayout({ posts, onPostSelect }: ResponsiveRSSLayout
   useEffect(() => {
     const detectViewport = () => {
       const width = window.innerWidth
-      const height = window.innerHeight
 
       // Detect based on width and aspect ratio
       if (width <= 720) {

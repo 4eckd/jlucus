@@ -231,7 +231,7 @@ export function isValidToken(className: string): boolean {
 /**
  * Export all public utilities
  */
-export default {
+const designTokensUtilities = {
   SEMANTIC_TOKENS,
   COMPONENT_PRESETS,
   cn,
@@ -242,3 +242,5 @@ export default {
   auditTokenUsage,
   isValidToken,
 };
+
+export default designTokensUtilities;

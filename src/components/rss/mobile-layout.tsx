@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Bookmark, Share2, ChevronRight } from 'lucide-react'
 import type { BlogPost } from '@/types'

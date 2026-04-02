@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { BarChart3, Clock, Zap, Share2, Star } from 'lucide-react'
+import { BarChart3, Clock, Zap, Share2 } from 'lucide-react'
 import type { BlogPost } from '@/types'
 
 interface WideRSSLayoutProps {
@@ -13,7 +13,6 @@ interface WideRSSLayoutProps {
 export function WideRSSLayout({ posts, onPostSelect }: WideRSSLayoutProps) {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(posts[0] || null)
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [sortBy, setSortBy] = useState<'recent' | 'trending'>('recent')
 
   const categories = ['all', ...new Set(posts.map(p => p.category))]
@@ -21,9 +20,15 @@ export function WideRSSLayout({ posts, onPostSelect }: WideRSSLayoutProps) {
     ? posts
     : posts.filter(p => p.category === selectedCategory)
 
-  const sortedPosts = sortBy === 'trending'
-    ? [...filteredPosts].sort(() => Math.random() - 0.5)
-    : filteredPosts
+  const sortedPosts = useMemo(() => {
+    if (sortBy === 'trending') {
+      // Deterministic shuffle based on post IDs
+      return [...filteredPosts].sort((a, b) =>
+        (a.id.charCodeAt(0) + a.id.charCodeAt(1)) - (b.id.charCodeAt(0) + b.id.charCodeAt(1))
+      )
+    }
+    return filteredPosts
+  }, [filteredPosts, sortBy])
 
   const handleSelectPost = (post: BlogPost) => {
     setSelectedPost(post)

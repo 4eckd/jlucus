@@ -20,9 +20,6 @@ const cardVariants = {
       duration: 0.4,
     },
   }),
-}
-
-const hoverVariants = {
   hover: {
     y: -4,
     transition: { duration: 0.2 },
