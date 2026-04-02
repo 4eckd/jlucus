@@ -233,6 +233,79 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  /* Stop all CSS animations and transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Hide the moving scanline */
+  .scanline {
+    display: none;
+  }
+
+  /* Stop avatar glow and scan animations */
+  .avatar-frame {
+    animation: none;
+    filter:
+      drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
+      drop-shadow(0 0 30px rgb(var(--color-indigo) / 0.25));
+  }
+
+  .avatar-zone {
+    animation: none;
+    opacity: 1;
+  }
+
+  .avatar-scan::after {
+    animation: none;
+    display: none;
+  }
+
+  /* Remove neon text glow for readability */
+  .identity-name {
+    text-shadow: none;
+  }
+
+  /* Freeze progress fill transition */
+  .progress-fill {
+    transition: none;
+  }
+}
+
+/* JS-controlled accessibility: .reduce-motion class mirrors prefers-reduced-motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+.reduce-motion .scanline { display: none; }
+.reduce-motion .avatar-scan::after { animation: none; display: none; }
+.reduce-motion .avatar-frame {
+  animation: none;
+  filter:
+    drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
+    drop-shadow(0 0 30px rgb(var(--color-indigo) / 0.25));
+}
+
+/* .no-glow disables neon text shadows for readability */
+.no-glow .text-neon,
+.no-glow .text-neon-accent,
+.no-glow .identity-name,
+.no-glow .countdown-number {
+  text-shadow: none;
+}
+
+.no-glow .hud-dot,
+.no-glow .progress-fill {
+  box-shadow: none;
 }
 
 body {
