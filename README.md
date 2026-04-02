@@ -14,9 +14,7 @@
 
 **A cyberpunk-inspired developer portfolio with Terminal Neon aesthetics**
 
-[Live Demo](https://jlucus.dev) · [Documentation](CLAUDE.md) ·
-[Report Bug](https://github.com/4eckd/jlucus2/issues) ·
-[Request Feature](https://github.com/4eckd/jlucus2/issues)
+[Live Demo](https://jlucus.dev) · [Documentation](CLAUDE.md) · [Report Bug](https://github.com/4eckd/jlucus2/issues) · [Request Feature](https://github.com/4eckd/jlucus2/issues)
 
 ![Hero Preview](docs/preview-hero.png)
 
@@ -32,17 +30,16 @@
 ████████████████████████████████████░░░░░░░░░ 75%
 ```
 
-| Phase                   | Status         | Progress                  |
-| ----------------------- | -------------- | ------------------------- |
-| 🏗️ Foundation           | ✅ Complete    | 100% ████████████████████ |
-| 🎨 Polish & Enhancement | 🔄 In Progress | 60% ████████████░░░░░░░░  |
-| 📝 Content & Features   | ⏳ Planned     | 0% ░░░░░░░░░░░░░░░░░░░░   |
-| 📚 Documentation        | ✅ Complete    | 90% ██████████████████░░  |
-| 🧪 Testing & QA         | ⏳ Planned     | 0% ░░░░░░░░░░░░░░░░░░░░   |
-| 🚀 Deployment           | ⏳ Planned     | 0% ░░░░░░░░░░░░░░░░░░░░   |
+| Phase | Status | Progress |
+|-------|--------|----------|
+| 🏗️ Foundation | ✅ Complete | 100% ████████████████████ |
+| 🎨 Polish & Enhancement | 🔄 In Progress | 60% ████████████░░░░░░░░ |
+| 📝 Content & Features | ⏳ Planned | 0% ░░░░░░░░░░░░░░░░░░░░ |
+| 📚 Documentation | ✅ Complete | 90% ██████████████████░░ |
+| 🧪 Testing & QA | ⏳ Planned | 0% ░░░░░░░░░░░░░░░░░░░░ |
+| 🚀 Deployment | ⏳ Planned | 0% ░░░░░░░░░░░░░░░░░░░░ |
 
 **Recent Milestones:**
-
 - ✅ v1.1.0: CSS Variables migration complete
 - ✅ Documentation overhaul (7 new docs)
 - ✅ Build system improvements
@@ -184,12 +181,12 @@ Amber<br/>
 
 ```css
 /* All colors use RGB format for alpha channel support */
---color-primary: 0 217 255; /* rgb(0, 217, 255) */
---color-accent: 255 0 110; /* rgb(255, 0, 110) */
---color-secondary: 204 255 0; /* rgb(204, 255, 0) */
---color-success: 0 255 159; /* rgb(0, 255, 159) */
---color-warning: 255 184 0; /* rgb(255, 184, 0) */
---color-error: 255 71 87; /* rgb(255, 71, 87) */
+--color-primary: 0 217 255;        /* rgb(0, 217, 255) */
+--color-accent: 255 0 110;         /* rgb(255, 0, 110) */
+--color-secondary: 204 255 0;      /* rgb(204, 255, 0) */
+--color-success: 0 255 159;        /* rgb(0, 255, 159) */
+--color-warning: 255 184 0;        /* rgb(255, 184, 0) */
+--color-error: 255 71 87;          /* rgb(255, 71, 87) */
 ```
 
 ### CSS Variables Philosophy
@@ -197,18 +194,17 @@ Amber<br/>
 **CRITICAL RULE: NEVER use hard-coded CSS values.**
 
 All design tokens are defined as CSS variables for:
-
 - Single source of truth
 - Easy theming and customization
 - Alpha channel support via `rgb(var(--color-*) / <alpha>)`
 - Consistent spacing, colors, and effects
 
-| Category   | Pattern       | Example                             |
-| ---------- | ------------- | ----------------------------------- |
-| 🎨 Colors  | `--color-*`   | `--color-primary`, `--color-accent` |
-| 📏 Spacing | `--spacing-*` | `--spacing-md`, `--spacing-xl`      |
-| 🌟 Shadows | `--shadow-*`  | `--shadow-neon-primary`             |
-| 📐 Layout  | `--grid-size` | `--grid-size: 40px`                 |
+| Category | Pattern | Example |
+|----------|---------|---------|
+| 🎨 Colors | `--color-*` | `--color-primary`, `--color-accent` |
+| 📏 Spacing | `--spacing-*` | `--spacing-md`, `--spacing-xl` |
+| 🌟 Shadows | `--shadow-*` | `--shadow-neon-primary` |
+| 📐 Layout | `--grid-size` | `--grid-size: 40px` |
 
 **Usage in Tailwind:**
 
@@ -224,15 +220,15 @@ All design tokens are defined as CSS variables for:
 
 ## 🛠️ Available Scripts
 
-| Command               | Description              | Use Case                                   |
-| --------------------- | ------------------------ | ------------------------------------------ |
-| `npm run dev`         | Start development server | Local development at http://localhost:3000 |
-| `npm run build`       | Production build         | Build for deployment                       |
-| `npm run build:clean` | Clean build              | Remove cache before building               |
-| `npm start`           | Start production server  | Test production build locally              |
-| `npm run lint`        | Run ESLint               | Check code quality                         |
-| `npm run clean`       | Remove build artifacts   | Clear `.next`, `out`, cache                |
-| `npm run clean:all`   | Deep clean               | Remove everything including `node_modules` |
+| Command | Description | Use Case |
+|---------|-------------|----------|
+| `npm run dev` | Start development server | Local development at http://localhost:3000 |
+| `npm run build` | Production build | Build for deployment |
+| `npm run build:clean` | Clean build | Remove cache before building |
+| `npm start` | Start production server | Test production build locally |
+| `npm run lint` | Run ESLint | Check code quality |
+| `npm run clean` | Remove build artifacts | Clear `.next`, `out`, cache |
+| `npm run clean:all` | Deep clean | Remove everything including `node_modules` |
 
 ### Development Workflow
 
@@ -251,16 +247,16 @@ npm run lint
 
 ## 📚 Documentation
 
-| Document                                                     | Description                      |
-| ------------------------------------------------------------ | -------------------------------- |
-| [CLAUDE.md](CLAUDE.md)                                       | Complete technical documentation |
-| [QUICKSTART.md](QUICKSTART.md)                               | Get started in 5 minutes         |
-| [CONTRIBUTING.md](CONTRIBUTING.md)                           | Contribution guidelines          |
-| [CHANGELOG.md](CHANGELOG.md)                                 | Version history                  |
-| [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md)                     | Development roadmap              |
-| [SECURITY.md](SECURITY.md)                                   | Security policy                  |
-| [docs/ascii-art-samples.md](docs/ascii-art-samples.md)       | ASCII art library                |
-| [docs/hard-coded-css-audit.md](docs/hard-coded-css-audit.md) | CSS audit report                 |
+| Document | Description |
+|----------|-------------|
+| [CLAUDE.md](CLAUDE.md) | Complete technical documentation |
+| [QUICKSTART.md](QUICKSTART.md) | Get started in 5 minutes |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guidelines |
+| [CHANGELOG.md](CHANGELOG.md) | Version history |
+| [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md) | Development roadmap |
+| [SECURITY.md](SECURITY.md) | Security policy |
+| [docs/ascii-art-samples.md](docs/ascii-art-samples.md) | ASCII art library |
+| [docs/hard-coded-css-audit.md](docs/hard-coded-css-audit.md) | CSS audit report |
 
 ---
 
@@ -339,11 +335,9 @@ CONTACT_FORM_ENDPOINT=https://formspree.io/f/xxxxx
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting
-PRs.
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) before submitting PRs.
 
 **Quick contribution checklist:**
-
 - ✅ Follow CSS Variables philosophy (NEVER hard-code values)
 - ✅ Use TypeScript with proper types
 - ✅ Follow conventional commits format
@@ -356,8 +350,7 @@ PRs.
 
 ## 🔒 Security
 
-Found a security vulnerability? Please report it privately. See [SECURITY.md](SECURITY.md) for
-details.
+Found a security vulnerability? Please report it privately. See [SECURITY.md](SECURITY.md) for details.
 
 ---
 
@@ -397,15 +390,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Technologies
 
-- Built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/),
-  [Framer Motion](https://www.framer.com/motion/)
+- Built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Framer Motion](https://www.framer.com/motion/)
 - Fonts: [JetBrains Mono](https://www.jetbrains.com/lp/mono/), [Inter](https://rsms.me/inter/)
 - Icons: [Lucide](https://lucide.dev/), [Heroicons](https://heroicons.com/)
 
 ### Tools
 
-- Development: [Visual Studio Code](https://code.visualstudio.com/),
-  [Claude Code](https://claude.com/claude-code)
+- Development: [Visual Studio Code](https://code.visualstudio.com/), [Claude Code](https://claude.com/claude-code)
 - Design: [Figma](https://figma.com), CSS Variables
 - Version Control: [Git](https://git-scm.com/), [GitHub](https://github.com)
 

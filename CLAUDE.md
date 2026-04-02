@@ -1,13 +1,10 @@
 # jlucus.dev - Developer Portfolio
 
-> A Terminal Neon themed portfolio showcasing ventures, projects, and skills with a modern developer
-> aesthetic.
+> A Terminal Neon themed portfolio showcasing ventures, projects, and skills with a modern developer aesthetic.
 
 ## Overview
 
-This is a Next.js 15 portfolio website built with TypeScript, Tailwind CSS 4, and Framer Motion. It
-features a unique Terminal Neon design system with Electric Cyan primary color, Neon Magenta
-accents, and immersive terminal-style UI elements.
+This is a Next.js 15 portfolio website built with TypeScript, Tailwind CSS 4, and Framer Motion. It features a unique Terminal Neon design system with Electric Cyan primary color, Neon Magenta accents, and immersive terminal-style UI elements.
 
 ## Tech Stack
 
@@ -23,26 +20,22 @@ accents, and immersive terminal-style UI elements.
 
 ### Color Scheme - Terminal Neon
 
-All colors are defined as CSS variables in `src/styles/globals.css` using RGB values for alpha
-channel support:
+All colors are defined as CSS variables in `src/styles/globals.css` using RGB values for alpha channel support:
 
 ```css
---color-primary: 0 217 255; /* Electric Cyan #00D9FF */
---color-accent: 255 0 110; /* Neon Magenta #FF006E */
---color-secondary: 204 255 0; /* Electric Lime #CCFF00 */
---color-success: 0 255 159; /* #00FF9F */
---color-warning: 255 184 0; /* #FFB800 */
---color-error: 255 71 87; /* #FF4757 */
+--color-primary: 0 217 255;        /* Electric Cyan #00D9FF */
+--color-accent: 255 0 110;         /* Neon Magenta #FF006E */
+--color-secondary: 204 255 0;      /* Electric Lime #CCFF00 */
+--color-success: 0 255 159;        /* #00FF9F */
+--color-warning: 255 184 0;        /* #FFB800 */
+--color-error: 255 71 87;          /* #FF4757 */
 ```
 
 ### CSS Variables Philosophy
 
-**CRITICAL**: This project uses CSS variables exclusively. NEVER use hardcoded CSS values. All
-colors, spacing, fonts, shadows, and other design tokens are defined as variables in `:root` and
-referenced via Tailwind's theme configuration.
+**CRITICAL**: This project uses CSS variables exclusively. NEVER use hardcoded CSS values. All colors, spacing, fonts, shadows, and other design tokens are defined as variables in `:root` and referenced via Tailwind's theme configuration.
 
 **Why?**
-
 - Enables easy theming and dark mode support
 - Single source of truth for design tokens
 - Prevents inconsistencies across the codebase
@@ -57,21 +50,19 @@ referenced via Tailwind's theme configuration.
 ### Spacing System
 
 All spacing uses CSS variables:
-
 ```css
---spacing-xs: 0.25rem; /* 4px */
---spacing-sm: 0.5rem; /* 8px */
---spacing-md: 1rem; /* 16px */
---spacing-lg: 1.5rem; /* 24px */
---spacing-xl: 2rem; /* 32px */
---spacing-2xl: 3rem; /* 48px */
---spacing-3xl: 4rem; /* 64px */
+--spacing-xs: 0.25rem;   /* 4px */
+--spacing-sm: 0.5rem;    /* 8px */
+--spacing-md: 1rem;      /* 16px */
+--spacing-lg: 1.5rem;    /* 24px */
+--spacing-xl: 2rem;      /* 32px */
+--spacing-2xl: 3rem;     /* 48px */
+--spacing-3xl: 4rem;     /* 64px */
 ```
 
 ### Neon Effects
 
 Custom neon glow shadows for that cyberpunk aesthetic:
-
 ```css
 --shadow-neon-primary: 0 0 5px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary));
 --shadow-neon-primary-lg: 0 0 10px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary));
@@ -120,7 +111,6 @@ jlucus2/
 ## Key Features
 
 ### 1. Hero Terminal Section
-
 - Interactive terminal UI with typing animation
 - System info display
 - Animated command execution
@@ -128,7 +118,6 @@ jlucus2/
 - Animated grid background
 
 ### 2. Ventures Section
-
 - Hexagonal card layout
 - Status indicators (building, launching, growing, scaling)
 - Metrics display (users, growth, revenue)
@@ -136,7 +125,6 @@ jlucus2/
 - Tech stack tags
 
 ### 3. Portfolio Section
-
 - Filterable project grid
 - Category badges
 - GitHub stars/forks metrics
@@ -144,7 +132,6 @@ jlucus2/
 - Live demo links
 
 ### 4. Skills Section
-
 - Collapsible skill categories
 - XP-based progress bars
 - Level indicators (beginner → master)
@@ -152,7 +139,6 @@ jlucus2/
 - Category statistics
 
 ### 5. Contact Section
-
 - Contact form with validation
 - Social links
 - Availability status
@@ -190,7 +176,6 @@ The site runs at `http://localhost:3000` in development mode with hot module rep
 ### Site Constants
 
 Edit `src/lib/constants.ts` to update:
-
 - Site metadata (title, description, URL)
 - Social links (GitHub, LinkedIn, Email)
 - Navigation sections
@@ -199,7 +184,6 @@ Edit `src/lib/constants.ts` to update:
 ### Data Management
 
 Update content in `src/data/`:
-
 - **ventures.ts**: Add/edit ventures with status, tech stack, metrics
 - **projects.ts**: Add/edit projects with category, featured status
 - **skills.ts**: Add/edit skills with levels, XP, categories
@@ -207,7 +191,6 @@ Update content in `src/data/`:
 ### Styling
 
 Modify design tokens in `src/styles/globals.css`:
-
 - Colors (maintain RGB format for alpha support)
 - Spacing scale
 - Typography scales
@@ -232,7 +215,8 @@ Supports both button and anchor elements via `asChild` prop:
 </Button>
 ```
 
-**Variants**: default, destructive, outline, secondary, ghost, link **Sizes**: default, sm, lg, icon
+**Variants**: default, destructive, outline, secondary, ghost, link
+**Sizes**: default, sm, lg, icon
 **Props**: loading, asChild, disabled
 
 ### Utility Functions
@@ -240,22 +224,21 @@ Supports both button and anchor elements via `asChild` prop:
 Located in `src/lib/utils.ts`:
 
 ```tsx
-import { cn, debounce, throttle, lerp, copyToClipboard } from '@/lib/utils';
+import { cn, debounce, throttle, lerp, copyToClipboard } from '@/lib/utils'
 
 // Class names merging
-cn('class1', 'class2', { conditional: true });
+cn('class1', 'class2', { conditional: true })
 
 // Debounce function calls
-const debouncedFn = debounce(() => {}, 300);
+const debouncedFn = debounce(() => {}, 300)
 
 // Linear interpolation for animations
-const value = lerp(start, end, progress);
+const value = lerp(start, end, progress)
 ```
 
 ## Responsive Design
 
 The site is fully responsive with breakpoints:
-
 - **Mobile**: < 640px (stacked layout)
 - **Tablet**: 640px - 1024px (2-column grid)
 - **Desktop**: 1024px - 1280px (3-column grid)
@@ -333,10 +316,8 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev
 
 ## Known Issues
 
-- **PostCSS**: Tailwind CSS 4 requires `@tailwindcss/postcss` plugin instead of `tailwindcss`
-  directly
-- **Slot Component**: When using `asChild` with Button, loading state is ignored (Slot accepts
-  single child only)
+- **PostCSS**: Tailwind CSS 4 requires `@tailwindcss/postcss` plugin instead of `tailwindcss` directly
+- **Slot Component**: When using `asChild` with Button, loading state is ignored (Slot accepts single child only)
 
 ## Future Enhancements
 

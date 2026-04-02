@@ -1,2 +1,2 @@
 // React context providers
-export { ThemeProvider } from './ThemeProvider';
+export { ThemeProvider } from './ThemeProvider'

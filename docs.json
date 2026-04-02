@@ -174,19 +174,33 @@
   "categories": [
     {
       "name": "Getting Started",
-      "files": ["README.md", "QUICKSTART.md", "CLAUDE.md"]
+      "files": [
+        "README.md",
+        "QUICKSTART.md",
+        "CLAUDE.md"
+      ]
     },
     {
       "name": "Planning & Roadmap",
-      "files": ["PROJECT_ROADMAP.md", "CHANGELOG.md"]
+      "files": [
+        "PROJECT_ROADMAP.md",
+        "CHANGELOG.md"
+      ]
     },
     {
       "name": "Design Resources",
-      "files": ["docs/ascii-art-samples.md", "docs/hard-coded-css-audit.md"]
+      "files": [
+        "docs/ascii-art-samples.md",
+        "docs/hard-coded-css-audit.md"
+      ]
     },
     {
       "name": "Contributing",
-      "files": ["CONTRIBUTING.md", "SECURITY.md", "LICENSE"]
+      "files": [
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        "LICENSE"
+      ]
     },
     {
       "name": "API Documentation",

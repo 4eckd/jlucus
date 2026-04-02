@@ -1,16 +1,15 @@
 # Branching Strategy - Portfolio Modernization
 
-**Last Updated**: 2025-10-25 **Strategy Type**: Feature-Based Parallel Development
+**Last Updated**: 2025-10-25
+**Strategy Type**: Feature-Based Parallel Development
 
 ---
 
 ## 🎯 Strategy Overview
 
-**Goal**: Enable parallel development of features for fastest possible rollout while maintaining
-code quality and stability.
+**Goal**: Enable parallel development of features for fastest possible rollout while maintaining code quality and stability.
 
 **Approach**: **Feature-based branching** (NOT phase-based)
-
 - ✅ Multiple features can be developed simultaneously
 - ✅ Features can be merged independently when ready
 - ✅ Easy to test features in isolation
@@ -50,20 +49,17 @@ main (production)
 ## 📋 Branch Types & Naming
 
 ### 1. **Main Branch** (`main`)
-
 - **Purpose**: Production-ready code
 - **Protection**: Protected, requires PR approval
 - **Deploy**: Auto-deploys to production (jlucus.dev)
 
 ### 2. **Integration Branch** (`claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM`)
-
 - **Purpose**: Central development branch, integration point
 - **Lifespan**: Entire modernization project
 - **Merges**: Feature branches merge here first
 - **Deploy**: Can deploy to preview URL for testing
 
 ### 3. **Feature Branches** (`feature/*`)
-
 - **Purpose**: Individual feature development
 - **Naming**: `feature/<feature-name>`
 - **Created From**: Integration branch
@@ -72,7 +68,6 @@ main (production)
 - **Delete**: After successful merge
 
 ### 4. **Hotfix Branches** (`hotfix/*`) - If Needed
-
 - **Purpose**: Emergency production fixes
 - **Created From**: `main`
 - **Merges Into**: Both `main` AND integration branch
@@ -84,35 +79,35 @@ main (production)
 
 ### **Phase 1: UI Components & Sections** (Parallel Development)
 
-| Feature Branch              | Description                                  | Dependencies | Priority | Est. Time |
-| --------------------------- | -------------------------------------------- | ------------ | -------- | --------- |
-| `feature/navigation`        | Header, nav menu, mobile menu, smooth scroll | None         | HIGH     | 4-6h      |
-| `feature/hero-section`      | Hero with typing animation, CTA buttons      | None         | HIGH     | 3-4h      |
-| `feature/about-section`     | Profile image, bio, personal details         | None         | MEDIUM   | 2-3h      |
-| `feature/skills-resume`     | Skills bars, timeline, work history          | None         | MEDIUM   | 4-5h      |
-| `feature/portfolio-grid`    | Project cards, filtering, lightbox           | None         | HIGH     | 5-6h      |
-| `feature/services-showcase` | Services cards, AI models display            | None         | MEDIUM   | 3-4h      |
-| `feature/contact-form`      | Form with validation, email integration      | None         | HIGH     | 3-4h      |
-| `feature/footer-layout`     | Footer component, social links               | None         | LOW      | 2h        |
+| Feature Branch | Description | Dependencies | Priority | Est. Time |
+|----------------|-------------|--------------|----------|-----------|
+| `feature/navigation` | Header, nav menu, mobile menu, smooth scroll | None | HIGH | 4-6h |
+| `feature/hero-section` | Hero with typing animation, CTA buttons | None | HIGH | 3-4h |
+| `feature/about-section` | Profile image, bio, personal details | None | MEDIUM | 2-3h |
+| `feature/skills-resume` | Skills bars, timeline, work history | None | MEDIUM | 4-5h |
+| `feature/portfolio-grid` | Project cards, filtering, lightbox | None | HIGH | 5-6h |
+| `feature/services-showcase` | Services cards, AI models display | None | MEDIUM | 3-4h |
+| `feature/contact-form` | Form with validation, email integration | None | HIGH | 3-4h |
+| `feature/footer-layout` | Footer component, social links | None | LOW | 2h |
 
-**Total Parallel Time**: ~6-8 hours (if working on all simultaneously) **Sequential Time**: ~26-34
-hours
+**Total Parallel Time**: ~6-8 hours (if working on all simultaneously)
+**Sequential Time**: ~26-34 hours
 
 ### **Phase 2: CMS & Content** (Can start in parallel with Phase 1)
 
-| Feature Branch                 | Description                         | Dependencies  | Priority | Est. Time |
-| ------------------------------ | ----------------------------------- | ------------- | -------- | --------- |
-| `feature/payload-cms`          | Payload setup, schemas, admin panel | None          | HIGH     | 4-6h      |
-| `feature/content-migration`    | Migrate legacy content to CMS       | `payload-cms` | MEDIUM   | 3-4h      |
-| `feature/linkedin-integration` | LinkedIn API, article fetching      | `payload-cms` | LOW      | 4-6h      |
+| Feature Branch | Description | Dependencies | Priority | Est. Time |
+|----------------|-------------|--------------|----------|-----------|
+| `feature/payload-cms` | Payload setup, schemas, admin panel | None | HIGH | 4-6h |
+| `feature/content-migration` | Migrate legacy content to CMS | `payload-cms` | MEDIUM | 3-4h |
+| `feature/linkedin-integration` | LinkedIn API, article fetching | `payload-cms` | LOW | 4-6h |
 
 ### **Phase 3: Advanced Features** (Can start once sections are done)
 
-| Feature Branch              | Description                             | Dependencies      | Priority | Est. Time |
-| --------------------------- | --------------------------------------- | ----------------- | -------- | --------- |
-| `feature/chat-agent`        | AI chat with LobeUI, Vercel AI SDK      | Sections complete | MEDIUM   | 6-8h      |
-| `feature/testing-setup`     | Vitest, Playwright, accessibility tests | Most features     | MEDIUM   | 4-5h      |
-| `feature/deployment-config` | Vercel config, CI/CD, env setup         | All features      | HIGH     | 2-3h      |
+| Feature Branch | Description | Dependencies | Priority | Est. Time |
+|----------------|-------------|--------------|----------|-----------|
+| `feature/chat-agent` | AI chat with LobeUI, Vercel AI SDK | Sections complete | MEDIUM | 6-8h |
+| `feature/testing-setup` | Vitest, Playwright, accessibility tests | Most features | MEDIUM | 4-5h |
+| `feature/deployment-config` | Vercel config, CI/CD, env setup | All features | HIGH | 2-3h |
 
 ---
 
@@ -188,7 +183,6 @@ git push origin v2.0.0
 ## 📊 Parallel Development Strategy
 
 ### **Week 1: Foundation + UI Components**
-
 ```
 Day 1-2:
 - feature/navigation        (Developer A / Claude)
@@ -207,7 +201,6 @@ Day 5:
 ```
 
 ### **Week 2: Advanced Features + Testing**
-
 ```
 Day 1-3:
 - feature/content-migration
@@ -221,7 +214,6 @@ Day 4-5:
 ```
 
 ### **Week 3: Polish + Launch**
-
 ```
 Day 1-2:
 - Bug fixes
@@ -243,7 +235,6 @@ Day 4:
 ## 🔒 Branch Protection Rules
 
 ### **Main Branch** (`main`)
-
 - ✅ Require pull request reviews (1 approver minimum)
 - ✅ Require status checks to pass
 - ✅ Require branches to be up to date
@@ -251,13 +242,11 @@ Day 4:
 - ✅ Do not allow deletion
 
 ### **Integration Branch** (`claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM`)
-
 - ✅ Require pull request for feature merges (recommended)
 - ⚠️ Allow force push (for rebasing if needed)
 - ✅ Require CI checks to pass (once CI is setup)
 
 ### **Feature Branches**
-
 - ✅ No restrictions (fast iteration)
 - ✅ Can force push (for cleaning up commits)
 - ✅ Delete after merge
@@ -277,7 +266,6 @@ Use **Conventional Commits** format:
 ```
 
 **Types**:
-
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -287,7 +275,6 @@ Use **Conventional Commits** format:
 - `chore`: Build process, dependencies, tooling
 
 **Examples**:
-
 ```bash
 feat(navigation): add mobile hamburger menu
 fix(contact-form): resolve email validation issue
@@ -303,13 +290,11 @@ chore(deps): update Next.js to 16.0.1
 ## 🎯 Merge Strategy
 
 ### **Feature → Integration**
-
 - **Method**: Squash and merge (keeps integration branch clean)
 - **PR Required**: Yes (for review and CI checks)
 - **Delete Branch**: Yes (after merge)
 
 ### **Integration → Main**
-
 - **Method**: Merge commit (preserves history)
 - **PR Required**: Yes (requires thorough review)
 - **Tag Release**: Yes (semantic versioning)
@@ -321,7 +306,6 @@ chore(deps): update Next.js to 16.0.1
 ### **Conflict Resolution Workflow**:
 
 1. **Update from integration branch**:
-
    ```bash
    git checkout claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM
    git pull
@@ -346,17 +330,14 @@ chore(deps): update Next.js to 16.0.1
 ## 📈 Progress Tracking
 
 ### **Use GitHub Projects** (Optional):
-
 - Create project board: "Portfolio Modernization"
 - Columns: Backlog, In Progress, Review, Done
 - Link feature branches to issues/cards
 - Track progress visually
 
 ### **Use Todo Lists in PRs**:
-
 ```markdown
 ## Checklist
-
 - [x] Component implemented
 - [x] Styles applied
 - [x] Responsive design tested
@@ -369,11 +350,12 @@ chore(deps): update Next.js to 16.0.1
 
 ## 🎉 Benefits of This Strategy
 
-✅ **Parallel Development** - Work on 3-5 features simultaneously ✅ **Independent Merges** - Don't
-wait for all features to complete ✅ **Easy Rollback** - Can revert individual features if needed ✅
-**Clear Organization** - Know exactly what each branch contains ✅ **Flexible Prioritization** - Can
-change priorities on the fly ✅ **Isolated Testing** - Test features independently before
-integration
+✅ **Parallel Development** - Work on 3-5 features simultaneously
+✅ **Independent Merges** - Don't wait for all features to complete
+✅ **Easy Rollback** - Can revert individual features if needed
+✅ **Clear Organization** - Know exactly what each branch contains
+✅ **Flexible Prioritization** - Can change priorities on the fly
+✅ **Isolated Testing** - Test features independently before integration
 
 ---
 
@@ -391,11 +373,11 @@ integration
 
 ## 📅 Timeline with Parallel Development
 
-| Week   | Focus           | Branches Active      | Milestone                    |
-| ------ | --------------- | -------------------- | ---------------------------- |
-| Week 1 | UI Components   | 4-6 feature branches | All sections migrated        |
-| Week 2 | CMS + Advanced  | 3-4 feature branches | CMS integrated, chat working |
-| Week 3 | Polish + Deploy | 1-2 feature branches | Production ready             |
+| Week | Focus | Branches Active | Milestone |
+|------|-------|-----------------|-----------|
+| Week 1 | UI Components | 4-6 feature branches | All sections migrated |
+| Week 2 | CMS + Advanced | 3-4 feature branches | CMS integrated, chat working |
+| Week 3 | Polish + Deploy | 1-2 feature branches | Production ready |
 
 **Total**: ~3 weeks to full launch (vs 10-12 weeks sequential)
 
@@ -411,9 +393,11 @@ integration
 
 ---
 
-**Questions?** Ask before branching! **Ready to branch?** Create feature branches in batch when
-foundation is merged.
+**Questions?** Ask before branching!
+**Ready to branch?** Create feature branches in batch when foundation is merged.
 
 ---
 
-**Last Updated**: 2025-10-25 **Strategy Owner**: Jesse Lucas **Implementation**: Claude Code
+**Last Updated**: 2025-10-25
+**Strategy Owner**: Jesse Lucas
+**Implementation**: Claude Code

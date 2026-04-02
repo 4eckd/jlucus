@@ -1,18 +1,17 @@
 # Pull Request: NextAuth.js Foundation & Database Schema
 
-**Branch:** `feat/auth-foundation/UPR-001` **Ticket:** UPR-001 **Target:** main **Status:** 🟡
-Pending Approval (git/pnpm commands require approval)
+**Branch:** `feat/auth-foundation/UPR-001`
+**Ticket:** UPR-001
+**Target:** main
+**Status:** 🟡 Pending Approval (git/pnpm commands require approval)
 
 ---
 
 ## Summary
 
-Implements the authentication foundation for the jlucus portfolio project using NextAuth.js v5
-(beta) with Prisma adapter. This establishes the base infrastructure required for all user profile
-features including OAuth, profile management, and session handling.
+Implements the authentication foundation for the jlucus portfolio project using NextAuth.js v5 (beta) with Prisma adapter. This establishes the base infrastructure required for all user profile features including OAuth, profile management, and session handling.
 
 **Key additions:**
-
 - NextAuth.js v5 configuration with Email/Password provider
 - Prisma schema with User, Account, Session, and VerificationToken models
 - Bcrypt password hashing for security
@@ -24,7 +23,6 @@ features including OAuth, profile management, and session handling.
 ## Implementation
 
 ### Dependencies Added
-
 ```json
 {
   "dependencies": {
@@ -49,7 +47,6 @@ features including OAuth, profile management, and session handling.
 5. **`.gitignore`** - Updated to exclude .env and Prisma migrations (if not already)
 
 ### Database Schema
-
 ```prisma
 model User {
   id            String    @id @default(cuid())
@@ -67,7 +64,6 @@ model User {
 ```
 
 ### Security Features
-
 - ✅ Password hashing with bcrypt (12 rounds)
 - ✅ CSRF protection enabled
 - ✅ Secure session cookies (httpOnly, sameSite, secure in production)
@@ -79,20 +75,17 @@ model User {
 ## Tests
 
 ### Unit Tests Planned
-
 - [ ] Password hashing utility functions
 - [ ] User creation validation
 - [ ] Email uniqueness constraint
 
 ### Integration Tests Planned
-
 - [ ] Sign up with email/password
 - [ ] Sign in with valid credentials
 - [ ] Sign in with invalid credentials (should fail)
 - [ ] Session persistence across page loads
 
 ### Manual Testing Checklist
-
 - [ ] Run `pnpm prisma generate` successfully
 - [ ] Run `pnpm prisma migrate dev` to create database
 - [ ] Start dev server without errors
@@ -131,18 +124,16 @@ model User {
 **Risk Level:** 🟢 LOW
 
 ### Risks
-
 1. **Database Migration** - First Prisma migration may require manual review
-   - _Mitigation:_ Provide clear migration commands in docs
+   - *Mitigation:* Provide clear migration commands in docs
 
 2. **NextAuth v5 Beta** - Using beta version may have breaking changes
-   - _Mitigation:_ Pin exact version, document upgrade path
+   - *Mitigation:* Pin exact version, document upgrade path
 
 3. **Environment Setup** - Developers need to configure `.env` locally
-   - _Mitigation:_ Comprehensive `.env.example` with comments
+   - *Mitigation:* Comprehensive `.env.example` with comments
 
 ### Dependencies
-
 - **Blocks:** UPR-002 (OAuth providers), UPR-003 (Profile UI)
 - **Blocked by:** None
 - **Related:** All user profile features depend on this foundation
@@ -152,7 +143,6 @@ model User {
 ## Rollback Plan
 
 If issues arise:
-
 1. Revert package.json changes: `git checkout main -- package.json pnpm-lock.yaml`
 2. Remove Prisma directory: `rm -rf prisma`
 3. Delete auth files: `rm -rf src/app/api/auth src/lib/auth.ts`
@@ -169,8 +159,8 @@ If issues arise:
 
 ---
 
-**Estimated Review Time:** 20-30 minutes **Merge Strategy:** Squash and merge (atomic auth
-foundation commit)
+**Estimated Review Time:** 20-30 minutes
+**Merge Strategy:** Squash and merge (atomic auth foundation commit)
 
 ---
 

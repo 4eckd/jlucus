@@ -1,7 +1,8 @@
 # Payment Gateway Upgrade - Quick Start Guide
 
-**Session:** sess-feat-payment-gateway-upgrade-PGU-001-1 **Branch:**
-`feature/payment-gateway-upgrade` **Status:** Phase 1 Complete (Foundation)
+**Session:** sess-feat-payment-gateway-upgrade-PGU-001-1
+**Branch:** `feature/payment-gateway-upgrade`
+**Status:** Phase 1 Complete (Foundation)
 
 ---
 
@@ -34,14 +35,12 @@
 ### Option A: Automated Setup (Recommended)
 
 **On Windows (PowerShell):**
-
 ```powershell
 cd K:\git\4eckd-jlucus\jlucus
 .\artifacts\feat-payment-gateway-upgrade-PGU-001\SETUP_SCRIPT.ps1
 ```
 
 **On Linux/Mac (Bash):**
-
 ```bash
 cd /path/to/jlucus
 chmod +x artifacts/feat-payment-gateway-upgrade-PGU-001/SETUP_SCRIPT.sh
@@ -49,7 +48,6 @@ chmod +x artifacts/feat-payment-gateway-upgrade-PGU-001/SETUP_SCRIPT.sh
 ```
 
 **The script will:**
-
 1. Create feature branch: `feature/payment-gateway-upgrade`
 2. Install all payment dependencies (12 packages)
 3. Generate Prisma client
@@ -61,7 +59,6 @@ chmod +x artifacts/feat-payment-gateway-upgrade-PGU-001/SETUP_SCRIPT.sh
 ### Option B: Manual Setup
 
 #### Step 1: Create Feature Branch
-
 ```bash
 git checkout -b feature/payment-gateway-upgrade
 ```
@@ -69,7 +66,6 @@ git checkout -b feature/payment-gateway-upgrade
 #### Step 2: Install Dependencies
 
 **Production dependencies:**
-
 ```bash
 pnpm add @stripe/stripe-js @stripe/react-stripe-js stripe \
          @paypal/react-paypal-js @paypal/checkout-server-sdk \
@@ -77,19 +73,16 @@ pnpm add @stripe/stripe-js @stripe/react-stripe-js stripe \
 ```
 
 **Development dependencies:**
-
 ```bash
 pnpm add -D @types/nodemailer mailtrap
 ```
 
 #### Step 3: Generate Prisma Client
-
 ```bash
 pnpm prisma generate
 ```
 
 #### Step 4: Configure Environment
-
 ```bash
 # Copy .env.example to .env if not exists
 cp .env.example .env
@@ -102,7 +95,6 @@ cp .env.example .env
 ```
 
 #### Step 5: Run Database Migration
-
 ```bash
 pnpm prisma migrate dev --name add_payment_tables
 ```
@@ -114,7 +106,6 @@ pnpm prisma migrate dev --name add_payment_tables
 ### Required API Keys
 
 #### 1. Stripe (Test Mode)
-
 Get your test keys from: https://dashboard.stripe.com/test/apikeys
 
 ```env
@@ -124,7 +115,6 @@ STRIPE_WEBHOOK_SECRET="whsec_your_webhook_secret"
 ```
 
 **How to get webhook secret:**
-
 1. Go to https://dashboard.stripe.com/test/webhooks
 2. Click "+ Add endpoint"
 3. URL: `http://localhost:3000/api/payment/webhook`
@@ -132,7 +122,6 @@ STRIPE_WEBHOOK_SECRET="whsec_your_webhook_secret"
 5. Copy the webhook signing secret
 
 #### 2. PayPal (Sandbox)
-
 Get sandbox credentials from: https://developer.paypal.com/
 
 ```env
@@ -142,14 +131,12 @@ PAYPAL_MODE="sandbox"
 ```
 
 **How to get credentials:**
-
 1. Log in to https://developer.paypal.com/
 2. Go to "My Apps & Credentials"
 3. Click "Create App" under Sandbox
 4. Copy Client ID and Secret
 
 #### 3. Email (SMTP)
-
 For Gmail (requires app password if 2FA enabled):
 
 ```env
@@ -161,7 +148,6 @@ SMTP_PASS="your-app-password"
 ```
 
 **Or use Mailtrap for development:**
-
 ```env
 SMTP_HOST="sandbox.smtp.mailtrap.io"
 SMTP_PORT="2525"
@@ -174,7 +160,6 @@ SMTP_PASS="your_mailtrap_pass"
 ## Verify Setup
 
 ### 1. Check Build
-
 ```bash
 pnpm build
 ```
@@ -182,7 +167,6 @@ pnpm build
 Should complete without TypeScript errors.
 
 ### 2. Check Linting
-
 ```bash
 pnpm lint
 ```
@@ -190,7 +174,6 @@ pnpm lint
 Should have no ESLint errors.
 
 ### 3. Start Dev Server
-
 ```bash
 pnpm dev
 ```
@@ -198,7 +181,6 @@ pnpm dev
 Navigate to http://localhost:3000
 
 ### 4. Verify Database
-
 ```bash
 pnpm prisma studio
 ```
@@ -233,7 +215,6 @@ Should show the Payment table with proper schema.
 ### Testing with Stripe Test Cards
 
 **Successful payment:**
-
 ```
 Card: 4242 4242 4242 4242
 Exp: 12/34
@@ -242,7 +223,6 @@ ZIP: 12345
 ```
 
 **Requires 3D Secure:**
-
 ```
 Card: 4000 0025 0000 3155
 Exp: 12/34
@@ -250,7 +230,6 @@ CVC: 123
 ```
 
 **Card declined:**
-
 ```
 Card: 4000 0000 0000 9995
 Exp: 12/34
@@ -262,25 +241,19 @@ CVC: 123
 ## Troubleshooting
 
 ### "Module not found: Can't resolve 'zod'"
-
 Run: `pnpm install`
 
 ### "Prisma Client not generated"
-
 Run: `pnpm prisma generate`
 
 ### "Environment variable not found"
-
 Check your `.env` file exists and has all required variables.
 
 ### "Database migration failed"
-
 Ensure `DATABASE_URL` is set correctly in `.env`
 
 ### "Port 3000 already in use"
-
 Kill the process or use a different port:
-
 ```bash
 pnpm dev -- -p 3001
 ```
@@ -312,7 +285,6 @@ pnpm dev -- -p 3001
 ## Support
 
 If you encounter issues:
-
 1. Check the troubleshooting section above
 2. Review feature plan for detailed specifications
 3. Check changelog for recent changes
@@ -320,4 +292,6 @@ If you encounter issues:
 
 ---
 
-**Last Updated**: 2025-10-26 **Session**: sess-feat-payment-gateway-upgrade-PGU-001-1 **Window**: 1
+**Last Updated**: 2025-10-26
+**Session**: sess-feat-payment-gateway-upgrade-PGU-001-1
+**Window**: 1
