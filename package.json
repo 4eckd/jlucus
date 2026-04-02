@@ -7,7 +7,7 @@
     "build": "next build",
     "build:clean": "npm run clean && npm run build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --max-warnings 0",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "eslint": "^9.13.0",
-    "eslint-config-next": "^16.1.0",
+    "eslint-config-next": "^16.1.7",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "rimraf": "^6.1.2",
