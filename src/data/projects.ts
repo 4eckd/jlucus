@@ -20,10 +20,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'terminal-portfolio',
     title: 'Terminal Portfolio',
-    description:
-      'Interactive terminal-style portfolio website with command-line interface.',
-    content:
-      'A unique portfolio experience that simulates a terminal interface, showcasing technical skills through an immersive command-line experience. Built with Next.js, TypeScript, and custom CSS animations.',
+    description: 'Interactive terminal-style portfolio website with command-line interface.',
+    content: 'A unique portfolio experience that simulates a terminal interface, showcasing technical skills through an immersive command-line experience. Built with Next.js, TypeScript, and custom CSS animations.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     github: 'https://github.com/4eckd/terminal-portfolio',
     demo: 'https://jlucus.dev',
@@ -35,8 +33,7 @@ export const PROJECTS: Project[] = [
     id: 'defi-automator',
     title: 'DeFi Yield Automator',
     description: 'Automated DeFi yield farming strategy optimization system.',
-    content:
-      'An advanced yield farming protocol that automatically optimizes trading strategies across multiple DeFi platforms using machine learning algorithms.',
+    content: 'An advanced yield farming protocol that automatically optimizes trading strategies across multiple DeFi platforms using machine learning algorithms.',
     tech: ['Solidity', 'Rust', 'Python', 'TensorFlow'],
     github: 'https://github.com/4eckd/defi-automator',
     featured: true,
@@ -50,10 +47,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'ai-code-reviewer',
     title: 'AI Code Review Bot',
-    description:
-      'Intelligent code review assistant with automated feedback and suggestions.',
-    content:
-      'AI-powered code review tool that provides real-time feedback, security analysis, and performance optimization for pull requests.',
+    description: 'Intelligent code review assistant with automated feedback and suggestions.',
+    content: 'AI-powered code review tool that provides real-time feedback, security analysis, and performance optimization for pull requests.',
     tech: ['Python', 'React', 'Node.js', 'OpenAI API', 'GitHub API'],
     github: 'https://github.com/4eckd/ai-reviewer',
     featured: false,
@@ -67,10 +62,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'mobile-wallet',
     title: 'Web3 Mobile Wallet',
-    description:
-      'Secure multi-chain cryptocurrency wallet with DeFi integration.',
-    content:
-      'A comprehensive mobile wallet solution supporting multiple blockchain networks with built-in DeFi protocols and NFT management.',
+    description: 'Secure multi-chain cryptocurrency wallet with DeFi integration.',
+    content: 'A comprehensive mobile wallet solution supporting multiple blockchain networks with built-in DeFi protocols and NFT management.',
     tech: ['React Native', 'TypeScript', 'Web3.js', 'Redux Toolkit'],
     github: 'https://github.com/4eckd/mobile-wallet',
     demo: 'https://apps.apple.com/crypto-wallet',
@@ -86,10 +79,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'dev-ops-suite',
     title: 'DevOps Automation Suite',
-    description:
-      'Comprehensive CI/CD pipeline tools for automated deployment and monitoring.',
-    content:
-      'A full-stack DevOps solution with automated testing, deployment, and monitoring capabilities for modern web applications.',
+    description: 'Comprehensive CI/CD pipeline tools for automated deployment and monitoring.',
+    content: 'A full-stack DevOps solution with automated testing, deployment, and monitoring capabilities for modern web applications.',
     tech: ['Go', 'Docker', 'Kubernetes', 'Prometheus', 'Grafana'],
     github: 'https://github.com/4eckd/devops-suite',
     featured: false,
@@ -104,8 +95,7 @@ export const PROJECTS: Project[] = [
     id: 'cli-tools',
     title: 'Developer CLI Tools',
     description: 'Productivity-enhancing command-line tools for developers.',
-    content:
-      'A collection of essential CLI tools for Git workflows, API testing, and project management.',
+    content: 'A collection of essential CLI tools for Git workflows, API testing, and project management.',
     tech: ['Go', 'Rust', 'Cobra CLI'],
     github: 'https://github.com/4eckd/cli-tools',
     featured: false,

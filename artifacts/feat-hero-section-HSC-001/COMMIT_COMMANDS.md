@@ -1,6 +1,7 @@
 # Hero Section Feature - Git Commands for Approval
 
-**Branch:** feat/hero-section/HSC-001 **Session:** Window 3 - sess-feat-hero-section-HSC-001-1
+**Branch:** feat/hero-section/HSC-001
+**Session:** Window 3 - sess-feat-hero-section-HSC-001-1
 **Status:** Ready for commit
 
 ---
@@ -8,19 +9,17 @@
 ## Commands to Execute (in order)
 
 ### 1. Create Feature Branch
-
 ```bash
 cd jlucus
 git checkout -b feat/hero-section/HSC-001
 ```
 
-**Purpose:** Create isolated feature branch for hero section work **Risk:** Low - standard git
-workflow
+**Purpose:** Create isolated feature branch for hero section work
+**Risk:** Low - standard git workflow
 
 ---
 
 ### 2. Stage Files for Commit
-
 ```bash
 git add src/components/sections/HeroSection.tsx
 git add src/components/sections/index.ts
@@ -33,12 +32,12 @@ git add progress/SESSION_COORDINATION.md
 git add artifacts/feat-hero-section-HSC-001/
 ```
 
-**Purpose:** Stage all new and modified files **Risk:** Low - only staging, not committing
+**Purpose:** Stage all new and modified files
+**Risk:** Low - only staging, not committing
 
 ---
 
 ### 3. Create Commit
-
 ```bash
 git commit -m "$(cat <<'EOF'
 feat(sections): add HeroSection component with typing animation
@@ -77,79 +76,73 @@ EOF
 )"
 ```
 
-**Purpose:** Commit with detailed conventional commit message **Risk:** Low - can be amended if
-needed
+**Purpose:** Commit with detailed conventional commit message
+**Risk:** Low - can be amended if needed
 
 ---
 
 ### 4. Verify Commit
-
 ```bash
 git log -1 --stat
 git status
 ```
 
-**Purpose:** Review what was committed **Risk:** None - read-only
+**Purpose:** Review what was committed
+**Risk:** None - read-only
 
 ---
 
 ### 5. Build Verification (Required before push)
-
 ```bash
 pnpm build
 ```
 
-**Expected:** Build should succeed without TypeScript errors **If fails:** Need to fix TypeScript
-issues before pushing
+**Expected:** Build should succeed without TypeScript errors
+**If fails:** Need to fix TypeScript issues before pushing
 
 ---
 
 ### 6. Lint Verification (Required before push)
-
 ```bash
 pnpm lint
 ```
 
-**Expected:** Should pass without warnings **If fails:** Need to fix linting issues before pushing
+**Expected:** Should pass without warnings
+**If fails:** Need to fix linting issues before pushing
 
 ---
 
 ### 7. Push to Remote (After build/lint pass)
-
 ```bash
 git push -u origin feat/hero-section/HSC-001
 ```
 
-**Purpose:** Push feature branch to remote repository **Risk:** Low - pushing to feature branch, not
-main
+**Purpose:** Push feature branch to remote repository
+**Risk:** Low - pushing to feature branch, not main
 
 ---
 
 ### 8. Create Pull Request
-
 ```bash
 gh pr create --base main --title "feat(sections): Hero Section Component with Typing Animation" --body "$(cat progress/pr-drafts/feat-hero-section-HSC-001.md)"
 ```
 
-**Purpose:** Create PR using GitHub CLI **Alternative:** Manually create PR at
-https://github.com/[user]/jlucus/compare/main...feat/hero-section/HSC-001
+**Purpose:** Create PR using GitHub CLI
+**Alternative:** Manually create PR at https://github.com/[user]/jlucus/compare/main...feat/hero-section/HSC-001
 
 ---
 
 ## Files Being Committed
 
 ### New Files (3)
-
 1. `src/components/sections/HeroSection.tsx` (230 lines)
 2. `src/hooks/useTypingAnimation.ts` (95 lines)
 3. `src/components/sections/index.ts` (1 line)
 
 ### Modified Files (1)
-
 1. `src/app/page.tsx` (+76, -102 lines)
 
 ### Documentation/Tracking Files
-
 - `progress/manifest.json` (updated with HSC-001)
 - `progress/logs/branch-progress.md` (session log entry)
 - `progress/pr-drafts/feat-hero-section-HSC-001.md` (PR template)
@@ -204,7 +197,6 @@ git push origin feat/hero-section/HSC-001 --force  # Use with caution
 ## Success Criteria
 
 After all commands executed:
-
 - ✅ Feature branch exists and has 1 commit
 - ✅ Build passes without errors
 - ✅ Lint passes without warnings
@@ -218,19 +210,16 @@ After all commands executed:
 ## Notes
 
 **Parallel Development:**
-
 - Window 2 is working on authentication (different files)
 - No conflicts expected
 - Both branches can be merged independently
 
 **Testing:**
-
 - Manual visual testing recommended after PR approval
 - Unit tests to be added in follow-up
 - Component tests to be added in follow-up
 
 **Next Steps After Merge:**
-
 - HSC-002: Migrate About section
 - HSC-003: Migrate Portfolio section
 - Add automated tests

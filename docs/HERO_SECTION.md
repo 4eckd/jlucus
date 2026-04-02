@@ -4,9 +4,7 @@
 
 ## Overview
 
-The Hero Section is a full-screen, terminal-themed landing area that serves as the first impression
-for visitors to jlucus.dev. It features an interactive terminal UI with typing animations, system
-information display, and a cyberpunk Terminal Neon aesthetic.
+The Hero Section is a full-screen, terminal-themed landing area that serves as the first impression for visitors to jlucus.dev. It features an interactive terminal UI with typing animations, system information display, and a cyberpunk Terminal Neon aesthetic.
 
 ## Component Location
 
@@ -37,11 +35,10 @@ TERMINAL_COMMANDS = [
   'curl github.com/4eckd',
   'npm install success',
   './build_portfolio.sh',
-];
+]
 ```
 
 **Animation Behavior:**
-
 - Types each command character by character (100ms delay)
 - Displays blinking cursor (`_`)
 - Pauses for 2 seconds after completing each command
@@ -64,7 +61,6 @@ $ system --info
 ```
 
 **Styling:**
-
 - Prompt symbol (`$`) in secondary color (Electric Lime)
 - Commands in primary color (Electric Cyan)
 - Output text in secondary/muted colors
@@ -76,7 +72,6 @@ $ system --info
 All elements use Framer Motion for smooth, professional animations:
 
 **Container Animation:**
-
 ```tsx
 containerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -88,20 +83,18 @@ containerVariants = {
       staggerChildren: 0.2,
     },
   },
-};
+}
 ```
 
 **Item Animation:**
-
 ```tsx
 itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
-};
+}
 ```
 
 **Elements Animated:**
-
 - Terminal window (fade in + slide up)
 - Main title with blinking cursor
 - Description text
@@ -114,14 +107,12 @@ itemVariants = {
 Canvas-based background animation (`AnimatedGrid` component) featuring:
 
 **Grid Pattern:**
-
 - Semi-transparent grid lines in primary color (Electric Cyan)
 - Line width: 1px
 - Grid size: 40px (configurable via CSS variable `--grid-size`)
 - Opacity: 0.05 for subtle effect
 
 **Pulsing Dots:**
-
 - Animated dots at grid intersections
 - Pulsing size effect using sine wave
 - Base size: 2px, amplitude: 1px
@@ -129,7 +120,6 @@ Canvas-based background animation (`AnimatedGrid` component) featuring:
 - Only rendered at even grid positions for performance
 
 **Data Streams:**
-
 - 5 moving particles across the screen
 - Colors cycle between primary (cyan), accent (magenta), secondary (lime)
 - Horizontal movement with sinusoidal vertical motion
@@ -137,7 +127,6 @@ Canvas-based background animation (`AnimatedGrid` component) featuring:
 - Speed: 0.05px per frame
 
 **Performance:**
-
 - Uses `requestAnimationFrame` for smooth 60fps
 - Automatic canvas resize on window resize
 - Cleanup on component unmount
@@ -155,7 +144,6 @@ Canvas-based background animation (`AnimatedGrid` component) featuring:
 ```
 
 **Styling:**
-
 - Large responsive text (4xl → 6xl → 7xl)
 - Terminal prompt symbol (`>`) in primary color
 - Animated blinking cursor
@@ -167,14 +155,12 @@ Canvas-based background animation (`AnimatedGrid` component) featuring:
 Two-tier CTA layout:
 
 **Primary CTA:**
-
 - "Explore My Work" button with arrow icon
 - Hover animation: arrow slides right
 - Neon glow on hover
 - Large size (`lg`)
 
 **Social Links:**
-
 - GitHub and Email icon buttons
 - Outline variant with neon glow on hover
 - Open in new tab (GitHub)
@@ -186,14 +172,13 @@ Two-tier CTA layout:
 4-column responsive grid displaying key metrics:
 
 | Stat     | Value |
-| -------- | ----- |
+|----------|-------|
 | Projects | 50+   |
 | Commits  | 10K+  |
 | Stars    | 2K+   |
 | Years    | 5+    |
 
 **Responsive:**
-
 - Mobile: 2 columns
 - Desktop: 4 columns
 - Staggered fade-in animation
@@ -216,11 +201,11 @@ Animated scroll indicator at bottom of hero:
 All colors are CSS variables from `src/styles/globals.css`:
 
 ```css
---color-primary: 0 217 255; /* Electric Cyan */
---color-accent: 255 0 110; /* Neon Magenta */
---color-secondary: 204 255 0; /* Electric Lime */
---color-success: 0 255 159; /* Green */
---color-warning: 255 184 0; /* Orange */
+--color-primary: 0 217 255;        /* Electric Cyan */
+--color-accent: 255 0 110;         /* Neon Magenta */
+--color-secondary: 204 255 0;      /* Electric Lime */
+--color-success: 0 255 159;        /* Green */
+--color-warning: 255 184 0;        /* Orange */
 ```
 
 ### Neon Effects
@@ -228,7 +213,8 @@ All colors are CSS variables from `src/styles/globals.css`:
 Custom neon glow shadows applied to terminal window:
 
 ```css
---shadow-neon-primary-lg: 0 0 10px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary));
+--shadow-neon-primary-lg: 0 0 10px rgb(var(--color-primary)),
+                          0 0 40px rgb(var(--color-primary));
 ```
 
 Applied via: `shadow-neon-primary-lg` utility class
@@ -286,14 +272,12 @@ Uses CSS variable spacing system:
 ## Dependencies
 
 ### npm Packages
-
 - `framer-motion` - Animation library
 - `lucide-react` - Icon components
 - `next` - React framework
 - `react` - UI library
 
 ### Internal Dependencies
-
 - `@/lib/constants` - TERMINAL_COMMANDS, SITE config
 - `@/lib/css-variables` - CSS variable utilities for canvas
 - `@/components/ui/button` - Button component with variants
@@ -319,7 +303,7 @@ src/
 ## Usage Example
 
 ```tsx
-import { HeroTerminal } from '@/components/sections/hero-terminal';
+import { HeroTerminal } from '@/components/sections/hero-terminal'
 
 export default function Home() {
   return (
@@ -327,7 +311,7 @@ export default function Home() {
       <HeroTerminal />
       {/* Other sections */}
     </main>
-  );
+  )
 }
 ```
 
@@ -342,7 +326,7 @@ export const TERMINAL_COMMANDS = [
   'whoami',
   'your-custom-command',
   // ...
-];
+]
 ```
 
 ### Update Stats
@@ -354,7 +338,7 @@ const stats = [
   { label: 'Projects', value: '50+' },
   { label: 'Commits', value: '10K+' },
   // ...
-];
+]
 ```
 
 ### Update System Info
@@ -373,16 +357,15 @@ Modify animation constants:
 
 ```tsx
 // Typing speed (line 33)
-const typingInterval = 100; // milliseconds per character
+const typingInterval = 100 // milliseconds per character
 
 // Pause duration (line 27)
-const pauseDuration = 2000; // milliseconds
+const pauseDuration = 2000 // milliseconds
 ```
 
 ## Browser Support
 
 Tested and working on:
-
 - ✅ Chrome/Edge (latest)
 - ✅ Firefox (latest)
 - ✅ Safari (latest)
@@ -408,12 +391,11 @@ Potential improvements (not in current scope):
 ## Testing
 
 ### Build Status
-
-✅ Compiles successfully with Next.js 16.1.0 ✅ No TypeScript errors ✅ No build warnings (except
-module type warning)
+✅ Compiles successfully with Next.js 16.1.0
+✅ No TypeScript errors
+✅ No build warnings (except module type warning)
 
 ### Manual Testing Checklist
-
 - [ ] Typing animation cycles through all commands
 - [ ] Blinking cursor visible during typing
 - [ ] Terminal window displays with neon glow
@@ -433,7 +415,6 @@ module type warning)
 ## Changelog
 
 ### 2026-02-16 - Initial Implementation
-
 - ✅ Created HeroTerminal component
 - ✅ Implemented typing animation system
 - ✅ Added AnimatedGrid background

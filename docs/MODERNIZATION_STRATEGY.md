@@ -1,18 +1,17 @@
 # Portfolio Modernization Strategy
 
-**Project**: jlucus.dev Portfolio UI & Stack Modernization **Date**: 2025-10-25 **Branch**:
-`claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM`
+**Project**: jlucus.dev Portfolio UI & Stack Modernization
+**Date**: 2025-10-25
+**Branch**: `claude/portfolio-ui-update-011CUTvByNJX3R35kfc4gRZM`
 
 ---
 
 ## Executive Summary
 
-Modernizing jlucus.dev from a static HTML/Bootstrap site to a React-based application with LobeUI
-components, maintaining current layout while adding CMS capabilities for content management and
-social media integration.
+Modernizing jlucus.dev from a static HTML/Bootstrap site to a React-based application with LobeUI components, maintaining current layout while adding CMS capabilities for content management and social media integration.
 
-**Current Stack**: Vanilla HTML/CSS/JS + Bootstrap 5.3.3 + GitHub Pages **Target Stack**: React +
-Next.js + LobeUI + pnpm + TypeScript + Headless CMS
+**Current Stack**: Vanilla HTML/CSS/JS + Bootstrap 5.3.3 + GitHub Pages
+**Target Stack**: React + Next.js + LobeUI + pnpm + TypeScript + Headless CMS
 
 ---
 
@@ -21,7 +20,6 @@ Next.js + LobeUI + pnpm + TypeScript + Headless CMS
 ### 1.1 Core Technology Decisions
 
 **Framework & Build Tools**
-
 - **Next.js 14+** (App Router) for SSR/SSG capabilities
 - **React 18+** for component architecture
 - **TypeScript** for type safety
@@ -29,7 +27,6 @@ Next.js + LobeUI + pnpm + TypeScript + Headless CMS
 - **Turbopack** (Next.js built-in) for build optimization
 
 **UI Component Libraries**
-
 - **LobeUI** (@lobehub/ui) - Modern React component library
   - Provides chat interfaces, panels, lists, and modern UI patterns
   - Built-in dark mode support
@@ -39,7 +36,6 @@ Next.js + LobeUI + pnpm + TypeScript + Headless CMS
 - **React Bits** - Additional utility components
 
 **Styling Architecture**
-
 - **CSS Modules** + **CSS Variables** for theming
 - **Tailwind CSS** (optional utility classes, works with LobeUI)
 - **PostCSS** for CSS processing
@@ -58,7 +54,6 @@ jlucus.dev                    # Main portfolio site (Next.js frontend)
 ```
 
 **Domain Requirements**:
-
 - DNS configuration for subdomains (A/CNAME records)
 - SSL certificates for all subdomains
 - CORS configuration for cross-origin requests
@@ -67,19 +62,18 @@ jlucus.dev                    # Main portfolio site (Next.js frontend)
 
 **CMS Options Analysis**:
 
-| CMS Solution    | Pros                                        | Cons                             | Best For                         |
-| --------------- | ------------------------------------------- | -------------------------------- | -------------------------------- |
-| **Strapi**      | Open-source, customizable, REST/GraphQL API | Self-hosted, requires backend    | Full control, complex content    |
-| **Sanity.io**   | Real-time, excellent DX, free tier          | Learning curve                   | Real-time updates, collaborative |
-| **Contentful**  | Robust API, great docs, established         | Expensive at scale               | Enterprise needs                 |
-| **Payload CMS** | TypeScript-native, Next.js friendly         | Newer, smaller community         | TypeScript projects              |
-| **Ghost**       | Built for blogging, simple                  | Less flexible for custom content | Pure blogging focus              |
-| **Notion API**  | Easy content editing, no setup              | Limited customization            | Simple content needs             |
+| CMS Solution | Pros | Cons | Best For |
+|--------------|------|------|----------|
+| **Strapi** | Open-source, customizable, REST/GraphQL API | Self-hosted, requires backend | Full control, complex content |
+| **Sanity.io** | Real-time, excellent DX, free tier | Learning curve | Real-time updates, collaborative |
+| **Contentful** | Robust API, great docs, established | Expensive at scale | Enterprise needs |
+| **Payload CMS** | TypeScript-native, Next.js friendly | Newer, smaller community | TypeScript projects |
+| **Ghost** | Built for blogging, simple | Less flexible for custom content | Pure blogging focus |
+| **Notion API** | Easy content editing, no setup | Limited customization | Simple content needs |
 
 **RECOMMENDATION**: **Sanity.io** or **Payload CMS**
 
 **Sanity.io Advantages**:
-
 - LinkedIn API integration possible via custom data sources
 - Real-time content updates
 - GROQ query language for flexible content retrieval
@@ -88,7 +82,6 @@ jlucus.dev                    # Main portfolio site (Next.js frontend)
 - Image CDN with transformations
 
 **Payload CMS Advantages**:
-
 - TypeScript-native (matches your stack)
 - Next.js App Router support
 - Self-hosted (full control, no vendor lock-in)
@@ -115,13 +108,11 @@ jlucus.dev                    # Main portfolio site (Next.js frontend)
 ```
 
 **RECOMMENDED APPROACH**: Hybrid System
-
 1. **LinkedIn API** for automated article fetching (requires approval)
 2. **Manual CMS Import** as fallback (with browser extension)
 3. **RSS Feed** for basic syndication (limited data)
 
 **Implementation Plan**:
-
 - Create LinkedIn Developer App
 - Request r_liteprofile, r_emailaddress, w_member_social permissions
 - Build OAuth flow for one-time authentication
@@ -131,10 +122,10 @@ jlucus.dev                    # Main portfolio site (Next.js frontend)
 
 ### 1.5 Chat Agent Modernization
 
-**Current**: Tawk.to third-party widget **Target**: Custom AI chat agent
+**Current**: Tawk.to third-party widget
+**Target**: Custom AI chat agent
 
 **Options**:
-
 1. **Vercel AI SDK** + **OpenAI API**
    - Stream responses with streaming UI
    - Custom training on portfolio content
@@ -151,7 +142,6 @@ jlucus.dev                    # Main portfolio site (Next.js frontend)
    - Memory and conversation history
 
 **RECOMMENDATION**: **Vercel AI SDK + LobeUI Chat Components**
-
 - Seamless Next.js integration
 - Use LobeUI's ChatList, ChatItem components
 - Stream AI responses
@@ -191,7 +181,6 @@ jlucus-portfolio/
 ### 2.2 Required Packages
 
 **Core Dependencies**:
-
 ```json
 {
   "dependencies": {
@@ -220,7 +209,6 @@ jlucus-portfolio/
 ```
 
 **Additional Packages**:
-
 - `@sanity/client` or `payload` (CMS integration)
 - `ai` (Vercel AI SDK for chat)
 - `openai` (OpenAI API client)
@@ -231,24 +219,23 @@ jlucus-portfolio/
 
 ### 2.3 Component Mapping (Current → New)
 
-| Current Feature   | Current Tech       | New Component Stack                   |
-| ----------------- | ------------------ | ------------------------------------- |
-| Hero Section      | HTML + Typed.js    | `<HeroSection />` + LobeUI `<Hero />` |
-| Navigation        | Bootstrap Nav      | LobeUI `<Header />` + Lucide icons    |
-| About Section     | Static HTML        | `<AboutSection />` with motion        |
-| Skills Section    | Waypoints + custom | `<SkillsGrid />` + progress bars      |
-| Resume Timeline   | Bootstrap cards    | `<Timeline />` component              |
-| Portfolio Grid    | Isotope.js         | `<PortfolioGrid />` + filtering       |
-| AI Models Section | Custom cards       | LobeUI `<ModelCard />` components     |
-| Services Grid     | Bootstrap cards    | `<ServiceGrid />` + hover effects     |
-| Contact Form      | Formspree          | `<ContactForm />` + API route         |
-| Chat Widget       | Tawk.to            | LobeUI `<ChatPanel />` + AI SDK       |
-| Testimonials      | Swiper.js          | `<TestimonialCarousel />`             |
+| Current Feature | Current Tech | New Component Stack |
+|----------------|--------------|---------------------|
+| Hero Section | HTML + Typed.js | `<HeroSection />` + LobeUI `<Hero />` |
+| Navigation | Bootstrap Nav | LobeUI `<Header />` + Lucide icons |
+| About Section | Static HTML | `<AboutSection />` with motion |
+| Skills Section | Waypoints + custom | `<SkillsGrid />` + progress bars |
+| Resume Timeline | Bootstrap cards | `<Timeline />` component |
+| Portfolio Grid | Isotope.js | `<PortfolioGrid />` + filtering |
+| AI Models Section | Custom cards | LobeUI `<ModelCard />` components |
+| Services Grid | Bootstrap cards | `<ServiceGrid />` + hover effects |
+| Contact Form | Formspree | `<ContactForm />` + API route |
+| Chat Widget | Tawk.to | LobeUI `<ChatPanel />` + AI SDK |
+| Testimonials | Swiper.js | `<TestimonialCarousel />` |
 
 ### 2.4 State Management Strategy
 
 **Zustand Store Structure**:
-
 ```typescript
 // stores/useThemeStore.ts - Theme/color scheme
 // stores/useChatStore.ts - Chat conversations
@@ -257,7 +244,6 @@ jlucus-portfolio/
 ```
 
 **Server State (SWR/React Query)**:
-
 - CMS content fetching
 - LinkedIn articles
 - Contact form submissions
@@ -270,7 +256,6 @@ jlucus-portfolio/
 ### 3.1 ARIA-Compatible Color Variables
 
 **Design Tokens Structure**:
-
 ```css
 :root {
   /* Color Primitives */
@@ -304,7 +289,7 @@ jlucus-portfolio/
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --color-text-primary: var(--color-neutral-50);
   --color-text-secondary: var(--color-neutral-400);
   --color-background: var(--color-neutral-900);
@@ -316,55 +301,51 @@ jlucus-portfolio/
 ### 3.2 Recommended Color Scheme
 
 **Based on Current Site Analysis**:
-
 - Current primary colors: Blue/teal (#149ddd)
 - Professional tech aesthetic
 
 **Proposed Modern Scheme**:
 
 **Option 1: Tech Blue (Professional)**
-
 - Primary: #0ea5e9 (Sky Blue)
 - Secondary: #6366f1 (Indigo)
 - Accent: #8b5cf6 (Purple)
 - Neutral: Slate gray scale
 
 **Option 2: Modern Teal (Friendly)**
-
 - Primary: #14b8a6 (Teal)
 - Secondary: #0891b2 (Cyan)
 - Accent: #f97316 (Orange)
 - Neutral: Cool gray scale
 
 **Option 3: Bold Purple (Creative)**
-
 - Primary: #8b5cf6 (Purple)
 - Secondary: #ec4899 (Pink)
 - Accent: #f59e0b (Amber)
 - Neutral: Warm gray scale
 
-**RECOMMENDATION**: **Option 1 (Tech Blue)** - Maintains professional feel, excellent contrast
-ratios
+**RECOMMENDATION**: **Option 1 (Tech Blue)** - Maintains professional feel, excellent contrast ratios
 
 ### 3.3 WCAG AAA Compliance
 
 **Contrast Requirements**:
-
 - Normal text: 7:1 contrast ratio (AAA)
 - Large text: 4.5:1 contrast ratio (AAA)
 - UI components: 3:1 contrast ratio
 
 **Testing Tools**:
-
 - `axe-core` (automated testing)
 - Lighthouse accessibility audit
 - `jest-axe` for component testing
 
 **Implementation**:
-
 ```typescript
 // lib/colors/contrast.ts
-export function ensureContrast(foreground: string, background: string, minRatio = 7): string {
+export function ensureContrast(
+  foreground: string,
+  background: string,
+  minRatio = 7
+): string {
   // Calculate and adjust colors for WCAG AAA
 }
 ```
@@ -372,7 +353,6 @@ export function ensureContrast(foreground: string, background: string, minRatio 
 ### 3.4 Theme Configuration
 
 **next-themes Integration**:
-
 ```typescript
 // app/providers.tsx
 import { ThemeProvider } from 'next-themes'
@@ -398,7 +378,6 @@ export function Providers({ children }) {
 ### 4.1 LobeUI Component Integration
 
 **LobeUI Components to Use**:
-
 ```typescript
 import {
   ChatList,
@@ -410,12 +389,11 @@ import {
   Features,
   Pricing,
   Footer,
-  ThemeSwitch,
-} from '@lobehub/ui';
+  ThemeSwitch
+} from '@lobehub/ui'
 ```
 
 **Custom Wrapper Components**:
-
 ```typescript
 // components/ui/Button.tsx - Enhanced LobeUI button
 // components/ui/Card.tsx - Custom card with animations
@@ -426,14 +404,12 @@ import {
 ### 4.2 Component Testing Strategy
 
 **Testing Stack**:
-
 - **Vitest** for unit tests (faster than Jest)
 - **Testing Library** for component tests
 - **Playwright** for E2E tests
 - **Storybook** for component documentation
 
 **Example Test**:
-
 ```typescript
 // components/HeroSection.test.tsx
 import { render, screen } from '@testing-library/react'
@@ -455,14 +431,12 @@ describe('HeroSection', () => {
 ### 4.3 Animation Strategy
 
 **Replace Current Libraries**:
-
 - Typed.js → Custom React hook with framer-motion
 - AOS (Animate On Scroll) → Intersection Observer + framer-motion
 - Waypoints → Intersection Observer API
 - PureCounter → Custom counter with framer-motion
 
 **Framer Motion Examples**:
-
 ```typescript
 // components/animations/FadeIn.tsx
 import { motion } from 'framer-motion'
@@ -483,19 +457,17 @@ export function FadeIn({ children }) {
 ### 4.4 Responsive Design Strategy
 
 **Breakpoints** (matches Tailwind defaults):
-
 ```typescript
 const breakpoints = {
-  sm: '640px', // Mobile landscape
-  md: '768px', // Tablet
-  lg: '1024px', // Desktop
-  xl: '1280px', // Large desktop
-  '2xl': '1536px', // Extra large
-};
+  sm: '640px',   // Mobile landscape
+  md: '768px',   // Tablet
+  lg: '1024px',  // Desktop
+  xl: '1280px',  // Large desktop
+  '2xl': '1536px' // Extra large
+}
 ```
 
 **Mobile-First Approach**:
-
 - Design for mobile screens first
 - Progressive enhancement for larger screens
 - Touch-friendly targets (min 44x44px)
@@ -527,8 +499,7 @@ docs/
 ### 5.2 Code Documentation Standards
 
 **TypeScript Documentation**:
-
-````typescript
+```typescript
 /**
  * Hero section component with animated text
  *
@@ -549,28 +520,26 @@ docs/
 export function HeroSection({ title, subtitle, backgroundImage }: HeroProps) {
   // ...
 }
-````
+```
 
 **Component Storybook**:
-
 ```typescript
 // components/HeroSection.stories.tsx
-import type { Meta, StoryObj } from '@storybook/react';
-import { HeroSection } from './HeroSection';
+import type { Meta, StoryObj } from '@storybook/react'
+import { HeroSection } from './HeroSection'
 
 const meta: Meta<typeof HeroSection> = {
   title: 'Sections/HeroSection',
   component: HeroSection,
   tags: ['autodocs'],
-};
+}
 
-export default meta;
+export default meta
 ```
 
 ### 5.3 API Documentation
 
 **OpenAPI/Swagger for API Routes**:
-
 ```yaml
 # docs/api-spec.yaml
 openapi: 3.0.0
@@ -599,14 +568,12 @@ paths:
 ### 6.1 Performance Optimization
 
 **Critical Considerations**:
-
 - **Image Optimization**: Use Next.js `<Image />` component
   - Current site has 20+ images without optimization
   - WebP format with fallbacks
   - Lazy loading below the fold
 
 - **Code Splitting**: Dynamic imports for heavy components
-
   ```typescript
   const ChatPanel = dynamic(() => import('@/components/ChatPanel'), {
     ssr: false,
@@ -626,12 +593,10 @@ paths:
 ### 6.2 SEO Considerations
 
 **Migration Risks**:
-
 - Current site has good SEO (static HTML)
 - Must maintain or improve with Next.js
 
 **SEO Strategy**:
-
 - Server-side rendering for initial page load
 - Static generation for blog posts
 - Proper meta tags with `next/head`
@@ -640,7 +605,6 @@ paths:
 - Robots.txt configuration
 
 **Example**:
-
 ```typescript
 // app/layout.tsx
 export const metadata: Metadata = {
@@ -650,14 +614,13 @@ export const metadata: Metadata = {
     title: 'Jesse Lucas Portfolio',
     description: '...',
     images: ['/og-image.jpg'],
-  },
-};
+  }
+}
 ```
 
 ### 6.3 Analytics & Monitoring
 
 **Recommended Services**:
-
 - **Vercel Analytics** (if deploying to Vercel)
 - **Google Analytics 4** (current tracking continuation)
 - **PostHog** (open-source alternative)
@@ -669,7 +632,6 @@ export const metadata: Metadata = {
 **Critical Step**: Don't lose existing content!
 
 **Migration Checklist**:
-
 - [ ] Export all images from current site
 - [ ] Document all text content
 - [ ] Save AI model descriptions and logos
@@ -680,7 +642,6 @@ export const metadata: Metadata = {
 - [ ] Document external links
 
 **Approach**:
-
 1. Create content database schema in CMS
 2. Write migration scripts (HTML → Markdown/JSON)
 3. Import into CMS
@@ -689,7 +650,6 @@ export const metadata: Metadata = {
 ### 6.5 Deployment Strategy
 
 **Recommended Platform**: **Vercel**
-
 - Native Next.js support
 - Zero-config deployment
 - Edge functions for API routes
@@ -700,7 +660,6 @@ export const metadata: Metadata = {
 **Alternative**: **Netlify** or **Cloudflare Pages**
 
 **CI/CD Pipeline**:
-
 ```yaml
 # .github/workflows/ci.yml
 name: CI/CD
@@ -725,7 +684,6 @@ jobs:
 ### 6.6 Accessibility Beyond WCAG
 
 **Additional Considerations**:
-
 - **Keyboard Navigation**: Full site navigable without mouse
 - **Screen Reader Testing**: Test with NVDA/JAWS/VoiceOver
 - **Reduced Motion**: Respect `prefers-reduced-motion`
@@ -743,35 +701,31 @@ jobs:
 ### 6.7 Security Considerations
 
 **API Route Security**:
-
 - Rate limiting (5 requests/minute for contact form)
 - CSRF protection
 - Input sanitization
 - Environment variable management
 
 **Content Security Policy (CSP)**:
-
 ```typescript
 // next.config.js
 const securityHeaders = [
   {
     key: 'Content-Security-Policy',
-    value: "default-src 'self'; script-src 'self' 'unsafe-eval'; ...",
-  },
-];
+    value: "default-src 'self'; script-src 'self' 'unsafe-eval'; ..."
+  }
+]
 ```
 
 ### 6.8 LinkedIn Integration Specifics
 
 **Content Types to Support**:
-
 - Articles (long-form)
 - Posts (short updates)
 - Media (images, videos)
 - Documents (PDFs, slides)
 
 **Metadata to Capture**:
-
 - Publication date
 - Tags/categories
 - Engagement metrics (likes, comments, shares)
@@ -779,7 +733,6 @@ const securityHeaders = [
 - Featured images
 
 **Update Frequency**:
-
 - Automated sync: Daily at midnight
 - Manual trigger: Via CMS button
 - Webhook: Real-time (if LinkedIn supports)
@@ -787,7 +740,6 @@ const securityHeaders = [
 ### 6.9 Chat Agent Features
 
 **Beyond Basic Chat**:
-
 - **Context Awareness**: Know current page context
 - **Portfolio-Specific**: Answer questions about projects
 - **Resume Assistant**: Help visitors learn about experience
@@ -795,7 +747,6 @@ const securityHeaders = [
 - **Conversation Export**: Download chat transcript
 
 **Example Prompts to Handle**:
-
 - "What projects has Jesse worked on?"
 - "Tell me about Jesse's experience at Intel"
 - "How can I contact Jesse?"
@@ -804,13 +755,11 @@ const securityHeaders = [
 ### 6.10 Progressive Web App (PWA)
 
 **Consider Adding**:
-
 - Service worker for offline access
 - Install prompt for mobile devices
 - Push notifications (optional)
 
 **Benefits**:
-
 - Better mobile experience
 - Works offline
 - App-like feel
@@ -820,7 +769,6 @@ const securityHeaders = [
 ## Project Timeline Estimate
 
 ### Phase 1: Foundation (Week 1-2)
-
 - Setup pnpm workspace
 - Install and configure Next.js + TypeScript
 - Setup LobeUI and component library
@@ -828,28 +776,24 @@ const securityHeaders = [
 - Git branching strategy
 
 ### Phase 2: Component Development (Week 3-4)
-
 - Build core components (Hero, Nav, Footer)
 - Migrate sections to React components
 - Implement animations with Framer Motion
 - Theme system implementation
 
 ### Phase 3: CMS Integration (Week 5-6)
-
 - Setup Sanity/Payload CMS
 - LinkedIn API integration
 - Content migration
 - CMS admin customization
 
 ### Phase 4: Chat Agent (Week 7)
-
 - Vercel AI SDK integration
 - Chat UI with LobeUI components
 - AI training on portfolio content
 - Testing and refinement
 
 ### Phase 5: Testing & Polish (Week 8-9)
-
 - Accessibility audit
 - Performance optimization
 - Cross-browser testing
@@ -857,7 +801,6 @@ const securityHeaders = [
 - SEO verification
 
 ### Phase 6: Documentation & Deployment (Week 10)
-
 - Technical documentation
 - Deployment configuration
 - DNS and subdomain setup
@@ -869,22 +812,21 @@ const securityHeaders = [
 
 ## Risk Assessment
 
-| Risk                        | Impact | Mitigation                       |
-| --------------------------- | ------ | -------------------------------- |
-| LinkedIn API approval delay | High   | Implement manual import fallback |
-| LobeUI compatibility issues | Medium | Have backup UI library (ShadCN)  |
-| SEO degradation             | High   | SSR/SSG strategy, monitoring     |
-| Content migration errors    | Medium | Thorough testing, backups        |
-| Chat agent costs            | Low    | Usage limits, fallback to form   |
-| Performance regression      | Medium | Lighthouse CI, monitoring        |
-| Accessibility issues        | Medium | Regular audits, automated tests  |
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| LinkedIn API approval delay | High | Implement manual import fallback |
+| LobeUI compatibility issues | Medium | Have backup UI library (ShadCN) |
+| SEO degradation | High | SSR/SSG strategy, monitoring |
+| Content migration errors | Medium | Thorough testing, backups |
+| Chat agent costs | Low | Usage limits, fallback to form |
+| Performance regression | Medium | Lighthouse CI, monitoring |
+| Accessibility issues | Medium | Regular audits, automated tests |
 
 ---
 
 ## Success Metrics
 
 **Technical Metrics**:
-
 - Lighthouse score: 90+ (all categories)
 - WCAG AAA compliance: 100%
 - Bundle size: < 250KB (initial load)
@@ -892,7 +834,6 @@ const securityHeaders = [
 - Core Web Vitals: All "Good"
 
 **Functional Metrics**:
-
 - All current features maintained
 - CMS content updates in < 5 minutes
 - Chat agent response time < 2 seconds
@@ -900,7 +841,6 @@ const securityHeaders = [
 - Browser support: Last 2 versions of major browsers
 
 **User Experience Metrics**:
-
 - Form submission success rate: > 95%
 - Chat engagement: > 20% of visitors
 - Average session duration: Increase by 30%
@@ -939,7 +879,6 @@ const securityHeaders = [
 ## Resources & References
 
 **Documentation**:
-
 - [LobeUI Documentation](https://ui.lobehub.com/)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Sanity.io Guides](https://www.sanity.io/docs)
@@ -947,13 +886,11 @@ const securityHeaders = [
 - [WCAG Guidelines](https://www.w3.org/WAI/WCAG22/quickref/)
 
 **Design Inspiration**:
-
 - [Dribbble - Portfolio Designs](https://dribbble.com/search/portfolio)
 - [Awwwards - Developer Portfolios](https://www.awwwards.com/websites/portfolio/)
 - [LobeHub Examples](https://github.com/lobehub/lobe-ui/tree/main/example)
 
 **Community**:
-
 - LobeUI GitHub Issues
 - Next.js Discord
 - React Discord
@@ -961,5 +898,6 @@ const securityHeaders = [
 
 ---
 
-**Document Status**: Draft for Review **Last Updated**: 2025-10-25 **Next Review**: After initial
-feedback
+**Document Status**: Draft for Review
+**Last Updated**: 2025-10-25
+**Next Review**: After initial feedback

@@ -1,8 +1,7 @@
 export const SITE = {
   name: 'jlucus',
   title: 'jlucus - Engineer, Builder, Architect',
-  description:
-    'Personal portfolio of jlucus - Engineer, Builder, Architect. Built with Next.js, TypeScript, and Tailwind CSS.',
+  description: 'Personal portfolio of jlucus - Engineer, Builder, Architect. Built with Next.js, TypeScript, and Tailwind CSS.',
   author: 'jlucus',
   url: 'https://jlucus.dev',
   github: 'https://github.com/4eckd',

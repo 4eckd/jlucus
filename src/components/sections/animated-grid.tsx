@@ -103,14 +103,10 @@ export function AnimatedGrid({ contained = false }: AnimatedGridProps) {
       }
 
       // Draw animated pulsing dots at intersections
-      const pulseSize =
-        ANIMATION_CONFIG.pulse.baseSize +
-        Math.sin(time * ANIMATION_CONFIG.pulse.speed) *
-          ANIMATION_CONFIG.pulse.amplitude;
-      const dotOpacity =
-        ANIMATION_CONFIG.dots.opacityBase +
-        Math.sin(time * ANIMATION_CONFIG.dots.opacitySpeed) *
-          ANIMATION_CONFIG.dots.opacityAmplitude;
+      const pulseSize = ANIMATION_CONFIG.pulse.baseSize +
+        Math.sin(time * ANIMATION_CONFIG.pulse.speed) * ANIMATION_CONFIG.pulse.amplitude;
+      const dotOpacity = ANIMATION_CONFIG.dots.opacityBase +
+        Math.sin(time * ANIMATION_CONFIG.dots.opacitySpeed) * ANIMATION_CONFIG.dots.opacityAmplitude;
       ctx.fillStyle = `rgba(${primaryColor}, ${dotOpacity})`;
 
       const dotSpacing = gridSize * ANIMATION_CONFIG.dots.modulo;
@@ -127,23 +123,15 @@ export function AnimatedGrid({ contained = false }: AnimatedGridProps) {
 
       // Draw moving "data streams"
       const streamColors = [
-        `rgba(${primaryColor}, ${ANIMATION_CONFIG.stream.opacity})`, // Primary cyan
-        `rgba(${accentColor}, ${ANIMATION_CONFIG.stream.opacity})`, // Accent magenta
+        `rgba(${primaryColor}, ${ANIMATION_CONFIG.stream.opacity})`,   // Primary cyan
+        `rgba(${accentColor}, ${ANIMATION_CONFIG.stream.opacity})`,    // Accent magenta
         `rgba(${secondaryColor}, ${ANIMATION_CONFIG.stream.opacity})`, // Secondary lime
       ];
 
       for (let i = 0; i < ANIMATION_CONFIG.stream.count; i++) {
-        const x =
-          (time * ANIMATION_CONFIG.stream.speed +
-            i * ANIMATION_CONFIG.stream.spacing) %
-          canvas.width;
-        const y =
-          Math.sin(
-            (time + i * ANIMATION_CONFIG.stream.timeOffset) *
-              ANIMATION_CONFIG.stream.animationSpeed
-          ) *
-            ANIMATION_CONFIG.stream.amplitude +
-          canvas.height / 2;
+        const x = ((time * ANIMATION_CONFIG.stream.speed + i * ANIMATION_CONFIG.stream.spacing) % canvas.width);
+        const y = Math.sin((time + i * ANIMATION_CONFIG.stream.timeOffset) * ANIMATION_CONFIG.stream.animationSpeed) *
+          ANIMATION_CONFIG.stream.amplitude + canvas.height / 2;
 
         ctx.fillStyle = streamColors[i % streamColors.length];
         ctx.beginPath();
@@ -176,7 +164,7 @@ export function AnimatedGrid({ contained = false }: AnimatedGridProps) {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-0 opacity-60"
+      className="absolute inset-0 z-0 opacity-60 pointer-events-none"
     />
   );
 }

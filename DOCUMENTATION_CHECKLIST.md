@@ -4,9 +4,7 @@
 
 ## Purpose
 
-This checklist ensures all documentation, configuration files, and metadata are kept in sync when
-making changes to the project. Consistency across all files is essential for maintainability and
-professionalism.
+This checklist ensures all documentation, configuration files, and metadata are kept in sync when making changes to the project. Consistency across all files is essential for maintainability and professionalism.
 
 ---
 
@@ -80,7 +78,6 @@ Before committing any code changes, verify ALL items in this checklist:
   - [ ] Metadata is accurate (description, keywords, author, license)
 
 - [ ] **package-lock.json** - Regenerate:
-
   ```bash
   npm install
   ```
@@ -110,7 +107,7 @@ Before committing any code changes, verify ALL items in this checklist:
 - [ ] **.gitignore** - Verify:
   - [ ] node_modules/ ignored
   - [ ] Build artifacts ignored (.next/, out/, dist/)
-  - [ ] Environment files ignored (.env.local, .env\*.local)
+  - [ ] Environment files ignored (.env.local, .env*.local)
   - [ ] package-lock.json is NOT ignored (npm best practice)
 
 - [ ] **.npmignore** - Check if publishing to npm
@@ -131,27 +128,22 @@ Before committing any code changes, verify ALL items in this checklist:
 ### 8. Type Safety & Build
 
 - [ ] **TypeScript** - Ensure:
-
   ```bash
   npm run lint
   ```
-
   - [ ] No TypeScript errors
   - [ ] No ESLint errors
 
 - [ ] **Build** - Verify:
-
   ```bash
   npm run build:clean
   ```
-
   - [ ] Build succeeds without errors
   - [ ] No warnings (or documented)
 
 ### 9. Testing (if applicable)
 
 - [ ] Tests pass:
-
   ```bash
   npm test
   ```
@@ -161,7 +153,6 @@ Before committing any code changes, verify ALL items in this checklist:
 ### 10. Git Commit
 
 - [ ] **Commit Message** - Follow conventional commits:
-
   ```
   type(scope): description
 
@@ -186,7 +177,6 @@ Follow [Semantic Versioning](https://semver.org/):
 - **PATCH** (x.x.X) - Bug fixes (backwards compatible)
 
 ### Examples:
-
 - `1.0.0` → `2.0.0` - Breaking change (removed support for Node 16)
 - `1.1.0` → `1.2.0` - New feature (added command palette)
 - `1.1.1` → `1.1.2` - Bug fix (fixed typo in contact form)
@@ -214,16 +204,16 @@ npm run clean && npm run build
 
 ## Files That MUST Be Updated Together
 
-| Change Type                 | Files to Update                                                                  |
-| --------------------------- | -------------------------------------------------------------------------------- |
-| **Version bump**            | package.json, README.md, docs.json, progress/manifest.json, public/manifest.json |
-| **New feature**             | CHANGELOG.md, README.md, PROJECT_ROADMAP.md, docs.json                           |
-| **Bug fix**                 | CHANGELOG.md, package.json (patch version)                                       |
-| **Dependency update**       | package.json, package-lock.json, README.md (tech stack)                          |
-| **Environment variable**    | .env.example, README.md, QUICKSTART.md, CLAUDE.md                                |
-| **New route**               | Sitemap, robots.txt (if needed)                                                  |
-| **Design system change**    | CLAUDE.md, README.md, public/manifest.json (theme colors)                        |
-| **Documentation structure** | docs.json                                                                        |
+| Change Type | Files to Update |
+|-------------|-----------------|
+| **Version bump** | package.json, README.md, docs.json, progress/manifest.json, public/manifest.json |
+| **New feature** | CHANGELOG.md, README.md, PROJECT_ROADMAP.md, docs.json |
+| **Bug fix** | CHANGELOG.md, package.json (patch version) |
+| **Dependency update** | package.json, package-lock.json, README.md (tech stack) |
+| **Environment variable** | .env.example, README.md, QUICKSTART.md, CLAUDE.md |
+| **New route** | Sitemap, robots.txt (if needed) |
+| **Design system change** | CLAUDE.md, README.md, public/manifest.json (theme colors) |
+| **Documentation structure** | docs.json |
 
 ---
 
@@ -254,4 +244,6 @@ Consider creating npm scripts for common updates:
 
 ---
 
-**Last Updated**: 2025-12-25 **Version**: 1.0.0 **Maintainer**: jlucus
+**Last Updated**: 2025-12-25
+**Version**: 1.0.0
+**Maintainer**: jlucus

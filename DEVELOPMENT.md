@@ -11,7 +11,6 @@ For automated setup, run:
 ```
 
 This script will:
-
 - ✅ Check prerequisites (Node.js, npm, Git)
 - ✅ Install dependencies
 - ✅ Set up environment variables
@@ -65,7 +64,6 @@ npm run prepare
 ```
 
 This sets up Husky hooks for:
-
 - **pre-commit**: Linting and formatting
 - **commit-msg**: Conventional commit validation
 - **pre-push**: Build verification
@@ -80,26 +78,25 @@ Open [http://localhost:3000](http://localhost:3000) to see your changes.
 
 ## 📦 Available Scripts
 
-| Script                 | Description                           |
-| ---------------------- | ------------------------------------- |
-| `npm run dev`          | Start development server (hot reload) |
-| `npm run build`        | Production build                      |
-| `npm run build:clean`  | Clean build (removes cache first)     |
-| `npm start`            | Start production server               |
-| `npm run lint`         | Run ESLint                            |
-| `npm run lint:fix`     | Fix ESLint errors automatically       |
-| `npm run format`       | Format code with Prettier             |
-| `npm run format:check` | Check if code is formatted            |
-| `npm run type-check`   | Run TypeScript type checks            |
-| `npm run clean`        | Remove build artifacts                |
-| `npm run clean:all`    | Deep clean (including node_modules)   |
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server (hot reload) |
+| `npm run build` | Production build |
+| `npm run build:clean` | Clean build (removes cache first) |
+| `npm start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run lint:fix` | Fix ESLint errors automatically |
+| `npm run format` | Format code with Prettier |
+| `npm run format:check` | Check if code is formatted |
+| `npm run type-check` | Run TypeScript type checks |
+| `npm run clean` | Remove build artifacts |
+| `npm run clean:all` | Deep clean (including node_modules) |
 
 ## 🎨 Code Style & Formatting
 
 ### EditorConfig
 
-The project uses [EditorConfig](.editorconfig) to maintain consistent coding styles across different
-editors:
+The project uses [EditorConfig](.editorconfig) to maintain consistent coding styles across different editors:
 
 - **Indent**: 2 spaces
 - **Charset**: UTF-8
@@ -177,7 +174,6 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 **Types:**
-
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation
@@ -200,21 +196,16 @@ git commit -m "docs(readme): update installation instructions"
 The project uses [Husky](.husky/) for Git hooks:
 
 #### Pre-commit Hook
-
 Runs before each commit:
-
 - Lints staged files with ESLint
 - Formats staged files with Prettier
 - Runs TypeScript type check
 
 #### Commit Message Hook
-
 Validates commit messages against Conventional Commits format.
 
 #### Pre-push Hook
-
 Runs before pushing to remote:
-
 - Builds the project
 - Ensures no build errors
 
@@ -298,18 +289,19 @@ All design tokens are defined in `src/app/globals.css`:
 
 ```css
 /* Colors (RGB format for alpha channel support) */
---color-primary: 0 217 255; /* Electric Cyan */
---color-accent: 255 0 110; /* Neon Magenta */
---color-secondary: 204 255 0; /* Electric Lime */
+--color-primary: 0 217 255;        /* Electric Cyan */
+--color-accent: 255 0 110;         /* Neon Magenta */
+--color-secondary: 204 255 0;      /* Electric Lime */
 
 /* Spacing */
---spacing-xs: 0.25rem; /* 4px */
---spacing-sm: 0.5rem; /* 8px */
---spacing-md: 1rem; /* 16px */
---spacing-lg: 1.5rem; /* 24px */
+--spacing-xs: 0.25rem;   /* 4px */
+--spacing-sm: 0.5rem;    /* 8px */
+--spacing-md: 1rem;      /* 16px */
+--spacing-lg: 1.5rem;    /* 24px */
 
 /* Neon Effects */
---shadow-neon-primary: 0 0 5px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary));
+--shadow-neon-primary: 0 0 5px rgb(var(--color-primary)),
+                       0 0 20px rgb(var(--color-primary));
 ```
 
 **Usage in Tailwind:**
@@ -441,8 +433,7 @@ npm run type-check
 ## 💬 Getting Help
 
 - **GitHub Issues**: [Report bugs or request features](https://github.com/4eckd/jlucus2/issues)
-- **GitHub Discussions**:
-  [Ask questions or share ideas](https://github.com/4eckd/jlucus2/discussions)
+- **GitHub Discussions**: [Ask questions or share ideas](https://github.com/4eckd/jlucus2/discussions)
 - **Email**: contact@jlucus.dev
 
 ## 📝 License
