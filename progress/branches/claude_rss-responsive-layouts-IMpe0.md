@@ -2,16 +2,16 @@
 
 **Created:** 2025-02-25 08:39:34 -0800
 **Last Updated:** 
-**Commits:** 270
+**Commits:** 272
 **Author:** Claude
 
 ## Recent Commits
 
-- 0171818 refactor: Complete design system audit and rebuild with 3-layer token architecture (Claude, 20 seconds ago)
+- 33de82a fix: Quote destructive-foreground key in tailwind config (Claude, 19 seconds ago)
+- 5dd889a chore: update branch tracking manifest [skip ci] (github-actions[bot], 2 minutes ago)
+- 0171818 refactor: Complete design system audit and rebuild with 3-layer token architecture (Claude, 2 minutes ago)
 - e7d0676 chore: update branch tracking manifest [skip ci] (github-actions[bot], 3 days ago)
 - 712fdca docs: Add comprehensive RSS implementation summary (Claude, 3 days ago)
-- 193066e chore: update branch tracking manifest [skip ci] (github-actions[bot], 3 days ago)
-- 135ae68 feat: 4-layout responsive RSS page for daily learning (Claude, 3 days ago)
 
 ## Files Changed
 
