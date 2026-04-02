@@ -5,53 +5,140 @@
 @config "../../tailwind.config.ts";
 
 :root {
-  /* ─────────────────────────────────────────────────────────────────────
-     Terminal Neon Design System
-     Single source of truth for all design tokens
-     ───────────────────────────────────────────────────────────────────── */
+  /* ═════════════════════════════════════════════════════════════════════
+     LAYER 1: PRIMITIVE TOKENS
+     Raw color values, spacing, and typography
+     ═════════════════════════════════════════════════════════════════════ */
 
-  /* PRIMARY COLOR: Electric Cyan */
-  --color-primary: 0 217 255;           /* #00D9FF - Main interactive elements */
-  --color-primary-bright: 0 240 255;    /* Brighter for glows and highlights */
-  --color-primary-dim: 0 150 200;       /* Dimmer for secondary elements */
+  /* Primary brand color: Electric Cyan */
+  --primitive-cyan-500: 0 217 255;         /* #00D9FF */
+  --primitive-cyan-400: 0 240 255;         /* Lighter variant */
+  --primitive-cyan-600: 0 150 200;         /* Darker variant */
 
-  /* ACCENT COLOR: Neon Magenta */
-  --color-accent: 255 0 110;            /* #FF006E - Emphasis and highlights */
-  --color-accent-bright: 255 100 180;   /* Brighter for hover states */
-  --color-accent-dim: 180 0 80;         /* Dimmer for disabled states */
+  /* Accent color: Neon Magenta */
+  --primitive-magenta-500: 255 0 110;      /* #FF006E */
+  --primitive-magenta-400: 255 100 180;    /* Lighter variant */
+  --primitive-magenta-600: 180 0 80;       /* Darker variant */
 
-  /* SECONDARY COLOR: Electric Lime */
-  --color-secondary: 204 255 0;         /* #CCFF00 - Alerts and success */
-  --color-secondary-bright: 220 255 100;
-  --color-secondary-dim: 150 200 0;
+  /* Secondary color: Electric Lime */
+  --primitive-lime-500: 204 255 0;         /* #CCFF00 */
+  --primitive-lime-400: 220 255 100;       /* Lighter variant */
+  --primitive-lime-600: 150 200 0;         /* Darker variant */
 
-  /* STATUS COLORS */
-  --color-success: 0 255 159;           /* #00FF9F - Confirmations */
-  --color-warning: 255 184 0;           /* #FFB800 - Warnings */
-  --color-error: 255 71 87;             /* #FF4757 - Errors */
-  --color-info: 0 191 255;              /* #00BFFF - Information */
+  /* Status colors */
+  --primitive-green-500: 0 255 159;        /* #00FF9F - Success */
+  --primitive-amber-500: 255 184 0;        /* #FFB800 - Warning */
+  --primitive-red-500: 255 71 87;          /* #FF4757 - Error */
+  --primitive-blue-500: 0 191 255;         /* #00BFFF - Info */
 
-  /* BACKGROUND LAYERS - Dark theme base */
-  --color-bg-base: 0 0 0;               /* Pure black - Deepest layer */
-  --color-bg-primary: 10 10 15;         /* Near black - Primary background */
-  --color-bg-secondary: 20 20 30;       /* Dark - Secondary surfaces */
-  --color-bg-tertiary: 30 35 45;        /* Slightly lighter - Cards and panels */
+  /* Grayscale palette */
+  --primitive-gray-950: 5 5 8;             /* Almost black */
+  --primitive-gray-900: 10 10 15;          /* Deep dark */
+  --primitive-gray-800: 20 20 30;          /* Dark */
+  --primitive-gray-700: 40 40 55;          /* Medium dark */
+  --primitive-gray-600: 100 110 130;       /* Medium */
+  --primitive-gray-500: 160 170 190;       /* Light gray */
+  --primitive-gray-400: 200 210 230;       /* Lighter gray */
+  --primitive-gray-300: 240 245 255;       /* Almost white */
 
-  /* TEXT COLORS */
-  --color-text-primary: 240 245 255;    /* Near white - Main text */
-  --color-text-secondary: 160 170 190;  /* Light gray - Muted text */
-  --color-text-tertiary: 100 110 130;   /* Medium gray - Less emphasis */
-  --color-text-muted: 70 75 90;         /* Dark gray - Minimal emphasis */
+  --primitive-white: 255 255 255;
+  --primitive-black: 0 0 0;
 
-  /* BORDER COLORS */
-  --color-border-primary: 0 217 255;    /* Cyan for primary borders */
-  --color-border-secondary: 45 50 65;   /* Dark for subtle borders */
+  /* ═════════════════════════════════════════════════════════════════════
+     LAYER 2: SEMANTIC TOKENS
+     Meaningful names tied to usage, not primitive values
+     ═════════════════════════════════════════════════════════════════════ */
 
-  /* TYPOGRAPHY */
+  /* Background layers (depth) */
+  --color-bg-base: var(--primitive-gray-950);
+  --color-bg-primary: var(--primitive-gray-900);
+  --color-bg-secondary: var(--primitive-gray-800);
+  --color-bg-tertiary: var(--primitive-gray-700);
+
+  /* Text colors (contrast) */
+  --color-text-primary: var(--primitive-gray-300);
+  --color-text-secondary: var(--primitive-gray-500);
+  --color-text-tertiary: var(--primitive-gray-600);
+  --color-text-muted: var(--primitive-gray-600);
+
+  /* Interactive elements */
+  --color-interactive: var(--primitive-cyan-500);
+  --color-interactive-hover: var(--primitive-cyan-400);
+  --color-interactive-active: var(--primitive-cyan-600);
+
+  /* Emphasis and accent */
+  --color-emphasis: var(--primitive-magenta-500);
+  --color-emphasis-hover: var(--primitive-magenta-400);
+  --color-emphasis-active: var(--primitive-magenta-600);
+
+  /* Status colors (semantic) */
+  --color-success: var(--primitive-green-500);
+  --color-warning: var(--primitive-amber-500);
+  --color-error: var(--primitive-red-500);
+  --color-info: var(--primitive-blue-500);
+
+  /* Border colors */
+  --color-border-primary: var(--primitive-cyan-500);
+  --color-border-secondary: var(--primitive-gray-700);
+
+  /* ═════════════════════════════════════════════════════════════════════
+     LAYER 3: COMPONENT TOKENS
+     Specific UI component styling
+     ═════════════════════════════════════════════════════════════════════ */
+
+  /* Button tokens */
+  --button-bg: var(--color-interactive);
+  --button-bg-hover: var(--color-interactive-hover);
+  --button-text: var(--primitive-black);
+  --button-border: 1px solid rgb(var(--color-interactive) / 0.5);
+
+  /* Card/Surface tokens */
+  --card-bg: var(--color-bg-secondary);
+  --card-border: 1px solid rgb(var(--color-border-secondary));
+  --card-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+
+  /* Input tokens */
+  --input-bg: var(--color-bg-secondary);
+  --input-border: 1px solid rgb(var(--color-border-secondary));
+  --input-border-focus: 1px solid var(--color-interactive);
+  --input-text: var(--color-text-primary);
+
+  /* Link tokens */
+  --link-color: var(--color-interactive);
+  --link-hover-color: var(--color-emphasis);
+
+  /* Badge tokens */
+  --badge-bg: rgb(var(--color-interactive) / 0.1);
+  --badge-text: var(--color-interactive);
+
+  /* Disabled state tokens */
+  --disabled-bg: var(--color-bg-tertiary);
+  --disabled-text: var(--color-text-muted);
+  --disabled-opacity: 0.5;
+
+  /* ═════════════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═════════════════════════════════════════════════════════════════════ */
+
   --font-mono: 'JetBrains Mono', monospace;
   --font-sans: 'Inter', system-ui, sans-serif;
 
-  /* SPACING SCALE */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  --font-size-5xl: 3rem;     /* 48px */
+  --font-size-6xl: 3.75rem;  /* 60px */
+  --font-size-7xl: 4.5rem;   /* 72px */
+
+  /* ═════════════════════════════════════════════════════════════════════
+     SPACING SYSTEM
+     ═════════════════════════════════════════════════════════════════════ */
+
   --space-xs: 0.25rem;   /* 4px */
   --space-sm: 0.5rem;    /* 8px */
   --space-md: 1rem;      /* 16px */
@@ -60,39 +147,77 @@
   --space-2xl: 3rem;     /* 48px */
   --space-3xl: 4rem;     /* 64px */
 
-  /* BORDER RADIUS */
+  /* ═════════════════════════════════════════════════════════════════════
+     BORDER RADIUS
+     ═════════════════════════════════════════════════════════════════════ */
+
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
 
-  /* NEON GLOW SHADOWS */
-  --shadow-glow-sm: 0 0 3px rgb(var(--color-primary)), 0 0 10px rgb(var(--color-primary));
-  --shadow-glow: 0 0 5px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary));
-  --shadow-glow-lg: 0 0 10px rgb(var(--color-primary)), 0 0 40px rgb(var(--color-primary));
-  --shadow-glow-accent: 0 0 5px rgb(var(--color-accent)), 0 0 20px rgb(var(--color-accent));
+  /* ═════════════════════════════════════════════════════════════════════
+     SHADOWS
+     Optimized for performance (drop-shadow > box-shadow)
+     ═════════════════════════════════════════════════════════════════════ */
 
-  /* STANDARD SHADOWS */
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.1);
+  /* Drop shadows (GPU accelerated, don't trigger layout) */
+  --shadow-sm: drop-shadow(0 1px 2px rgb(0 0 0 / 0.05));
+  --shadow-md: drop-shadow(0 4px 6px rgb(0 0 0 / 0.1));
+  --shadow-lg: drop-shadow(0 10px 15px rgb(0 0 0 / 0.1));
 
-  /* TRANSITIONS */
+  /* Glow effects (optimized with single shadow) */
+  --shadow-glow: drop-shadow(0 0 8px rgb(var(--color-interactive) / 0.6));
+  --shadow-glow-lg: drop-shadow(0 0 16px rgb(var(--color-interactive) / 0.8));
+  --shadow-glow-accent: drop-shadow(0 0 8px rgb(var(--color-emphasis) / 0.6));
+
+  /* ═════════════════════════════════════════════════════════════════════
+     ANIMATIONS & TRANSITIONS
+     ═════════════════════════════════════════════════════════════════════ */
+
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Z-INDEX SCALE */
+  /* Easing functions */
+  --easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ═════════════════════════════════════════════════════════════════════
+     Z-INDEX SCALE
+     ═════════════════════════════════════════════════════════════════════ */
+
   --z-base: 0;
   --z-dropdown: 1000;
   --z-sticky: 1100;
   --z-fixed: 1200;
   --z-modal: 1400;
+
+  /* ═════════════════════════════════════════════════════════════════════
+     PREFERS REDUCED MOTION
+     Respects user accessibility preferences
+     ═════════════════════════════════════════════════════════════════════ */
+
+  --motion-safe: 1;
+  --motion-reduce: 0;
 }
 
-/* ─────────────────────────────────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+    --motion-safe: 0;
+    --motion-reduce: 1;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
    GLOBAL STYLES
-   ───────────────────────────────────────────────────────────────────── */
+   ═════════════════════════════════════════════════════════════════════ */
 
 * {
   box-sizing: border-box;
@@ -119,6 +244,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   width: 100%;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* Remove default button styles */
@@ -131,14 +257,31 @@ button {
 
 /* Remove default link styles */
 a {
-  color: inherit;
+  color: rgb(var(--link-color));
   text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: rgb(var(--link-hover-color));
+}
+
+a:focus-visible {
+  outline: 2px solid rgb(var(--link-color));
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 /* Text Selection */
 ::selection {
-  background-color: rgb(var(--color-primary) / 0.3);
+  background-color: rgb(var(--color-interactive) / 0.3);
   color: rgb(var(--color-text-primary));
+}
+
+/* Focus visible (accessibility) */
+:focus-visible {
+  outline: 2px solid rgb(var(--color-interactive));
+  outline-offset: 2px;
 }
 
 /* Scrollbar */
@@ -152,18 +295,19 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-primary) / 0.3);
+  background: rgb(var(--color-interactive) / 0.3);
   border-radius: var(--radius-md);
   border: 2px solid rgb(var(--color-bg-primary));
+  transition: background-color var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--color-primary) / 0.5);
+  background: rgb(var(--color-interactive) / 0.6);
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(var(--color-primary) / 0.3) rgb(var(--color-bg-primary));
+  scrollbar-color: rgb(var(--color-interactive) / 0.3) rgb(var(--color-bg-primary));
 }
 
 /* ─────────────────────────────────────────────────────────────────────
