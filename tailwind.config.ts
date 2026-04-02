@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -8,68 +8,74 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      /* ═══════════════════════════════════════════════════════════════════
+         COLOR PALETTE
+         Uses semantic tokens from CSS variables (3-layer architecture)
+         ═══════════════════════════════════════════════════════════════════ */
       colors: {
-        // Terminal Neon Color Palette - matches globals.css
-        primary: {
-          DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
-          glow: 'rgb(var(--color-primary-glow) / <alpha-value>)',
+        /* Semantic colors (primary UI elements) */
+        interactive: 'rgb(var(--color-interactive) / <alpha-value>)',
+        emphasis: 'rgb(var(--color-emphasis) / <alpha-value>)',
+
+        /* Status colors */
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        warning: 'rgb(var(--color-warning) / <alpha-value>)',
+        error: 'rgb(var(--color-error) / <alpha-value>)',
+        info: 'rgb(var(--color-info) / <alpha-value>)',
+
+        /* Background layers (depth) */
+        bg: {
+          base: 'rgb(var(--color-bg-base) / <alpha-value>)',
+          primary: 'rgb(var(--color-bg-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
         },
-        accent: {
-          DEFAULT: 'rgb(var(--color-accent) / <alpha-value>)',
+
+        /* Text colors (contrast) */
+        text: {
+          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-text-tertiary) / <alpha-value>)',
+          muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
         },
-        secondary: {
-          DEFAULT: 'rgb(var(--color-secondary) / <alpha-value>)',
+
+        /* Border colors */
+        border: {
+          primary: 'rgb(var(--color-border-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-border-secondary) / <alpha-value>)',
         },
-        success: {
-          DEFAULT: 'rgb(var(--color-success) / <alpha-value>)',
+
+        /* Component-specific aliases */
+        button: {
+          bg: 'rgb(var(--button-bg))',
+          text: 'rgb(var(--button-text))',
         },
-        warning: {
-          DEFAULT: 'rgb(var(--color-warning) / <alpha-value>)',
+        card: {
+          bg: 'rgb(var(--card-bg))',
         },
-        error: {
-          DEFAULT: 'rgb(var(--color-error) / <alpha-value>)',
+        input: {
+          bg: 'rgb(var(--input-bg))',
+          text: 'rgb(var(--input-text))',
         },
-        info: {
-          DEFAULT: 'rgb(var(--color-info) / <alpha-value>)',
-        },
-        // Dark theme shades
-        dark: {
-          400: 'rgb(var(--color-dark-400) / <alpha-value>)',
-          500: 'rgb(var(--color-dark-500) / <alpha-value>)',
-          600: 'rgb(var(--color-dark-600) / <alpha-value>)',
-          700: 'rgb(var(--color-dark-700) / <alpha-value>)',
-          800: 'rgb(var(--color-dark-800) / <alpha-value>)',
-          900: 'rgb(var(--color-dark-900) / <alpha-value>)',
-          950: 'rgb(var(--color-dark-950) / <alpha-value>)',
-        },
-        // Text colors
-        'text-primary': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        'text-secondary': 'rgb(var(--color-text-secondary) / <alpha-value>)',
-        'text-tertiary': 'rgb(var(--color-text-tertiary) / <alpha-value>)',
-        'text-muted': 'rgb(var(--color-text-muted) / <alpha-value>)',
-        // Background colors
-        background: 'rgb(var(--color-background))',
-        'background-secondary': 'rgb(var(--color-background-secondary))',
-        'background-tertiary': 'rgb(var(--color-background-tertiary))',
-        // Surface colors (for cards, panels, overlays)
-        surface: 'rgb(var(--color-surface))',
-        'surface-hover': 'rgb(var(--color-surface-hover))',
-        //  Aliases for components
-        'primary-foreground': 'rgb(var(--color-dark-950) / <alpha-value>)',
-        'destructive': 'rgb(var(--color-error) / <alpha-value>)',
-        'destructive-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        input: 'rgb(var(--color-primary) / 0.2)',
-        ring: 'rgb(var(--color-primary) / <alpha-value>)',
-        muted: 'rgb(var(--color-dark-700) / <alpha-value>)',
-        'secondary-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        'accent-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
-        border: 'rgb(var(--color-border) / 0.1)',
-        'border-muted': 'rgb(var(--color-border-muted) / <alpha-value>)',
+
+        /* Legacy aliases (for existing code compatibility) */
+        primary: 'rgb(var(--color-interactive) / <alpha-value>)',
+        accent: 'rgb(var(--color-emphasis) / <alpha-value>)',
+        secondary: 'rgb(var(--color-emphasis) / <alpha-value>)',
+        destructive: 'rgb(var(--color-error) / <alpha-value>)',
+        'destructive-foreground':
+          'rgb(var(--color-text-primary) / <alpha-value>)',
+        muted: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
       },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         TYPOGRAPHY
+         ═══════════════════════════════════════════════════════════════════ */
       fontFamily: {
         mono: 'var(--font-mono)',
         sans: 'var(--font-sans)',
       },
+
       fontSize: {
         xs: 'var(--font-size-xs)',
         sm: 'var(--font-size-sm)',
@@ -83,16 +89,23 @@ const config: Config = {
         '6xl': 'var(--font-size-6xl)',
         '7xl': 'var(--font-size-7xl)',
       },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SPACING SYSTEM
+         ═══════════════════════════════════════════════════════════════════ */
       spacing: {
-        xs: 'var(--spacing-xs)',
-        sm: 'var(--spacing-sm)',
-        md: 'var(--spacing-md)',
-        lg: 'var(--spacing-lg)',
-        xl: 'var(--spacing-xl)',
-        '2xl': 'var(--spacing-2xl)',
-        '3xl': 'var(--spacing-3xl)',
-        '4xl': 'var(--spacing-4xl)',
+        xs: 'var(--space-xs)',
+        sm: 'var(--space-sm)',
+        md: 'var(--space-md)',
+        lg: 'var(--space-lg)',
+        xl: 'var(--space-xl)',
+        '2xl': 'var(--space-2xl)',
+        '3xl': 'var(--space-3xl)',
       },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         BORDER RADIUS
+         ═══════════════════════════════════════════════════════════════════ */
       borderRadius: {
         sm: 'var(--radius-sm)',
         DEFAULT: 'var(--radius-md)',
@@ -102,88 +115,119 @@ const config: Config = {
         '2xl': 'var(--radius-2xl)',
         full: 'var(--radius-full)',
       },
-      boxShadow: {
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SHADOWS (GPU-optimized with drop-shadow)
+         ═══════════════════════════════════════════════════════════════════ */
+      dropShadow: {
         sm: 'var(--shadow-sm)',
         DEFAULT: 'var(--shadow-md)',
         md: 'var(--shadow-md)',
         lg: 'var(--shadow-lg)',
-        xl: 'var(--shadow-xl)',
-        // Neon glow shadows
-        'neon-primary': 'var(--shadow-neon-primary)',
-        'neon-primary-sm': 'var(--shadow-neon-primary-sm)',
-        'neon-primary-lg': 'var(--shadow-neon-primary-lg)',
-        'neon-primary-xl': 'var(--shadow-neon-primary-xl)',
-        'neon-accent': 'var(--shadow-neon-accent)',
-        'neon-accent-lg': 'var(--shadow-neon-accent-lg)',
-        'neon-secondary': 'var(--shadow-neon-secondary)',
+        glow: 'var(--shadow-glow)',
+        'glow-lg': 'var(--shadow-glow-lg)',
+        'glow-accent': 'var(--shadow-glow-accent)',
       },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         TRANSITIONS
+         ═══════════════════════════════════════════════════════════════════ */
       transitionDuration: {
         fast: 'var(--transition-fast)',
         DEFAULT: 'var(--transition-base)',
+        base: 'var(--transition-base)',
         slow: 'var(--transition-slow)',
       },
+
+      transitionTimingFunction: {
+        ease: 'var(--easing-ease-in-out)',
+        'ease-in': 'var(--easing-ease-in)',
+        'ease-out': 'var(--easing-ease-out)',
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         Z-INDEX SCALE
+         ═══════════════════════════════════════════════════════════════════ */
       zIndex: {
-        dropdown: 'var(--z-index-dropdown)',
-        sticky: 'var(--z-index-sticky)',
-        fixed: 'var(--z-index-fixed)',
-        'modal-backdrop': 'var(--z-index-modal-backdrop)',
-        modal: 'var(--z-index-modal)',
-        popover: 'var(--z-index-popover)',
-        tooltip: 'var(--z-index-tooltip)',
+        base: 'var(--z-base)',
+        dropdown: 'var(--z-dropdown)',
+        sticky: 'var(--z-sticky)',
+        fixed: 'var(--z-fixed)',
+        modal: 'var(--z-modal)',
       },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ANIMATIONS (GPU-safe transforms only)
+         ═══════════════════════════════════════════════════════════════════ */
       animation: {
+        /* Subtle pulsing effects */
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'pulse-neon': 'pulse-neon 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'float': 'float 3s ease-in-out infinite',
-        'scanline': 'scanline 6s linear infinite',
-        'typing': 'typing 3.5s steps(40, end)',
-        'blink': 'blink 1s step-end infinite',
+        'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+
+        /* Float and float effects */
+        float: 'float 3s ease-in-out infinite',
+        'float-slow': 'float 4s ease-in-out infinite',
+
+        /* Subtle movement */
+        scanline: 'scanline 6s linear infinite',
+
+        /* Text animations */
+        typing: 'typing 3.5s steps(40, end)',
+        blink: 'blink 1s step-end infinite',
+
+        /* Accessibility: Disable in prefers-reduced-motion */
+        none: 'none',
       },
+
       keyframes: {
-        'pulse-neon': {
+        /* Optimized glow with drop-shadow filter */
+        'pulse-glow': {
           '0%, 100%': {
             opacity: '1',
-            filter: 'drop-shadow(0 0 8px rgb(var(--color-primary)))'
+            filter: 'drop-shadow(0 0 8px rgb(var(--color-interactive)))',
           },
           '50%': {
-            opacity: '0.5',
-            filter: 'drop-shadow(0 0 4px rgb(var(--color-primary)))'
+            opacity: '0.7',
+            filter: 'drop-shadow(0 0 12px rgb(var(--color-interactive) / 0.8))',
           },
         },
-        glow: {
-          '0%, 100%': {
-            boxShadow: '0 0 5px rgb(var(--color-primary)), 0 0 10px rgb(var(--color-primary))'
-          },
-          '50%': {
-            boxShadow: '0 0 10px rgb(var(--color-primary)), 0 0 20px rgb(var(--color-primary)), 0 0 30px rgb(var(--color-primary))'
-          },
-        },
+
+        /* Float animation (transform only = GPU accelerated) */
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(-12px)' },
         },
+
+        /* Scanline effect */
         scanline: {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(100vh)' },
         },
+
+        /* Typing animation */
         typing: {
-          'from': { width: '0' },
-          'to': { width: '100%' },
+          from: { width: '0' },
+          to: { width: '100%' },
         },
+
+        /* Cursor blink */
         blink: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
         },
       },
+
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D9FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'grid-pattern':
+          "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D9FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       },
     },
   },
-  plugins: [],
-}
 
-export default config
+  plugins: [],
+};
+
+export default config;

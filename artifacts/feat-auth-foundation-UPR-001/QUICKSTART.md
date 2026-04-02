@@ -5,6 +5,7 @@
 All authentication foundation files have been created in your repository:
 
 ### New Files
+
 - ✅ `prisma/schema.prisma` - Database schema
 - ✅ `src/lib/auth.ts` - NextAuth configuration
 - ✅ `src/lib/prisma.ts` - Prisma client singleton
@@ -14,6 +15,7 @@ All authentication foundation files have been created in your repository:
 - ✅ `.gitignore` - Updated with Prisma exclusions
 
 ### Modified Files
+
 - ✅ `.gitignore` - Added Prisma-specific ignores
 
 ---
@@ -23,12 +25,14 @@ All authentication foundation files have been created in your repository:
 ### Option 1: Automated Script (Recommended)
 
 **On Windows (PowerShell):**
+
 ```powershell
 cd k:\git\4eckd-jlucus\jlucus
 .\artifacts\feat-auth-foundation-UPR-001\SETUP_SCRIPT.ps1
 ```
 
 **On Linux/Mac (Bash):**
+
 ```bash
 cd k:/git/4eckd-jlucus/jlucus
 chmod +x artifacts/feat-auth-foundation-UPR-001/SETUP_SCRIPT.sh
@@ -40,11 +44,13 @@ chmod +x artifacts/feat-auth-foundation-UPR-001/SETUP_SCRIPT.sh
 ### Option 2: Manual Steps
 
 #### 1. Create Feature Branch
+
 ```bash
 git checkout -b feat/auth-foundation/UPR-001
 ```
 
 #### 2. Install Dependencies
+
 ```bash
 # Production dependencies
 pnpm add next-auth@beta @auth/prisma-adapter @prisma/client bcryptjs
@@ -54,11 +60,13 @@ pnpm add -D prisma @types/bcryptjs
 ```
 
 #### 3. Generate Prisma Client
+
 ```bash
 pnpm prisma generate
 ```
 
 #### 4. Configure Environment
+
 ```bash
 # Copy template
 cp .env.example .env
@@ -73,21 +81,25 @@ openssl rand -base64 32
 ```
 
 #### 5. Run Database Migration
+
 ```bash
 pnpm prisma migrate dev --name init_auth
 ```
 
 #### 6. Test Build
+
 ```bash
 pnpm build
 ```
 
 #### 7. Test Linter
+
 ```bash
 pnpm lint
 ```
 
 #### 8. Start Dev Server
+
 ```bash
 pnpm dev
 ```
@@ -101,22 +113,29 @@ You should see the NextAuth default sign-in page.
 ## Troubleshooting
 
 ### Error: "Module not found: Can't resolve '@prisma/client'"
+
 **Solution:** Run `pnpm prisma generate`
 
 ### Error: "Invalid `prisma.user.findUnique()` invocation"
+
 **Solution:** Run the migration: `pnpm prisma migrate dev --name init_auth`
 
 ### Error: "NEXTAUTH_SECRET is not set"
+
 **Solution:** Add `NEXTAUTH_SECRET` to your `.env` file (use `openssl rand -base64 32`)
 
 ### TypeScript Error: "Module has no exported member 'NextAuthOptions'"
+
 **Solution:** For NextAuth v5 beta, use `AuthOptions` instead:
+
 ```typescript
-import type { AuthOptions } from "next-auth";
+import type { AuthOptions } from 'next-auth';
 ```
+
 The provided code already uses the correct types for v5.
 
 ### Build Error: "Cannot find module 'bcryptjs'"
+
 **Solution:** Ensure dependencies are installed: `pnpm install`
 
 ---
@@ -158,18 +177,20 @@ The provided code already uses the correct types for v5.
 ## Files Reference
 
 ### Configuration Files
+
 - `.env` (create from `.env.example`)
 - `prisma/schema.prisma` (database schema)
 - `src/lib/auth.ts` (NextAuth config)
 
 ### API Routes
+
 - `src/app/api/auth/[...nextauth]/route.ts`
 
 ### Database
+
 - After migration: `prisma/migrations/` (git-ignored)
 - SQLite: `dev.db` (if using SQLite, git-ignored)
 
 ---
 
-**Need Help?** Check the full PR description:
-`progress/pr-drafts/feat-auth-foundation-UPR-001.md`
+**Need Help?** Check the full PR description: `progress/pr-drafts/feat-auth-foundation-UPR-001.md`

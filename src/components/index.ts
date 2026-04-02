@@ -2,16 +2,16 @@
 // Allows importing components via @/components instead of @/components/[category]/[component]
 
 // Layout components
-export * from './layout'
+export * from './layout';
 
 // Section components
-export * from './sections'
+export * from './sections';
 
 // UI components
-export * from './ui'
+export * from './ui';
 
 // Effects
-export * from './effects'
+export * from './effects';
 
 // Providers
-export * from './providers'
+export * from './providers';

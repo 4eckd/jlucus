@@ -1,6 +1,7 @@
 # Contributing to jlucus.dev
 
-Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to the project.
+Thank you for your interest in contributing! This document provides guidelines and instructions for
+contributing to the project.
 
 ## Code of Conduct
 
@@ -11,11 +12,13 @@ Be respectful, constructive, and professional. We're all here to build something
 ### Reporting Bugs
 
 Before creating a bug report:
+
 1. Check the [existing issues](https://github.com/4eckd/jlucus2/issues)
 2. Try the latest version to see if it's already fixed
 3. Collect relevant information (browser, OS, steps to reproduce)
 
 **Submit a bug report:**
+
 - Use the bug report template
 - Provide clear title and description
 - Include reproduction steps
@@ -25,6 +28,7 @@ Before creating a bug report:
 ### Suggesting Enhancements
 
 Enhancement suggestions are welcome! Please:
+
 - Check if it's already suggested
 - Explain the use case clearly
 - Describe the expected behavior
@@ -33,6 +37,7 @@ Enhancement suggestions are welcome! Please:
 ### Pull Requests
 
 1. **Fork & Clone**
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/jlucus2.git
    cd jlucus2/jlucus2
@@ -40,6 +45,7 @@ Enhancement suggestions are welcome! Please:
    ```
 
 2. **Create a Branch**
+
    ```bash
    git checkout -b feature/your-feature-name
    # or
@@ -53,6 +59,7 @@ Enhancement suggestions are welcome! Please:
    - Update documentation
 
 4. **Test Your Changes**
+
    ```bash
    npm run build
    npm run lint
@@ -60,6 +67,7 @@ Enhancement suggestions are welcome! Please:
    ```
 
 5. **Commit**
+
    ```bash
    git add .
    git commit -m "feat: add amazing feature"
@@ -78,6 +86,7 @@ Enhancement suggestions are welcome! Please:
 **CRITICAL**: This project uses CSS variables exclusively. NEVER use hard-coded CSS values.
 
 ❌ **WRONG:**
+
 ```tsx
 <div style={{ color: '#00D9FF' }}>
 <div className="bg-[#00D9FF]">
@@ -85,6 +94,7 @@ const color = 'rgba(0, 217, 255, 0.5)';
 ```
 
 ✅ **CORRECT:**
+
 ```tsx
 <div className="text-primary">
 <div className="bg-primary/50">
@@ -113,6 +123,7 @@ const color = getCSSColor('primary');
    - Use `cn()` utility for conditional classes
 
 4. **File Organization**
+
    ```
    src/
    ├── app/           # Next.js App Router
@@ -144,6 +155,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -154,6 +166,7 @@ Follow [Conventional Commits](https://www.conventionalcommits.org/):
 - `chore`: Build process, dependencies, etc.
 
 **Examples:**
+
 ```bash
 feat(hero): add typing animation to terminal
 fix(grid): resolve canvas rendering on mobile
@@ -164,6 +177,7 @@ refactor(css): migrate hard-coded colors to variables
 ### Testing Checklist
 
 Before submitting PR:
+
 - [ ] Code builds without errors (`npm run build`)
 - [ ] No linting errors (`npm run lint`)
 - [ ] Tested in development mode (`npm run dev`)
@@ -186,6 +200,7 @@ Before submitting PR:
 ### Design System
 
 All design tokens are in `globals.css`:
+
 - Colors: `--color-*`
 - Spacing: `--spacing-*`
 - Shadows: `--shadow-*`
@@ -194,6 +209,7 @@ All design tokens are in `globals.css`:
 ## Documentation
 
 When adding features:
+
 1. Update relevant `.md` files
 2. Add JSDoc comments to functions
 3. Update `docs.json` if adding docs

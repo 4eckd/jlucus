@@ -10,7 +10,8 @@
 
 - [ ] 🎨 New feature (non-breaking change which adds functionality)
 - [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
-- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as
+      expected)
 - [ ] 📝 Documentation update
 - [ ] ♻️ Code refactor
 - [ ] ⚡ Performance improvement
@@ -20,17 +21,19 @@
 ## 🔗 Related Issues
 
 <!-- Link related issues here -->
-Closes #
-Related to #
+
+Closes # Related to #
 
 ## 📸 Screenshots/Videos
 
 <!-- If applicable, add screenshots or videos to demonstrate the changes -->
 
 **Before:**
+
 <!-- Screenshot of before state -->
 
 **After:**
+
 <!-- Screenshot of after state -->
 
 ## ✅ Checklist
@@ -38,17 +41,20 @@ Related to #
 <!-- Mark completed items with an 'x' -->
 
 ### Code Quality
+
 - [ ] Code follows the project's style guidelines
 - [ ] Self-review of code completed
 - [ ] Code is well-commented, particularly in complex areas
 - [ ] No console.log or debugging code left in
 
 ### Functionality
+
 - [ ] Changes work as intended
 - [ ] No breaking changes (or breaking changes are documented)
 - [ ] All edge cases considered and tested
 
 ### Testing
+
 - [ ] Tested on desktop (Chrome, Firefox, Safari)
 - [ ] Tested on mobile (iOS Safari, Chrome Mobile)
 - [ ] Tested with keyboard navigation
@@ -57,6 +63,7 @@ Related to #
 - [ ] All tests pass locally
 
 ### Accessibility
+
 - [ ] WCAG AAA contrast ratios maintained
 - [ ] Keyboard navigation works
 - [ ] Screen reader friendly
@@ -64,12 +71,14 @@ Related to #
 - [ ] Focus indicators visible
 
 ### Performance
+
 - [ ] No performance regressions
 - [ ] Images optimized
 - [ ] Code-split if bundle is large
 - [ ] Lighthouse score maintained (>90)
 
 ### Documentation
+
 - [ ] README updated (if needed)
 - [ ] Comments added to complex code
 - [ ] TypeScript types documented
@@ -80,12 +89,15 @@ Related to #
 <!-- Any special deployment instructions or environment variable changes? -->
 
 ### Environment Variables
+
 <!-- List any new or changed environment variables -->
 
 ### Database Changes
+
 <!-- Any database migrations or schema changes? -->
 
 ### Configuration Changes
+
 <!-- Any changes to config files? -->
 
 ## 🧪 Testing Instructions

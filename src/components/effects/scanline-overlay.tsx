@@ -10,9 +10,7 @@
  * and provides a subtle moving line that enhances the Terminal Neon theme.
  */
 export function ScanlineOverlay() {
-  return (
-    <div className="scanline" aria-hidden="true" />
-  );
+  return <div className="scanline" aria-hidden="true" />;
 }
 
 export default ScanlineOverlay;

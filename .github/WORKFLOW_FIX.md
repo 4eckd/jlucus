@@ -1,8 +1,6 @@
 # Workflow Fix - Branch Names with Slashes
 
-**Date:** 2026-02-16
-**Issue:** GitHub Actions workflow failing
-**Status:** ✅ Fixed
+**Date:** 2026-02-16 **Issue:** GitHub Actions workflow failing **Status:** ✅ Fixed
 
 ---
 
@@ -21,12 +19,15 @@ Error: Process completed with exit code 1.
 Branch name: `claude/setup-gitbutler-branching-LScIj`
 
 When the workflow tried to create:
+
 ```bash
 BRANCH_FILE="progress/branches/${{ github.ref_name }}.md"
 # Results in: progress/branches/claude/setup-gitbutler-branching-LScIj.md
 ```
 
-The shell interpreted the `/` in the branch name as a path separator, trying to create a file at `progress/branches/claude/setup-gitbutler-branching-LScIj.md`, but the subdirectory `progress/branches/claude/` didn't exist.
+The shell interpreted the `/` in the branch name as a path separator, trying to create a file at
+`progress/branches/claude/setup-gitbutler-branching-LScIj.md`, but the subdirectory
+`progress/branches/claude/` didn't exist.
 
 ---
 
@@ -51,6 +52,7 @@ Updated `.github/workflows/branch-tracker.yml`:
 ```
 
 **Result:**
+
 - Branch: `claude/setup-gitbutler-branching-LScIj`
 - File: `progress/branches/claude_setup-gitbutler-branching-LScIj.md`
 
@@ -65,6 +67,7 @@ Added `2>/dev/null` and fallback values to all git commands:
 ```
 
 This prevents failures on:
+
 - New branches without commit history
 - Branches that can't be compared to main
 - Any other git command errors
@@ -99,16 +102,19 @@ progress/
 The workflow will now handle:
 
 ✅ **Branch names with slashes:**
+
 - `feature/hero-section` → `feature_hero-section.md`
 - `bugfix/nav-menu` → `bugfix_nav-menu.md`
 - `claude/setup-gitbutler-branching-LScIj` → `claude_setup-gitbutler-branching-LScIj.md`
 
 ✅ **New branches:**
+
 - Branches without commit history
 - Branches just created
 - Empty branches
 
 ✅ **Edge cases:**
+
 - Branches that can't be compared to main
 - Orphaned branches
 - Detached HEAD states
@@ -126,6 +132,7 @@ After push, the workflow should:
 5. ✅ Commit tracking files back to branch
 
 Check workflow status:
+
 ```bash
 # View latest workflow run
 gh run list --workflow=branch-tracker.yml --limit 1
@@ -138,24 +145,23 @@ gh run view --log
 
 ## Commit
 
-**Commit:** `1a3b012`
-**Message:** fix: handle branch names with slashes in workflow
-**Files:** 2 changed (workflow + .gitkeep)
-**Status:** ✅ Pushed to remote
+**Commit:** `1a3b012` **Message:** fix: handle branch names with slashes in workflow **Files:** 2
+changed (workflow + .gitkeep) **Status:** ✅ Pushed to remote
 
 ---
 
 ## Prevention
 
 This fix prevents all future failures caused by:
+
 - Branch naming conventions with slashes (common in GitFlow, GitHub Flow)
 - Special characters in branch names
 - Missing git history on new branches
 
-The sanitization approach is industry-standard and matches what other CI/CD systems do (e.g., Jenkins, GitLab CI).
+The sanitization approach is industry-standard and matches what other CI/CD systems do (e.g.,
+Jenkins, GitLab CI).
 
 ---
 
-**Status:** ✅ Fixed and Deployed
-**Next Workflow Run:** Should succeed
-**No Action Required:** Automatic fix
+**Status:** ✅ Fixed and Deployed **Next Workflow Run:** Should succeed **No Action Required:**
+Automatic fix

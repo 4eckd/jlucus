@@ -17,7 +17,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
 
   const levelColors = {
     beginner: 'text-secondary',
-    intermediate: 'text-warning', 
+    intermediate: 'text-warning',
     advanced: 'text-accent',
     expert: 'text-primary',
     master: 'text-success',
@@ -31,7 +31,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
       viewport={{ once: true }}
-      className="relative group"
+      className="group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -40,7 +40,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
         {/* Glow effect on hover */}
         <motion.div
           className={cn(
-            "absolute inset-0 rounded-full blur-xl transition-all duration-300",
+            'absolute inset-0 rounded-full blur-xl transition-all duration-300',
             levelColors[skill.level]
           )}
           animate={{
@@ -48,32 +48,36 @@ function SkillNode({ skill, index }: SkillNodeProps) {
             opacity: isHovered ? 0.6 : 0.3,
           }}
         />
-        
+
         {/* Main node */}
-        <div className={cn(
-          "relative w-16 h-16 rounded-full border-2 flex items-center justify-center transition-all duration-300 cursor-pointer",
-          "bg-background-secondary border-primary/30",
-          "group-hover:border-primary/60 group-hover:scale-110"
-        )}>
+        <div
+          className={cn(
+            'relative flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border-2 transition-all duration-300',
+            'bg-background-secondary border-primary/30',
+            'group-hover:border-primary/60 group-hover:scale-110'
+          )}
+        >
           {/* Skill level indicator */}
-          <div className={cn(
-            "absolute inset-0 rounded-full border-2 opacity-50",
-            levelColors[skill.level],
-            "border-current"
-          )}>
-            <div 
+          <div
+            className={cn(
+              'absolute inset-0 rounded-full border-2 opacity-50',
+              levelColors[skill.level],
+              'border-current'
+            )}
+          >
+            <div
               className={cn(
-                "absolute inset-0 rounded-full border-2 border-transparent border-t-current transform -rotate-45"
+                'absolute inset-0 -rotate-45 transform rounded-full border-2 border-transparent border-t-current'
               )}
               style={{
-                clipPath: `polygon(50% 50%, 50% 0%, ${50 + levelProgress * 0.5}% 0%, 100% ${levelProgress * 0.5}%, 100% 100%, 50% 100%)`
+                clipPath: `polygon(50% 50%, 50% 0%, ${50 + levelProgress * 0.5}% 0%, 100% ${levelProgress * 0.5}%, 100% 100%, 50% 100%)`,
               }}
             />
           </div>
 
           {/* Center icon */}
           <div className="relative z-10">
-            <Code className="w-6 h-6" />
+            <Code className="h-6 w-6" />
           </div>
         </div>
 
@@ -82,30 +86,37 @@ function SkillNode({ skill, index }: SkillNodeProps) {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-3 bg-background-secondary border border-primary/20 rounded-lg shadow-neon-primary-lg z-50"
+            className="bg-background-secondary border-primary/20 shadow-neon-primary-lg absolute bottom-full left-1/2 z-50 mb-2 w-48 -translate-x-1/2 transform rounded-lg border p-3"
           >
-            <div className="text-sm font-bold text-primary mb-1">{skill.name}</div>
-            <div className="text-xs text-secondary mb-2">{skill.description}</div>
-            
+            <div className="text-primary mb-1 text-sm font-bold">
+              {skill.name}
+            </div>
+            <div className="text-secondary mb-2 text-xs">
+              {skill.description}
+            </div>
+
             {/* XP Progress */}
             <div className="mb-2">
-              <div className="flex justify-between text-xs mb-1">
+              <div className="mb-1 flex justify-between text-xs">
                 <span className="text-secondary">Level {skill.level}</span>
-                <span className="text-primary">{skill.xp}/{skill.maxXP} XP</span>
+                <span className="text-primary">
+                  {skill.xp}/{skill.maxXP} XP
+                </span>
               </div>
-              <div className="h-1 bg-dark-700 rounded-full overflow-hidden">
-                <div 
-                  className={cn("h-full", levelColors[skill.level])}
+              <div className="bg-tertiary h-1 overflow-hidden rounded-full">
+                <div
+                  className={cn('h-full', levelColors[skill.level])}
                   style={{ width: `${levelProgress}%` }}
                 />
               </div>
             </div>
-            
+
             {/* Projects */}
             {skill.projects && skill.projects.length > 0 && (
-              <div className="text-xs text-tertiary">
-                <Award className="w-3 h-3 inline mr-1" />
-                Applied in {skill.projects.length} project{skill.projects.length > 1 ? 's' : ''}
+              <div className="text-tertiary text-xs">
+                <Award className="mr-1 inline h-3 w-3" />
+                Applied in {skill.projects.length} project
+                {skill.projects.length > 1 ? 's' : ''}
               </div>
             )}
           </motion.div>
@@ -114,7 +125,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
 
       {/* Skill name label */}
       <div className="mt-2 text-center">
-        <div className="text-xs font-mono text-primary group-hover:text-accent transition-colors">
+        <div className="text-primary group-hover:text-accent font-mono text-xs transition-colors">
           {skill.name}
         </div>
       </div>
@@ -123,7 +134,9 @@ function SkillNode({ skill, index }: SkillNodeProps) {
 }
 
 export function SkillTree() {
-  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(
+    new Set()
+  );
 
   const toggleCategory = (categoryId: string) => {
     const newExpanded = new Set(expandedCategories);
@@ -151,49 +164,52 @@ export function SkillTree() {
 }`;
 
   return (
-    <section id="skills" className="py-20 relative">
+    <section id="skills" className="relative py-20">
       <AnimatedGrid />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="relative z-10 container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 font-mono">
+          <h2 className="text-primary mb-4 font-mono text-4xl font-bold md:text-5xl">
             {'> skills'}
             <span className="animate-pulse">_</span>
           </h2>
-          <p className="text-xl text-secondary max-w-3xl mx-auto">
-            Technical expertise across modern development stack, blockchain ecosystems, and AI technologies
+          <p className="text-secondary mx-auto max-w-3xl text-xl">
+            Technical expertise across modern development stack, blockchain
+            ecosystems, and AI technologies
           </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           {/* Skills + About side-by-side */}
-          <div className="flex flex-col xl:flex-row gap-8 mb-12">
+          <div className="mb-12 flex flex-col gap-8 xl:flex-row">
             {/* About Code Block */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="xl:w-72 flex-shrink-0"
+              className="flex-shrink-0 xl:w-72"
             >
-              <div className="bg-background-secondary/60 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden h-full">
+              <div className="bg-background-secondary/60 border-primary/10 h-full overflow-hidden rounded-lg border backdrop-blur-sm">
                 {/* Code block header */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-dark-400 border-b border-primary/10">
+                <div className="bg-tertiary border-primary/10 flex items-center gap-2 border-b px-4 py-2">
                   <div className="flex gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-error"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-warning"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-success"></div>
+                    <div className="bg-error h-2.5 w-2.5 rounded-full"></div>
+                    <div className="bg-warning h-2.5 w-2.5 rounded-full"></div>
+                    <div className="bg-success h-2.5 w-2.5 rounded-full"></div>
                   </div>
-                  <span className="text-xs text-secondary font-mono ml-2">about.json</span>
+                  <span className="text-secondary ml-2 font-mono text-xs">
+                    about.json
+                  </span>
                 </div>
                 {/* Code content */}
-                <pre className="p-5 font-mono text-sm text-secondary leading-relaxed overflow-auto">
+                <pre className="text-secondary overflow-auto p-5 font-mono text-sm leading-relaxed">
                   {aboutCode.split('\n').map((line, i) => {
                     const keyMatch = line.match(/^(\s*)"([^"]+)":/);
                     const stringValueMatch = line.match(/:\s*"([^"]+)"/);
@@ -208,9 +224,17 @@ export function SkillTree() {
                           <span className="text-accent">&quot;{key}&quot;</span>
                           <span className="text-secondary">:</span>
                           {stringValueMatch ? (
-                            <span className="text-success"> &quot;{stringValueMatch[1]}&quot;{rest.endsWith(',') ? ',' : ''}</span>
+                            <span className="text-success">
+                              {' '}
+                              &quot;{stringValueMatch[1]}&quot;
+                              {rest.endsWith(',') ? ',' : ''}
+                            </span>
                           ) : boolMatch ? (
-                            <span className="text-primary"> {boolMatch[1]}{rest.endsWith(',') ? ',' : ''}</span>
+                            <span className="text-primary">
+                              {' '}
+                              {boolMatch[1]}
+                              {rest.endsWith(',') ? ',' : ''}
+                            </span>
                           ) : (
                             <span className="text-secondary">{rest}</span>
                           )}
@@ -223,11 +247,19 @@ export function SkillTree() {
                       const indent = line.match(/^(\s*)/)?.[1] ?? '';
                       return (
                         <div key={i}>
-                          {indent}<span className="text-success">&quot;{strMatch?.[1]}&quot;</span>{trailing}
+                          {indent}
+                          <span className="text-success">
+                            &quot;{strMatch?.[1]}&quot;
+                          </span>
+                          {trailing}
                         </div>
                       );
                     }
-                    return <div key={i}><span className="text-secondary">{line}</span></div>;
+                    return (
+                      <div key={i}>
+                        <span className="text-secondary">{line}</span>
+                      </div>
+                    );
                   })}
                 </pre>
               </div>
@@ -235,86 +267,123 @@ export function SkillTree() {
 
             {/* Category Headers */}
             <div className="flex-1">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SKILL_CATEGORIES.map((category, categoryIndex) => (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="bg-background-secondary/60 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden"
-              >
-                {/* Category Header */}
-                <motion.div
-                  className="p-4 border-b border-primary/10 bg-gradient-to-r from-primary/10 to-accent/10"
-                  onClick={() => toggleCategory(category.id)}
-                >
-                  <div className="flex items-center justify-between cursor-pointer">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                        {category.icon === 'Monitor' && <Code className="w-5 h-5 text-primary" />}
-                        {category.icon === 'Server' && <Code className="w-5 h-5 text-primary" />}
-                        {category.icon === 'Network' && <Code className="w-5 h-5 text-primary" />}
-                        {category.icon === 'Cpu' && <Code className="w-5 h-5 text-primary" />}
-                        {category.icon === 'Cloud' && <Code className="w-5 h-5 text-primary" />}
-                        {category.icon === 'Wrench' && <Code className="w-5 h-5 text-primary" />}
-                        {category.icon === 'Code' && <Code className="w-5 h-5 text-primary" />}
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {SKILL_CATEGORIES.map((category, categoryIndex) => (
+                  <motion.div
+                    key={category.id}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: categoryIndex * 0.1, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="bg-background-secondary/60 border-primary/10 overflow-hidden rounded-lg border backdrop-blur-sm"
+                  >
+                    {/* Category Header */}
+                    <motion.div
+                      className="border-primary/10 from-primary/10 to-accent/10 border-b bg-gradient-to-r p-4"
+                      onClick={() => toggleCategory(category.id)}
+                    >
+                      <div className="flex cursor-pointer items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-primary/20 flex h-10 w-10 items-center justify-center rounded-lg">
+                            {category.icon === 'Monitor' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                            {category.icon === 'Server' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                            {category.icon === 'Network' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                            {category.icon === 'Cpu' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                            {category.icon === 'Cloud' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                            {category.icon === 'Wrench' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                            {category.icon === 'Code' && (
+                              <Code className="text-primary h-5 w-5" />
+                            )}
+                          </div>
+                          <div>
+                            <h3 className="text-primary text-lg font-bold">
+                              {category.name}
+                            </h3>
+                            <p className="text-secondary text-xs">
+                              {category.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-primary">
+                          {expandedCategories.has(category.id) ? (
+                            <ChevronUp className="h-5 w-5" />
+                          ) : (
+                            <ChevronDown className="h-5 w-5" />
+                          )}
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-primary">{category.name}</h3>
-                        <p className="text-xs text-secondary">{category.description}</p>
-                      </div>
-                    </div>
-                    <div className="text-primary">
-                      {expandedCategories.has(category.id) ? (
-                        <ChevronUp className="w-5 h-5" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5" />
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Category stats */}
-                  <div className="flex gap-4 mt-3 text-xs">
-                    <span className="text-secondary">
-                      {category.skills.length} skills
-                    </span>
-                    <span className="text-success">
-                      {Math.round(category.skills.reduce((sum, skill) => sum + (skill.xp / skill.maxXP) * 100, 0) / category.skills.length)}% avg
-                    </span>
-                  </div>
-                </motion.div>
 
-                {/* Skills Grid */}
-                <motion.div
-                  className="p-4"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{
-                    height: expandedCategories.has(category.id) ? 'auto' : 0,
-                    opacity: expandedCategories.has(category.id) ? 1 : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="grid grid-cols-2 gap-4">
-                    {category.skills
-                      .slice(0, expandedCategories.has(category.id) ? category.skills.length : 4)
-                      .map((skill, skillIndex) => (
-                        <SkillNode key={skill.id} skill={skill} index={skillIndex} />
-                      ))}
-                  </div>
-                  
-                  {category.skills.length > 4 && !expandedCategories.has(category.id) && (
-                    <div className="text-center mt-2">
-                      <div className="text-xs text-secondary">
-                        +{category.skills.length - 4} more skills
+                      {/* Category stats */}
+                      <div className="mt-3 flex gap-4 text-xs">
+                        <span className="text-secondary">
+                          {category.skills.length} skills
+                        </span>
+                        <span className="text-success">
+                          {Math.round(
+                            category.skills.reduce(
+                              (sum, skill) =>
+                                sum + (skill.xp / skill.maxXP) * 100,
+                              0
+                            ) / category.skills.length
+                          )}
+                          % avg
+                        </span>
                       </div>
-                    </div>
-                  )}
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+                    </motion.div>
+
+                    {/* Skills Grid */}
+                    <motion.div
+                      className="p-4"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: expandedCategories.has(category.id)
+                          ? 'auto'
+                          : 0,
+                        opacity: expandedCategories.has(category.id) ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="grid grid-cols-2 gap-4">
+                        {category.skills
+                          .slice(
+                            0,
+                            expandedCategories.has(category.id)
+                              ? category.skills.length
+                              : 4
+                          )
+                          .map((skill, skillIndex) => (
+                            <SkillNode
+                              key={skill.id}
+                              skill={skill}
+                              index={skillIndex}
+                            />
+                          ))}
+                      </div>
+
+                      {category.skills.length > 4 &&
+                        !expandedCategories.has(category.id) && (
+                          <div className="mt-2 text-center">
+                            <div className="text-secondary text-xs">
+                              +{category.skills.length - 4} more skills
+                            </div>
+                          </div>
+                        )}
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -326,19 +395,29 @@ export function SkillTree() {
             viewport={{ once: true }}
             className="mt-12 text-center"
           >
-            <div className="inline-flex items-center gap-4 px-6 py-3 bg-background-secondary/60 backdrop-blur-sm border border-primary/10 rounded-lg">
+            <div className="bg-background-secondary/60 border-primary/10 inline-flex items-center gap-4 rounded-lg border px-6 py-3 backdrop-blur-sm">
               <div className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-primary" />
-                <span className="text-sm text-secondary">Total Skills:</span>
-                <span className="text-sm font-bold text-primary">{SKILL_CATEGORIES.reduce((sum, cat) => sum + cat.skills.length, 0)}</span>
+                <Zap className="text-primary h-5 w-5" />
+                <span className="text-secondary text-sm">Total Skills:</span>
+                <span className="text-primary text-sm font-bold">
+                  {SKILL_CATEGORIES.reduce(
+                    (sum, cat) => sum + cat.skills.length,
+                    0
+                  )}
+                </span>
               </div>
-              <div className="w-px h-4 bg-primary/20"></div>
+              <div className="bg-primary/20 h-4 w-px"></div>
               <div className="flex items-center gap-2">
-                <Award className="w-5 h-5 text-accent" />
-                <span className="text-sm text-secondary">Expert Level:</span>
-                <span className="text-sm font-bold text-accent">
-                  {SKILL_CATEGORIES.reduce((sum, cat) => 
-                    sum + cat.skills.filter(s => s.level === 'expert' || s.level === 'master').length, 0
+                <Award className="text-accent h-5 w-5" />
+                <span className="text-secondary text-sm">Expert Level:</span>
+                <span className="text-accent text-sm font-bold">
+                  {SKILL_CATEGORIES.reduce(
+                    (sum, cat) =>
+                      sum +
+                      cat.skills.filter(
+                        (s) => s.level === 'expert' || s.level === 'master'
+                      ).length,
+                    0
                   )}
                 </span>
               </div>

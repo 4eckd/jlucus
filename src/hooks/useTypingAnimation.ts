@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 interface UseTypingAnimationOptions {
-  words: string[]
-  typingSpeed?: number
-  deletingSpeed?: number
-  pauseDuration?: number
-  loop?: boolean
+  words: string[];
+  typingSpeed?: number;
+  deletingSpeed?: number;
+  pauseDuration?: number;
+  loop?: boolean;
 }
 
 interface UseTypingAnimationReturn {
-  displayText: string
-  currentWordIndex: number
-  isTyping: boolean
+  displayText: string;
+  currentWordIndex: number;
+  isTyping: boolean;
 }
 
 /**
@@ -28,58 +28,58 @@ export function useTypingAnimation({
   pauseDuration = 2000,
   loop = true,
 }: UseTypingAnimationOptions): UseTypingAnimationReturn {
-  const [currentWordIndex, setCurrentWordIndex] = useState(0)
-  const [currentText, setCurrentText] = useState('')
-  const [isTyping, setIsTyping] = useState(true)
-  const [isPaused, setIsPaused] = useState(false)
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isTyping, setIsTyping] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (words.length === 0) return
+    if (words.length === 0) return;
 
-    const currentWord = words[currentWordIndex]
+    const currentWord = words[currentWordIndex];
 
     // Pause after finishing typing
     if (isPaused) {
       const pauseTimer = setTimeout(() => {
-        setIsPaused(false)
-        setIsTyping(false)
-      }, pauseDuration)
+        setIsPaused(false);
+        setIsTyping(false);
+      }, pauseDuration);
 
-      return () => clearTimeout(pauseTimer)
+      return () => clearTimeout(pauseTimer);
     }
 
     // Typing animation
     if (isTyping) {
       if (currentText === currentWord) {
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setIsPaused(true)
-        return
+        setIsPaused(true);
+        return;
       }
 
       const typingTimer = setTimeout(() => {
-        setCurrentText(currentWord.slice(0, currentText.length + 1))
-      }, typingSpeed)
+        setCurrentText(currentWord.slice(0, currentText.length + 1));
+      }, typingSpeed);
 
-      return () => clearTimeout(typingTimer)
+      return () => clearTimeout(typingTimer);
     }
 
     // Deleting animation
     if (!isTyping && !isPaused) {
       if (currentText === '') {
         // Move to next word
-        setIsTyping(true)
+        setIsTyping(true);
 
         if (loop || currentWordIndex < words.length - 1) {
-          setCurrentWordIndex((prev) => (prev + 1) % words.length)
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
         }
-        return
+        return;
       }
 
       const deletingTimer = setTimeout(() => {
-        setCurrentText(currentText.slice(0, -1))
-      }, deletingSpeed)
+        setCurrentText(currentText.slice(0, -1));
+      }, deletingSpeed);
 
-      return () => clearTimeout(deletingTimer)
+      return () => clearTimeout(deletingTimer);
     }
   }, [
     currentText,
@@ -91,11 +91,11 @@ export function useTypingAnimation({
     deletingSpeed,
     pauseDuration,
     loop,
-  ])
+  ]);
 
   return {
     displayText: currentText,
     currentWordIndex,
     isTyping,
-  }
+  };
 }

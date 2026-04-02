@@ -53,3 +53,7 @@ public/**/*.json
 
 # Documentation artifacts
 docs/ascii-art-samples.md
+
+# Progress tracking (auto-generated)
+progress/
+.github/tracking/

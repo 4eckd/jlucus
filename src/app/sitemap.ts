@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE, NAVIGATION_SECTIONS } from '@/lib/constants';
+import { getSortedBlogPosts } from '@/data/blog-posts';
 
 /**
  * Generates sitemap.xml for SEO and search engine indexing
@@ -19,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1.0,
     },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
   ];
 
   // Add navigation sections as anchors
@@ -29,6 +36,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
+    });
+  });
+
+  // Add blog posts
+  const blogPosts = getSortedBlogPosts();
+  blogPosts.forEach((post) => {
+    routes.push({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.date,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     });
   });
 

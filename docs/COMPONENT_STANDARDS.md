@@ -1,15 +1,15 @@
 # Component Standards Guide
 
-**Portfolio:** jlucus.dev
-**Design System:** Terminal Neon with Green Theme
-**Status:** Active & Maintained
-**Last Updated:** 2026-02-16
+**Portfolio:** jlucus.dev **Design System:** Terminal Neon with Green Theme **Status:** Active &
+Maintained **Last Updated:** 2026-02-16
 
 ---
 
 ## Overview
 
-This document provides standards and best practices for developing components in the jlucus.dev portfolio. All components must follow the Terminal Neon design system and use CSS variable-based design tokens.
+This document provides standards and best practices for developing components in the jlucus.dev
+portfolio. All components must follow the Terminal Neon design system and use CSS variable-based
+design tokens.
 
 ---
 
@@ -17,48 +17,54 @@ This document provides standards and best practices for developing components in
 
 ### Primary Design System
 
-**Name:** Terminal Neon (Green Theme)
-**Framework:** Tailwind CSS 4 + PostCSS
-**Color Tokens:** CSS Variables (dark theme default, light theme override)
-**Typography:** JetBrains Mono (headings), Inter (body)
+**Name:** Terminal Neon (Green Theme) **Framework:** Tailwind CSS 4 + PostCSS **Color Tokens:** CSS
+Variables (dark theme default, light theme override) **Typography:** JetBrains Mono (headings),
+Inter (body)
 
 ### Available Color Palettes
 
 #### Primary Colors (Green)
+
 ```
 --color-green-50  → --color-green-950  (10 shades)
 --color-primary → maps to --color-green-500
 ```
 
 **Usage:**
+
 - Main brand color
 - Primary actions
 - Links and hover states
 - Focus indicators
 
 #### Secondary Colors (Emerald)
+
 ```
 --color-emerald-50  → --color-emerald-950  (10 shades)
 --color-secondary → maps to --color-emerald-500
 ```
 
 **Usage:**
+
 - Secondary actions
 - Alternative brand experiences
 - Accent backgrounds
 
 #### Accent Colors (Cyan)
+
 ```
 --color-cyan-50  → --color-cyan-950  (10 shades)
 --color-accent → maps to --color-cyan-500
 ```
 
 **Usage:**
+
 - Tech/tech-forward elements
 - Special highlights
 - Interactive states
 
 #### Semantic Colors
+
 ```
 --color-text-primary      /* Headings & main text */
 --color-text-secondary    /* Body text */
@@ -82,6 +88,7 @@ This document provides standards and best practices for developing components in
 ### Naming Conventions
 
 **Files:**
+
 ```
 kebab-case.tsx          ✅ Correct
 KebabCase.tsx          ❌ Incorrect (reserved for index exports)
@@ -90,6 +97,7 @@ snake_case.tsx         ❌ Incorrect
 ```
 
 **Exports:**
+
 ```tsx
 // Named export (preferred)
 export function ComponentName() { ... }
@@ -100,6 +108,7 @@ export default ComponentName
 ```
 
 **Component Organization:**
+
 ```
 src/components/
 ├── ui/                    # Reusable UI components
@@ -125,7 +134,7 @@ src/components/
 ### File Template
 
 ```tsx
-'use client';  // If using client-side features
+'use client'; // If using client-side features
 
 import React from 'react';
 import { ClassName } from '@/lib/utils';
@@ -223,12 +232,14 @@ export default ComponentName;
 ### Color Token Examples
 
 **For headings:**
+
 ```tsx
 <h1 className="text-primary font-mono text-5xl" />
 <h2 className="text-primary font-mono text-3xl" />
 ```
 
 **For body text:**
+
 ```tsx
 <p className="text-secondary" />  /* Normal text */
 <p className="text-tertiary" />   /* Less important */
@@ -236,6 +247,7 @@ export default ComponentName;
 ```
 
 **For backgrounds:**
+
 ```tsx
 <section className="bg-background" />
 <div className="bg-background-secondary/80 backdrop-blur-sm" />
@@ -243,6 +255,7 @@ export default ComponentName;
 ```
 
 **For borders:**
+
 ```tsx
 <div className="border border-primary/10" />
 <div className="border-b border-primary/5" />
@@ -250,6 +263,7 @@ export default ComponentName;
 ```
 
 **For interactive states:**
+
 ```tsx
 <button className="hover:text-primary transition-colors" />
 <a className="text-secondary hover:text-primary" />
@@ -262,20 +276,23 @@ export default ComponentName;
 ### Fonts
 
 **Headings:** JetBrains Mono (monospace, terminal aesthetic)
+
 ```tsx
 <h1 className="font-mono text-5xl font-bold" />
 <h2 className="font-mono text-3xl font-bold" />
 ```
 
 **Body:** Inter (clean, readable)
+
 ```tsx
 <p className="font-sans text-base" />
 <span className="font-sans text-sm" />
 ```
 
 **Code:** JetBrains Mono
+
 ```tsx
-<code className="font-mono text-xs bg-background-secondary p-1 rounded" />
+<code className="bg-background-secondary rounded p-1 font-mono text-xs" />
 ```
 
 ### Font Sizes
@@ -318,6 +335,7 @@ space-3xl  → 4rem    (64px)
 ```
 
 **Usage:**
+
 ```tsx
 <div className="space-y-md" />     /* Vertical spacing */
 <div className="space-x-lg" />     /* Horizontal spacing */
@@ -343,6 +361,7 @@ animate-blink            /* Blinking cursor */
 ```
 
 **Usage:**
+
 ```tsx
 <div className="animate-pulse-neon" />
 <div className="animate-glow duration-2000" />
@@ -352,15 +371,15 @@ animate-blink            /* Blinking cursor */
 
 ```tsx
 // Fast transition (150ms)
-className="transition-colors"
+className = 'transition-colors';
 /* Uses --transition-fast */
 
 // Standard transition (200ms)
-className="transition-all"
+className = 'transition-all';
 /* Uses --transition-base */
 
 // Slow transition (300ms)
-className="transition-opacity duration-300"
+className = 'transition-opacity duration-300';
 /* Uses --transition-slow */
 ```
 
@@ -379,6 +398,7 @@ xl   → 1280px  (widescreen)
 ```
 
 **Mobile-First Approach:**
+
 ```tsx
 // Default: mobile
 <div className="text-sm px-4 py-2" />
@@ -396,15 +416,13 @@ xl   → 1280px  (widescreen)
 ### Responsive Typography Example
 
 ```tsx
-<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-mono font-bold" />
+<h1 className="font-mono text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl" />
 ```
 
 ### Responsive Grid Example
 
 ```tsx
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
-  {/* Items */}
-</div>
+<div className="gap-md grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">{/* Items */}</div>
 ```
 
 ---
@@ -430,6 +448,7 @@ xl   → 1280px  (widescreen)
 ### Color Contrast
 
 **WCAG AAA Compliance (7:1 contrast ratio):**
+
 - ✅ Primary text on primary background
 - ✅ Text on all design system backgrounds
 - ✅ Success/warning/error messages
@@ -490,11 +509,7 @@ import Image from 'next/image';
 
 ```tsx
 // Use Framer Motion's whileInView
-<motion.div
-  initial={{ opacity: 0 }}
-  whileInView={{ opacity: 1 }}
-  viewport={{ once: true }}
->
+<motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
   Content
 </motion.div>
 ```
@@ -560,7 +575,7 @@ import { Button } from '@/components/ui/button';
 
 ```tsx
 <div className="space-y-md">
-  <label htmlFor="input" className="block text-sm font-mono text-primary">
+  <label htmlFor="input" className="text-primary block font-mono text-sm">
     Label
   </label>
   <input
@@ -568,11 +583,11 @@ import { Button } from '@/components/ui/button';
     type="text"
     placeholder="Placeholder"
     className={cn(
-      "w-full px-lg py-md",
-      "bg-background-secondary border border-primary/20",
-      "text-primary placeholder-secondary",
-      "focus:outline-none focus:border-primary focus:shadow-neon-primary-sm",
-      "transition-all"
+      'px-lg py-md w-full',
+      'bg-background-secondary border-primary/20 border',
+      'text-primary placeholder-secondary',
+      'focus:border-primary focus:shadow-neon-primary-sm focus:outline-none',
+      'transition-all'
     )}
   />
 </div>
@@ -581,13 +596,9 @@ import { Button } from '@/components/ui/button';
 ### Card Component Pattern
 
 ```tsx
-<div className="bg-background-secondary/60 border border-primary/10 rounded-lg p-lg">
-  <h3 className="text-lg font-mono font-bold text-primary mb-md">
-    Card Title
-  </h3>
-  <p className="text-secondary text-sm">
-    Card content goes here.
-  </p>
+<div className="bg-background-secondary/60 border-primary/10 p-lg rounded-lg border">
+  <h3 className="text-primary mb-md font-mono text-lg font-bold">Card Title</h3>
+  <p className="text-secondary text-sm">Card content goes here.</p>
 </div>
 ```
 
@@ -596,12 +607,8 @@ import { Button } from '@/components/ui/button';
 ```tsx
 <section id="section-id" className="py-4xl md:py-6xl">
   <div className="container mx-auto px-4">
-    <h2 className="text-4xl md:text-5xl font-mono font-bold text-primary mb-2xl">
-      Section Title
-    </h2>
-    <p className="text-xl text-secondary max-w-2xl mb-4xl">
-      Section description
-    </p>
+    <h2 className="text-primary mb-2xl font-mono text-4xl font-bold md:text-5xl">Section Title</h2>
+    <p className="text-secondary mb-4xl max-w-2xl text-xl">Section description</p>
     {/* Section content */}
   </div>
 </section>
@@ -690,16 +697,19 @@ import { Button } from '@/components/ui/button';
 ## Getting Help
 
 ### Design Token Reference
+
 - Colors: `src/styles/colors.css`
 - Tailwind Config: `tailwind.config.ts`
 - CLAUDE.md: Full design system documentation
 
 ### Component Examples
+
 - **UI Components**: `src/components/ui/`
 - **Section Components**: `src/components/sections/`
 - **Layout Components**: `src/components/layout/`
 
 ### Design Guidelines
+
 - **Audit Report**: `docs/DESIGN_AUDIT_REPORT.md`
 - **Tailwind Setup**: `docs/TAILWIND_CSS_4_SETUP.md`
 - **Main Docs**: `CLAUDE.md`
@@ -709,6 +719,7 @@ import { Button } from '@/components/ui/button';
 ## Version History
 
 **v1.0.0** - 2026-02-16
+
 - Initial standards document created
 - Terminal Neon design system documented
 - Component naming conventions established
@@ -717,6 +728,4 @@ import { Button } from '@/components/ui/button';
 
 ---
 
-*Last Updated: 2026-02-16*
-*Maintained by: Claude Code*
-*Status: Active*
+_Last Updated: 2026-02-16_ _Maintained by: Claude Code_ _Status: Active_

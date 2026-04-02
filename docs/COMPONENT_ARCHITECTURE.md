@@ -2,13 +2,15 @@
 
 > Documentation for the component structure and organization of the jlucus.dev portfolio
 
-**Issue**: [#17 - Component architecture (sections, layout, ui)](https://github.com/4eckd/jlucus/issues/17)
-**Phase**: Phase 1 - Foundation
-**Last Updated**: 2026-02-16
+**Issue**:
+[#17 - Component architecture (sections, layout, ui)](https://github.com/4eckd/jlucus/issues/17)
+**Phase**: Phase 1 - Foundation **Last Updated**: 2026-02-16
 
 ## Overview
 
-This document outlines the component architecture for the jlucus.dev portfolio, built with Next.js 15, TypeScript, and the Terminal Neon design system. The architecture follows a modular, feature-based organization with clear separation of concerns.
+This document outlines the component architecture for the jlucus.dev portfolio, built with Next.js
+15, TypeScript, and the Terminal Neon design system. The architecture follows a modular,
+feature-based organization with clear separation of concerns.
 
 ## Directory Structure
 
@@ -49,8 +51,9 @@ src/components/
 Components that define the overall page structure and navigation.
 
 **Active Components:**
+
 - **header.tsx** - Fixed navigation header with scroll-based active section detection
-  - Terminal-themed logo ("> jlucus_")
+  - Terminal-themed logo ("> jlucus\_")
   - Smooth scroll navigation
   - Mobile hamburger menu
   - Active section highlighting
@@ -77,6 +80,7 @@ Components that define the overall page structure and navigation.
 Full-width page sections that make up the portfolio content.
 
 **Active Components:**
+
 - **hero-terminal.tsx** - Hero section with terminal UI aesthetic
   - Terminal window simulation
   - Typing animation for commands
@@ -119,6 +123,7 @@ Full-width page sections that make up the portfolio content.
   - Reusable across sections
 
 **Deprecated Components:**
+
 - **HeroSection.tsx** - Legacy hero section from initial migration
   - Generic design (not Terminal Neon themed)
   - Used typing animation hook
@@ -132,6 +137,7 @@ Full-width page sections that make up the portfolio content.
 Reusable, atomic UI components following the Terminal Neon design system.
 
 **Components:**
+
 - **button.tsx** - Primary button component
   - Variants: default, destructive, outline, secondary, ghost, link
   - Sizes: default, sm, lg, icon
@@ -151,6 +157,7 @@ Reusable, atomic UI components following the Terminal Neon design system.
 Visual enhancement components for the Terminal Neon aesthetic.
 
 **Components:**
+
 - **custom-cursor.tsx** - Custom cursor implementation
   - Terminal-themed cursor
   - Hover state changes
@@ -167,6 +174,7 @@ Visual enhancement components for the Terminal Neon aesthetic.
 React context providers for global state management.
 
 **Components:**
+
 - **ThemeProvider.tsx** - Theme management
   - Dark/light mode support
   - CSS variable injection
@@ -177,11 +185,13 @@ React context providers for global state management.
 Components from boilerplate or previous iterations that are no longer in use.
 
 **Unused:**
+
 - **Header.tsx** - Lobe UI template header (not Terminal Neon themed)
 - **Footer.tsx** - Lobe UI template footer (not Terminal Neon themed)
 - **Card.tsx** - Generic card component (could be repurposed)
 
 **Status:** These files should be:
+
 - Removed if confirmed unused in codebase
 - Moved to `/components/legacy/` if kept for reference
 - Repurposed if functionality is needed
@@ -191,6 +201,7 @@ Components from boilerplate or previous iterations that are no longer in use.
 ### Client Components
 
 Components using hooks or browser APIs must use `'use client'` directive:
+
 - All layout components (navigation, header)
 - Section components with animations (hero-terminal, ventures-section)
 - Interactive UI components (button, command-palette)
@@ -199,12 +210,14 @@ Components using hooks or browser APIs must use `'use client'` directive:
 ### Server Components
 
 Components that can be server-rendered:
+
 - Static content sections (if no animations)
 - Data fetching components
 
 ### Composition Patterns
 
 **Slot Pattern (Polymorphic Components):**
+
 ```tsx
 // Button as anchor tag
 <Button asChild>
@@ -218,21 +231,19 @@ Components that can be server-rendered:
 ```
 
 **Section Container Pattern:**
+
 ```tsx
 // Consistent section wrapper
-<section className="py-20 px-4" id="section-id">
-  <div className="container mx-auto max-w-7xl">
-    {/* Section content */}
-  </div>
+<section className="px-4 py-20" id="section-id">
+  <div className="container mx-auto max-w-7xl">{/* Section content */}</div>
 </section>
 ```
 
 **Terminal Aesthetic Pattern:**
+
 ```tsx
 // Neon glow effects
-<div className="border border-primary shadow-neon-primary">
-  {/* Content with terminal theme */}
-</div>
+<div className="border-primary shadow-neon-primary border">{/* Content with terminal theme */}</div>
 ```
 
 ## Import Patterns
@@ -240,18 +251,20 @@ Components that can be server-rendered:
 ### Preferred Imports
 
 Use barrel exports from directories when available:
+
 ```tsx
 // Good - using barrel export
-import { Navigation } from '@/components/layout'
+import { Navigation } from '@/components/layout';
 
 // Okay - direct import when barrel doesn't exist
-import { Header } from '@/components/layout/header'
-import { HeroTerminal } from '@/components/sections/hero-terminal'
+import { Header } from '@/components/layout/header';
+import { HeroTerminal } from '@/components/sections/hero-terminal';
 ```
 
 ### Path Aliases
 
 All imports use TypeScript path aliases defined in `tsconfig.json`:
+
 - `@/components/*` - Component imports
 - `@/lib/*` - Utility functions and constants
 - `@/data/*` - Data files
@@ -260,20 +273,25 @@ All imports use TypeScript path aliases defined in `tsconfig.json`:
 ## Data Flow
 
 ### Static Data
+
 Component data is imported from `/src/data/`:
+
 ```tsx
-import { ventures } from '@/data/ventures'
-import { projects } from '@/data/projects'
-import { skills } from '@/data/skills'
+import { ventures } from '@/data/ventures';
+import { projects } from '@/data/projects';
+import { skills } from '@/data/skills';
 ```
 
 ### Constants
+
 Site-wide constants from `/src/lib/constants.ts`:
+
 ```tsx
-import { SITE, NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants'
+import { SITE, NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants';
 ```
 
 ### Props Flow
+
 - Parent components pass configuration as props
 - Sections remain largely self-contained
 - Shared state via Context Providers
@@ -283,17 +301,19 @@ import { SITE, NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants'
 ### CSS Variables Philosophy
 
 **CRITICAL**: All styling uses CSS variables defined in `src/styles/globals.css`:
+
 ```tsx
 // NEVER hardcode colors
-className="text-[#00D9FF]" // ❌ Bad
+className = 'text-[#00D9FF]'; // ❌ Bad
 
 // ALWAYS use CSS variables
-className="text-primary" // ✅ Good
+className = 'text-primary'; // ✅ Good
 ```
 
 ### Tailwind Integration
 
 Tailwind theme extends CSS variables:
+
 ```js
 // tailwind.config.ts
 colors: {
@@ -312,6 +332,7 @@ colors: {
 ## Accessibility
 
 All components follow WCAG AA standards:
+
 - Semantic HTML (`<section>`, `<nav>`, `<header>`, `<footer>`)
 - ARIA labels for interactive elements
 - Keyboard navigation support
@@ -321,17 +342,21 @@ All components follow WCAG AA standards:
 ## Performance Considerations
 
 ### Code Splitting
+
 - Page-level code splitting via Next.js App Router
 - Dynamic imports for heavy components (if needed)
 
 ### Optimization
+
 - Font optimization via `next/font`
 - Image optimization via `next/image`
 - CSS-in-JS with zero runtime (Tailwind)
 - Minimal JavaScript for static sections
 
 ### Bundle Analysis
+
 Monitor component bundle sizes:
+
 ```bash
 npm run build
 # Check .next/build-manifest.json
@@ -340,11 +365,13 @@ npm run build
 ## Testing Strategy
 
 ### Component Testing
+
 - Unit tests for utility components (Button, Card)
 - Integration tests for sections
 - Visual regression tests (future)
 
 ### Accessibility Testing
+
 - Automated a11y testing with jest-axe
 - Manual keyboard navigation testing
 - Screen reader compatibility
@@ -352,6 +379,7 @@ npm run build
 ## Future Improvements
 
 ### Planned Enhancements
+
 1. **Barrel Exports**: Complete barrel exports for all directories
 2. **Storybook**: Component documentation and playground
 3. **Component Library**: Extract reusable components to separate package
@@ -359,6 +387,7 @@ npm run build
 5. **Legacy Cleanup**: Remove unused boilerplate components
 
 ### Refactoring Candidates
+
 1. **HeroSection.tsx**: Remove deprecated legacy hero
 2. **Root Components**: Clean up Card.tsx, Header.tsx, Footer.tsx
 3. **Barrel Files**: Update sections/index.ts to export all active sections
@@ -385,10 +414,11 @@ npm run build
    - Export named functions: `export function ButtonGroup()`
 
 3. Use TypeScript interfaces for props:
+
    ```tsx
    interface ButtonGroupProps {
-     children: React.ReactNode
-     orientation?: 'horizontal' | 'vertical'
+     children: React.ReactNode;
+     orientation?: 'horizontal' | 'vertical';
    }
    ```
 
@@ -420,6 +450,5 @@ npm run build
 
 ---
 
-**Maintained by**: jlucus (@4eckd)
-**Last Review**: 2026-02-16
-**Next Review**: Before Phase 2 launch
+**Maintained by**: jlucus (@4eckd) **Last Review**: 2026-02-16 **Next Review**: Before Phase 2
+launch

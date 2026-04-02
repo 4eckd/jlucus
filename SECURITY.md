@@ -12,21 +12,26 @@ We release security updates for the following versions:
 
 ## Reporting a Vulnerability
 
-We take the security of jlucus.dev seriously. If you discover a security vulnerability, please follow these steps:
+We take the security of jlucus.dev seriously. If you discover a security vulnerability, please
+follow these steps:
 
 ### 1. Do Not Disclose Publicly
 
-Please do not open a public issue on GitHub. Security vulnerabilities should be reported privately to protect users.
+Please do not open a public issue on GitHub. Security vulnerabilities should be reported privately
+to protect users.
 
 ### 2. Submit a Report
 
 Send your findings to:
+
 - **Email**: security@jlucus.dev
-- **GitHub**: Use [GitHub Security Advisories](https://github.com/4eckd/jlucus2/security/advisories/new)
+- **GitHub**: Use
+  [GitHub Security Advisories](https://github.com/4eckd/jlucus2/security/advisories/new)
 
 ### 3. Include Details
 
 Please include the following information:
+
 - Type of vulnerability
 - Full paths of affected source files
 - Location of the affected code (tag/branch/commit)
