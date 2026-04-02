@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** dependabot/npm_and_yarn/npm_and_yarn-97b395be1e
+**Branch:** main
 
 ## Active Development
 
@@ -44,14 +44,15 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/phase3-issue20-design-audit-IKQWn | #- | - | - | Active |
 | origin/claude/phase3-issue27-design-standards-compliance-0lzXz | #- | - | - | Active |
 | origin/claude/redirect-jlucus-domain-OvKsr | #- | - | - | Active |
+| origin/claude/rss-responsive-layouts-IMpe0 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-Kukc9 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-RvicC | #- | - | - | Active |
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-cVkNK | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
-| origin/dependabot/npm_and_yarn/npm_and_yarn-97b395be1e | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/feature/redirect-vlngg | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
 | origin/main2 | #- | - | - | Active |
 | origin/revert-144-claude/git-workflow-automation-2I1aw | #- | - | - | Active |
+| origin/revert-187-claude/rss-responsive-layouts-IMpe0 | #- | - | - | Active |
