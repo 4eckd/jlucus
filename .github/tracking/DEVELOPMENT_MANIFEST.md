@@ -33,7 +33,6 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/friendly-clarke-HwGEv | #- | - | - | Active |
 | origin/claude/git-workflow-automation-2I1aw | #- | - | - | Active |
 | origin/claude/git-workflow-automation-pzwMH | #- | - | - | Active |
-| origin/claude/git-worktree-setup-5E397 | #- | - | - | Active |
 | origin/claude/inventory-project-planning-LL7Q3 | #- | - | - | Active |
 | origin/claude/phase1-issue14-devenv-lJKlJ | #- | - | - | Active |
 | origin/claude/phase1-issue15-neon-effects-RvicC | #- | - | - | Active |
@@ -56,3 +55,4 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/main | #- | - | - | Active |
 | origin/main2 | #- | - | - | Active |
 | origin/revert-144-claude/git-workflow-automation-2I1aw | #- | - | - | Active |
+| origin/revert-187-claude/rss-responsive-layouts-IMpe0 | #- | - | - | Active |
