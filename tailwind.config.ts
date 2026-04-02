@@ -63,7 +63,7 @@ const config: Config = {
         accent: 'rgb(var(--color-emphasis) / <alpha-value>)',
         secondary: 'rgb(var(--color-emphasis) / <alpha-value>)',
         destructive: 'rgb(var(--color-error) / <alpha-value>)',
-        destructive-foreground: 'rgb(var(--color-text-primary) / <alpha-value>)',
+        'destructive-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
         muted: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
       },
 
