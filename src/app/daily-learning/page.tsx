@@ -1,14 +1,10 @@
-'use client'
+'use client';
 
-import { getSortedBlogPosts } from '@/data/blog-posts'
-import { ResponsiveRSSLayout } from '@/components/rss'
+import { getSortedBlogPosts } from '@/data/blog-posts';
+import { ResponsiveRSSLayout } from '@/components/rss';
 
 export default function DailyLearningPage() {
-  const posts = getSortedBlogPosts()
+  const posts = getSortedBlogPosts();
 
-  return (
-    <ResponsiveRSSLayout
-      posts={posts}
-    />
-  )
+  return <ResponsiveRSSLayout posts={posts} />;
 }

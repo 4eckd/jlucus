@@ -1,7 +1,7 @@
 /* Google Fonts - loaded at runtime to avoid build-time fetch issues */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
 
-@import "tailwindcss";
+@import 'tailwindcss';
 @config "../../tailwind.config.ts";
 
 :root {
@@ -11,35 +11,35 @@
      ═════════════════════════════════════════════════════════════════════ */
 
   /* Primary brand color: Electric Cyan */
-  --primitive-cyan-500: 0 217 255;         /* #00D9FF */
-  --primitive-cyan-400: 0 240 255;         /* Lighter variant */
-  --primitive-cyan-600: 0 150 200;         /* Darker variant */
+  --primitive-cyan-500: 0 217 255; /* #00D9FF */
+  --primitive-cyan-400: 0 240 255; /* Lighter variant */
+  --primitive-cyan-600: 0 150 200; /* Darker variant */
 
   /* Accent color: Neon Magenta */
-  --primitive-magenta-500: 255 0 110;      /* #FF006E */
-  --primitive-magenta-400: 255 100 180;    /* Lighter variant */
-  --primitive-magenta-600: 180 0 80;       /* Darker variant */
+  --primitive-magenta-500: 255 0 110; /* #FF006E */
+  --primitive-magenta-400: 255 100 180; /* Lighter variant */
+  --primitive-magenta-600: 180 0 80; /* Darker variant */
 
   /* Secondary color: Electric Lime */
-  --primitive-lime-500: 204 255 0;         /* #CCFF00 */
-  --primitive-lime-400: 220 255 100;       /* Lighter variant */
-  --primitive-lime-600: 150 200 0;         /* Darker variant */
+  --primitive-lime-500: 204 255 0; /* #CCFF00 */
+  --primitive-lime-400: 220 255 100; /* Lighter variant */
+  --primitive-lime-600: 150 200 0; /* Darker variant */
 
   /* Status colors */
-  --primitive-green-500: 0 255 159;        /* #00FF9F - Success */
-  --primitive-amber-500: 255 184 0;        /* #FFB800 - Warning */
-  --primitive-red-500: 255 71 87;          /* #FF4757 - Error */
-  --primitive-blue-500: 0 191 255;         /* #00BFFF - Info */
+  --primitive-green-500: 0 255 159; /* #00FF9F - Success */
+  --primitive-amber-500: 255 184 0; /* #FFB800 - Warning */
+  --primitive-red-500: 255 71 87; /* #FF4757 - Error */
+  --primitive-blue-500: 0 191 255; /* #00BFFF - Info */
 
   /* Grayscale palette */
-  --primitive-gray-950: 5 5 8;             /* Almost black */
-  --primitive-gray-900: 10 10 15;          /* Deep dark */
-  --primitive-gray-800: 20 20 30;          /* Dark */
-  --primitive-gray-700: 40 40 55;          /* Medium dark */
-  --primitive-gray-600: 100 110 130;       /* Medium */
-  --primitive-gray-500: 160 170 190;       /* Light gray */
-  --primitive-gray-400: 200 210 230;       /* Lighter gray */
-  --primitive-gray-300: 240 245 255;       /* Almost white */
+  --primitive-gray-950: 5 5 8; /* Almost black */
+  --primitive-gray-900: 10 10 15; /* Deep dark */
+  --primitive-gray-800: 20 20 30; /* Dark */
+  --primitive-gray-700: 40 40 55; /* Medium dark */
+  --primitive-gray-600: 100 110 130; /* Medium */
+  --primitive-gray-500: 160 170 190; /* Light gray */
+  --primitive-gray-400: 200 210 230; /* Lighter gray */
+  --primitive-gray-300: 240 245 255; /* Almost white */
 
   --primitive-white: 255 255 255;
   --primitive-black: 0 0 0;
@@ -123,29 +123,29 @@
   --font-mono: 'JetBrains Mono', monospace;
   --font-sans: 'Inter', system-ui, sans-serif;
 
-  --font-size-xs: 0.75rem;   /* 12px */
-  --font-size-sm: 0.875rem;  /* 14px */
-  --font-size-base: 1rem;    /* 16px */
-  --font-size-lg: 1.125rem;  /* 18px */
-  --font-size-xl: 1.25rem;   /* 20px */
-  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
   --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem;  /* 36px */
-  --font-size-5xl: 3rem;     /* 48px */
-  --font-size-6xl: 3.75rem;  /* 60px */
-  --font-size-7xl: 4.5rem;   /* 72px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+  --font-size-6xl: 3.75rem; /* 60px */
+  --font-size-7xl: 4.5rem; /* 72px */
 
   /* ═════════════════════════════════════════════════════════════════════
      SPACING SYSTEM
      ═════════════════════════════════════════════════════════════════════ */
 
-  --space-xs: 0.25rem;   /* 4px */
-  --space-sm: 0.5rem;    /* 8px */
-  --space-md: 1rem;      /* 16px */
-  --space-lg: 1.5rem;    /* 24px */
-  --space-xl: 2rem;      /* 32px */
-  --space-2xl: 3rem;     /* 48px */
-  --space-3xl: 4rem;     /* 64px */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
 
   /* ═════════════════════════════════════════════════════════════════════
      BORDER RADIUS
@@ -251,8 +251,7 @@ html {
   /* Stop avatar glow and scan animations */
   .avatar-frame {
     animation: none;
-    filter:
-      drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
+    filter: drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
       drop-shadow(0 0 30px rgb(var(--color-indigo) / 0.25));
   }
 
@@ -286,12 +285,16 @@ html {
   transition-duration: 0.01ms !important;
 }
 
-.reduce-motion .scanline { display: none; }
-.reduce-motion .avatar-scan::after { animation: none; display: none; }
+.reduce-motion .scanline {
+  display: none;
+}
+.reduce-motion .avatar-scan::after {
+  animation: none;
+  display: none;
+}
 .reduce-motion .avatar-frame {
   animation: none;
-  filter:
-    drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
+  filter: drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
     drop-shadow(0 0 30px rgb(var(--color-indigo) / 0.25));
 }
 
@@ -317,7 +320,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   width: 100%;
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
 }
 
 /* Remove default button styles */
@@ -380,7 +385,8 @@ a:focus-visible {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(var(--color-interactive) / 0.3) rgb(var(--color-bg-primary));
+  scrollbar-color: rgb(var(--color-interactive) / 0.3)
+    rgb(var(--color-bg-primary));
 }
 
 /* ─────────────────────────────────────────────────────────────────────

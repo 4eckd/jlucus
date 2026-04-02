@@ -1,11 +1,12 @@
-import type { BlogPost } from '@/types'
+import type { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
     id: '1',
     slug: 'understanding-css-variables-in-tailwind',
     title: 'Understanding CSS Variables in Tailwind CSS 4',
-    excerpt: 'A deep dive into how CSS variables work with Tailwind CSS 4 for creating maintainable design systems.',
+    excerpt:
+      'A deep dive into how CSS variables work with Tailwind CSS 4 for creating maintainable design systems.',
     content: `# Understanding CSS Variables in Tailwind CSS 4
 
 CSS variables (custom properties) are a powerful feature that allows you to define reusable values throughout your stylesheets. When combined with Tailwind CSS 4, they become even more powerful for creating flexible, maintainable design systems.
@@ -59,7 +60,8 @@ CSS variables are essential for building maintainable, scalable design systems. 
     id: '2',
     slug: 'next-js-16-app-router-migration',
     title: 'Migrating to Next.js 16 App Router',
-    excerpt: 'Best practices and lessons learned while upgrading a portfolio from Pages Router to App Router.',
+    excerpt:
+      'Best practices and lessons learned while upgrading a portfolio from Pages Router to App Router.',
     content: `# Migrating to Next.js 16 App Router
 
 The App Router in Next.js 16 is a significant upgrade that introduces new patterns and capabilities. This post documents the lessons learned during the migration of our portfolio.
@@ -128,7 +130,8 @@ In App Router, layouts are defined as separate files and apply to all child rout
     id: '3',
     slug: 'building-terminal-neon-design-system',
     title: 'Building a Terminal Neon Design System',
-    excerpt: 'Creating a cohesive, cyberpunk-inspired design system with electric colors and neon glows.',
+    excerpt:
+      'Creating a cohesive, cyberpunk-inspired design system with electric colors and neon glows.',
     content: `# Building a Terminal Neon Design System
 
 Terminal Neon design combines the aesthetic of retro terminal interfaces with modern cyberpunk styling. This post explores how to build a consistent design system around this theme.
@@ -190,7 +193,8 @@ A well-executed design system creates consistency and improves user experience. 
     id: '4',
     slug: 'framer-motion-animations-guide',
     title: 'Framer Motion: Smooth Animations Guide',
-    excerpt: 'Creating performant, fluid animations with Framer Motion in React applications.',
+    excerpt:
+      'Creating performant, fluid animations with Framer Motion in React applications.',
     content: `# Framer Motion: Smooth Animations Guide
 
 Framer Motion is a powerful animation library for React that makes creating smooth, professional animations straightforward. This guide covers the essentials.
@@ -276,7 +280,8 @@ Framer Motion transforms animation from tedious to delightful.`,
     id: '5',
     slug: 'experimental-web-apis',
     title: 'Experimenting with Experimental Web APIs',
-    excerpt: 'Testing the bleeding edge of web APIs and documenting what works and what doesn\'t.',
+    excerpt:
+      "Testing the bleeding edge of web APIs and documenting what works and what doesn't.",
     content: `# Experimenting with Experimental Web APIs
 
 The web platform is constantly evolving with new APIs. This post documents some experimental features worth keeping an eye on.
@@ -341,30 +346,30 @@ Experimenting with new APIs helps you stay current and prepares you for their st
     readingTime: 5,
     author: 'jlucus',
   },
-]
+];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((post) => post.slug === slug)
+  return blogPosts.find((post) => post.slug === slug);
 }
 
 export function getBlogPostsByCategory(category: string): BlogPost[] {
-  return blogPosts.filter((post) => post.category === category)
+  return blogPosts.filter((post) => post.category === category);
 }
 
 export function getAllBlogTags(): string[] {
-  const tags = new Set<string>()
+  const tags = new Set<string>();
   blogPosts.forEach((post) => {
-    post.tags.forEach((tag) => tags.add(tag))
-  })
-  return Array.from(tags).sort()
+    post.tags.forEach((tag) => tags.add(tag));
+  });
+  return Array.from(tags).sort();
 }
 
 export function getBlogPostsByTag(tag: string): BlogPost[] {
-  return blogPosts.filter((post) => post.tags.includes(tag))
+  return blogPosts.filter((post) => post.tags.includes(tag));
 }
 
 export function getSortedBlogPosts(): BlogPost[] {
   return [...blogPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+  );
 }

@@ -61,6 +61,7 @@ onMouseEnter={(e) => {
 ## PHASE-BY-PHASE REFACTORING
 
 ### PHASE 1: Semantic Tokens (DONE ✅)
+
 - [x] Create 3-layer token system
 - [x] Primitive tokens (raw values)
 - [x] Semantic tokens (meaningful names)
@@ -70,6 +71,7 @@ onMouseEnter={(e) => {
 - [x] Created design-tokens utilities
 
 ### PHASE 2: Fix Critical Components (IN PROGRESS)
+
 - [ ] Blog components (post-card, post-list)
 - [ ] RSS layout components (mobile, desktop, tablet, wide)
 - [ ] Navigation header
@@ -78,18 +80,21 @@ onMouseEnter={(e) => {
 - [ ] Hero terminal
 
 ### PHASE 3: Remove Framer Motion from Static UI
-- [ ] Audit all motion.* components
+
+- [ ] Audit all motion.\* components
 - [ ] Keep only meaningful transitions
 - [ ] Add prefers-reduced-motion support
 - [ ] Code-split Framer Motion (lazy load)
 
 ### PHASE 4: Performance Hardening
+
 - [ ] Replace box-shadow animations with drop-shadow
 - [ ] Optimize neon effects
 - [ ] Remove unnecessary animations
 - [ ] Test Lighthouse scores
 
 ### PHASE 5: Enforcement
+
 - [ ] Add ESLint rules
 - [ ] Create pre-commit hooks
 - [ ] Document patterns for team
@@ -104,18 +109,18 @@ onMouseEnter={(e) => {
 #### ❌ BEFORE (with inline styles)
 
 ```tsx
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
 
 export function PostCard({ post }) {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="p-4 rounded-lg"
+      className="rounded-lg p-4"
       style={{
         backgroundColor: `rgb(var(--color-bg-secondary))`,
         borderColor: `rgb(var(--color-primary) / 0.2)`,
@@ -124,54 +129,47 @@ export function PostCard({ post }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = `rgb(var(--color-primary) / 0.5)`
-        e.currentTarget.style.boxShadow = '0 0 10px rgb(var(--color-primary) / 0.3)'
+        e.currentTarget.style.borderColor = `rgb(var(--color-primary) / 0.5)`;
+        e.currentTarget.style.boxShadow = '0 0 10px rgb(var(--color-primary) / 0.3)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = `rgb(var(--color-primary) / 0.2)`
-        e.currentTarget.style.boxShadow = 'none'
+        e.currentTarget.style.borderColor = `rgb(var(--color-primary) / 0.2)`;
+        e.currentTarget.style.boxShadow = 'none';
       }}
     >
-      <h3 style={{ color: `rgb(var(--color-text-primary))` }}>
-        {post.title}
-      </h3>
-      <p style={{ color: `rgb(var(--color-text-secondary))` }}>
-        {post.excerpt}
-      </p>
+      <h3 style={{ color: `rgb(var(--color-text-primary))` }}>{post.title}</h3>
+      <p style={{ color: `rgb(var(--color-text-secondary))` }}>{post.excerpt}</p>
     </motion.div>
-  )
+  );
 }
 ```
 
 #### ✅ AFTER (proper token usage)
 
 ```tsx
-'use client'
+'use client';
 
-import { cn, COMPONENT_PRESETS } from '@/lib/design-tokens'
+import { cn, COMPONENT_PRESETS } from '@/lib/design-tokens';
 
 export function PostCard({ post }) {
   return (
     <div
       className={cn(
         COMPONENT_PRESETS.card,
-        'transition-all duration-base',
+        'duration-base transition-all',
         'hover:border-border-primary hover:shadow-lg',
         'cursor-pointer'
       )}
     >
-      <h3 className="text-text-primary font-semibold">
-        {post.title}
-      </h3>
-      <p className="text-text-secondary text-sm mt-2">
-        {post.excerpt}
-      </p>
+      <h3 className="text-text-primary font-semibold">{post.title}</h3>
+      <p className="text-text-secondary mt-2 text-sm">{post.excerpt}</p>
     </div>
-  )
+  );
 }
 ```
 
 **Benefits**:
+
 - ✅ 70% less code
 - ✅ No inline styles
 - ✅ Hover states via CSS (not JavaScript)
@@ -190,7 +188,7 @@ export function PostCard({ post }) {
 export function Button({ children, variant = 'primary', ...props }) {
   return (
     <button
-      className={`px-4 py-2 rounded-lg font-semibold transition-all`}
+      className={`rounded-lg px-4 py-2 font-semibold transition-all`}
       style={
         variant === 'primary'
           ? {
@@ -207,14 +205,14 @@ export function Button({ children, variant = 'primary', ...props }) {
     >
       {children}
     </button>
-  )
+  );
 }
 ```
 
 #### ✅ AFTER
 
 ```tsx
-import { cn, COMPONENT_PRESETS } from '@/lib/design-tokens'
+import { cn, COMPONENT_PRESETS } from '@/lib/design-tokens';
 
 export function Button({
   children,
@@ -222,27 +220,20 @@ export function Button({
   className,
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary';
 }) {
-  const baseClasses = COMPONENT_PRESETS.button
+  const baseClasses = COMPONENT_PRESETS.button;
 
   const variantClasses = {
     primary: COMPONENT_PRESETS.buttonPrimary,
     secondary: COMPONENT_PRESETS.buttonSecondary,
-  }
+  };
 
   return (
-    <button
-      className={cn(
-        baseClasses,
-        variantClasses[variant],
-        className
-      )}
-      {...props}
-    >
+    <button className={cn(baseClasses, variantClasses[variant], className)} {...props}>
       {children}
     </button>
-  )
+  );
 }
 ```
 
@@ -255,12 +246,12 @@ export function Button({
 ```tsx
 <button
   onMouseEnter={(e) => {
-    e.currentTarget.style.color = `rgb(var(--color-accent))`
-    e.currentTarget.style.transform = 'scale(1.05)'
+    e.currentTarget.style.color = `rgb(var(--color-accent))`;
+    e.currentTarget.style.transform = 'scale(1.05)';
   }}
   onMouseLeave={(e) => {
-    e.currentTarget.style.color = `rgb(var(--color-primary))`
-    e.currentTarget.style.transform = 'scale(1)'
+    e.currentTarget.style.color = `rgb(var(--color-primary))`;
+    e.currentTarget.style.transform = 'scale(1)';
   }}
   style={{ color: `rgb(var(--color-primary))` }}
 >
@@ -277,6 +268,7 @@ export function Button({
 ```
 
 **Why this is better**:
+
 - CSS handles hover (not JS)
 - Accessible keyboard navigation works
 - Can be overridden with CSS
@@ -368,25 +360,26 @@ Use these when creating new components:
 
 ```tsx
 // Buttons
-className="bg-button-bg text-button-text"
+className = 'bg-button-bg text-button-text';
 
 // Cards
-className="bg-card-bg border border-card-border"
+className = 'bg-card-bg border border-card-border';
 
 // Inputs
-className="bg-input-bg text-input-text border border-input-border focus:border-input-border-focus"
+className =
+  'bg-input-bg text-input-text border border-input-border focus:border-input-border-focus';
 
 // Links
-className="text-link-color hover:text-link-hover-color"
+className = 'text-link-color hover:text-link-hover-color';
 
 // Badges
-className="bg-badge-bg text-badge-text"
+className = 'bg-badge-bg text-badge-text';
 
 // Disabled state
-className="opacity-disabled cursor-not-allowed"
+className = 'opacity-disabled cursor-not-allowed';
 
 // Focus visible (all interactive elements)
-className="focus-visible:outline-2 focus-visible:outline-offset-2"
+className = 'focus-visible:outline-2 focus-visible:outline-offset-2';
 ```
 
 ---
@@ -432,14 +425,14 @@ grep -r "#[0-9A-Fa-f]\{6\}" src/components
 
 After refactoring all components:
 
-| Metric | Before | After | Gain |
-|--------|--------|-------|------|
-| FCP | 1.8s | 1.4s | -400ms |
-| LCP | 2.4s | 2.0s | -400ms |
-| CLS | 0.15 | 0.05 | -0.1 |
-| TTI | 3.2s | 2.6s | -600ms |
-| Bundle | 280KB | 200KB | -80KB |
-| Animations | 245 instances | <30 meaningful | -87% |
+| Metric     | Before        | After          | Gain   |
+| ---------- | ------------- | -------------- | ------ |
+| FCP        | 1.8s          | 1.4s           | -400ms |
+| LCP        | 2.4s          | 2.0s           | -400ms |
+| CLS        | 0.15          | 0.05           | -0.1   |
+| TTI        | 3.2s          | 2.6s           | -600ms |
+| Bundle     | 280KB         | 200KB          | -80KB  |
+| Animations | 245 instances | <30 meaningful | -87%   |
 
 ---
 

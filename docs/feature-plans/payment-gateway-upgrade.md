@@ -1,21 +1,19 @@
 # Payment Gateway Upgrade - Feature Plan
 
-**Feature ID:** PGU-001
-**Branch:** `feature/payment-gateway-upgrade`
-**Ticket:** Payment Gateway Upgrade
-**Priority:** HIGH
-**Estimated Time:** 16-20 hours
-**Complexity:** High
-**Created:** 2025-10-26
-**Status:** 🟡 In Progress
+**Feature ID:** PGU-001 **Branch:** `feature/payment-gateway-upgrade` **Ticket:** Payment Gateway
+Upgrade **Priority:** HIGH **Estimated Time:** 16-20 hours **Complexity:** High **Created:**
+2025-10-26 **Status:** 🟡 In Progress
 
 ---
 
 ## 📋 Executive Summary
 
-Implement a comprehensive payment processing system for the jlucus portfolio project, supporting multiple payment gateways (Stripe, PayPal), invoice generation, and automated email receipts. This feature will enable monetization of services and provide a professional checkout experience.
+Implement a comprehensive payment processing system for the jlucus portfolio project, supporting
+multiple payment gateways (Stripe, PayPal), invoice generation, and automated email receipts. This
+feature will enable monetization of services and provide a professional checkout experience.
 
 **Business Value:**
+
 - Enable direct payment collection for consulting/services
 - Professional invoice and receipt generation
 - Multi-currency support for international clients
@@ -26,6 +24,7 @@ Implement a comprehensive payment processing system for the jlucus portfolio pro
 ## 🎯 Objectives
 
 ### Primary Goals
+
 1. ✅ Integrate Stripe for card payments with 3D Secure support
 2. ✅ Integrate PayPal for alternative payment method
 3. ✅ Generate PDF invoices with branding
@@ -35,6 +34,7 @@ Implement a comprehensive payment processing system for the jlucus portfolio pro
 7. ✅ PCI DSS compliance through tokenization
 
 ### Secondary Goals
+
 - 📊 Payment analytics dashboard (future phase)
 - 🔄 Subscription/recurring billing (future phase)
 - 💳 Apple Pay / Google Pay support (future phase)
@@ -46,6 +46,7 @@ Implement a comprehensive payment processing system for the jlucus portfolio pro
 ### Tech Stack
 
 **Frontend:**
+
 - `@stripe/stripe-js` - Stripe.js client library
 - `@stripe/react-stripe-js` - React components for Stripe Elements
 - `@paypal/react-paypal-js` - PayPal SDK React wrapper
@@ -54,6 +55,7 @@ Implement a comprehensive payment processing system for the jlucus portfolio pro
 - `zod` - Schema validation
 
 **Backend (API Routes):**
+
 - `stripe` - Stripe Node.js SDK (server-side)
 - `@paypal/checkout-server-sdk` - PayPal REST API
 - `pdf-lib` - PDF generation for invoices
@@ -173,18 +175,21 @@ enum PaymentProvider {
 ## 🔐 Security & Compliance
 
 ### PCI DSS Compliance
+
 - ✅ Never store raw card numbers (use Stripe Elements tokenization)
 - ✅ Use HTTPS in production only
 - ✅ Stripe.js handles card data (never touches server)
 - ✅ Webhook signature verification for all webhooks
 
 ### Data Protection
+
 - 🔒 Encrypt sensitive metadata in database
 - 🔒 HTTPS-only cookies for session management
 - 🔒 Rate limiting on payment API routes (10 req/min per IP)
 - 🔒 CSRF protection via Next.js built-in headers
 
 ### Environment Variables
+
 ```bash
 # .env.example (not committed)
 # Stripe
@@ -243,6 +248,7 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev
    - "Return to homepage" button
 
 ### Accessibility Requirements
+
 - ✅ All form inputs have proper labels and ARIA attributes
 - ✅ Keyboard navigation fully supported
 - ✅ Focus management during payment flow
@@ -255,69 +261,74 @@ NEXT_PUBLIC_SITE_URL=https://jlucus.dev
 ## 🧪 Testing Strategy
 
 ### Unit Tests (Vitest)
+
 ```typescript
 // Example test structure
 describe('Payment Utilities', () => {
   test('formatCurrency formats USD correctly', () => {
-    expect(formatCurrency(1000, 'USD')).toBe('$10.00')
-  })
+    expect(formatCurrency(1000, 'USD')).toBe('$10.00');
+  });
 
   test('calculateTotal includes tax', () => {
-    expect(calculateTotal(100, 0.08)).toBe(108)
-  })
-})
+    expect(calculateTotal(100, 0.08)).toBe(108);
+  });
+});
 
 describe('Invoice Generator', () => {
   test('generates valid PDF buffer', async () => {
-    const pdf = await generateInvoice(mockPayment)
-    expect(pdf).toBeInstanceOf(Buffer)
-  })
-})
+    const pdf = await generateInvoice(mockPayment);
+    expect(pdf).toBeInstanceOf(Buffer);
+  });
+});
 ```
 
 ### Integration Tests (Playwright)
+
 ```typescript
 test('Stripe checkout flow', async ({ page }) => {
-  await page.goto('/checkout')
+  await page.goto('/checkout');
 
   // Fill checkout form
-  await page.fill('[name="email"]', 'test@example.com')
-  await page.fill('[name="name"]', 'Test User')
+  await page.fill('[name="email"]', 'test@example.com');
+  await page.fill('[name="name"]', 'Test User');
 
   // Select Stripe
-  await page.click('text=Pay with Card')
+  await page.click('text=Pay with Card');
 
   // Fill Stripe test card (using test mode)
-  const stripeFrame = page.frameLocator('iframe[name^="__privateStripeFrame"]')
-  await stripeFrame.fill('[name="cardnumber"]', '4242424242424242')
-  await stripeFrame.fill('[name="exp-date"]', '12/34')
-  await stripeFrame.fill('[name="cvc"]', '123')
-  await stripeFrame.fill('[name="postal"]', '12345')
+  const stripeFrame = page.frameLocator('iframe[name^="__privateStripeFrame"]');
+  await stripeFrame.fill('[name="cardnumber"]', '4242424242424242');
+  await stripeFrame.fill('[name="exp-date"]', '12/34');
+  await stripeFrame.fill('[name="cvc"]', '123');
+  await stripeFrame.fill('[name="postal"]', '12345');
 
   // Submit payment
-  await page.click('button:has-text("Pay $100.00")')
+  await page.click('button:has-text("Pay $100.00")');
 
   // Wait for success
-  await expect(page).toHaveURL(/\/checkout\/success/)
-  await expect(page.locator('h1')).toContainText('Payment Successful')
-})
+  await expect(page).toHaveURL(/\/checkout\/success/);
+  await expect(page.locator('h1')).toContainText('Payment Successful');
+});
 ```
 
 ### Manual Testing Checklist
 
 **Stripe Test Cards:**
+
 - ✅ `4242424242424242` - Successful payment
 - ✅ `4000002500003155` - Requires 3D Secure
 - ✅ `4000000000009995` - Declined card
 - ✅ `4000002760003184` - Charge succeeds, invoice.payment_failed webhook
 
 **PayPal Sandbox:**
+
 - ✅ Create sandbox buyer account
 - ✅ Test successful payment
 - ✅ Test canceled payment
 - ✅ Test webhook events
 
 **Accessibility:**
+
 - ✅ Navigate entire flow with keyboard only
 - ✅ Test with screen reader (NVDA/JAWS)
 - ✅ Verify color contrast with axe DevTools
@@ -332,39 +343,51 @@ test('Stripe checkout flow', async ({ page }) => {
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    /* Responsive email styles */
-    body { font-family: 'Roboto', sans-serif; }
-    .container { max-width: 600px; margin: 0 auto; }
-    .header { background: #10b981; color: white; padding: 20px; }
-    .amount { font-size: 32px; font-weight: bold; }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="header">
-      <h1>Payment Receipt</h1>
-    </div>
-    <div class="content">
-      <p>Hi {{customerName}},</p>
-      <p>Thank you for your payment!</p>
-
-      <div class="summary">
-        <h2>Payment Details</h2>
-        <p class="amount">{{amount}} {{currency}}</p>
-        <p>Invoice: {{invoiceNumber}}</p>
-        <p>Date: {{date}}</p>
-        <p>Status: <strong>Paid</strong></p>
+  <head>
+    <style>
+      /* Responsive email styles */
+      body {
+        font-family: 'Roboto', sans-serif;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .header {
+        background: #10b981;
+        color: white;
+        padding: 20px;
+      }
+      .amount {
+        font-size: 32px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Payment Receipt</h1>
       </div>
+      <div class="content">
+        <p>Hi {{customerName}},</p>
+        <p>Thank you for your payment!</p>
 
-      <a href="{{invoiceUrl}}" class="button">Download Invoice</a>
+        <div class="summary">
+          <h2>Payment Details</h2>
+          <p class="amount">{{amount}} {{currency}}</p>
+          <p>Invoice: {{invoiceNumber}}</p>
+          <p>Date: {{date}}</p>
+          <p>Status: <strong>Paid</strong></p>
+        </div>
 
-      <p>If you have any questions, reply to this email.</p>
-      <p>Best regards,<br>Jesse Lucas</p>
+        <a href="{{invoiceUrl}}" class="button">Download Invoice</a>
+
+        <p>If you have any questions, reply to this email.</p>
+        <p>Best regards,<br />Jesse Lucas</p>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>
 ```
 
@@ -373,6 +396,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ## 🚀 Implementation Phases
 
 ### Phase 1: Foundation (4 hours)
+
 **Session:** `sess-feat-payment-gateway-upgrade-PGU-001`
 
 - [x] Create directory structure in `src/features/payment/`
@@ -383,6 +407,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - [x] Run migrations: `pnpm prisma migrate dev`
 
 **Deliverables:**
+
 - ✅ All dependencies installed
 - ✅ Type definitions complete
 - ✅ Database schema migrated
@@ -391,6 +416,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ---
 
 ### Phase 2: Stripe Integration (6 hours)
+
 **Session:** `sess-feat-payment-gateway-upgrade-PGU-002`
 
 - [ ] Create Stripe Elements wrapper component
@@ -403,6 +429,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - [ ] Test with Stripe test cards (4242..., 3D Secure, declined)
 
 **Deliverables:**
+
 - ✅ Stripe checkout fully functional
 - ✅ Webhook signature verification working
 - ✅ Payment records saved to database
@@ -411,6 +438,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ---
 
 ### Phase 3: PayPal Integration (3 hours)
+
 **Session:** `sess-feat-payment-gateway-upgrade-PGU-003`
 
 - [ ] Create PayPal button component
@@ -421,6 +449,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - [ ] Integrate with `PaymentMethodSelector`
 
 **Deliverables:**
+
 - ✅ PayPal checkout functional
 - ✅ Sandbox testing complete
 - ✅ Payment records saved
@@ -428,6 +457,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ---
 
 ### Phase 4: Invoice & Receipts (3 hours)
+
 **Session:** `sess-feat-payment-gateway-upgrade-PGU-004`
 
 - [ ] Create PDF invoice generator using `pdf-lib`
@@ -439,6 +469,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - [ ] Test email delivery (use Mailtrap for dev)
 
 **Deliverables:**
+
 - ✅ PDF invoices generate correctly
 - ✅ Emails send successfully
 - ✅ Invoice download works
@@ -446,6 +477,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ---
 
 ### Phase 5: Testing & Polish (4 hours)
+
 **Session:** `sess-feat-payment-gateway-upgrade-PGU-005`
 
 - [ ] Write unit tests for currency utilities
@@ -458,6 +490,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - [ ] Add JSDoc comments to all functions
 
 **Deliverables:**
+
 - ✅ All tests passing
 - ✅ WCAG AAA compliance verified
 - ✅ Mobile fully responsive
@@ -468,6 +501,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ## 📈 Success Metrics
 
 ### Technical Metrics
+
 - ✅ Payment success rate > 95%
 - ✅ Webhook processing latency < 500ms
 - ✅ Invoice generation time < 2s
@@ -475,6 +509,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - ✅ Lighthouse performance score > 90
 
 ### Business Metrics
+
 - 💰 Transaction volume
 - 📊 Conversion rate (checkout started → completed)
 - 🔄 Payment method preference (Stripe vs PayPal)
@@ -486,6 +521,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ## 🐛 Known Issues & Limitations
 
 ### Current Limitations
+
 - ❌ No subscription/recurring billing (future phase)
 - ❌ No refund UI (manual via Stripe/PayPal dashboard)
 - ❌ No multi-item cart (single service/product only)
@@ -493,6 +529,7 @@ test('Stripe checkout flow', async ({ page }) => {
 - ❌ No sales tax calculation (flat pricing)
 
 ### Future Enhancements
+
 - 🔜 Apple Pay / Google Pay integration
 - 🔜 Cryptocurrency payments (Stripe Crypto)
 - 🔜 Payment analytics dashboard
@@ -506,6 +543,7 @@ test('Stripe checkout flow', async ({ page }) => {
 ### API Documentation
 
 **POST /api/payment/create-intent**
+
 ```typescript
 // Request
 {
@@ -523,11 +561,13 @@ test('Stripe checkout flow', async ({ page }) => {
 ```
 
 **POST /api/payment/webhook**
+
 - Stripe webhook endpoint
 - Verifies `stripe-signature` header
 - Handles events: `payment_intent.succeeded`, `payment_intent.failed`
 
 **GET /api/payment/invoice/[id]**
+
 - Downloads PDF invoice
 - Returns: `Content-Type: application/pdf`
 
@@ -536,12 +576,15 @@ test('Stripe checkout flow', async ({ page }) => {
 ## 🔗 Dependencies
 
 **Blocks:**
+
 - None (independent feature)
 
 **Blocked By:**
+
 - Testing framework setup (for automated tests)
 
 **Related:**
+
 - Contact form (can link to checkout)
 - Services showcase (pricing display)
 
@@ -578,9 +621,7 @@ test('Stripe checkout flow', async ({ page }) => {
 
 ---
 
-**Feature Owner:** Jesse Lucas
-**Implementation:** Claude Code
-**Last Updated:** 2025-10-26
+**Feature Owner:** Jesse Lucas **Implementation:** Claude Code **Last Updated:** 2025-10-26
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 

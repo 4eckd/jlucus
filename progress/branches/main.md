@@ -1,9 +1,6 @@
 # Branch: main
 
-**Created:** 2025-02-25 08:39:34 -0800
-**Last Updated:** 
-**Commits:** 259
-**Author:** J's Play
+**Created:** 2025-02-25 08:39:34 -0800 **Last Updated:** **Commits:** 259 **Author:** J's Play
 
 ## Recent Commits
 
@@ -15,9 +12,4 @@
 
 ## Files Changed
 
-
-
 ## Associated Issues
-
-
-

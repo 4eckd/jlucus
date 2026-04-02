@@ -1,14 +1,14 @@
 # Parallel Development Coordination Guide
 
-**Last Updated:** 2026-02-15
-**System:** GitButler-Inspired Virtual Branching
-**Status:** 🟢 Operational
+**Last Updated:** 2026-02-15 **System:** GitButler-Inspired Virtual Branching **Status:** 🟢
+Operational
 
 ---
 
 ## 🎯 Quick Start
 
-This guide helps coordinate parallel development across multiple features, pages, and team members with minimal conflicts and maximum efficiency.
+This guide helps coordinate parallel development across multiple features, pages, and team members
+with minimal conflicts and maximum efficiency.
 
 ### 30-Second Setup
 
@@ -182,14 +182,14 @@ cat .github/tracking/ASCII_PROGRESS.md
 
 Our system automatically maps keywords to milestones:
 
-| Keywords in Issue/PR | Milestone | Phase |
-|---------------------|-----------|-------|
-| foundation, setup, init | #3 | Phase 1: Foundation |
-| polish, ui, ux, animation | #4 | Phase 2: Polish |
-| content, cms, blog | #5 | Phase 3: Content |
-| docs, documentation | #6 | Phase 4: Documentation |
-| test, testing, qa | #7 | Phase 5: Testing |
-| deploy, deployment, ci | #8 | Phase 6: Deployment |
+| Keywords in Issue/PR      | Milestone | Phase                  |
+| ------------------------- | --------- | ---------------------- |
+| foundation, setup, init   | #3        | Phase 1: Foundation    |
+| polish, ui, ux, animation | #4        | Phase 2: Polish        |
+| content, cms, blog        | #5        | Phase 3: Content       |
+| docs, documentation       | #6        | Phase 4: Documentation |
+| test, testing, qa         | #7        | Phase 5: Testing       |
+| deploy, deployment, ci    | #8        | Phase 6: Deployment    |
 
 ### Manual Assignment
 
@@ -267,14 +267,16 @@ EOF
 Every push triggers updates to:
 
 **1. Development Manifest** (`.github/tracking/DEVELOPMENT_MANIFEST.md`)
+
 ```markdown
-| Branch | Issue | Milestone | PR | Status |
-|--------|-------|-----------|-----|--------|
-| feat-123-hero | #123 | Phase 2 | #45 | Active |
-| feat-124-nav | #124 | Phase 2 | - | Active |
+| Branch        | Issue | Milestone | PR  | Status |
+| ------------- | ----- | --------- | --- | ------ |
+| feat-123-hero | #123  | Phase 2   | #45 | Active |
+| feat-124-nav  | #124  | Phase 2   | -   | Active |
 ```
 
 **2. ASCII Progress** (`.github/tracking/ASCII_PROGRESS.md`)
+
 ```
 Phase 1: Foundation       ████████████████████ 100% ✅
 Phase 2: Polish          ████████░░░░░░░░░░░░  40% ⚡
@@ -282,14 +284,14 @@ Phase 3: Content         ░░░░░░░░░░░░░░░░░░�
 ```
 
 **3. Branch Logs** (`progress/branches/{branch}.md`)
+
 ```markdown
 # Branch: feat-123-hero-section
 
-**Commits:** 12
-**Last Updated:** 2026-02-15
-**Author:** jlucus
+**Commits:** 12 **Last Updated:** 2026-02-15 **Author:** jlucus
 
 ## Recent Commits
+
 - abc1234 feat(hero): add typing animation
 - def5678 feat(hero): add ASCII banner
 ```
@@ -377,6 +379,7 @@ git push origin --delete feat-123-hero-section
 ### Avoiding Conflicts
 
 **1. Communicate** - Check what others are working on
+
 ```bash
 # See active branches
 git branch -r | grep feat-
@@ -386,6 +389,7 @@ git branch -r | grep feat-
 ```
 
 **2. Sync Frequently**
+
 ```bash
 # Update from development often
 git checkout feat-123-hero-section
@@ -394,6 +398,7 @@ git merge origin/development
 ```
 
 **3. Small, Focused PRs**
+
 - One feature per branch
 - Avoid changing unrelated files
 - Merge frequently (daily if possible)
@@ -407,6 +412,7 @@ git merge origin/development
 **Cause:** Issue not labeled with `ready-for-dev`
 
 **Solution:**
+
 ```bash
 # Add label
 gh issue edit 123 --add-label "ready-for-dev"
@@ -420,6 +426,7 @@ gh issue edit 123 --add-label "ready-for-dev"
 **Cause:** PR title doesn't contain keywords
 
 **Solution:**
+
 ```bash
 # Manual assignment
 gh pr edit 45 --milestone "Phase 2: Polish & Enhancement"
@@ -430,6 +437,7 @@ gh pr edit 45 --milestone "Phase 2: Polish & Enhancement"
 **Cause:** Multiple people editing same files
 
 **Solution:**
+
 ```bash
 # Update from development
 git fetch origin development
@@ -447,6 +455,7 @@ git push
 **Cause:** GitHub Action may have failed
 
 **Solution:**
+
 ```bash
 # Check workflow runs
 gh run list --workflow=branch-tracker.yml
@@ -473,6 +482,7 @@ Track weekly:
 - **Build Success Rate:** > 95%
 
 View metrics:
+
 ```bash
 # Branches active this week
 git for-each-ref --sort=-committerdate refs/remotes/origin --format='%(refname:short) %(committerdate:relative)' | head -10
@@ -489,17 +499,20 @@ gh issue list --state closed --search "closed:>$(date -d '7 days ago' +%Y-%m-%d)
 ## 🎓 Learning Resources
 
 ### GitButler Concepts
+
 - **Virtual Branches:** Work on multiple features without switching
 - **Automatic Stashing:** Changes isolated per feature
 - **Visual Branching:** See all work in parallel
 
 ### Our Implementation
+
 - Uses Git worktrees for parallel work
 - GitHub Actions for automation
 - Bash scripts for convenience
 - Markdown for tracking
 
 ### Documentation
+
 - `docs/GITBUTLER_WORKFLOW.md` - Detailed workflow
 - `docs/BRANCHING_STRATEGY.md` - Branch structure
 - `docs/DESIGN_PRINCIPLES.md` - Design rules
@@ -614,9 +627,8 @@ Finishing a feature?
 
 ---
 
-**Status:** 🟢 System Operational
-**Last Updated:** 2026-02-15
-**Questions?** Check `docs/GITBUTLER_WORKFLOW.md`
+**Status:** 🟢 System Operational **Last Updated:** 2026-02-15 **Questions?** Check
+`docs/GITBUTLER_WORKFLOW.md`
 
 ```
 ╔════════════════════════════════════════════════════════════╗

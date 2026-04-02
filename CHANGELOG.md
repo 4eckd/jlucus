@@ -2,16 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project
+adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] - 2026-02-17
 
 ### Fixed
 
 #### Build System
-- Fixed empty `src/components/sections/index.ts` barrel export file that caused TypeScript error: `File is not a module` when importing from `./sections` in `components/index.ts`
-- Added named exports for all section components: `AnimatedGrid`, `ContactSection`, `HeroTerminal`, `PortfolioSection`, `ProjectDashboard`, `SkillTree`, `VenturesSection`
+
+- Fixed empty `src/components/sections/index.ts` barrel export file that caused TypeScript error:
+  `File is not a module` when importing from `./sections` in `components/index.ts`
+- Added named exports for all section components: `AnimatedGrid`, `ContactSection`, `HeroTerminal`,
+  `PortfolioSection`, `ProjectDashboard`, `SkillTree`, `VenturesSection`
 - Resolves build failure introduced in PR #143
 
 ## [1.1.1] - 2025-12-25
@@ -19,12 +22,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Project Configuration
+
 - Created comprehensive `.npmignore` for npm publishing
 - Created `.dockerignore` for optimized Docker builds
 - Created `.eslintignore` for ESLint configuration
 - Added `postinstall` script with friendly success message
 
 #### Documentation
+
 - Enhanced README.md with deployment section and technology stack details
 - Added environment variables configuration guide
 - Added performance metrics section
@@ -36,11 +41,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 #### Build System
+
 - Updated clean scripts to use `npx rimraf` for cross-platform compatibility
 - Fixed `build:clean` script to use `npm run build` instead of `next build`
 - Updated package manager configuration to use npm (removed pnpm-lock.yaml)
 
 #### Git Configuration
+
 - Improved `.gitignore` with better organization and comprehensive coverage
 - Fixed node_modules ignore pattern (now `node_modules/`)
 - Removed package-lock.json from gitignore (npm best practice - keep it tracked)
@@ -48,17 +55,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added OS-specific ignores (macOS, Windows, Linux)
 
 #### Dependencies
+
 - Updated to Next.js 16.1.0 (from 15.3.2)
 - Updated to TypeScript 5.9.3 (from 5.8.3)
 - Updated to React 19.2.3 (from 19.1.0)
 - All version badges in README now reflect actual package versions
 
 ### Removed
+
 - Removed `pnpm-lock.yaml` (project uses npm, not pnpm)
 - Removed legacy HTML/CSS portfolio folder (30MB of old assets, Bootstrap, vendor libraries)
 - Deleted stale remote branch `claude/feat-command-palette-kFNoG` (2 commits behind main)
 
 ### Fixed
+
 - Fixed package manager lock files (keeping only package-lock.json for npm)
 - Fixed gitignore to properly track package-lock.json
 - Ensured node_modules is properly ignored across all platforms
@@ -70,11 +80,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 #### Build & Tooling
+
 - Added `rimraf` package for cross-platform file cleanup
 - New npm scripts: `clean`, `clean:all`, `build:clean`
 - Enhanced package.json metadata (keywords, repository, bugs, homepage)
 
 #### Documentation
+
 - Created `docs/ascii-art-samples.md` with terminal-themed ASCII art library
 - Created `docs/hard-coded-css-audit.md` comprehensive CSS audit report
 - Created `docs.json` documentation index and tracking system
@@ -86,12 +98,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated README.md with badges and project progress
 
 #### Code Quality
+
 - Created `src/lib/css-variables.ts` utility for accessing CSS variables from JavaScript
 - Implemented `getCSSColor()`, `getCSSVariable()`, `getCSSNumber()`, `getCSSSpacing()` helpers
 
 ### Changed
 
 #### Refactoring
+
 - **BREAKING:** Refactored `animated-grid.tsx` to use CSS variables instead of hard-coded colors
   - All 5 hard-coded RGBA colors now use CSS variables
   - Extracted 10+ magic numbers to `ANIMATION_CONFIG` constant
@@ -99,17 +113,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Replaced inline `style={{ pointerEvents: 'none' }}` with `className="pointer-events-none"`
 
 #### Bug Fixes
+
 - Fixed typo in `contact-section.tsx` line 230: `text-smtext-success` → `text-sm text-success`
 
 #### Build System
+
 - Removed prebuild hook to prevent Windows permission errors
 - Build now completes successfully without cleanup blocking
 
 ### Removed
+
 - Deleted conflicting root-level `package.json` and `node_modules`
 - Removed hard-coded CSS values from canvas rendering
 
 ### Security
+
 - All colors now use single source of truth (CSS variables)
 - Improved maintainability and consistency
 - Future-proofed for theme system implementation
@@ -119,6 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-12-16
 
 ### Added
+
 - Initial release of jlucus.dev Terminal Neon portfolio
 - Next.js 15 with App Router architecture
 - TypeScript 5.8.3 with strict mode
@@ -137,6 +156,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Monospace typography (JetBrains Mono)
 
 ### Technical Stack
+
 - React 19.1.0
 - Next.js 15.3.2
 - TypeScript 5.8.3
@@ -153,14 +173,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 This release focuses on **code quality**, **documentation**, and **maintainability**:
 
-1. **CSS Variables Philosophy Enforced**: Eliminated all hard-coded CSS values, ensuring single source of truth for theming
-2. **Comprehensive Documentation**: Added 7 new documentation files covering ASCII art, security, contributions, and audit reports
+1. **CSS Variables Philosophy Enforced**: Eliminated all hard-coded CSS values, ensuring single
+   source of truth for theming
+2. **Comprehensive Documentation**: Added 7 new documentation files covering ASCII art, security,
+   contributions, and audit reports
 3. **Build Improvements**: Added cleanup scripts and resolved Windows permission issues
 4. **Utility Library**: New CSS variable utilities for JavaScript/Canvas integration
 
 ### Migration Guide (1.0.0 → 1.1.0)
 
 No breaking changes for external users. Internal code now requires:
+
 - CSS variables must be defined in `globals.css` before use
 - Use `getCSSColor()` utility instead of hard-coded values in canvas/JS
 
@@ -189,6 +212,7 @@ See [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md) for detailed future plans.
 ### Upcoming Features
 
 #### v1.2.0 (Planned)
+
 - Command palette (Cmd/Ctrl+K)
 - Custom cursor with neon trail
 - Easter eggs (Konami code, terminal commands)
@@ -196,12 +220,14 @@ See [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md) for detailed future plans.
 - Performance optimizations
 
 #### v1.3.0 (Planned)
+
 - Blog system with MDX
 - Analytics dashboard
 - Contact form backend
 - Newsletter subscription
 
 #### v2.0.0 (Future)
+
 - Theme system (light mode, color schemes)
 - 3D effects with Three.js
 - AI chatbot for portfolio Q&A
@@ -219,6 +245,7 @@ See [PROJECT_ROADMAP.md](PROJECT_ROADMAP.md) for detailed future plans.
 ---
 
 **Legend**
+
 - 🎉 Major feature
 - ✨ Enhancement
 - 🐛 Bug fix

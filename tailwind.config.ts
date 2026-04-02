@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -63,7 +63,8 @@ const config: Config = {
         accent: 'rgb(var(--color-emphasis) / <alpha-value>)',
         secondary: 'rgb(var(--color-emphasis) / <alpha-value>)',
         destructive: 'rgb(var(--color-error) / <alpha-value>)',
-        'destructive-foreground': 'rgb(var(--color-text-primary) / <alpha-value>)',
+        'destructive-foreground':
+          'rgb(var(--color-text-primary) / <alpha-value>)',
         muted: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
       },
 
@@ -164,18 +165,18 @@ const config: Config = {
         'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
 
         /* Float and float effects */
-        'float': 'float 3s ease-in-out infinite',
+        float: 'float 3s ease-in-out infinite',
         'float-slow': 'float 4s ease-in-out infinite',
 
         /* Subtle movement */
-        'scanline': 'scanline 6s linear infinite',
+        scanline: 'scanline 6s linear infinite',
 
         /* Text animations */
-        'typing': 'typing 3.5s steps(40, end)',
-        'blink': 'blink 1s step-end infinite',
+        typing: 'typing 3.5s steps(40, end)',
+        blink: 'blink 1s step-end infinite',
 
         /* Accessibility: Disable in prefers-reduced-motion */
-        'none': 'none',
+        none: 'none',
       },
 
       keyframes: {
@@ -192,25 +193,25 @@ const config: Config = {
         },
 
         /* Float animation (transform only = GPU accelerated) */
-        'float': {
+        float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-12px)' },
         },
 
         /* Scanline effect */
-        'scanline': {
+        scanline: {
           '0%': { transform: 'translateY(-100%)' },
           '100%': { transform: 'translateY(100vh)' },
         },
 
         /* Typing animation */
-        'typing': {
+        typing: {
           from: { width: '0' },
           to: { width: '100%' },
         },
 
         /* Cursor blink */
-        'blink': {
+        blink: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
         },
@@ -218,13 +219,15 @@ const config: Config = {
 
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D9FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'grid-pattern':
+          "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300D9FF' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       },
     },
   },
 
   plugins: [],
-}
+};
 
-export default config
+export default config;

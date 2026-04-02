@@ -1,17 +1,19 @@
-import type { ReactNode } from 'react'
-import type { Metadata } from 'next'
-import { SITE } from '@/lib/constants'
+import type { ReactNode } from 'react';
+import type { Metadata } from 'next';
+import { SITE } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Daily Learning Blog',
-  description: 'Daily insights and learnings about web development, design, and technology.',
+  description:
+    'Daily insights and learnings about web development, design, and technology.',
   openGraph: {
     title: 'Daily Learning Blog',
-    description: 'Daily insights and learnings about web development, design, and technology.',
+    description:
+      'Daily insights and learnings about web development, design, and technology.',
     type: 'website',
     url: `${SITE.url}/blog`,
   },
-}
+};
 
 export default function BlogLayout({ children }: { children: ReactNode }) {
   return (
@@ -28,8 +30,8 @@ export default function BlogLayout({ children }: { children: ReactNode }) {
             className="mx-auto max-w-2xl"
             style={{ color: `rgb(var(--color-text-secondary))` }}
           >
-            Chronicles of learning, experimentation, and insights from the intersection of
-            development and design.
+            Chronicles of learning, experimentation, and insights from the
+            intersection of development and design.
           </p>
         </div>
 
@@ -43,5 +45,5 @@ export default function BlogLayout({ children }: { children: ReactNode }) {
 
       {children}
     </div>
-  )
+  );
 }

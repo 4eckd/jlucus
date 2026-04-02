@@ -1,25 +1,25 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { getBlogPostBySlug, getSortedBlogPosts } from '@/data/blog-posts'
-import { SITE } from '@/lib/constants'
-import BlogPostContent from './blog-post-content'
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { getBlogPostBySlug, getSortedBlogPosts } from '@/data/blog-posts';
+import { SITE } from '@/lib/constants';
+import BlogPostContent from './blog-post-content';
 
 interface BlogPostPageProps {
   params: Promise<{
-    slug: string
-  }>
+    slug: string;
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const post = getBlogPostBySlug(slug)
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     return {
       title: 'Not Found',
-    }
+    };
   }
 
   return {
@@ -32,25 +32,23 @@ export async function generateMetadata({
       url: `${SITE.url}/blog/${post.slug}`,
       publishedTime: post.date,
     },
-  }
+  };
 }
 
 export async function generateStaticParams() {
-  const posts = getSortedBlogPosts()
+  const posts = getSortedBlogPosts();
   return posts.map((post) => ({
     slug: post.slug,
-  }))
+  }));
 }
 
-export default async function BlogPostPage({
-  params,
-}: BlogPostPageProps) {
-  const { slug } = await params
-  const post = getBlogPostBySlug(slug)
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
-  return <BlogPostContent post={post} />
+  return <BlogPostContent post={post} />;
 }

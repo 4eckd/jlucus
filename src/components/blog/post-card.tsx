@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import type { BlogPost } from '@/types'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Calendar, Clock, Tag } from 'lucide-react'
+import type { BlogPost } from '@/types';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Calendar, Clock, Tag } from 'lucide-react';
 
 interface PostCardProps {
-  post: BlogPost
-  index?: number
+  post: BlogPost;
+  index?: number;
 }
 
 const cardVariants = {
@@ -24,7 +24,7 @@ const cardVariants = {
     y: -4,
     transition: { duration: 0.2 },
   },
-}
+};
 
 export function PostCard({ post, index = 0 }: PostCardProps) {
   return (
@@ -109,11 +109,17 @@ export function PostCard({ post, index = 0 }: PostCardProps) {
               style={{ color: `rgb(var(--color-text-tertiary))` }}
             >
               <div className="flex items-center gap-2">
-                <Calendar className="h-4 w-4" style={{ color: `rgb(var(--color-primary) / 0.6)` }} />
+                <Calendar
+                  className="h-4 w-4"
+                  style={{ color: `rgb(var(--color-primary) / 0.6)` }}
+                />
                 <time>{new Date(post.date).toLocaleDateString()}</time>
               </div>
               <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4" style={{ color: `rgb(var(--color-primary) / 0.6)` }} />
+                <Clock
+                  className="h-4 w-4"
+                  style={{ color: `rgb(var(--color-primary) / 0.6)` }}
+                />
                 <span>{post.readingTime} min read</span>
               </div>
             </div>
@@ -140,7 +146,10 @@ export function PostCard({ post, index = 0 }: PostCardProps) {
                 </span>
               ))}
               {post.tags.length > 3 && (
-                <span style={{ color: `rgb(var(--color-text-muted))` }} className="text-xs">
+                <span
+                  style={{ color: `rgb(var(--color-text-muted))` }}
+                  className="text-xs"
+                >
                   +{post.tags.length - 3} more
                 </span>
               )}
@@ -153,12 +162,14 @@ export function PostCard({ post, index = 0 }: PostCardProps) {
                 style={{ color: `rgb(var(--color-primary))` }}
               >
                 Read article
-                <span className="transition-transform group-hover:translate-x-1">→</span>
+                <span className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
               </span>
             </div>
           </div>
         </div>
       </Link>
     </motion.article>
-  )
+  );
 }

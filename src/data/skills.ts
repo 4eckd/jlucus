@@ -2,7 +2,14 @@ export interface Skill {
   id: string;
   name: string;
   level: 'beginner' | 'intermediate' | 'advanced' | 'expert' | 'master';
-  category: 'frontend' | 'backend' | 'blockchain' | 'ai' | 'devops' | 'tools' | 'languages';
+  category:
+    | 'frontend'
+    | 'backend'
+    | 'blockchain'
+    | 'ai'
+    | 'devops'
+    | 'tools'
+    | 'languages';
   description: string;
   xp: number;
   maxXP: number;
@@ -67,7 +74,8 @@ export const SKILLS: Skill[] = [
     name: 'Node.js',
     level: 'expert',
     category: 'backend',
-    description: 'Server-side JavaScript runtime with microservices architecture',
+    description:
+      'Server-side JavaScript runtime with microservices architecture',
     xp: 8800,
     maxXP: 10000,
     projects: ['ai-code-reviewer'],
@@ -109,7 +117,8 @@ export const SKILLS: Skill[] = [
     name: 'Solidity',
     level: 'expert',
     category: 'blockchain',
-    description: 'Smart contract development for Ethereum and EVM-compatible chains',
+    description:
+      'Smart contract development for Ethereum and EVM-compatible chains',
     xp: 9000,
     maxXP: 10000,
     projects: ['defi-automator', 'mobile-wallet'],
@@ -228,48 +237,48 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     name: 'Frontend Development',
     description: 'User interface development and modern web technologies',
     icon: 'Monitor',
-    skills: SKILLS.filter(skill => skill.category === 'frontend'),
+    skills: SKILLS.filter((skill) => skill.category === 'frontend'),
   },
   {
     id: 'backend',
     name: 'Backend Development',
     description: 'Server-side programming and API development',
     icon: 'Server',
-    skills: SKILLS.filter(skill => skill.category === 'backend'),
+    skills: SKILLS.filter((skill) => skill.category === 'backend'),
   },
   {
     id: 'blockchain',
     name: 'Blockchain & Web3',
     description: 'Smart contracts and decentralized applications',
     icon: 'Network',
-    skills: SKILLS.filter(skill => skill.category === 'blockchain'),
+    skills: SKILLS.filter((skill) => skill.category === 'blockchain'),
   },
   {
     id: 'ai',
     name: 'Artificial Intelligence',
     description: 'Machine learning and AI-powered applications',
     icon: 'Cpu',
-    skills: SKILLS.filter(skill => skill.category === 'ai'),
+    skills: SKILLS.filter((skill) => skill.category === 'ai'),
   },
   {
     id: 'devops',
     name: 'DevOps & Infrastructure',
     description: 'Deployment, monitoring, and system architecture',
     icon: 'Cloud',
-    skills: SKILLS.filter(skill => skill.category === 'devops'),
+    skills: SKILLS.filter((skill) => skill.category === 'devops'),
   },
   {
     id: 'tools',
     name: 'Developer Tools',
     description: 'Productivity tools and development utilities',
     icon: 'Wrench',
-    skills: SKILLS.filter(skill => skill.category === 'tools'),
+    skills: SKILLS.filter((skill) => skill.category === 'tools'),
   },
   {
     id: 'languages',
     name: 'Programming Languages',
     description: 'Core programming and scripting languages',
     icon: 'Code',
-    skills: SKILLS.filter(skill => skill.category === 'languages'),
+    skills: SKILLS.filter((skill) => skill.category === 'languages'),
   },
 ];

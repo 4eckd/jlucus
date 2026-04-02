@@ -1,8 +1,8 @@
-import { getSortedBlogPosts } from '@/data/blog-posts'
-import { SITE } from '@/lib/constants'
+import { getSortedBlogPosts } from '@/data/blog-posts';
+import { SITE } from '@/lib/constants';
 
 export async function GET() {
-  const posts = getSortedBlogPosts()
+  const posts = getSortedBlogPosts();
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -33,31 +33,31 @@ ${post.content}
       )
       .join('')}
   </channel>
-</rss>`
+</rss>`;
 
   return new Response(rss, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
     },
-  })
+  });
 }
 
 function escapeXml(unsafe: string): string {
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
       case '<':
-        return '&lt;'
+        return '&lt;';
       case '>':
-        return '&gt;'
+        return '&gt;';
       case '&':
-        return '&amp;'
+        return '&amp;';
       case "'":
-        return '&apos;'
+        return '&apos;';
       case '"':
-        return '&quot;'
+        return '&quot;';
       default:
-        return c
+        return c;
     }
-  })
+  });
 }

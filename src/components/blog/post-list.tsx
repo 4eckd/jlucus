@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import type { BlogPost } from '@/types'
-import { PostCard } from './post-card'
+import type { BlogPost } from '@/types';
+import { PostCard } from './post-card';
 
 interface PostListProps {
-  posts: BlogPost[]
-  emptyMessage?: string
+  posts: BlogPost[];
+  emptyMessage?: string;
 }
 
 export function PostList({
@@ -28,7 +28,7 @@ export function PostList({
           {emptyMessage}
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -37,5 +37,5 @@ export function PostList({
         <PostCard key={post.id} post={post} index={index} />
       ))}
     </div>
-  )
+  );
 }

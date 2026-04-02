@@ -25,7 +25,7 @@ Components:            bg-button-bg, bg-card-bg, bg-input-bg
 ### Button
 
 ```tsx
-<button className="px-4 py-2 bg-interactive text-button-text rounded-md font-semibold transition-colors hover:opacity-90 focus-visible:outline-2">
+<button className="bg-interactive text-button-text rounded-md px-4 py-2 font-semibold transition-colors hover:opacity-90 focus-visible:outline-2">
   Click Me
 </button>
 ```
@@ -33,7 +33,7 @@ Components:            bg-button-bg, bg-card-bg, bg-input-bg
 ### Card
 
 ```tsx
-<div className="bg-card-bg border border-border-secondary rounded-lg p-md shadow-sm hover:shadow-md transition-shadow">
+<div className="bg-card-bg border-border-secondary p-md rounded-lg border shadow-sm transition-shadow hover:shadow-md">
   Card content
 </div>
 ```
@@ -42,7 +42,7 @@ Components:            bg-button-bg, bg-card-bg, bg-input-bg
 
 ```tsx
 <input
-  className="bg-input-bg text-input-text px-3 py-2 rounded-md border border-border-secondary transition-colors focus:border-border-primary focus-visible:outline-2"
+  className="bg-input-bg text-input-text border-border-secondary focus:border-border-primary rounded-md border px-3 py-2 transition-colors focus-visible:outline-2"
   placeholder="Type something..."
 />
 ```
@@ -50,7 +50,7 @@ Components:            bg-button-bg, bg-card-bg, bg-input-bg
 ### Badge
 
 ```tsx
-<span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-badge-bg text-badge-text">
+<span className="bg-badge-bg text-badge-text inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium">
   Label
 </span>
 ```
@@ -126,37 +126,39 @@ animate-blink        ← Cursor blink
 ### Hover Effect with Scale
 
 ```tsx
-className="hover:scale-105 transition-transform"
+className = 'hover:scale-105 transition-transform';
 ```
 
 ### Focus Ring
 
 ```tsx
-className="focus-visible:outline-2 focus-visible:outline-offset-2"
+className = 'focus-visible:outline-2 focus-visible:outline-offset-2';
 ```
 
 ### Disabled State
 
 ```tsx
-className="disabled:opacity-disabled disabled:cursor-not-allowed"
+className = 'disabled:opacity-disabled disabled:cursor-not-allowed';
 ```
 
 ### Hover with Color Change
 
 ```tsx
-className="text-text-secondary hover:text-emphasis transition-colors"
+className = 'text-text-secondary hover:text-emphasis transition-colors';
 ```
 
 ### Interactive Button
 
 ```tsx
-className="bg-interactive text-button-text hover:opacity-90 focus-visible:outline-2 transition-opacity active:scale-95"
+className =
+  'bg-interactive text-button-text hover:opacity-90 focus-visible:outline-2 transition-opacity active:scale-95';
 ```
 
 ### Card with Hover Effect
 
 ```tsx
-className="bg-card-bg rounded-lg border border-border-secondary p-md transition-all hover:shadow-lg hover:border-border-primary"
+className =
+  'bg-card-bg rounded-lg border border-border-secondary p-md transition-all hover:shadow-lg hover:border-border-primary';
 ```
 
 ---
@@ -165,23 +167,23 @@ className="bg-card-bg rounded-lg border border-border-secondary p-md transition-
 
 ```tsx
 // Utilities
-import { cn, COMPONENT_PRESETS, SEMANTIC_TOKENS } from '@/lib/design-tokens'
+import { cn, COMPONENT_PRESETS, SEMANTIC_TOKENS } from '@/lib/design-tokens';
 
 // Always include cn() for safe class composition
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils';
 ```
 
 ---
 
 ## WHEN TO USE EACH TOOL
 
-| Tool | When | Example |
-|------|------|---------|
-| Tailwind class | Most of the time | `className="bg-interactive p-md"` |
-| `COMPONENT_PRESETS` | Buttons, cards, inputs | `className={COMPONENT_PRESETS.card}` |
-| `cn()` | Combining multiple classes | `cn(baseClass, conditional && 'extra')` |
-| `SEMANTIC_TOKENS` | Object reference | `Object.keys(SEMANTIC_TOKENS)` |
-| Inline style | Almost never | Only dynamic values that can't be CSS |
+| Tool                | When                       | Example                                 |
+| ------------------- | -------------------------- | --------------------------------------- |
+| Tailwind class      | Most of the time           | `className="bg-interactive p-md"`       |
+| `COMPONENT_PRESETS` | Buttons, cards, inputs     | `className={COMPONENT_PRESETS.card}`    |
+| `cn()`              | Combining multiple classes | `cn(baseClass, conditional && 'extra')` |
+| `SEMANTIC_TOKENS`   | Object reference           | `Object.keys(SEMANTIC_TOKENS)`          |
+| Inline style        | Almost never               | Only dynamic values that can't be CSS   |
 
 ---
 
@@ -200,7 +202,7 @@ import { cn } from '@/lib/utils'
 ## COPY-PASTE COMPONENT TEMPLATE
 
 ```tsx
-import { cn, COMPONENT_PRESETS } from '@/lib/design-tokens'
+import { cn, COMPONENT_PRESETS } from '@/lib/design-tokens';
 
 interface Props {
   // ...
@@ -211,21 +213,18 @@ export function MyComponent({ ...props }: Props) {
     <div
       className={cn(
         COMPONENT_PRESETS.card,
-        'hover:shadow-lg transition-shadow',
+        'transition-shadow hover:shadow-lg'
         // Add more classes as needed
       )}
     >
       <h3 className="text-text-primary font-semibold">Title</h3>
       <p className="text-text-secondary text-sm">Description</p>
-      
-      <button className={cn(
-        COMPONENT_PRESETS.button,
-        COMPONENT_PRESETS.buttonPrimary
-      )}>
+
+      <button className={cn(COMPONENT_PRESETS.button, COMPONENT_PRESETS.buttonPrimary)}>
         Click
       </button>
     </div>
-  )
+  );
 }
 ```
 
@@ -256,17 +255,16 @@ grep -r "#[0-9A-Fa-f]\{6\}" src/components  # Comments only
 
 ## DEBUGGING
 
-**"Why isn't my hover effect working?"**
-→ Make sure you're using Tailwind `hover:` class, not onMouseEnter
+**"Why isn't my hover effect working?"** → Make sure you're using Tailwind `hover:` class, not
+onMouseEnter
 
-**"Colors look wrong"**
-→ Check you're using semantic token (e.g., `text-interactive`, not `text-primary`)
+**"Colors look wrong"** → Check you're using semantic token (e.g., `text-interactive`, not
+`text-primary`)
 
-**"Animation is jittery"**
-→ Use `transform` and `opacity` only (not `height`, `width`, `color`)
+**"Animation is jittery"** → Use `transform` and `opacity` only (not `height`, `width`, `color`)
 
-**"Component isn't accessible"**
-→ Add `focus-visible:outline-2 focus-visible:outline-offset-2` to interactive elements
+**"Component isn't accessible"** → Add `focus-visible:outline-2 focus-visible:outline-offset-2` to
+interactive elements
 
 ---
 
@@ -282,5 +280,5 @@ grep -r "#[0-9A-Fa-f]\{6\}" src/components  # Comments only
 
 ---
 
-**Questions?** → See `/REFACTORING_GUIDE.md` for examples
-**Audit details?** → See `/DESIGN_SYSTEM_AUDIT.md` for full analysis
+**Questions?** → See `/REFACTORING_GUIDE.md` for examples **Audit details?** → See
+`/DESIGN_SYSTEM_AUDIT.md` for full analysis

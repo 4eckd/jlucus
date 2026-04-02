@@ -52,8 +52,7 @@ export const COMPONENT_PRESETS = {
   button:
     'px-4 py-2 rounded-md font-semibold transition-colors duration-fast hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2',
 
-  buttonPrimary:
-    'bg-button-bg text-button-text hover:bg-interactive-hover',
+  buttonPrimary: 'bg-button-bg text-button-text hover:bg-interactive-hover',
 
   buttonSecondary:
     'bg-bg-secondary text-text-primary border border-border-secondary hover:bg-bg-tertiary',
@@ -90,9 +89,7 @@ export const COMPONENT_PRESETS = {
  *   )
  */
 export function cn(...classes: (string | undefined | boolean)[]): string {
-  return classes
-    .filter((c) => typeof c === 'string' && c.length > 0)
-    .join(' ');
+  return classes.filter((c) => typeof c === 'string' && c.length > 0).join(' ');
 }
 
 /**
@@ -146,9 +143,7 @@ export function getDynamicStyle(varName: string): React.CSSProperties {
  *   const glowFilter = generateGlowEffect('small')
  *   // Returns: 'drop-shadow(0 0 8px rgb(var(--color-interactive) / 0.6))'
  */
-export function generateGlowEffect(
-  size: 'sm' | 'md' | 'lg' = 'md'
-): string {
+export function generateGlowEffect(size: 'sm' | 'md' | 'lg' = 'md'): string {
   const sizeMap = {
     sm: 'drop-shadow(0 0 4px rgb(var(--color-interactive) / 0.4))',
     md: 'drop-shadow(0 0 8px rgb(var(--color-interactive) / 0.6))',

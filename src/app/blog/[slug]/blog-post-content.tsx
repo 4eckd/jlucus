@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { ArrowLeft, Calendar, Clock, User } from 'lucide-react'
-import type { BlogPost } from '@/types'
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
+import type { BlogPost } from '@/types';
 
 interface BlogPostContentProps {
-  post: BlogPost
+  post: BlogPost;
 }
 
 export default function BlogPostContent({ post }: BlogPostContentProps) {
@@ -36,10 +36,16 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
         className="space-y-6"
       >
         <div className="space-y-4">
-          <h1 className="font-mono text-4xl font-bold md:text-5xl" style={{ color: `rgb(var(--color-primary))` }}>
+          <h1
+            className="font-mono text-4xl font-bold md:text-5xl"
+            style={{ color: `rgb(var(--color-primary))` }}
+          >
             {post.title}
           </h1>
-          <p className="text-lg leading-relaxed" style={{ color: `rgb(var(--color-text-secondary))` }}>
+          <p
+            className="text-lg leading-relaxed"
+            style={{ color: `rgb(var(--color-text-secondary))` }}
+          >
             {post.excerpt}
           </p>
         </div>
@@ -51,16 +57,34 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
             borderColor: `rgb(var(--color-primary) / 0.1)`,
           }}
         >
-          <div className="flex items-center gap-2 text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
-            <User className="h-4 w-4" style={{ color: `rgb(var(--color-primary))` }} />
+          <div
+            className="flex items-center gap-2 text-sm"
+            style={{ color: `rgb(var(--color-text-secondary))` }}
+          >
+            <User
+              className="h-4 w-4"
+              style={{ color: `rgb(var(--color-primary))` }}
+            />
             <span>{post.author}</span>
           </div>
-          <div className="flex items-center gap-2 text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
-            <Calendar className="h-4 w-4" style={{ color: `rgb(var(--color-primary))` }} />
+          <div
+            className="flex items-center gap-2 text-sm"
+            style={{ color: `rgb(var(--color-text-secondary))` }}
+          >
+            <Calendar
+              className="h-4 w-4"
+              style={{ color: `rgb(var(--color-primary))` }}
+            />
             <time>{new Date(post.date).toLocaleDateString()}</time>
           </div>
-          <div className="flex items-center gap-2 text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
-            <Clock className="h-4 w-4" style={{ color: `rgb(var(--color-primary))` }} />
+          <div
+            className="flex items-center gap-2 text-sm"
+            style={{ color: `rgb(var(--color-text-secondary))` }}
+          >
+            <Clock
+              className="h-4 w-4"
+              style={{ color: `rgb(var(--color-primary))` }}
+            />
             <span>{post.readingTime} min read</span>
           </div>
           <div className="ml-auto">
@@ -106,14 +130,17 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="prose prose-invert max-w-none space-y-6"
       >
-        <div className="space-y-6" style={{ color: `rgb(var(--color-text-primary))` }}>
+        <div
+          className="space-y-6"
+          style={{ color: `rgb(var(--color-text-primary))` }}
+        >
           {post.content.split('\n\n').map((paragraph, i) => (
             <div key={i} className="leading-relaxed">
               {paragraph.startsWith('#') ? (
                 <div className="space-y-2">
                   {paragraph.split('\n').map((line, j) => {
-                    const headingLevel = line.match(/^#+/)?.[0]?.length || 1
-                    const content = line.replace(/^#+\s/, '')
+                    const headingLevel = line.match(/^#+/)?.[0]?.length || 1;
+                    const content = line.replace(/^#+\s/, '');
 
                     if (line.startsWith('#')) {
                       const baseSizeMap = {
@@ -121,8 +148,10 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                         2: '1.5rem',
                         3: '1.25rem',
                         4: '1.125rem',
-                      }
-                      const fontSize = baseSizeMap[headingLevel as keyof typeof baseSizeMap] || '1rem'
+                      };
+                      const fontSize =
+                        baseSizeMap[headingLevel as keyof typeof baseSizeMap] ||
+                        '1rem';
 
                       return (
                         <h2
@@ -135,9 +164,9 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                         >
                           {content}
                         </h2>
-                      )
+                      );
                     }
-                    return null
+                    return null;
                   })}
                 </div>
               ) : paragraph.startsWith('```') ? (
@@ -151,7 +180,10 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   <code>{paragraph.replace(/```/g, '')}</code>
                 </pre>
               ) : paragraph.startsWith('-') ? (
-                <ul className="space-y-2 pl-6" style={{ color: `rgb(var(--color-text-secondary))` }}>
+                <ul
+                  className="space-y-2 pl-6"
+                  style={{ color: `rgb(var(--color-text-secondary))` }}
+                >
                   {paragraph.split('\n').map((item, j) => (
                     <li key={j} className="list-disc">
                       {item.replace(/^-\s/, '')}
@@ -159,7 +191,9 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
                   ))}
                 </ul>
               ) : (
-                <p style={{ color: `rgb(var(--color-text-secondary))` }}>{paragraph}</p>
+                <p style={{ color: `rgb(var(--color-text-secondary))` }}>
+                  {paragraph}
+                </p>
               )}
             </div>
           ))}
@@ -199,5 +233,5 @@ export default function BlogPostContent({ post }: BlogPostContentProps) {
         </Link>
       </motion.footer>
     </article>
-  )
+  );
 }

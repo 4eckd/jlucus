@@ -1,38 +1,38 @@
-'use client'
+'use client';
 
-import { useState, useMemo } from 'react'
-import { motion } from 'framer-motion'
-import { getSortedBlogPosts, getAllBlogTags } from '@/data/blog-posts'
-import { PostList } from '@/components/blog'
-import { Search, X } from 'lucide-react'
+import { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { getSortedBlogPosts, getAllBlogTags } from '@/data/blog-posts';
+import { PostList } from '@/components/blog';
+import { Search, X } from 'lucide-react';
 
 export default function BlogPage() {
-  const posts = getSortedBlogPosts()
-  const allTags = getAllBlogTags()
+  const posts = getSortedBlogPosts();
+  const allTags = getAllBlogTags();
 
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const filteredPosts = useMemo(() => {
     return posts.filter((post) => {
       const matchesSearch =
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.category.toLowerCase().includes(searchQuery.toLowerCase())
+        post.category.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesTags =
         selectedTags.length === 0 ||
-        selectedTags.some((tag) => post.tags.includes(tag))
+        selectedTags.some((tag) => post.tags.includes(tag));
 
-      return matchesSearch && matchesTags
-    })
-  }, [posts, searchQuery, selectedTags])
+      return matchesSearch && matchesTags;
+    });
+  }, [posts, searchQuery, selectedTags]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    )
-  }
+    );
+  };
 
   return (
     <div className="space-y-12">
@@ -59,7 +59,7 @@ export default function BlogPage() {
             }}
           >
             <Search
-              className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2"
+              className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2"
               style={{ color: `rgb(var(--color-primary) / 0.5)` }}
             />
             <input
@@ -67,7 +67,7 @@ export default function BlogPage() {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-transparent py-3 pl-12 pr-4 font-sans outline-none"
+              className="w-full bg-transparent py-3 pr-4 pl-12 font-sans outline-none"
               style={{
                 color: `rgb(var(--color-text-primary))`,
               }}
@@ -82,7 +82,7 @@ export default function BlogPage() {
                 onMouseLeave={(e) => {
                   e.currentTarget.style.color = `rgb(var(--color-text-tertiary))`;
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2"
+                className="absolute top-1/2 right-4 -translate-y-1/2"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -92,7 +92,10 @@ export default function BlogPage() {
 
         {/* Tag Filters */}
         <div className="space-y-3">
-          <p className="font-mono text-sm" style={{ color: `rgb(var(--color-text-secondary))` }}>
+          <p
+            className="font-mono text-sm"
+            style={{ color: `rgb(var(--color-text-secondary))` }}
+          >
             Filter by tags:
           </p>
           <div className="flex flex-wrap gap-2">
@@ -100,7 +103,7 @@ export default function BlogPage() {
               <button
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className="transition-all rounded-full px-3 py-1 font-mono text-sm"
+                className="rounded-full px-3 py-1 font-mono text-sm transition-all"
                 style={
                   selectedTags.includes(tag)
                     ? {
@@ -146,7 +149,10 @@ export default function BlogPage() {
         </div>
 
         {/* Results count */}
-        <div style={{ color: `rgb(var(--color-text-tertiary))` }} className="text-sm">
+        <div
+          style={{ color: `rgb(var(--color-text-tertiary))` }}
+          className="text-sm"
+        >
           Showing {filteredPosts.length} of {posts.length} articles
         </div>
       </motion.div>
@@ -161,5 +167,5 @@ export default function BlogPage() {
         }
       />
     </div>
-  )
+  );
 }

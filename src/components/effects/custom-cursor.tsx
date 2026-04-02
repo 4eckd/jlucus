@@ -21,7 +21,9 @@ export function CustomCursor() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
-  const [trail, setTrail] = useState<Array<{ x: number; y: number; id: number }>>([]);
+  const [trail, setTrail] = useState<
+    Array<{ x: number; y: number; id: number }>
+  >([]);
   const rafRef = useRef<number | undefined>(undefined);
   const trailIdRef = useRef(0);
 
@@ -38,7 +40,10 @@ export function CustomCursor() {
 
       // Add to trail
       setTrail((prev) => {
-        const newTrail = [...prev, { x: e.clientX, y: e.clientY, id: trailIdRef.current++ }];
+        const newTrail = [
+          ...prev,
+          { x: e.clientX, y: e.clientY, id: trailIdRef.current++ },
+        ];
         // Keep only last 10 trail points
         return newTrail.slice(-10);
       });
@@ -125,7 +130,7 @@ export function CustomCursor() {
             animate={{ opacity: 0, scale: 0.5 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="absolute w-3 h-3 rounded-full bg-primary/30 blur-sm"
+            className="bg-primary/30 absolute h-3 w-3 rounded-full blur-sm"
             style={{
               left: point.x,
               top: point.y,
@@ -137,7 +142,7 @@ export function CustomCursor() {
 
       {/* Main cursor */}
       <motion.div
-        className="absolute w-8 h-8 rounded-full border-2 border-primary mix-blend-difference"
+        className="border-primary absolute h-8 w-8 rounded-full border-2 mix-blend-difference"
         style={{
           left: cursorPosition.x,
           top: cursorPosition.y,
@@ -148,8 +153,8 @@ export function CustomCursor() {
           borderColor: isClicking
             ? `rgb(${getCSSColor('accent')})`
             : isHovering
-            ? `rgb(${getCSSColor('secondary')})`
-            : `rgb(${getCSSColor('primary')})`,
+              ? `rgb(${getCSSColor('secondary')})`
+              : `rgb(${getCSSColor('primary')})`,
         }}
         transition={{
           type: 'spring',
@@ -164,8 +169,8 @@ export function CustomCursor() {
             background: isClicking
               ? `radial-gradient(circle, rgb(${getCSSColor('accent')}) 0%, transparent 70%)`
               : isHovering
-              ? `radial-gradient(circle, rgb(${getCSSColor('secondary')}) 0%, transparent 70%)`
-              : `radial-gradient(circle, rgb(${getCSSColor('primary')}) 0%, transparent 70%)`,
+                ? `radial-gradient(circle, rgb(${getCSSColor('secondary')}) 0%, transparent 70%)`
+                : `radial-gradient(circle, rgb(${getCSSColor('primary')}) 0%, transparent 70%)`,
             opacity: 0.5,
           }}
         />
@@ -173,7 +178,7 @@ export function CustomCursor() {
 
       {/* Cursor dot */}
       <motion.div
-        className="absolute w-2 h-2 rounded-full bg-primary"
+        className="bg-primary absolute h-2 w-2 rounded-full"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
@@ -193,7 +198,7 @@ export function CustomCursor() {
             animate={{ scale: 2, opacity: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="absolute w-16 h-16 rounded-full border-2 border-accent"
+            className="border-accent absolute h-16 w-16 rounded-full border-2"
             style={{
               left: mousePosition.x,
               top: mousePosition.y,
