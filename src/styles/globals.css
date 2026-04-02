@@ -5,6 +5,17 @@
 @config "../../tailwind.config.ts";
 
 :root {
+  /* ── Character palette — supitsj / anime-neon purple ── */
+  /* Distinct from portfolio cyan so avatar reads as its own entity */
+  --color-purple:   120 40  255;   /* Deep electric purple   */
+  --color-indigo:    72 0   200;   /* Deep indigo shadow tone */
+  --color-lavender: 190 140 255;   /* Lavender rim highlight  */
+  --color-purple-glow: 150 80 255; /* Brighter purple for glows */
+
+  /* Avatar-specific shadow tokens */
+  --shadow-neon-purple:    0 0 6px  rgb(var(--color-purple)), 0 0 22px rgb(var(--color-purple));
+  --shadow-neon-purple-lg: 0 0 12px rgb(var(--color-purple)), 0 0 44px rgb(var(--color-purple)), 0 0 80px rgb(var(--color-indigo) / 0.6);
+
   /* Terminal Neon Color Palette - RGB values for alpha support */
   --color-primary: 0 217 255;           /* Electric Cyan #00D9FF */
   --color-primary-glow: 0 240 255;      /* Brighter cyan for glows */
@@ -163,6 +174,79 @@ html {
   html {
     scroll-behavior: auto;
   }
+
+  /* Stop all CSS animations and transitions */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Hide the moving scanline */
+  .scanline {
+    display: none;
+  }
+
+  /* Stop avatar glow and scan animations */
+  .avatar-frame {
+    animation: none;
+    filter:
+      drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
+      drop-shadow(0 0 30px rgb(var(--color-indigo) / 0.25));
+  }
+
+  .avatar-zone {
+    animation: none;
+    opacity: 1;
+  }
+
+  .avatar-scan::after {
+    animation: none;
+    display: none;
+  }
+
+  /* Remove neon text glow for readability */
+  .identity-name {
+    text-shadow: none;
+  }
+
+  /* Freeze progress fill transition */
+  .progress-fill {
+    transition: none;
+  }
+}
+
+/* JS-controlled accessibility: .reduce-motion class mirrors prefers-reduced-motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+.reduce-motion .scanline { display: none; }
+.reduce-motion .avatar-scan::after { animation: none; display: none; }
+.reduce-motion .avatar-frame {
+  animation: none;
+  filter:
+    drop-shadow(0 0 10px rgb(var(--color-purple) / 0.45))
+    drop-shadow(0 0 30px rgb(var(--color-indigo) / 0.25));
+}
+
+/* .no-glow disables neon text shadows for readability */
+.no-glow .text-neon,
+.no-glow .text-neon-accent,
+.no-glow .identity-name,
+.no-glow .countdown-number {
+  text-shadow: none;
+}
+
+.no-glow .hud-dot,
+.no-glow .progress-fill {
+  box-shadow: none;
 }
 
 body {
@@ -419,4 +503,894 @@ a {
 :disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   COUNTDOWN / SPLIT PORTAL — design-token components
+   All values reference CSS variables. No hardcoded colors.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* ── Full-screen overlay ───────────────────────────── */
+.countdown-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-modal);
+  background: rgb(var(--color-dark-950));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.matrix-canvas {
+  position: fixed;
+  inset: 0;
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.countdown-grid-overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── OG brand image — blended opaquely into background ─ */
+/* Covers top portion of viewport; visible but blended.   */
+/* Fades to transparent so the terminal reads cleanly.    */
+.og-bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.38;
+  mix-blend-mode: luminosity;
+  pointer-events: none;
+  z-index: 2;
+  /* Fade out toward the bottom so terminal reads cleanly */
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.9) 30%,
+    rgba(0,0,0,0.4) 65%,
+    rgba(0,0,0,0)   100%);
+          mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,0.9) 0%,
+    rgba(0,0,0,0.9) 30%,
+    rgba(0,0,0,0.4) 65%,
+    rgba(0,0,0,0)   100%);
+}
+
+.countdown-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgb(var(--color-dark-950) / 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.countdown-shell {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── HUD top bar ───────────────────────────────────── */
+.hud-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: rgb(var(--color-dark-950) / 0.7);
+  border-bottom: 1px solid rgb(var(--color-primary) / 0.12);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.07em;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+
+.hud-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: rgb(var(--color-primary) / 0.4);
+  text-transform: uppercase;
+}
+
+.hud-badge--dim {
+  color: rgb(var(--color-primary) / 0.22);
+}
+
+.hud-sep { opacity: 0.3; }
+
+.hud-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  background: rgb(var(--color-primary));
+  box-shadow: var(--shadow-neon-primary-sm);
+}
+
+.hud-dot--accent {
+  background: rgb(var(--color-accent));
+  box-shadow: var(--shadow-neon-accent);
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.25; }
+}
+.hud-dot--pulse {
+  animation: hud-pulse 2s ease-in-out infinite;
+}
+
+/* ── Split portal layout ───────────────────────────── */
+.split-portal {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .split-portal { flex-direction: row; }
+}
+
+/* ── Brand panel (left) ────────────────────────────── */
+.brand-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-lg);
+  border-bottom: 1px solid rgb(var(--color-primary) / 0.08);
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .brand-panel {
+    width: 42%;
+    border-bottom: none;
+    border-right: 1px solid rgb(var(--color-primary) / 0.1);
+    padding: var(--spacing-2xl);
+    gap: var(--spacing-xl);
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .brand-panel {
+    width: 38%;
+    padding: var(--spacing-3xl);
+  }
+}
+
+/* ── Countdown panel (right) ───────────────────────── */
+.countdown-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  flex: 1;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .countdown-panel { padding: var(--spacing-2xl); }
+}
+
+/* ── Panel internals ───────────────────────────────── */
+.panel-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.panel-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--color-primary) / 0.18) 30%,
+    rgb(var(--color-primary) / 0.18) 70%,
+    transparent
+  );
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-primary) / 0.28);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* ── Identity block ────────────────────────────────── */
+.identity-handle {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-primary) / 0.38);
+  letter-spacing: 0.1em;
+}
+
+.identity-name {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-4xl);
+  font-weight: 800;
+  color: rgb(var(--color-primary));
+  text-shadow: var(--shadow-neon-primary);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 1280px) {
+  .identity-name { font-size: var(--font-size-5xl); }
+}
+
+.identity-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-accent) / 0.65);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.identity-tagline {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  color: rgb(var(--color-text-secondary) / 0.5);
+  line-height: var(--line-height-relaxed);
+  font-style: italic;
+  max-width: 34ch;
+}
+
+/* ── Social links ──────────────────────────────────── */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid rgb(var(--color-primary) / 0.18);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-primary) / 0.55);
+  background: rgb(var(--color-primary) / 0.03);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.social-link:hover {
+  border-color: rgb(var(--color-primary) / 0.5);
+  color: rgb(var(--color-primary));
+  background: rgb(var(--color-primary) / 0.08);
+  box-shadow: var(--shadow-neon-primary-sm);
+}
+
+/* ── Recent items ──────────────────────────────────── */
+.recent-section {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .recent-section { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+}
+
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recent-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-text-tertiary));
+  text-decoration: none;
+  padding: var(--spacing-xs) 0;
+  transition: color var(--transition-fast);
+}
+
+.recent-item:hover { color: rgb(var(--color-primary) / 0.8); }
+
+.recent-arrow {
+  color: rgb(var(--color-primary) / 0.28);
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+.recent-item:hover .recent-arrow { color: rgb(var(--color-primary) / 0.7); }
+
+.recent-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.recent-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1px var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.recent-tag--live     { color: rgb(var(--color-accent) / 0.8);     border: 1px solid rgb(var(--color-accent) / 0.25);     background: rgb(var(--color-accent) / 0.06); }
+.recent-tag--building { color: rgb(var(--color-secondary) / 0.8);  border: 1px solid rgb(var(--color-secondary) / 0.25); background: rgb(var(--color-secondary) / 0.06); }
+.recent-tag--open     { color: rgb(var(--color-primary) / 0.8);    border: 1px solid rgb(var(--color-primary) / 0.25);   background: rgb(var(--color-primary) / 0.06); }
+
+/* ── Countdown terminal card ───────────────────────── */
+.countdown-terminal {
+  width: 100%;
+  max-width: 440px;
+  background: rgb(var(--color-dark-900) / 0.85);
+  border: 1px solid rgb(var(--color-primary) / 0.18);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--terminal-glow), 0 0 80px rgb(var(--color-primary) / 0.04);
+  -webkit-backdrop-filter: blur(16px);
+          backdrop-filter: blur(16px);
+  overflow: hidden;
+}
+
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgb(var(--color-primary) / 0.05);
+  border-bottom: 1px solid rgb(var(--color-primary) / 0.1);
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+.terminal-dot--close { background: rgb(var(--color-error)   / 0.65); }
+.terminal-dot--min   { background: rgb(var(--color-warning) / 0.65); }
+.terminal-dot--max   { background: rgb(var(--color-success) / 0.65); }
+
+.terminal-title {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-primary) / 0.32);
+  margin-left: var(--spacing-xs);
+  letter-spacing: 0.04em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminal-body {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+/* ── Countdown display ─────────────────────────────── */
+.countdown-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-align: center;
+}
+
+@keyframes num-appear {
+  from { opacity: 0.12; transform: scale(0.88) translateY(6px); filter: blur(3px); }
+  to   { opacity: 1;    transform: scale(1)    translateY(0);   filter: blur(0);   }
+}
+
+.countdown-number {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-7xl);
+  font-weight: 800;
+  color: rgb(var(--color-primary));
+  text-shadow: var(--shadow-neon-primary-lg);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  animation: num-appear 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.countdown-unit {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-primary) / 0.3);
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+}
+
+/* ── Progress bar ──────────────────────────────────── */
+.progress-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.progress-track {
+  width: 100%;
+  height: 2px;
+  background: rgb(var(--color-primary) / 0.1);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: rgb(var(--color-primary));
+  box-shadow: var(--shadow-neon-primary-sm);
+  border-radius: var(--radius-full);
+  transition: width 1s linear;
+}
+
+.progress-ticks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.progress-tick {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: rgb(var(--color-primary) / 0.2);
+}
+
+/* ── Status log ────────────────────────────────────── */
+.status-log {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 5rem;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  color: rgb(var(--color-primary) / 0.28);
+  line-height: var(--line-height-relaxed);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.status-line--active { color: rgb(var(--color-primary) / 0.78); }
+
+.status-prefix {
+  color: rgb(var(--color-accent) / 0.5);
+  flex-shrink: 0;
+  font-weight: 700;
+  min-width: 1ch;
+}
+.status-line--active .status-prefix { color: rgb(var(--color-accent)); }
+
+/* ── Cursor blink ──────────────────────────────────── */
+.cursor-blink {
+  color: rgb(var(--color-primary));
+  animation: blink 1s step-end infinite;
+}
+
+/* ── CTA button ────────────────────────────────────── */
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: rgb(var(--color-primary) / 0.06);
+  border: 1px solid rgb(var(--color-primary) / 0.3);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: rgb(var(--color-primary));
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cta-btn:hover {
+  background: rgb(var(--color-primary) / 0.13);
+  border-color: rgb(var(--color-primary) / 0.65);
+  box-shadow: var(--shadow-neon-primary);
+}
+
+/* ── Footer signature ──────────────────────────────── */
+.footer-sig {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-xs) var(--spacing-lg);
+  border-top: 1px solid rgb(var(--color-primary) / 0.07);
+  background: rgb(var(--color-dark-950) / 0.5);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgb(var(--color-primary) / 0.18);
+  letter-spacing: 0.07em;
+  flex-shrink: 0;
+}
+
+.footer-sig span:nth-child(2) { display: none; }
+.footer-sig span:nth-child(3) { display: none; }
+
+@media (min-width: 640px) {
+  .footer-sig span:nth-child(2) { display: block; }
+}
+
+@media (min-width: 1024px) {
+  .footer-sig span:nth-child(3) { display: block; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AVATAR-HERO REDESIGN — design-token components
+   Centered layout replacing split-portal.
+   All values reference CSS variables. No hardcoded colors.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* ── Cursor blink (used by status log) ──────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Entrance animations ────────────────────────────── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes avatar-init {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(14px);
+    filter: blur(14px) brightness(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0) brightness(1);
+  }
+}
+
+/* ── Avatar hex border gradient ─────────────────────── */
+@keyframes border-gradient-flow {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* ── Avatar glow pulse — uses character palette (purple/indigo) ── */
+@keyframes avatar-glow-pulse {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 8px  rgb(var(--color-purple)   / 0.70))
+      drop-shadow(0 0 24px rgb(var(--color-indigo)   / 0.50));
+  }
+  40% {
+    filter:
+      drop-shadow(0 0 6px  rgb(var(--color-lavender) / 0.55))
+      drop-shadow(0 0 18px rgb(var(--color-purple)   / 0.65))
+      drop-shadow(0 0 40px rgb(var(--color-indigo)   / 0.40));
+  }
+  70% {
+    filter:
+      drop-shadow(0 0 16px rgb(var(--color-purple)      / 1.00))
+      drop-shadow(0 0 50px rgb(var(--color-purple-glow) / 0.60))
+      drop-shadow(0 0 90px rgb(var(--color-indigo)      / 0.25));
+  }
+}
+
+/* ── Avatar scan-line sweep ─────────────────────────── */
+@keyframes avatar-scan-sweep {
+  0%   { transform: translateY(-110%); opacity: 0;   }
+  6%   { opacity: 1;                                  }
+  90%  { opacity: 0.75;                               }
+  100% { transform: translateY(110%);  opacity: 0;   }
+}
+
+/* ── Countdown glitch-tick ──────────────────────────── */
+/* Chromatic aberration via text-shadow only — no blur,  */
+/* no scale, no Y-translate so layout never shifts.      */
+@keyframes glitch-tick {
+  /* Flash in */
+  0% {
+    opacity: 0;
+    text-shadow: var(--shadow-neon-primary-lg);
+  }
+  /* Chromatic spike 1 */
+  10% {
+    opacity: 0.85;
+    transform: translateX(-3px);
+    text-shadow:
+      4px  0 rgb(var(--color-accent)    / 0.80),
+      -4px 0 rgb(var(--color-secondary) / 0.65),
+      var(--shadow-neon-primary-lg);
+  }
+  /* Chromatic spike 2 */
+  20% {
+    opacity: 0.75;
+    transform: translateX(3px);
+    text-shadow:
+      -3px 0 rgb(var(--color-accent)   / 0.85),
+       3px 0 rgb(var(--color-primary)  / 0.55);
+  }
+  /* Settle */
+  35% {
+    opacity: 1;
+    transform: translateX(0);
+    text-shadow: var(--shadow-neon-primary-xl);
+  }
+  /* Micro twitch */
+  45% {
+    transform: translateX(2px);
+    text-shadow:
+      -2px 0 rgb(var(--color-accent) / 0.22),
+      var(--shadow-neon-primary-lg);
+  }
+  /* Lock in */
+  55%, 100% {
+    transform: translateX(0);
+    text-shadow: var(--shadow-neon-primary-lg);
+    opacity: 1;
+  }
+}
+
+/* ── Isolation wrapper around the glitching number ──── */
+/* contain: layout paint stops shadow/transform bleeding */
+/* outside this box — the rest of the page never moves. */
+.clock-screen {
+  position: relative;
+  contain: layout paint;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Fixed height prevents the 1-second remount from    */
+  /* collapsing / expanding the terminal body.          */
+  min-height: 1.1em;
+}
+
+/* countdown-number is inline by default — make it      */
+/* inline-block so translateX is well-defined.          */
+.countdown-number {
+  display: inline-block;
+  animation: glitch-tick 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Hero centered layout ────────────────────────────── */
+.hero-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-md);
+  overflow-y: auto;
+  text-align: center;
+  min-height: 0;
+}
+
+@media (min-width: 480px) {
+  .hero-center { gap: var(--spacing-lg); }
+}
+
+@media (min-width: 768px) {
+  .hero-center {
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+}
+
+/* ── Avatar zone ─────────────────────────────────────── */
+.avatar-zone {
+  animation: avatar-init 0.92s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-frame {
+  position: relative;
+  width: 180px;
+  height: 200px;
+  /* ambient glow radiates around blended character */
+  filter:
+    drop-shadow(0 0 16px rgb(var(--color-purple) / 0.50))
+    drop-shadow(0 0 48px rgb(var(--color-indigo) / 0.30));
+  animation: avatar-glow-pulse 3.6s ease-in-out 1.4s infinite;
+}
+
+@media (min-width: 480px) {
+  .avatar-frame { width: 210px; height: 230px; }
+}
+
+@media (min-width: 768px) {
+  .avatar-frame { width: 240px; height: 264px; }
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  /* Dark pixels dissolve into background; lit areas glow through */
+  mix-blend-mode: screen;
+  /* Soft radial mask — character fades at edges with no hard crop */
+  -webkit-mask-image: radial-gradient(ellipse 78% 82% at 50% 48%, black 28%, transparent 78%);
+          mask-image: radial-gradient(ellipse 78% 82% at 50% 48%, black 28%, transparent 78%);
+}
+
+/* Periodic scan-line sweep */
+.avatar-scan {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.avatar-scan::after {
+  content: '';
+  position: absolute;
+  left: -10%;
+  width: 120%;
+  height: 3px;
+  background: linear-gradient(
+    transparent,
+    rgb(var(--color-lavender) / 0.38),
+    rgb(var(--color-lavender) / 0.68),
+    rgb(var(--color-lavender) / 0.38),
+    transparent
+  );
+  animation: avatar-scan-sweep 5.5s ease-in-out 2.8s infinite;
+}
+
+/* ── Hero identity ────────────────────────────────────── */
+.hero-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  animation: fade-up 0.6s ease 1.1s both;
+}
+
+/* identity-* classes are reused from brand-panel */
+
+/* ── Hero countdown card ─────────────────────────────── */
+.hero-countdown {
+  width: 100%;
+  max-width: 380px;
+  animation: slide-up 0.72s cubic-bezier(0.22, 1, 0.36, 1) 1.65s both;
+}
+
+/* Compact terminal body for hero layout */
+.terminal-body--compact {
+  padding: var(--spacing-lg);
+  gap: var(--spacing-md);
+}
+
+/* ── CTA group ────────────────────────────────────────── */
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
+  animation: fade-up 0.6s ease 2.05s both;
+}
+
+/* Width override for cta-btn inside cta-group (it defaults to 100%) */
+.cta-group .cta-btn {
+  width: auto;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-xs);
+}
+
+/* Primary CTA — solid accent */
+.cta-btn--primary {
+  background: rgb(var(--color-primary) / 0.10);
+  border-color: rgb(var(--color-primary) / 0.60);
+  color: rgb(var(--color-primary));
+}
+
+.cta-btn--primary:hover {
+  background: rgb(var(--color-primary) / 0.20);
+  border-color: rgb(var(--color-primary));
+  box-shadow: var(--shadow-neon-primary-lg);
+}
+
+/* Ghost CTA — subtle */
+.cta-btn--ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: rgb(var(--color-primary) / 0.03);
+  border: 1px solid rgb(var(--color-primary) / 0.18);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: rgb(var(--color-primary) / 0.58);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.cta-btn--ghost:hover {
+  background: rgb(var(--color-primary) / 0.09);
+  border-color: rgb(var(--color-primary) / 0.48);
+  color: rgb(var(--color-primary));
+  box-shadow: var(--shadow-neon-primary-sm);
+}
+
+/* ── Recent row (horizontal pills) ───────────────────── */
+.recent-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  justify-content: center;
+  animation: fade-up 0.6s ease 2.35s both;
+}
+
+.recent-row .recent-item {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: 1px solid rgb(var(--color-primary) / 0.10);
+  border-radius: var(--radius-md);
+  background: rgb(var(--color-dark-900) / 0.55);
+  white-space: nowrap;
+}
+
+.recent-row .recent-item:hover {
+  border-color: rgb(var(--color-primary) / 0.30);
+  background: rgb(var(--color-primary) / 0.05);
+  color: rgb(var(--color-primary) / 0.80);
 }

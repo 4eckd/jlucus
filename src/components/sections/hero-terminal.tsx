@@ -63,9 +63,63 @@ export function HeroTerminal() {
       animate="visible"
       variants={containerVariants}
     >
-      {/* Left Panel — Info & CTAs */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center relative z-10 px-8 py-20">
-        <motion.div className="max-w-xl w-full space-y-8" variants={itemVariants}>
+      {/* Animated Grid Background */}
+      <AnimatedGrid />
+      
+      {/* Main Content */}
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          className="max-w-4xl mx-auto text-center space-y-8"
+          variants={itemVariants}
+        >
+          {/* Terminal Window */}
+          <motion.div
+            className="terminal-box bg-background-secondary/80 backdrop-blur-sm border border-primary/10 rounded-lg overflow-hidden shadow-neon-primary-lg"
+            variants={itemVariants}
+          >
+            {/* Terminal Header */}
+            <div className="flex items-center gap-2 px-4 py-2 bg-background-tertiary border-b border-primary/10">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-error"></div>
+                <div className="w-3 h-3 rounded-full bg-warning"></div>
+                <div className="w-3 h-3 rounded-full bg-success"></div>
+              </div>
+              <div className="flex-1 text-center">
+                <span className="text-xs text-secondary font-mono">terminal@jlucus.dev</span>
+              </div>
+            </div>
+
+            {/* Terminal Content */}
+            <div className="p-6 font-mono text-left space-y-4">
+              {/* Welcome Message */}
+              <div className="space-y-2">
+                <div className="text-primary">
+                  <span className="text-secondary">$</span> whoami
+                </div>
+                <div className="text-secondary ml-4">
+                  <span className="text-primary">jlucus</span> - Engineer, Builder, Architect
+                </div>
+              </div>
+
+              {/* Animated Command */}
+              <div className="text-primary">
+                <span className="text-secondary">$</span> {displayedText}
+                <span className="animate-pulse">_</span>
+              </div>
+
+              {/* System Info */}
+              <div className="space-y-2 text-sm text-secondary">
+                <div className="text-primary">$ system --info</div>
+                <div className="ml-4 space-y-1">
+                  <div>├── Location: <span className="text-primary">Cloud, Remote</span></div>
+                  <div>├── Focus: <span className="text-primary">Blockchain • AI • Web3</span></div>
+                  <div>├── Status: <span className="text-success">● Available for hire</span></div>
+                  <div>└── Skills: <span className="text-primary">Full-Stack • DevOps • Architecture</span></div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Main Title */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
