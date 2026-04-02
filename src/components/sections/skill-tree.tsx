@@ -93,7 +93,7 @@ function SkillNode({ skill, index }: SkillNodeProps) {
                 <span className="text-secondary">Level {skill.level}</span>
                 <span className="text-primary">{skill.xp}/{skill.maxXP} XP</span>
               </div>
-              <div className="h-1 bg-dark-700 rounded-full overflow-hidden">
+              <div className="h-1 bg-surface-hover rounded-full overflow-hidden">
                 <div 
                   className={cn("h-full", levelColors[skill.level])}
                   style={{ width: `${levelProgress}%` }}

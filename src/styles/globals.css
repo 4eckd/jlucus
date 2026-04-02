@@ -282,40 +282,81 @@ a {
   text-decoration: none;
 }
 
-/* Selection Colors */
+/* Selection Colors - Terminal Neon Style */
 ::-moz-selection {
-  background-color: rgb(var(--color-primary) / 0.3);
+  background-color: rgb(var(--color-primary) / 0.4);
   color: rgb(var(--color-text-primary));
-}
-::selection {
-  background-color: rgb(var(--color-primary) / 0.3);
-  color: rgb(var(--color-text-primary));
+  text-shadow: 0 0 8px rgb(var(--color-primary) / 0.6);
 }
 
-/* Scrollbar Styling */
+::selection {
+  background-color: rgb(var(--color-primary) / 0.4);
+  color: rgb(var(--color-text-primary));
+  text-shadow: 0 0 8px rgb(var(--color-primary) / 0.6);
+}
+
+/* Scrollbar Styling - Terminal Neon Style */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 ::-webkit-scrollbar-track {
   background: rgb(var(--color-dark-900));
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 0 6px rgb(var(--color-dark-800) / 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--color-primary) / 0.3);
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-primary) / 0.4) 0%,
+    rgb(var(--color-primary) / 0.3) 50%,
+    rgb(var(--color-primary) / 0.4) 100%
+  );
   border-radius: var(--radius-md);
   border: 2px solid rgb(var(--color-dark-900));
+  box-shadow:
+    0 0 8px rgb(var(--color-primary) / 0.3),
+    inset 0 0 4px rgb(var(--color-primary) / 0.2);
+  transition: all var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--color-primary) / 0.5);
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-primary) / 0.6) 0%,
+    rgb(var(--color-primary) / 0.5) 50%,
+    rgb(var(--color-primary) / 0.6) 100%
+  );
+  box-shadow:
+    0 0 12px rgb(var(--color-primary) / 0.5),
+    0 0 20px rgb(var(--color-primary) / 0.3),
+    inset 0 0 6px rgb(var(--color-primary) / 0.4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    rgb(var(--color-primary) / 0.8) 0%,
+    rgb(var(--color-primary) / 0.7) 50%,
+    rgb(var(--color-primary) / 0.8) 100%
+  );
+  box-shadow:
+    0 0 16px rgb(var(--color-primary) / 0.7),
+    0 0 30px rgb(var(--color-primary) / 0.5),
+    inset 0 0 8px rgb(var(--color-primary) / 0.6);
+}
+
+/* Scrollbar Corner (where vertical and horizontal scrollbars meet) */
+::-webkit-scrollbar-corner {
+  background: rgb(var(--color-dark-900));
 }
 
 /* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(var(--color-primary) / 0.3) rgb(var(--color-dark-900));
+  scrollbar-color: rgb(var(--color-primary) / 0.4) rgb(var(--color-dark-900));
 }
 
 /* Grid Background Pattern */
