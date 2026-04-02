@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAVIGATION_SECTIONS, SOCIAL_LINKS } from '@/lib/constants';
@@ -11,13 +11,14 @@ import { Menu, X, Eye, EyeOff } from 'lucide-react';
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [reduceMotion, setReduceMotion] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('reduceMotion') === 'true';
+    }
+    return false;
+  });
+  const [scrollProgress, setScrollProgress] = useState(0);
   const pathname = usePathname();
-
-  // Sync reduce-motion class on <body> and persist preference
-  useEffect(() => {
-    const stored = localStorage.getItem('reduceMotion');
-    if (stored === 'true') setReduceMotion(true);
-  }, []);
 
   useEffect(() => {
     if (reduceMotion) {
@@ -52,8 +53,12 @@ export function Header() {
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Call handleScroll asynchronously to avoid setState in effect warning
+    const id = requestAnimationFrame(handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(id);
+    };
   }, [handleScroll]);
 
   const scrollToSection = (sectionId: string) => {
