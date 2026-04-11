@@ -2,7 +2,7 @@
 
 **Auto-generated:** $(date -u +%Y-%m-%d %H:%M:%S UTC)
 **Event:** push
-**Branch:** main
+**Branch:** dependabot/npm_and_yarn/npm_and_yarn-ad77747e51
 
 ## Active Development
 
@@ -50,6 +50,7 @@ $(git branch -r | grep -v HEAD | wc -l) remote branches
 | origin/claude/setup-git-workflow-bmgZ4 | #- | - | - | Active |
 | origin/claude/setup-git-workflow-cVkNK | #- | - | - | Active |
 | origin/claude/setup-gitbutler-branching-LScIj | #- | - | - | Active |
+| origin/dependabot/npm_and_yarn/npm_and_yarn-ad77747e51 | #- | - | - | Active |
 | origin/development | #- | - | - | Active |
 | origin/feature/redirect-vlngg | #- | - | - | Active |
 | origin/main | #- | - | - | Active |
